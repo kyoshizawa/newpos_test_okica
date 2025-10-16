@@ -80,9 +80,9 @@
         <action
             android:id="@+id/action_navigation_menu_to_navigation_qr_payment"
             app:destination="@id/navigation_qr_payment" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_history_aggregate"
-            app:destination="@id/navigation_history_aggregate" />
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_navigation_history_aggregate"-->
+<!--            app:destination="@id/navigation_history_aggregate" />-->
         <action
             android:id="@+id/action_navigation_menu_to_navigation_car_id"
             app:destination="@id/navigation_car_id" />
@@ -211,65 +211,65 @@
         android:id="@+id/developer_menu_navigation"
         app:startDestination="@+id/navigation_developer_menu">
 
-        <fragment
-            android:id="@+id/navigation_developer_menu"
-            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperMenuFragment"
-            tools:layout="@layout/fragment_developer_menu" >
-            <action
-                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_realtime_gps"
-                app:destination="@id/navigation_developer_realtime_gps" />
-            <action
-                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_history_gps"
-                app:destination="@id/navigation_developer_history_gps" />
-            <action
-                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_realtime_radio"
-                app:destination="@id/navigation_developer_realtime_radio" />
-            <action
-                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_history_radio"
-                app:destination="@id/navigation_developer_history_radio" />
-            <action
-                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_add_dummy_transaction"
-                app:destination="@id/navigation_developer_add_dummy_transaction" />
-            <action
-                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_add_dummy_driver"
-                app:destination="@id/navigation_developer_add_dummy_driver" />
-        </fragment>
+<!--        <fragment-->
+<!--            android:id="@+id/navigation_developer_menu"-->
+<!--            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperMenuFragment"-->
+<!--            tools:layout="@layout/fragment_developer_menu" >-->
+<!--            <action-->
+<!--                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_realtime_gps"-->
+<!--                app:destination="@id/navigation_developer_realtime_gps" />-->
+<!--            <action-->
+<!--                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_history_gps"-->
+<!--                app:destination="@id/navigation_developer_history_gps" />-->
+<!--            <action-->
+<!--                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_realtime_radio"-->
+<!--                app:destination="@id/navigation_developer_realtime_radio" />-->
+<!--            <action-->
+<!--                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_history_radio"-->
+<!--                app:destination="@id/navigation_developer_history_radio" />-->
+<!--            <action-->
+<!--                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_add_dummy_transaction"-->
+<!--                app:destination="@id/navigation_developer_add_dummy_transaction" />-->
+<!--            <action-->
+<!--                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_add_dummy_driver"-->
+<!--                app:destination="@id/navigation_developer_add_dummy_driver" />-->
+<!--        </fragment>-->
 
-        <fragment
-            android:id="@+id/navigation_developer_realtime_gps"
-            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperRealtimeGpsFragment"
-            tools:layout="@layout/fragment_developer_realtime_gps" >
-        </fragment>
+<!--        <fragment-->
+<!--            android:id="@+id/navigation_developer_realtime_gps"-->
+<!--            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperRealtimeGpsFragment"-->
+<!--            tools:layout="@layout/fragment_developer_realtime_gps" >-->
+<!--        </fragment>-->
 
-        <fragment
-            android:id="@+id/navigation_developer_history_gps"
-            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperHistoryGpsFragment"
-            tools:layout="@layout/fragment_developer_history_gps" >
-        </fragment>
+<!--        <fragment-->
+<!--            android:id="@+id/navigation_developer_history_gps"-->
+<!--            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperHistoryGpsFragment"-->
+<!--            tools:layout="@layout/fragment_developer_history_gps" >-->
+<!--        </fragment>-->
 
-        <fragment
-            android:id="@+id/navigation_developer_history_radio"
-            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperHistoryRadioFragment"
-            tools:layout="@layout/fragment_developer_history_radio" >
-        </fragment>
+<!--        <fragment-->
+<!--            android:id="@+id/navigation_developer_history_radio"-->
+<!--            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperHistoryRadioFragment"-->
+<!--            tools:layout="@layout/fragment_developer_history_radio" >-->
+<!--        </fragment>-->
 
-        <fragment
-            android:id="@+id/navigation_developer_realtime_radio"
-            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperRealtimeRadioFragment"
-            tools:layout="@layout/fragment_developer_realtime_radio" >
-        </fragment>
+<!--        <fragment-->
+<!--            android:id="@+id/navigation_developer_realtime_radio"-->
+<!--            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperRealtimeRadioFragment"-->
+<!--            tools:layout="@layout/fragment_developer_realtime_radio" >-->
+<!--        </fragment>-->
 
-        <fragment
-            android:id="@+id/navigation_developer_add_dummy_transaction"
-            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperAddDummyTransactionFragment"
-            tools:layout="@layout/fragment_developer_add_dummy_transaction" >
-        </fragment>
+<!--        <fragment-->
+<!--            android:id="@+id/navigation_developer_add_dummy_transaction"-->
+<!--            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperAddDummyTransactionFragment"-->
+<!--            tools:layout="@layout/fragment_developer_add_dummy_transaction" >-->
+<!--        </fragment>-->
 
-        <fragment
-            android:id="@+id/navigation_developer_add_dummy_driver"
-            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperAddDummyDriverFragment"
-            tools:layout="@layout/fragment_developer_add_dummy_driver" >
-        </fragment>
+<!--        <fragment-->
+<!--            android:id="@+id/navigation_developer_add_dummy_driver"-->
+<!--            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperAddDummyDriverFragment"-->
+<!--            tools:layout="@layout/fragment_developer_add_dummy_driver" >-->
+<!--        </fragment>-->
 
     </navigation>
 
@@ -585,10 +585,10 @@
             app:popUpToInclusive="true"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_history_aggregate"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryAggregateFragment"
-        tools:layout="@layout/fragment_history_aggregate" />
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_history_aggregate"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryAggregateFragment"-->
+<!--        tools:layout="@layout/fragment_history_aggregate" />-->
 
     <fragment
         android:id="@+id/navigation_car_id"

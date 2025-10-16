@@ -2852,7 +2852,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
             Timer timer = new Timer();
             timer.schedule(timerTask, 500);
         } else {
-            navigateMain(view, R.id.action_navigation_menu_to_navigation_history_aggregate);
+            // navigateMain(view, R.id.action_navigation_menu_to_navigation_history_aggregate);
         }
     }
     /******************************************************************************/

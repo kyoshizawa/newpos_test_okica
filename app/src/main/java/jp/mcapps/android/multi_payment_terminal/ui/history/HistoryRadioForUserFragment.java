@@ -26,14 +26,14 @@ import jp.mcapps.android.multi_payment_terminal.BaseFragment;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.ScreenData;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentHistoryRadioForUserBinding;
-import jp.mcapps.android.multi_payment_terminal.receiver.PickedDateTimeReceiver;
+//import jp.mcapps.android.multi_payment_terminal.receiver.PickedDateTimeReceiver;
 import timber.log.Timber;
 
 public class HistoryRadioForUserFragment extends BaseFragment {
     private final String SCREEN_NAME = "電波履歴";
 
     private HistoryRadioForUserViewModel _viewModel;
-    private PickedDateTimeReceiver _receiver;
+    //private PickedDateTimeReceiver _receiver;
 
     public static HistoryRadioForUserFragment newInstance() {
         return new HistoryRadioForUserFragment();
@@ -93,15 +93,15 @@ public class HistoryRadioForUserFragment extends BaseFragment {
         Date date = calendar.getTime();
 
         _viewModel.getRadioLevelHistory(date);
-
-        _receiver = new PickedDateTimeReceiver() {
-            @Override
-            protected void onPickedDateTimeReceive(Date pickedDateTime) {
-                if (pickedDateTime != null) {
-                    _viewModel.getRadioLevelHistory(pickedDateTime);
-                }
-            }
-        };
+//
+//        _receiver = new PickedDateTimeReceiver() {
+//            @Override
+//            protected void onPickedDateTimeReceive(Date pickedDateTime) {
+//                if (pickedDateTime != null) {
+//                    _viewModel.getRadioLevelHistory(pickedDateTime);
+//                }
+//            }
+//        };
 
         return binding.getRoot();
     }
@@ -109,8 +109,8 @@ public class HistoryRadioForUserFragment extends BaseFragment {
     @Override
     public void onPause() {
         //BroadcastReceiverの解除
-        LocalBroadcastManager.getInstance(requireContext())
-                .unregisterReceiver(_receiver);
+//        LocalBroadcastManager.getInstance(requireContext())
+//                .unregisterReceiver(_receiver);
         super.onPause();
     }
 
@@ -118,7 +118,7 @@ public class HistoryRadioForUserFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         IntentFilter intentFilter = new IntentFilter("SEND_PICKED_DATE");
-        LocalBroadcastManager.getInstance(requireContext())
-                .registerReceiver(_receiver, intentFilter);
+//        LocalBroadcastManager.getInstance(requireContext())
+//                .registerReceiver(_receiver, intentFilter);
     }
 }

@@ -52,7 +52,6 @@ import jp.mcapps.android.multi_payment_terminal.error.ErrorManage;
 import jp.mcapps.android.multi_payment_terminal.httpserver.events.EventBroker;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountInfo;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountMenuInfo;
-import jp.mcapps.android.multi_payment_terminal.receiver.AirPlaneModeChangedReceiver;
 import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
 import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
 import jp.mcapps.android.multi_payment_terminal.service.PeriodicErrorCheckService;
@@ -295,13 +294,13 @@ public class MainActivity extends AppCompatActivity {
         int batteryLevel = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
         Timber.i("battery %d %%", batteryLevel);
 
-        // 機内モード状態のチェック
-        this.registerReceiver(new AirPlaneModeChangedReceiver(), new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED));
-        if (1 == Settings.System.getInt(getContentResolver(),
-                Settings.Global.AIRPLANE_MODE_ON, 0)) {
-            Timber.e("機内モード状態：ON");
-            CurrentRadio.setAirplaneMode();
-        }
+//        // 機内モード状態のチェック
+//        this.registerReceiver(new AirPlaneModeChangedReceiver(), new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED));
+//        if (1 == Settings.System.getInt(getContentResolver(),
+//                Settings.Global.AIRPLANE_MODE_ON, 0)) {
+//            Timber.e("機内モード状態：ON");
+//            CurrentRadio.setAirplaneMode();
+//        }
 
 
     }

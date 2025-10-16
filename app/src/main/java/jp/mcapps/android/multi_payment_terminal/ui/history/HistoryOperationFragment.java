@@ -21,13 +21,13 @@ import jp.mcapps.android.multi_payment_terminal.BaseFragment;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.ScreenData;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentHistoryOperationBinding;
-import jp.mcapps.android.multi_payment_terminal.receiver.PickedDateTimeReceiver;
+//import jp.mcapps.android.multi_payment_terminal.receiver.PickedDateTimeReceiver;
 
 public class HistoryOperationFragment extends BaseFragment {
     private final String SCREEN_NAME = "操作履歴";
 
     private HistoryOperationViewModel _viewModel;
-    private PickedDateTimeReceiver _receiver;
+    //private PickedDateTimeReceiver _receiver;
 
     public static HistoryOperationFragment newInstance() {
         return new HistoryOperationFragment();
@@ -59,14 +59,14 @@ public class HistoryOperationFragment extends BaseFragment {
         calendar.add(Calendar.HOUR_OF_DAY, -1);
         _viewModel.getOperationHistory(calendar.getTime());
 
-        _receiver = new PickedDateTimeReceiver() {
-            @Override
-            protected void onPickedDateTimeReceive(Date pickedDateTime) {
-                if (pickedDateTime != null) {
-                    _viewModel.getOperationHistory(pickedDateTime);
-                }
-            }
-        };
+//        _receiver = new PickedDateTimeReceiver() {
+//            @Override
+//            protected void onPickedDateTimeReceive(Date pickedDateTime) {
+//                if (pickedDateTime != null) {
+//                    _viewModel.getOperationHistory(pickedDateTime);
+//                }
+//            }
+//        };
 
         return binding.getRoot();
     }
@@ -74,16 +74,16 @@ public class HistoryOperationFragment extends BaseFragment {
     @Override
     public void onPause() {
         //BroadcastReceiverの解除
-        LocalBroadcastManager.getInstance(requireContext())
-                .unregisterReceiver(_receiver);
+//        LocalBroadcastManager.getInstance(requireContext())
+//                .unregisterReceiver(_receiver);
         super.onPause();
     }
 
     @Override
     public void onResume() {
-        IntentFilter intentFilter = new IntentFilter("SEND_PICKED_DATE");
-        LocalBroadcastManager.getInstance(requireContext())
-                .registerReceiver(_receiver, intentFilter);
+//        IntentFilter intentFilter = new IntentFilter("SEND_PICKED_DATE");
+//        LocalBroadcastManager.getInstance(requireContext())
+//                .registerReceiver(_receiver, intentFilter);
         super.onResume();
     }
 }
