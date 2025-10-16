@@ -397,24 +397,26 @@ public class AppPreference {
         }
 
         // OKICA利用フラグ
-        if (info.isOkica != null) {
-
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D)) {
-                /* ヤザキLT27双方向連動ではOKICA未対応のため、OKICA利用フラグを無効にする */
-                e.putBoolean(getKey(R.string.setting_key_money_okica), false);
-                _isMoneyOkica = false;
-            } else {
-                e.putBoolean(getKey(R.string.setting_key_money_okica), info.isOkica);
-                if (_isMoneyOkica == true && info.isOkica == false) {
-                    // OKICA利用フラグON時にOFFを受信した場合
-                    Timber.i("OKICA利用フラグON時にOFFを受信");
-                    OkicaMasterControl.force_okica_off = true;
-                } else {
-                    OkicaMasterControl.force_okica_off = false;
-                    _isMoneyOkica = info.isOkica;
-                }
-            }
-        }
+        // 実験用に常に True
+        _isMoneyOkica = true;
+//        if (info.isOkica != null) {
+//
+//            if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D)) {
+//                /* ヤザキLT27双方向連動ではOKICA未対応のため、OKICA利用フラグを無効にする */
+//                e.putBoolean(getKey(R.string.setting_key_money_okica), false);
+//                _isMoneyOkica = false;
+//            } else {
+//                e.putBoolean(getKey(R.string.setting_key_money_okica), info.isOkica);
+//                if (_isMoneyOkica == true && info.isOkica == false) {
+//                    // OKICA利用フラグON時にOFFを受信した場合
+//                    Timber.i("OKICA利用フラグON時にOFFを受信");
+//                    OkicaMasterControl.force_okica_off = true;
+//                } else {
+//                    OkicaMasterControl.force_okica_off = false;
+//                    _isMoneyOkica = info.isOkica;
+//                }
+//            }
+//        }
 
         // QR利用フラグ
         if (info.isQr != null) {
@@ -1739,11 +1741,11 @@ public class AppPreference {
     public static void setIFBoxVersionInfo(Version.Response info) {
         _ifBoxVersionInfo = info;
         p.edit().putString("ifbox_version_info", info != null ? _gson.toJson(info) : null).apply();
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D)) {
-            /* ヤザキLT27双方向連動ではOKICA未対応のため、OKICA利用フラグを無効にする */
-            p.edit().putBoolean((getKey(R.string.setting_key_money_okica)), false).apply();
-            _isMoneyOkica = false;
-        }
+//        if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D)) {
+//            /* ヤザキLT27双方向連動ではOKICA未対応のため、OKICA利用フラグを無効にする */
+//            p.edit().putBoolean((getKey(R.string.setting_key_money_okica)), false).apply();
+//            _isMoneyOkica = false;
+//        }
     }
 
     public static void clearWifiP2pDeviceInfo() {

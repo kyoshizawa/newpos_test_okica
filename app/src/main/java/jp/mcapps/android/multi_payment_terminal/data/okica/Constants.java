@@ -8,8 +8,13 @@ import com.pos.device.config.DevConfig;
 import jp.mcapps.android.multi_payment_terminal.util.DeviceUtils;
 
 public class Constants {
+
+
     @SuppressLint("HardwareIds")
-    public static final String TERMINAL_INSTALL_ID = "M200000" + DeviceUtils.getSerial();
+    //public static final String TERMINAL_INSTALL_ID = "M200000" + DeviceUtils.getSerial();
+
+    // テスト用に固定で
+    public static final String TERMINAL_INSTALL_ID = "M2000009320001597";
 
     // 事業者コード：沖縄ＩＣカード（物販）
     public static final int COMPANY_CODE_BUPPAN = 0x0C02;
