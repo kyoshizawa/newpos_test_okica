@@ -34,18 +34,13 @@
                 android:layout_height="wrap_content"
                 bind:sharedViewModel='@{viewModel}'/>
 
-            <ScrollView
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_main_nav_host"
+                android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
-                android:layout_height="300dp">
-                <androidx.fragment.app.FragmentContainerView
-                    android:id="@+id/fragment_main_nav_host"
-                    android:name="androidx.navigation.fragment.NavHostFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:defaultNavHost="true"
-                    app:navGraph="@navigation/main_navigation" />
-            </ScrollView>
-
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/main_navigation" />
         </LinearLayout>
 
         <FrameLayout
