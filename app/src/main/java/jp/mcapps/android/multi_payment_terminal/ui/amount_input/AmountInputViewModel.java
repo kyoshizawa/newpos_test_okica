@@ -10,7 +10,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import timber.log.Timber;
 
 import static java.lang.Integer.parseInt;
@@ -44,10 +44,9 @@ public class AmountInputViewModel extends ViewModel {
         }
     }
 
-    private final IFBoxManager _ifBoxManager;
 
-    public AmountInputViewModel(IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager;
+    public AmountInputViewModel() {
+
     }
 
     private MutableLiveData<String> _inputMode = new MutableLiveData<>(InputModes.INCREASE);
@@ -73,14 +72,14 @@ public class AmountInputViewModel extends ViewModel {
     private final MutableLiveData<Integer> _meterCharge = new MutableLiveData<>(Amount.getMeterCharge());
     public MutableLiveData<Integer> getMeterCharge() { return _meterCharge; }
     public void fetchMeterCharge() {
-        _ifBoxManager.fetchMeter()
-                .timeout(5, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {
-                    _meterCharge.setValue(Amount.getMeterCharge());
-                }, error -> {
-                });
+//        _ifBoxManager.fetchMeter()
+//                .timeout(5, TimeUnit.SECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(() -> {
+//                    _meterCharge.setValue(Amount.getMeterCharge());
+//                }, error -> {
+//                });
     }
 
     private final MutableLiveData<Integer> _flatRateAmount = new MutableLiveData<>(0);

@@ -32,10 +32,10 @@ public class WatariChecker {
         }
         return _instance;
     }
-    private static IFBoxManager _ifBoxManager;
-    public void setIFBoxManager( IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager ;
-    }
+//    private static IFBoxManager _ifBoxManager;
+//    public void setIFBoxManager( IFBoxManager ifBoxManager) {
+//        _ifBoxManager = ifBoxManager ;
+//    }
 
     public void setListener(WatariCheckListener listener) {
         _listener = listener;
@@ -144,11 +144,11 @@ public class WatariChecker {
                 Timber.d("プリンターチェックOK");
             }else{
                 // LT27の場合IM-A820未接続状態であれば使わせない
-                if(!_ifBoxManager.isConnected())
-                {
-                    _listener.onFinished(app.getString(R.string.error_type_ifbox_connection_error));
-                    return;
-                }
+//                if(!_ifBoxManager.isConnected())
+//                {
+//                    _listener.onFinished(app.getString(R.string.error_type_ifbox_connection_error));
+//                    return;
+//                }
             }
 
             // バッテリー状態のチェック

@@ -33,7 +33,7 @@ import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorStackingData;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentMenuHeadBinding;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorEventHandlers;
 import jp.mcapps.android.multi_payment_terminal.ui.error.ErrorStackingEventHandler;
@@ -80,9 +80,9 @@ public class MenuHeadFragment extends Fragment implements ErrorStackingEventHand
             _commonErrorDialog.setCommonErrorEventHandlers(new CommonErrorEventHandlers() {
                 @Override
                 public void onPositiveClick(String errorCode) {
-                    if (errorCode.equals(getString(R.string.error_type_FutabaD_FareUp_Warning))) {
-                        menuViewModel.getIFBoxManager().send820_KeyCode(IFBoxManager.SendMeterDataStatus_FutabaD.RECEIPT_PRINT, 34, false); // 現金キーを送信
-                    }
+//                    if (errorCode.equals(getString(R.string.error_type_FutabaD_FareUp_Warning))) {
+//                        menuViewModel.getIFBoxManager().send820_KeyCode(IFBoxManager.SendMeterDataStatus_FutabaD.RECEIPT_PRINT, 34, false); // 現金キーを送信
+//                    }
                 }
 
                 @Override

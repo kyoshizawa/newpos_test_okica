@@ -58,10 +58,10 @@ public class OkicaChecker {
         }
         return _instance;
     }
-    private static IFBoxManager _ifBoxManager;
-    public void setIFBoxManager( IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager ;
-    }
+//    private static IFBoxManager _ifBoxManager;
+//    public void setIFBoxManager( IFBoxManager ifBoxManager) {
+//        _ifBoxManager = ifBoxManager ;
+//    }
     private static boolean _isABTCancelSuccess = false;
     private static int _errorCode = 0;
 
@@ -138,9 +138,9 @@ public class OkicaChecker {
                         }
                     } else {
                         // LT27の場合IM-A820未接続状態であれば使わせない
-                        if (!_ifBoxManager.isConnected()) {
-                            return app.getString(R.string.error_type_ifbox_connection_error);
-                        }
+//                        if (!_ifBoxManager.isConnected()) {
+//                            return app.getString(R.string.error_type_ifbox_connection_error);
+//                        }
                     }
                 }
             }
@@ -284,10 +284,10 @@ public class OkicaChecker {
                             return app.getString(R.string.error_type_printer_sts_undefined) + "@@@" + isPrinterSts + "@@@";
                     }
                 } else {
-                    // LT27の場合IM-A820未接続状態であれば使わせない
-                    if (!_ifBoxManager.isConnected()) {
-                        return app.getString(R.string.error_type_ifbox_connection_error);
-                    }
+//                    // LT27の場合IM-A820未接続状態であれば使わせない
+//                    if (!_ifBoxManager.isConnected()) {
+//                        return app.getString(R.string.error_type_ifbox_connection_error);
+//                    }
                 }
             }
         }

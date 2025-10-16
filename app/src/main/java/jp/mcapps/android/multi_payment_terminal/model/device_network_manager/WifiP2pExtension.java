@@ -23,14 +23,14 @@ import timber.log.Timber;
  * 呼び出し側もメインスレッドで動いているとデッドロックがかかってしまうので例外を返す
  */
 public class WifiP2pExtension {
-    public static String TAG = DeviceNetworkManager.class.getSimpleName();
+    public static String TAG = "";
 
     public static boolean connectSync(WifiP2pManager manager, WifiP2pManager.Channel channel, WifiP2pConfig config) {
         checkThread();
         try {
             return (boolean) Single.create(emitter -> {
                 Timber.d("start connect");
-                manager.connect(channel, config, boolActionListener(emitter, "connect"));
+                //manager.connect(channel, config, boolActionListener(emitter, "connect"));
             }).blockingGet();
         } catch (Exception e) {
             return false;
@@ -52,7 +52,7 @@ public class WifiP2pExtension {
         checkThread();
         try {
             return (boolean) Single.create(emitter -> {
-                manager.createGroup(channel, boolActionListener(emitter, "createGroup"));
+                //manager.createGroup(channel, boolActionListener(emitter, "createGroup"));
             }).blockingGet();
         } catch (Exception e) {
             return false;
@@ -64,7 +64,7 @@ public class WifiP2pExtension {
         try {
             return (boolean) Single.create(emitter -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    manager.createGroup(channel, config, boolActionListener(emitter, "createGroup"));
+                    //manager.createGroup(channel, config, boolActionListener(emitter, "createGroup"));
                 }
             }).blockingGet();
         } catch (Exception e) {
@@ -99,7 +99,7 @@ public class WifiP2pExtension {
         checkThread();
         try {
             return (boolean) Single.create(emitter -> {
-                manager.stopPeerDiscovery(channel, boolActionListener(emitter, "stopPeerDiscovery"));
+                //manager.stopPeerDiscovery(channel, boolActionListener(emitter, "stopPeerDiscovery"));
             }).blockingGet();
         } catch (Exception ignore) {
             return false;
@@ -109,7 +109,7 @@ public class WifiP2pExtension {
     public static boolean cancelConnectSync(WifiP2pManager manager, WifiP2pManager.Channel channel) {
         checkThread();
         return (boolean) Single.create(emitter -> {
-            manager.cancelConnect(channel, boolActionListener(emitter, "cancelConnect"));
+            //manager.cancelConnect(channel, boolActionListener(emitter, "cancelConnect"));
         }).blockingGet();
     }
 

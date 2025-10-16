@@ -38,7 +38,7 @@ import jp.mcapps.android.multi_payment_terminal.model.DeviceConnectivityManager;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
 import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
 import jp.mcapps.android.multi_payment_terminal.service.LogSendService;
-import jp.mcapps.android.multi_payment_terminal.service.WifiP2pService;
+//import jp.mcapps.android.multi_payment_terminal.service.WifiP2pService;
 import jp.mcapps.android.multi_payment_terminal.logger.EventLogger;
 import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuHomeFragment;
 import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
@@ -209,12 +209,12 @@ public class StartActivity extends AppCompatActivity {
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             // これはIFBoxキッティング後に必要な処理なので許可されている前提
             // アップデート処理を行うためにはWiFi-Directの接続が必要なため
-            Intent wifiP2pService = new Intent(this, WifiP2pService.class);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                ContextCompat.startForegroundService(this, wifiP2pService);
-            } else {
-                startService(wifiP2pService); // Android 7.1 以下はこれでOK
-            }
+//            Intent wifiP2pService = new Intent(this, WifiP2pService.class);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                ContextCompat.startForegroundService(this, wifiP2pService);
+//            } else {
+//                startService(wifiP2pService); // Android 7.1 以下はこれでOK
+//            }
         }
 
         Intent logSendService = new Intent(this, LogSendService.class);

@@ -38,12 +38,12 @@ import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
 import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentAmountInputAdvancepayFdBinding;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentAutoDailyReportFuelBinding;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+// import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterConst;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorEventHandlers;
-import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuAutoDailyReportFragment;
+//import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuAutoDailyReportFragment;
 import timber.log.Timber;
 
 public class AutoDailyReportFuelFragment extends BaseFragment implements AutoDailyReportFuelEventHandlers {
@@ -98,12 +98,12 @@ public class AutoDailyReportFuelFragment extends BaseFragment implements AutoDai
 
         if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true)
         {
-            if (IFBoxManager.meterDataV4Disposable_DailyReportJob == null) {
-                IFBoxManager.meterDataV4Disposable_DailyReportJob = _autoDailyReportFuelViewModel.getIfBoxManager().getMeterInfo()
-                        .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
-                    KuusyaCheckFromTariff();
-                });
-            }
+//            if (IFBoxManager.meterDataV4Disposable_DailyReportJob == null) {
+//                IFBoxManager.meterDataV4Disposable_DailyReportJob = _autoDailyReportFuelViewModel.getIfBoxManager().getMeterInfo()
+//                        .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
+//                    KuusyaCheckFromTariff();
+//                });
+//            }
 
         }
     }
@@ -129,19 +129,19 @@ public class AutoDailyReportFuelFragment extends BaseFragment implements AutoDai
         super.onDestroyView();
         //レシーバーの削除
 
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true)
-        {
-            if (IFBoxManager.meterDataV4Disposable_DailyReportJob != null) {
-                IFBoxManager.meterDataV4Disposable_DailyReportJob.dispose();
-                IFBoxManager.meterDataV4Disposable_DailyReportJob = null;
-            }
-
-            //if (IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel != null)
-            //{
-            //    IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel.dispose();
-            //    IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel = null;
-            //}
-        }
+//        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true)
+//        {
+//            if (IFBoxManager.meterDataV4Disposable_DailyReportJob != null) {
+//                IFBoxManager.meterDataV4Disposable_DailyReportJob.dispose();
+//                IFBoxManager.meterDataV4Disposable_DailyReportJob = null;
+//            }
+//
+//            //if (IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel != null)
+//            //{
+//            //    IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel.dispose();
+//            //    IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel = null;
+//            //}
+//        }
     }
 
 
@@ -381,20 +381,20 @@ public class AutoDailyReportFuelFragment extends BaseFragment implements AutoDai
             return;
         }
 
-        String tmpTariffStatus = _autoDailyReportFuelViewModel.getIfBoxManager().getMeterStatus();         //現在のステータス
+        //String tmpTariffStatus = _autoDailyReportFuelViewModel.getIfBoxManager().getMeterStatus();         //現在のステータス
 
-        if (tmpTariffStatus.equals("KUUSYA") == true)           //空車時
-        {
-        }
-        else                                                    //空車以外は抜ける処理を実施
-        {
-            if (_isNotKuusyaStatusFound == false) {
-                NavigationWrapper.popBackStack(this);
-                _sharedViewModel.setBackAction(null);
-                _sharedViewModel.setAutoDailyReportMenuHierarchy(SharedViewModel.AutoDailyReport_MenuHierarchy.LEVEL1);  //メニュー階層設定(自動日報メニュー指定)
-                _isNotKuusyaStatusFound = true;
-            }
-        }
+//        if (tmpTariffStatus.equals("KUUSYA") == true)           //空車時
+//        {
+//        }
+//        else                                                    //空車以外は抜ける処理を実施
+//        {
+//            if (_isNotKuusyaStatusFound == false) {
+//                NavigationWrapper.popBackStack(this);
+//                _sharedViewModel.setBackAction(null);
+//                _sharedViewModel.setAutoDailyReportMenuHierarchy(SharedViewModel.AutoDailyReport_MenuHierarchy.LEVEL1);  //メニュー階層設定(自動日報メニュー指定)
+//                _isNotKuusyaStatusFound = true;
+//            }
+//        }
     }
 
     /******************************************************************************/
@@ -414,251 +414,251 @@ public class AutoDailyReportFuelFragment extends BaseFragment implements AutoDai
             return false;
         }
 
-        if (_autoDailyReportFuelViewModel.getIfBoxManager().getIsConnected820() == false)             //820未接続の場合
-        {
-            CommonErrorDialog dialog = new CommonErrorDialog();
-            dialog.setCommonErrorEventHandlers(new CommonErrorEventHandlers() {
-                @Override
-                public void onPositiveClick(String errorCode) {
-                    CommonClickEvent.RecordClickOperation("はい", "820未接続エラー(1)", true);
-                }
-                @Override
-                public void onNegativeClick(String errorCode) {}
-                @Override
-                public void onNeutralClick(String errorCode) {}
-                @Override
-                public void onDismissClick(String errorCode) {}
-            });
-            dialog.ShowErrorMessage(getContext(), "6030");
-            return false;
-        }
+//        if (_autoDailyReportFuelViewModel.getIfBoxManager().getIsConnected820() == false)             //820未接続の場合
+//        {
+//            CommonErrorDialog dialog = new CommonErrorDialog();
+//            dialog.setCommonErrorEventHandlers(new CommonErrorEventHandlers() {
+//                @Override
+//                public void onPositiveClick(String errorCode) {
+//                    CommonClickEvent.RecordClickOperation("はい", "820未接続エラー(1)", true);
+//                }
+//                @Override
+//                public void onNegativeClick(String errorCode) {}
+//                @Override
+//                public void onNeutralClick(String errorCode) {}
+//                @Override
+//                public void onDismissClick(String errorCode) {}
+//            });
+//            dialog.ShowErrorMessage(getContext(), "6030");
+//            return false;
+//        }
 
-        IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
-        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-        tmpSend820Info.IsLoopBreakOut = false;
-        tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//        IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
+//        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//        tmpSend820Info.IsLoopBreakOut = false;
+//        tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//
+//        if ((mode == SEND820_AUTODAILYREPORT_FUELMODE.ValueRegist) || (mode == SEND820_AUTODAILYREPORT_FUELMODE.ValueRegistClear) ||(mode == SEND820_AUTODAILYREPORT_FUELMODE.FuelIn)
+//
+//            ) {                  //燃料入力 数値登録時
+//            IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel = _autoDailyReportFuelViewModel.getIfBoxManager().getMeterDataV4().subscribeOn(
+//                    Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {     //AndroidSchedulers.mainThread()
+//                Timber.i("[FUTABA-D]AutoDailyReportFuelFragment:750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
+//                Timber.i("[FUTABA-D]AutoDailyReportFuelFragment:FREE Mes  %s, %s, %s ", meter.line_41, meter.line_42, meter.line_43);
+//                if (meter.meter_sub_cmd == 13) {              //自動日報イベント
+//                    tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
+//                }
+//                else if (meter.meter_sub_cmd == 5)
+//                {
+//                    int result = meter.line_42.indexOf("燃料回数オーバー");             //燃料回数オーバー時
+//
+//                    if (result != -1) {
+//                        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_PROCESSCODE_ERROR;
+//                        tmpSend820Info.FREEMessage1 = meter.line_41;
+//                        tmpSend820Info.FREEMessage2 = meter.line_42;
+//                        tmpSend820Info.FREEMessage3 = meter.line_43;
+//                    }
+//                }
+//            });
+//
+//            _autoDailyReportFuelViewModel.meterDataV4ErrorDisposable = _autoDailyReportFuelViewModel.getIfBoxManager().getMeterDataV4Error().subscribeOn(
+//                    Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
+//                Timber.e("[FUTABA-D]AutoDailyReportFuelFragment:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
+//                tmpSend820Info.StatusCode = error.ErrorCode;
+//                tmpSend820Info.ErrorCode820 = error.ErrorCode820;
+//
+//            });
+//        }
 
-        if ((mode == SEND820_AUTODAILYREPORT_FUELMODE.ValueRegist) || (mode == SEND820_AUTODAILYREPORT_FUELMODE.ValueRegistClear) ||(mode == SEND820_AUTODAILYREPORT_FUELMODE.FuelIn)
-
-            ) {                  //燃料入力 数値登録時
-            IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel = _autoDailyReportFuelViewModel.getIfBoxManager().getMeterDataV4().subscribeOn(
-                    Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {     //AndroidSchedulers.mainThread()
-                Timber.i("[FUTABA-D]AutoDailyReportFuelFragment:750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
-                Timber.i("[FUTABA-D]AutoDailyReportFuelFragment:FREE Mes  %s, %s, %s ", meter.line_41, meter.line_42, meter.line_43);
-                if (meter.meter_sub_cmd == 13) {              //自動日報イベント
-                    tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
-                }
-                else if (meter.meter_sub_cmd == 5)
-                {
-                    int result = meter.line_42.indexOf("燃料回数オーバー");             //燃料回数オーバー時
-
-                    if (result != -1) {
-                        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_PROCESSCODE_ERROR;
-                        tmpSend820Info.FREEMessage1 = meter.line_41;
-                        tmpSend820Info.FREEMessage2 = meter.line_42;
-                        tmpSend820Info.FREEMessage3 = meter.line_43;
-                    }
-                }
-            });
-
-            _autoDailyReportFuelViewModel.meterDataV4ErrorDisposable = _autoDailyReportFuelViewModel.getIfBoxManager().getMeterDataV4Error().subscribeOn(
-                    Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
-                Timber.e("[FUTABA-D]AutoDailyReportFuelFragment:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
-                tmpSend820Info.StatusCode = error.ErrorCode;
-                tmpSend820Info.ErrorCode820 = error.ErrorCode820;
-
-            });
-        }
-
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                switch(mode)
-                {
-                    case ValueRegist:                   //値登録
-                        _autoDailyReportFuelViewModel.getIfBoxManager().send820_AutoDailyRepotFuelInput(tmpInputValue);    //820へ燃料量情報を送信
-                        for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
-                        {
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                            }
-
-                            if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
-                            {
-                                tmpSend820Info.IsLoopBreakOut = true;
-                                break;
-                            }
-                        }
-
-                        break;
-                    case ValueRegistClear:              //値登録クリア
-                        _autoDailyReportFuelViewModel.getIfBoxManager().send820_AutoDailyRepotFuelClear() ;             //820へ燃料量情報クリアを送信
-                        for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
-                        {
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                            }
-
-                            if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
-                            {
-                                tmpSend820Info.IsLoopBreakOut = true;
-                                break;
-                            }
-                        }
-                        break;
-                    case FuelIn:                        //燃料入力画面in
-                        _autoDailyReportFuelViewModel.getIfBoxManager().send820_AutoDailyRepotFuelIn();    //820へ燃料入力in情報を送信
-                        for(int i = 0; i < 10; i++)        //最大2秒ほど待ってみる
-                        {
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                            }
-
-                            if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
-                            {
-                                tmpSend820Info.IsLoopBreakOut = true;
-                                break;
-                            }
-                        }
-                        if (tmpSend820Info.IsLoopBreakOut == false)
-                        {
-                            tmpSend820Info.IsLoopBreakOut = true;
-                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
-                        }
-                        break;
-
-                    case FuelOut:                       //燃料入力画面out
-                        _autoDailyReportFuelViewModel.getIfBoxManager().send820_AutoDailyRepotFuelOut();   //820へ燃料入力out情報を送信
-                        for(int i = 0; i < 5; i++)        //最大0.5秒ほど待ってみる
-                        {
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                            }
-                        }
-                        tmpSend820Info.IsLoopBreakOut = true;
-                        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
-                        break;
-
-                    default:
-                        break;
-                }
-
-            }
-        });
-        thread.start();
-
-        String tmpErrorCode = "";               //通信等でエラー発生時は""以外のエラーコードをセットする
-        try {
-            thread.join();
-
-            if (IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel != null) {       //コールバック系を後始末
-                IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel.dispose();
-                IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel = null;
-            }
-
-            if (_autoDailyReportFuelViewModel.meterDataV4ErrorDisposable != null)        //コールバック系を後始末
-            {
-                _autoDailyReportFuelViewModel.meterDataV4ErrorDisposable.dispose();
-                _autoDailyReportFuelViewModel.meterDataV4ErrorDisposable = null;
-            }
-
-            if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
-                tmpErrorCode = "6030";                       //IFBOX接続エラー
-            }
-            else
-            {
-                switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
-                {
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
-                        tmpErrorCode = "6030";                       //IFBOX接続エラー
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:            //タイムアウト
-                        tmpErrorCode = "6030";                       //IFBOX接続エラー
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE:         //選択モードエラー
-                        tmpErrorCode = "6030";                       //IFBOX接続エラー
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG:             //zandaka_flg送信エラー(1が返ってきていない)
-                        tmpErrorCode = "6030";                       //IFBOX接続エラー
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
-                        Timber.e("[FUTABA-D](demo)820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
-                        tmpErrorCode = "6030";                       //IFBOX接続エラー
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_PROCESSCODE_ERROR:
-                        tmpErrorCode = "20001";                       //FREEメッセージ表示モード
-                        break;
-                    default:
-                        //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
-                        break;
-                }
-            }
-
-
-        } catch (Exception e) {
-            Timber.e(e);
-            tmpErrorCode =  "8097";
-        }
-
-        if (tmpErrorCode.equals("") != true){           //エラーコードが設定されている場合
-
-            if (tmpErrorCode.equals("20001") == true)           //フリーメッセージのエラー
-            {
-
-                String tmpFreeMsg = tmpSend820Info.FREEMessage1 + "\n" + tmpSend820Info.FREEMessage2 + "\n「はい」を押してエラーを解除してください";
-                String setTitle = "メータエラー"; // タイトルに残金＋金額
-
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
-                alertDialog.setTitle(setTitle);        // タイトル設定
-                alertDialog.setMessage(tmpFreeMsg);  // 内容(メッセージ)設定
-                alertDialog.setCancelable(true);       // キャンセル有効
-                // はいボタンの設定
-                alertDialog.setPositiveButton("はい", new DialogInterface.OnClickListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.N)
-                    public void onClick(DialogInterface dialog, int which) {
-                        _autoDailyReportFuelViewModel.getIfBoxManager().send820_TeiseiKeyNonAck( );           //訂正キー ACKなしで送付
-
-                        TimerTask timerTask = new TimerTask() {
-                            @Override
-                            public void run() {
-                                getView().post(() -> {
-                                    backFragment();
-                                });
-                            }
-                        };
-
-                        Timer timer = new Timer();
-                        timer.schedule(timerTask, 300);
-                    }
-                });
-                // ダイアログを表示
-                alertDialog.show();
-            }
-            else {
-                CommonErrorDialog dialog = new CommonErrorDialog();
-                dialog.setCommonErrorEventHandlers(new CommonErrorEventHandlers() {
-                    @Override
-                    public void onPositiveClick(String errorCode) {
-                        CommonClickEvent.RecordClickOperation("はい", "820通信エラー(2)", true);
-                    }
-
-                    @Override
-                    public void onNegativeClick(String errorCode) {
-                    }
-
-                    @Override
-                    public void onNeutralClick(String errorCode) {
-                    }
-
-                    @Override
-                    public void onDismissClick(String errorCode) {
-                    }
-                });
-                dialog.ShowErrorMessage(getContext(), tmpErrorCode);
-            }
-            return false;
-        }
+//
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                switch(mode)
+//                {
+//                    case ValueRegist:                   //値登録
+//                        _autoDailyReportFuelViewModel.getIfBoxManager().send820_AutoDailyRepotFuelInput(tmpInputValue);    //820へ燃料量情報を送信
+//                        for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
+//                        {
+//                            try {
+//                                Thread.sleep(100);
+//                            } catch (InterruptedException e) {
+//                            }
+//
+//                            if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
+//                            {
+//                                tmpSend820Info.IsLoopBreakOut = true;
+//                                break;
+//                            }
+//                        }
+//
+//                        break;
+//                    case ValueRegistClear:              //値登録クリア
+//                        _autoDailyReportFuelViewModel.getIfBoxManager().send820_AutoDailyRepotFuelClear() ;             //820へ燃料量情報クリアを送信
+//                        for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
+//                        {
+//                            try {
+//                                Thread.sleep(100);
+//                            } catch (InterruptedException e) {
+//                            }
+//
+//                            if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
+//                            {
+//                                tmpSend820Info.IsLoopBreakOut = true;
+//                                break;
+//                            }
+//                        }
+//                        break;
+//                    case FuelIn:                        //燃料入力画面in
+//                        _autoDailyReportFuelViewModel.getIfBoxManager().send820_AutoDailyRepotFuelIn();    //820へ燃料入力in情報を送信
+//                        for(int i = 0; i < 10; i++)        //最大2秒ほど待ってみる
+//                        {
+//                            try {
+//                                Thread.sleep(100);
+//                            } catch (InterruptedException e) {
+//                            }
+//
+//                            if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
+//                            {
+//                                tmpSend820Info.IsLoopBreakOut = true;
+//                                break;
+//                            }
+//                        }
+//                        if (tmpSend820Info.IsLoopBreakOut == false)
+//                        {
+//                            tmpSend820Info.IsLoopBreakOut = true;
+//                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
+//                        }
+//                        break;
+//
+//                    case FuelOut:                       //燃料入力画面out
+//                        _autoDailyReportFuelViewModel.getIfBoxManager().send820_AutoDailyRepotFuelOut();   //820へ燃料入力out情報を送信
+//                        for(int i = 0; i < 5; i++)        //最大0.5秒ほど待ってみる
+//                        {
+//                            try {
+//                                Thread.sleep(100);
+//                            } catch (InterruptedException e) {
+//                            }
+//                        }
+//                        tmpSend820Info.IsLoopBreakOut = true;
+//                        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
+//                        break;
+//
+//                    default:
+//                        break;
+//                }
+//
+//            }
+//        });
+//        thread.start();
+//
+//        String tmpErrorCode = "";               //通信等でエラー発生時は""以外のエラーコードをセットする
+//        try {
+//            thread.join();
+//
+//            if (IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel != null) {       //コールバック系を後始末
+//                IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel.dispose();
+//                IFBoxManager.meterDataV4InfoDisposable_DailyReportFuel = null;
+//            }
+//
+//            if (_autoDailyReportFuelViewModel.meterDataV4ErrorDisposable != null)        //コールバック系を後始末
+//            {
+//                _autoDailyReportFuelViewModel.meterDataV4ErrorDisposable.dispose();
+//                _autoDailyReportFuelViewModel.meterDataV4ErrorDisposable = null;
+//            }
+//
+//            if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
+//                tmpErrorCode = "6030";                       //IFBOX接続エラー
+//            }
+//            else
+//            {
+//                switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
+//                {
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
+//                        tmpErrorCode = "6030";                       //IFBOX接続エラー
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:            //タイムアウト
+//                        tmpErrorCode = "6030";                       //IFBOX接続エラー
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE:         //選択モードエラー
+//                        tmpErrorCode = "6030";                       //IFBOX接続エラー
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG:             //zandaka_flg送信エラー(1が返ってきていない)
+//                        tmpErrorCode = "6030";                       //IFBOX接続エラー
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
+//                        Timber.e("[FUTABA-D](demo)820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
+//                        tmpErrorCode = "6030";                       //IFBOX接続エラー
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_PROCESSCODE_ERROR:
+//                        tmpErrorCode = "20001";                       //FREEメッセージ表示モード
+//                        break;
+//                    default:
+//                        //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
+//                        break;
+//                }
+//            }
+//
+//
+//        } catch (Exception e) {
+//            Timber.e(e);
+//            tmpErrorCode =  "8097";
+//        }
+//
+//        if (tmpErrorCode.equals("") != true){           //エラーコードが設定されている場合
+//
+//            if (tmpErrorCode.equals("20001") == true)           //フリーメッセージのエラー
+//            {
+//
+//                String tmpFreeMsg = tmpSend820Info.FREEMessage1 + "\n" + tmpSend820Info.FREEMessage2 + "\n「はい」を押してエラーを解除してください";
+//                String setTitle = "メータエラー"; // タイトルに残金＋金額
+//
+//                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+//                alertDialog.setTitle(setTitle);        // タイトル設定
+//                alertDialog.setMessage(tmpFreeMsg);  // 内容(メッセージ)設定
+//                alertDialog.setCancelable(true);       // キャンセル有効
+//                // はいボタンの設定
+//                alertDialog.setPositiveButton("はい", new DialogInterface.OnClickListener() {
+//                    @RequiresApi(api = Build.VERSION_CODES.N)
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        _autoDailyReportFuelViewModel.getIfBoxManager().send820_TeiseiKeyNonAck( );           //訂正キー ACKなしで送付
+//
+//                        TimerTask timerTask = new TimerTask() {
+//                            @Override
+//                            public void run() {
+//                                getView().post(() -> {
+//                                    backFragment();
+//                                });
+//                            }
+//                        };
+//
+//                        Timer timer = new Timer();
+//                        timer.schedule(timerTask, 300);
+//                    }
+//                });
+//                // ダイアログを表示
+//                alertDialog.show();
+//            }
+//            else {
+//                CommonErrorDialog dialog = new CommonErrorDialog();
+//                dialog.setCommonErrorEventHandlers(new CommonErrorEventHandlers() {
+//                    @Override
+//                    public void onPositiveClick(String errorCode) {
+//                        CommonClickEvent.RecordClickOperation("はい", "820通信エラー(2)", true);
+//                    }
+//
+//                    @Override
+//                    public void onNegativeClick(String errorCode) {
+//                    }
+//
+//                    @Override
+//                    public void onNeutralClick(String errorCode) {
+//                    }
+//
+//                    @Override
+//                    public void onDismissClick(String errorCode) {
+//                    }
+//                });
+//                dialog.ShowErrorMessage(getContext(), tmpErrorCode);
+//            }
+//            return false;
+//        }
 
         return true;
     }

@@ -1,7 +1,7 @@
 package jp.mcapps.android.multi_payment_terminal.ui.menu;
-
-import static jp.mcapps.android.multi_payment_terminal.model.IFBoxManager.exitManualModeDisposable;
-import static jp.mcapps.android.multi_payment_terminal.model.IFBoxManager.printEndManualDisposable;
+//
+//import static jp.mcapps.android.multi_payment_terminal.model.IFBoxManager.exitManualModeDisposable;
+//import static jp.mcapps.android.multi_payment_terminal.model.IFBoxManager.printEndManualDisposable;
 import static jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl.FORCE_DEACT_END;
 
 import android.app.AlertDialog;
@@ -428,32 +428,32 @@ public class MenuFragment extends Fragment implements IiCASClient {
 
         if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL)) {
 //            if (printEndManualDisposable == null) {
-                printEndManualDisposable = _menuViewModel.getPrintEndManual().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(flg -> {
-
-                    AlertDialog dialog = new AlertDialog.Builder(getContext())
-                            .setTitle("手動決済モード終了")
-                            .setMessage("双方向決済モードに切り替わりました。")
-                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    Version.Response ifboxVersionInfo = AppPreference.getIFBoxVersionInfo();
-                                    ifboxVersionInfo.appModel = IFBoxAppModels.FUTABA_D;
-                                    AppPreference.setIFBoxVersionInfo(ifboxVersionInfo);
-                                    _sharedViewModel.setUpdatedFlag(true);
-                                    AppPreference.setIsTemporaryManualMode(false);
-
-                                    Disposable chkDisp = _menuViewModel.checkMeterCharge()
-                                            .subscribeOn(Schedulers.io())
-                                            .observeOn(AndroidSchedulers.mainThread())
-                                            .subscribe();
-                                    disposables.add(chkDisp);
-                                }
-                            })
-                            .create();
-
-                    dialog.setCanceledOnTouchOutside(false);
-                    dialog.show();
-                });
+//                printEndManualDisposable = _menuViewModel.getPrintEndManual().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(flg -> {
+//
+//                    AlertDialog dialog = new AlertDialog.Builder(getContext())
+//                            .setTitle("手動決済モード終了")
+//                            .setMessage("双方向決済モードに切り替わりました。")
+//                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    Version.Response ifboxVersionInfo = AppPreference.getIFBoxVersionInfo();
+//                                    ifboxVersionInfo.appModel = IFBoxAppModels.FUTABA_D;
+//                                    AppPreference.setIFBoxVersionInfo(ifboxVersionInfo);
+//                                    _sharedViewModel.setUpdatedFlag(true);
+//                                    AppPreference.setIsTemporaryManualMode(false);
+//
+//                                    Disposable chkDisp = _menuViewModel.checkMeterCharge()
+//                                            .subscribeOn(Schedulers.io())
+//                                            .observeOn(AndroidSchedulers.mainThread())
+//                                            .subscribe();
+//                                    disposables.add(chkDisp);
+//                                }
+//                            })
+//                            .create();
+//
+//                    dialog.setCanceledOnTouchOutside(false);
+//                    dialog.show();
+//                });
 //            }
         }
     }
@@ -476,10 +476,10 @@ public class MenuFragment extends Fragment implements IiCASClient {
             navHostBody.getNavController().removeOnDestinationChangedListener(destListener);
         }
 
-        if (printEndManualDisposable != null) {
-            printEndManualDisposable.dispose();
-            printEndManualDisposable = null;
-        }
+//        if (printEndManualDisposable != null) {
+//            printEndManualDisposable.dispose();
+//            printEndManualDisposable = null;
+//        }
 
         disposables.clear();
     }

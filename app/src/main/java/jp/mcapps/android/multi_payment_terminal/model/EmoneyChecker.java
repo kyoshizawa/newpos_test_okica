@@ -57,10 +57,10 @@ public class EmoneyChecker {
         }
         return _instance;
     }
-    private static IFBoxManager _ifBoxManager;
-    public void setIFBoxManager( IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager ;
-    }
+//    private static IFBoxManager _ifBoxManager;
+//    public void setIFBoxManager( IFBoxManager ifBoxManager) {
+//        _ifBoxManager = ifBoxManager ;
+//    }
     private static boolean _isABTCancelSuccess = false;
     private static int _errorCode = 0;
 
@@ -168,9 +168,9 @@ public class EmoneyChecker {
                         }
                     } else {
                         // LT27の場合IM-A820未接続状態であれば使わせない
-                        if (!_ifBoxManager.isConnected()) {
-                            return app.getString(R.string.error_type_ifbox_connection_error);
-                        }
+//                        if (!_ifBoxManager.isConnected()) {
+//                            return app.getString(R.string.error_type_ifbox_connection_error);
+//                        }
                     }
                 }
             }
@@ -187,152 +187,152 @@ public class EmoneyChecker {
             //ADD-S BMT S.Oyama 2024/10/07 フタバ双方向向け改修
             if ( (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) && (businessType != BusinessType.BALANCE)) { // 2025.02.14 t.wada 残照はキー通知しない
 
-                if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
-                {
-                    return "6030";                       //IFBOX接続エラー
-                }
-
-                IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
-                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-                tmpSend820Info.IsLoopBreakOut = false;
-                tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-
-                _meterDataV4InfoDisposable = _ifBoxManager.getMeterDataV4().subscribeOn(
-                        Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {     //AndroidSchedulers.mainThread()
-                    Timber.i("[FUTABA-D]EmoneyChecker:750<-820 meter_data event cmd:%d zandaka_flg:%d", meter.meter_sub_cmd, meter.zandaka_flg);
-                    if(meter.meter_sub_cmd == 9) {              //ファンクション通知を受信
-                        Timber.i("[FUTABA-D]EmoneyChecker:Function Req event");
-                        if (businessType == BusinessType.BALANCE) {                 //残高照会時
-                            if ((meter.zandaka_flg != null) && (meter.zandaka_flg == 1)) {             //残高照会時の残高情報を受信
-                                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;
-                            }
-                            else {
-                                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG;           //残高照会時の残高情報を受信できない
-                            }
-                        } else {
-                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
-                        }
-                    }
-                });
-
-                _meterDataV4ErrorDisposable = _ifBoxManager.getMeterDataV4Error().subscribeOn(
-                        Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
-                    Timber.e("[FUTABA-D]EmoneyChecker:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
-                    tmpSend820Info.StatusCode = error.ErrorCode;
-                    tmpSend820Info.ErrorCode820 = error.ErrorCode820;
-
-                });
-
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        if (businessType == BusinessType.BALANCE) {                 //残高照会時
+//                if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
+//                {
+//                    return "6030";                       //IFBOX接続エラー
+//                }
+//
+//                IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
+//                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//                tmpSend820Info.IsLoopBreakOut = false;
+//                tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//
+//                _meterDataV4InfoDisposable = _ifBoxManager.getMeterDataV4().subscribeOn(
+//                        Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {     //AndroidSchedulers.mainThread()
+//                    Timber.i("[FUTABA-D]EmoneyChecker:750<-820 meter_data event cmd:%d zandaka_flg:%d", meter.meter_sub_cmd, meter.zandaka_flg);
+//                    if(meter.meter_sub_cmd == 9) {              //ファンクション通知を受信
+//                        Timber.i("[FUTABA-D]EmoneyChecker:Function Req event");
+//                        if (businessType == BusinessType.BALANCE) {                 //残高照会時
+//                            if ((meter.zandaka_flg != null) && (meter.zandaka_flg == 1)) {             //残高照会時の残高情報を受信
+//                                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;
+//                            }
+//                            else {
+//                                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG;           //残高照会時の残高情報を受信できない
+//                            }
+//                        } else {
+//                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
+//                        }
+//                    }
+//                });
+//
+//                _meterDataV4ErrorDisposable = _ifBoxManager.getMeterDataV4Error().subscribeOn(
+//                        Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
+//                    Timber.e("[FUTABA-D]EmoneyChecker:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
+//                    tmpSend820Info.StatusCode = error.ErrorCode;
+//                    tmpSend820Info.ErrorCode820 = error.ErrorCode820;
+//
+//                });
+//
+//                Thread thread = new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                        if (businessType == BusinessType.BALANCE) {                 //残高照会時
+////                            if (moneyBrand.equals(app.getString(R.string.money_brand_suica))) {         //決済ブランドにより決済選択モードを送信
+////                                _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_SUICA);            //残高照会モードを送信 SUICA
+////                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_waon))) {
+////                                _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_WAON);             //残高照会モードを送信 WAON
+////                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_nanaco))) {
+////                                _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_NANACO);           //残高照会モードを送信 NANACO
+////                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_edy))) {
+////                                _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_EDY);              //残高照会モードを送信 EDY
+////                            } else {
+////                                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE;             //決済ブランドが不明
+////                            }
+//                        }
+//                        else                                                        //それ以外：決済，決済取消
+//                        {
 //                            if (moneyBrand.equals(app.getString(R.string.money_brand_suica))) {         //決済ブランドにより決済選択モードを送信
-//                                _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_SUICA);            //残高照会モードを送信 SUICA
+//                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_SUICA, false);             //決済選択モードを送信 SUICA
+//                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_id))) {
+//                                if (businessType == BusinessType.REFUND) {              //取り消し時
+//                                    _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID, true);                //決済選択モードを送信 iD
+//                                } else {
+//                                    _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID, false);                //決済選択モードを送信 iD
+//                                }
 //                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_waon))) {
-//                                _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_WAON);             //残高照会モードを送信 WAON
+//                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_WAON, false);              //決済選択モードを送信 waon
 //                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_nanaco))) {
-//                                _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_NANACO);           //残高照会モードを送信 NANACO
+//                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_NANACO, false);            //決済選択モードを送信 nanaco
+//                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_qp))) {
+//                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_QUICPAY, false);           //決済選択モードを送信 quicpay
 //                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_edy))) {
-//                                _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_EDY);              //残高照会モードを送信 EDY
+//                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_EDY, false);               //決済選択モードを送信 EDY
 //                            } else {
 //                                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE;             //決済ブランドが不明
 //                            }
-                        }
-                        else                                                        //それ以外：決済，決済取消
-                        {
-                            if (moneyBrand.equals(app.getString(R.string.money_brand_suica))) {         //決済ブランドにより決済選択モードを送信
-                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_SUICA, false);             //決済選択モードを送信 SUICA
-                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_id))) {
-                                if (businessType == BusinessType.REFUND) {              //取り消し時
-                                    _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID, true);                //決済選択モードを送信 iD
-                                } else {
-                                    _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID, false);                //決済選択モードを送信 iD
-                                }
-                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_waon))) {
-                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_WAON, false);              //決済選択モードを送信 waon
-                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_nanaco))) {
-                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_NANACO, false);            //決済選択モードを送信 nanaco
-                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_qp))) {
-                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_QUICPAY, false);           //決済選択モードを送信 quicpay
-                            } else if (moneyBrand.equals(app.getString(R.string.money_brand_edy))) {
-                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_EDY, false);               //決済選択モードを送信 EDY
-                            } else {
-                                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE;             //決済ブランドが不明
-                            }
-                        }
-
-                        for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
-                        {
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                            }
-
-                            if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
-                            {
-                                tmpSend820Info.IsLoopBreakOut = true;
-                                break;
-                            }
-                        }
-
-                    }
-
-                });
-                thread.start();
-
-                try {
-                    thread.join();
-
-                    if (_meterDataV4InfoDisposable != null) {       //コールバック系を後始末
-                        _meterDataV4InfoDisposable.dispose();
-                        _meterDataV4InfoDisposable = null;
-                    }
-
-                    if (_meterDataV4ErrorDisposable != null)        //コールバック系を後始末
-                    {
-                        _meterDataV4ErrorDisposable.dispose();
-                        _meterDataV4ErrorDisposable = null;
-                    }
-
-                    if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
-                        return "6030";                       //IFBOX接続エラー
-                    }
-                    else
-                    {
-                        switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
-                        {
-                            case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
-                                return "6030";                       //IFBOX接続エラー
-                            case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:            //タイムアウト
-                                return "6030";                       //IFBOX接続エラー
-                            case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE:         //選択モードエラー
-                                return "6030";                       //IFBOX接続エラー
-                            case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG:             //zandaka_flg送信エラー(1が返ってきていない)
-                                return "6030";                       //IFBOX接続エラー
-                            case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
-                                Timber.e("[FUTABA-D](demo)820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
-                                //ADD-S BMT S.Oyama 2025/01/29 フタバ双方向向け改修
-                                if (tmpSend820Info.ErrorCode820 == IFBoxManager.Send820Status_Error_FutabaD.ERROR_STATUS820_PAPERLACKING)       //用紙無しエラー
-                                {
-                                    return "9110";                       //用紙なしエラー（クレカと違ってここではエラーコードを返す：サブメニューに居るためHOMEメニューの用紙切れエラーを検知できない）
-                                }
-                                else
-                                {
-                                    return "6030";                       //IFBOX接続エラー
-                                }
-                                //ADD-E BMT S.Oyama 2025/01/29 フタバ双方向向け改修
-                            default:
-                                //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
-                                break;
-                        }
-                    }
-
-                } catch (Exception e) {
-                    Timber.e(e);
-                    return app.getString(R.string.error_type_ticket_8097);
-                }
+//                        }
+//
+//                        for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
+//                        {
+//                            try {
+//                                Thread.sleep(100);
+//                            } catch (InterruptedException e) {
+//                            }
+//
+//                            if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
+//                            {
+//                                tmpSend820Info.IsLoopBreakOut = true;
+//                                break;
+//                            }
+//                        }
+//
+//                    }
+//
+//                });
+//                thread.start();
+//
+//                try {
+//                    thread.join();
+//
+//                    if (_meterDataV4InfoDisposable != null) {       //コールバック系を後始末
+//                        _meterDataV4InfoDisposable.dispose();
+//                        _meterDataV4InfoDisposable = null;
+//                    }
+//
+//                    if (_meterDataV4ErrorDisposable != null)        //コールバック系を後始末
+//                    {
+//                        _meterDataV4ErrorDisposable.dispose();
+//                        _meterDataV4ErrorDisposable = null;
+//                    }
+//
+//                    if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
+//                        return "6030";                       //IFBOX接続エラー
+//                    }
+//                    else
+//                    {
+//                        switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
+//                        {
+//                            case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
+//                                return "6030";                       //IFBOX接続エラー
+//                            case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:            //タイムアウト
+//                                return "6030";                       //IFBOX接続エラー
+//                            case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE:         //選択モードエラー
+//                                return "6030";                       //IFBOX接続エラー
+//                            case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG:             //zandaka_flg送信エラー(1が返ってきていない)
+//                                return "6030";                       //IFBOX接続エラー
+//                            case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
+//                                Timber.e("[FUTABA-D](demo)820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
+//                                //ADD-S BMT S.Oyama 2025/01/29 フタバ双方向向け改修
+//                                if (tmpSend820Info.ErrorCode820 == IFBoxManager.Send820Status_Error_FutabaD.ERROR_STATUS820_PAPERLACKING)       //用紙無しエラー
+//                                {
+//                                    return "9110";                       //用紙なしエラー（クレカと違ってここではエラーコードを返す：サブメニューに居るためHOMEメニューの用紙切れエラーを検知できない）
+//                                }
+//                                else
+//                                {
+//                                    return "6030";                       //IFBOX接続エラー
+//                                }
+//                                //ADD-E BMT S.Oyama 2025/01/29 フタバ双方向向け改修
+//                            default:
+//                                //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
+//                                break;
+//                        }
+//                    }
+//
+//                } catch (Exception e) {
+//                    Timber.e(e);
+//                    return app.getString(R.string.error_type_ticket_8097);
+//                }
             }
             //ADD-E BMT S.Oyama 2024/10/07 フタバ双方向向け改修
 
@@ -518,9 +518,9 @@ public class EmoneyChecker {
                     }
                 } else {
                     // LT27の場合IM-A820未接続状態であれば使わせない
-                    if (!_ifBoxManager.isConnected()) {
-                        return app.getString(R.string.error_type_ifbox_connection_error);
-                    }
+//                    if (!_ifBoxManager.isConnected()) {
+//                        return app.getString(R.string.error_type_ifbox_connection_error);
+//                    }
                 }
             }
         }
@@ -614,153 +614,153 @@ public class EmoneyChecker {
         }
 
         //ADD-S BMT S.Oyama 2024/10/07 フタバ双方向向け改修
-        if ( (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) && (businessType != BusinessType.BALANCE) ) { // 2025.02.14 t.wada 残照はキー通知しない
-
-            if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
-            {
-                return "6030";                       //IFBOX接続エラー
-            }
-
-            IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
-            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-            tmpSend820Info.IsLoopBreakOut = false;
-            tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-
-            _meterDataV4InfoDisposable = _ifBoxManager.getMeterDataV4().subscribeOn(
-                    Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {
-                Timber.i("[FUTABA-D]EmoneyChecker:750<-820 meter_data event cmd:%d zandaka_flg:%d", meter.meter_sub_cmd, meter.zandaka_flg);
-                if(meter.meter_sub_cmd == 9) {              //ファンクション通知を受信
-                    Timber.i("[FUTABA-D]EmoneyChecker:Function Req event");
-                    if (businessType == BusinessType.BALANCE) {                 //残高照会時
-                        if (meter.zandaka_flg == 1) {             //残高照会時の残高情報を受信
-                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;
-                        }
-                        else {
-                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG;           //残高照会時の残高情報を受信できない
-                        }
-                    } else {
-                        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
-                    }
-                }
-            });
-
-            _meterDataV4ErrorDisposable = _ifBoxManager.getMeterDataV4Error().subscribeOn(
-                    Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
-                Timber.e("[FUTABA-D]EmoneyChecker:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
-                tmpSend820Info.StatusCode = error.ErrorCode;
-                tmpSend820Info.ErrorCode820 = error.ErrorCode820;
-
-            });
-
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-
-                    if (businessType == BusinessType.BALANCE) {                 //残高照会時
+//        if ( (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) && (businessType != BusinessType.BALANCE) ) { // 2025.02.14 t.wada 残照はキー通知しない
+//
+//            if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
+//            {
+//                return "6030";                       //IFBOX接続エラー
+//            }
+//
+//            IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
+//            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//            tmpSend820Info.IsLoopBreakOut = false;
+//            tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//
+//            _meterDataV4InfoDisposable = _ifBoxManager.getMeterDataV4().subscribeOn(
+//                    Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {
+//                Timber.i("[FUTABA-D]EmoneyChecker:750<-820 meter_data event cmd:%d zandaka_flg:%d", meter.meter_sub_cmd, meter.zandaka_flg);
+//                if(meter.meter_sub_cmd == 9) {              //ファンクション通知を受信
+//                    Timber.i("[FUTABA-D]EmoneyChecker:Function Req event");
+//                    if (businessType == BusinessType.BALANCE) {                 //残高照会時
+//                        if (meter.zandaka_flg == 1) {             //残高照会時の残高情報を受信
+//                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;
+//                        }
+//                        else {
+//                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG;           //残高照会時の残高情報を受信できない
+//                        }
+//                    } else {
+//                        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
+//                    }
+//                }
+//            });
+//
+//            _meterDataV4ErrorDisposable = _ifBoxManager.getMeterDataV4Error().subscribeOn(
+//                    Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
+//                Timber.e("[FUTABA-D]EmoneyChecker:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
+//                tmpSend820Info.StatusCode = error.ErrorCode;
+//                tmpSend820Info.ErrorCode820 = error.ErrorCode820;
+//
+//            });
+//
+//            Thread thread = new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//
+//                    if (businessType == BusinessType.BALANCE) {                 //残高照会時
+////                        if (moneyBrand.equals(app.getString(R.string.money_brand_suica))) {         //決済ブランドにより決済選択モードを送信
+////                            _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_SUICA);            //残高照会モードを送信 SUICA
+////                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_waon))) {
+////                            _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_WAON);             //残高照会モードを送信 WAON
+////                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_nanaco))) {
+////                            _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_NANACO);           //残高照会モードを送信 NANACO
+////                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_edy))) {
+////                            _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_EDY);              //残高照会モードを送信 EDY
+////                        } else {
+////                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE;             //決済ブランドが不明
+////                        }
+//                    }
+//                    else                                                        //それ以外：決済，決済取消
+//                    {
 //                        if (moneyBrand.equals(app.getString(R.string.money_brand_suica))) {         //決済ブランドにより決済選択モードを送信
-//                            _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_SUICA);            //残高照会モードを送信 SUICA
+//                            _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_SUICA, false);             //決済選択モードを送信 SUICA
+//                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_id))) {
+//                            if (businessType == BusinessType.REFUND) {              //取り消し時
+//                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID, true);                //決済選択モードを送信 iD
+//                            } else {
+//                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID, false);                //決済選択モードを送信 iD
+//                            }
 //                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_waon))) {
-//                            _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_WAON);             //残高照会モードを送信 WAON
+//                            _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_WAON, false);              //決済選択モードを送信 waon
 //                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_nanaco))) {
-//                            _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_NANACO);           //残高照会モードを送信 NANACO
+//                            _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_NANACO, false);            //決済選択モードを送信 nanaco
+//                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_qp))) {
+//                            _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_QUICPAY, false);           //決済選択モードを送信 quicpay
 //                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_edy))) {
-//                            _ifBoxManager.send820_BalanceInquiryMode(IFBoxManager.SendMeterDataStatus_FutabaD.BALANCEINQUIRY_EDY);              //残高照会モードを送信 EDY
+//                            _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_EDY, false);               //決済選択モードを送信 EDY
 //                        } else {
 //                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE;             //決済ブランドが不明
 //                        }
-                    }
-                    else                                                        //それ以外：決済，決済取消
-                    {
-                        if (moneyBrand.equals(app.getString(R.string.money_brand_suica))) {         //決済ブランドにより決済選択モードを送信
-                            _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_SUICA, false);             //決済選択モードを送信 SUICA
-                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_id))) {
-                            if (businessType == BusinessType.REFUND) {              //取り消し時
-                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID, true);                //決済選択モードを送信 iD
-                            } else {
-                                _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID, false);                //決済選択モードを送信 iD
-                            }
-                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_waon))) {
-                            _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_WAON, false);              //決済選択モードを送信 waon
-                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_nanaco))) {
-                            _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_NANACO, false);            //決済選択モードを送信 nanaco
-                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_qp))) {
-                            _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_QUICPAY, false);           //決済選択モードを送信 quicpay
-                        } else if (moneyBrand.equals(app.getString(R.string.money_brand_edy))) {
-                            _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_EDY, false);               //決済選択モードを送信 EDY
-                        } else {
-                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE;             //決済ブランドが不明
-                        }
-                    }
-
-                    for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
-                    {
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                        }
-
-                        if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
-                        {
-                            tmpSend820Info.IsLoopBreakOut = true;
-                            break;
-                        }
-                    }
-
-                }
-
-            });
-            thread.start();
-
-            try {
-                thread.join();
-
-                if (_meterDataV4InfoDisposable != null) {       //コールバック系を後始末
-                    _meterDataV4InfoDisposable.dispose();
-                    _meterDataV4InfoDisposable = null;
-                }
-
-                if (_meterDataV4ErrorDisposable != null)        //コールバック系を後始末
-                {
-                    _meterDataV4ErrorDisposable.dispose();
-                    _meterDataV4ErrorDisposable = null;
-                }
-
-                if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
-                    return "6030";                       //IFBOX接続エラー
-                }
-                else
-                {
-                    switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
-                    {
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
-                            return "6030";                       //IFBOX接続エラー
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:            //タイムアウト
-                            return "6030";                       //IFBOX接続エラー
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE:         //選択モードエラー
-                            return "6030";                       //IFBOX接続エラー
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG:             //zandaka_flg送信エラー(1が返ってきていない)
-                            return "6030";                       //IFBOX接続エラー
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
-                            Timber.e("[FUTABA-D]820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
-                            if (tmpSend820Info.ErrorCode820 == IFBoxManager.Send820Status_Error_FutabaD.ERROR_STATUS820_PAPERLACKING)       //用紙無しエラー
-                            {
-                                return "9110";                       //用紙なしエラー（クレカと違ってここではエラーコードを返す：サブメニューに居るためHOMEメニューの用紙切れエラーを検知できない）
-                            }
-                            else
-                            {
-                                return "6030";                       //IFBOX接続エラー
-                            }
-                        default:
-                            //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
-                            break;
-                    }
-                }
-
-            } catch (Exception e) {
-                Timber.e(e);
-                return app.getString(R.string.error_type_ticket_8097);
-            }
-        }
+//                    }
+//
+//                    for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
+//                    {
+//                        try {
+//                            Thread.sleep(100);
+//                        } catch (InterruptedException e) {
+//                        }
+//
+//                        if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
+//                        {
+//                            tmpSend820Info.IsLoopBreakOut = true;
+//                            break;
+//                        }
+//                    }
+//
+//                }
+//
+//            });
+//            thread.start();
+//
+//            try {
+//                thread.join();
+//
+//                if (_meterDataV4InfoDisposable != null) {       //コールバック系を後始末
+//                    _meterDataV4InfoDisposable.dispose();
+//                    _meterDataV4InfoDisposable = null;
+//                }
+//
+//                if (_meterDataV4ErrorDisposable != null)        //コールバック系を後始末
+//                {
+//                    _meterDataV4ErrorDisposable.dispose();
+//                    _meterDataV4ErrorDisposable = null;
+//                }
+//
+//                if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
+//                    return "6030";                       //IFBOX接続エラー
+//                }
+//                else
+//                {
+//                    switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
+//                    {
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
+//                            return "6030";                       //IFBOX接続エラー
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:            //タイムアウト
+//                            return "6030";                       //IFBOX接続エラー
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE:         //選択モードエラー
+//                            return "6030";                       //IFBOX接続エラー
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG:             //zandaka_flg送信エラー(1が返ってきていない)
+//                            return "6030";                       //IFBOX接続エラー
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
+//                            Timber.e("[FUTABA-D]820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
+//                            if (tmpSend820Info.ErrorCode820 == IFBoxManager.Send820Status_Error_FutabaD.ERROR_STATUS820_PAPERLACKING)       //用紙無しエラー
+//                            {
+//                                return "9110";                       //用紙なしエラー（クレカと違ってここではエラーコードを返す：サブメニューに居るためHOMEメニューの用紙切れエラーを検知できない）
+//                            }
+//                            else
+//                            {
+//                                return "6030";                       //IFBOX接続エラー
+//                            }
+//                        default:
+//                            //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
+//                            break;
+//                    }
+//                }
+//
+//            } catch (Exception e) {
+//                Timber.e(e);
+//                return app.getString(R.string.error_type_ticket_8097);
+//            }
+//        }
         //ADD-E BMT S.Oyama 2024/10/07 フタバ双方向向け改修
 
         return null;

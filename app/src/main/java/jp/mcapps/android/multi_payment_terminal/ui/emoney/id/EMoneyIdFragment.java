@@ -52,7 +52,7 @@ import jp.mcapps.android.multi_payment_terminal.iCAS.BusinessParameter;
 import jp.mcapps.android.multi_payment_terminal.iCAS.IiCASClient;
 import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
 import jp.mcapps.android.multi_payment_terminal.iCAS.iCASClient;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
@@ -167,22 +167,22 @@ public class EMoneyIdFragment extends BaseFragment implements EMoneyIdEventHandl
         super.onViewCreated(view, savedInstanceState);
 
         //ADD-S BMT S.Oyama 2025/02/07 フタバ双方向向け改修
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
-            _is820ResetAbort = false;
-            IFBoxManager.meterDataV4Disposable_ScanEmoneyQR = PrinterManager.getInstance().getIFBoxManager().
-                    getMeterDataV4().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
-                        Timber.i("[FUTABA-D]EMoneyIdFragment:750<-820 meter_data event cmd:%d", meter.meter_sub_cmd);
-
-                        if (meter.meter_sub_cmd == 2)           //820よりリセットを送られてきた場合
-                        {
-                            Timber.i("[FUTABA-D]EMoneyIdFragment:!!820 Recv Reset event");
-                            _is820ResetAbort = true;
-                            view.post(() -> {
-                                onCancelClick(view);
-                            });
-                        }
-                    });
-        }
+//        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
+//            _is820ResetAbort = false;
+//            IFBoxManager.meterDataV4Disposable_ScanEmoneyQR = PrinterManager.getInstance().getIFBoxManager().
+//                    getMeterDataV4().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
+//                        Timber.i("[FUTABA-D]EMoneyIdFragment:750<-820 meter_data event cmd:%d", meter.meter_sub_cmd);
+//
+//                        if (meter.meter_sub_cmd == 2)           //820よりリセットを送られてきた場合
+//                        {
+//                            Timber.i("[FUTABA-D]EMoneyIdFragment:!!820 Recv Reset event");
+//                            _is820ResetAbort = true;
+//                            view.post(() -> {
+//                                onCancelClick(view);
+//                            });
+//                        }
+//                    });
+//        }
         //ADD-E BMT S.Oyama 2025/02/07 フタバ双方向向け改修
 
         _sharedViewModel.setLoading(true);
@@ -291,12 +291,12 @@ public class EMoneyIdFragment extends BaseFragment implements EMoneyIdEventHandl
             _sharedViewModel.setScreenInversion(false);
         }
         //ADD-S BMT S.Oyama 2025/02/07 フタバ双方向向け改修
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
-            if (IFBoxManager.meterDataV4Disposable_ScanEmoneyQR != null) {
-                IFBoxManager.meterDataV4Disposable_ScanEmoneyQR.dispose();
-                IFBoxManager.meterDataV4Disposable_ScanEmoneyQR = null;
-            }
-        }
+//        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
+//            if (IFBoxManager.meterDataV4Disposable_ScanEmoneyQR != null) {
+//                IFBoxManager.meterDataV4Disposable_ScanEmoneyQR.dispose();
+//                IFBoxManager.meterDataV4Disposable_ScanEmoneyQR = null;
+//            }
+//        }
         //ADD-E BMT S.Oyama 2025/02/07 フタバ双方向向け改修
     }
 
@@ -564,9 +564,9 @@ public class EMoneyIdFragment extends BaseFragment implements EMoneyIdEventHandl
                         }
                     }
                 } else {
-                    PrinterManager printerManager = PrinterManager.getInstance();
-                    printerManager.send820_FunctionCodeErrorResult(this.getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_EMONEY , false,
-                            IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID);      //820へ決済中止を通知
+//                    PrinterManager printerManager = PrinterManager.getInstance();
+//                    printerManager.send820_FunctionCodeErrorResult(this.getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_EMONEY , false,
+//                            IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID);      //820へ決済中止を通知
                 }
             } else if(resultID.code.equals(String.valueOf(JremRasErrorCodes.E370))) {
                 // キャンセル時は処理なし
@@ -591,14 +591,14 @@ public class EMoneyIdFragment extends BaseFragment implements EMoneyIdEventHandl
                         //x59は飛ばさない
                         break;
                     default:
-                        if (_is820ResetAbort == false) {    //820リセット中止要求フラグがfalseの場合
-                            PrinterManager printerManager = PrinterManager.getInstance();
-                            printerManager.send820_FunctionCodeErrorResult(this.getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_EMONEY, false,
-                                    IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID);      //820へ決済中止を通知
-                        } else                                //820リセット中止要求フラグがtrueの場合(キャンセルボタンイベントに乗っかって処理させたので，飛び先をホームにするため_isChancelをfalseにする)
-                        {
-                            _isChancel = false;
-                        }
+//                        if (_is820ResetAbort == false) {    //820リセット中止要求フラグがfalseの場合
+//                            PrinterManager printerManager = PrinterManager.getInstance();
+//                            printerManager.send820_FunctionCodeErrorResult(this.getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_EMONEY, false,
+//                                    IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID);      //820へ決済中止を通知
+//                        } else                                //820リセット中止要求フラグがtrueの場合(キャンセルボタンイベントに乗っかって処理させたので，飛び先をホームにするため_isChancelをfalseにする)
+//                        {
+//                            _isChancel = false;
+//                        }
                         back();
                         break;
                 }
@@ -714,9 +714,9 @@ public class EMoneyIdFragment extends BaseFragment implements EMoneyIdEventHandl
             } else {
                 Timber.e("エラー発生 lErrorType: %s, errorMessage: %s", lErrorType, errorMessage);
                 MainApplication.getInstance().setErrorCode(iCASErrorMap.get((int) lErrorType));
-                PrinterManager printerManager = PrinterManager.getInstance();
-                printerManager.send820_FunctionCodeErrorResult(this.getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_EMONEY , false,
-                        IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID);      //820へ決済中止を通知
+//                PrinterManager printerManager = PrinterManager.getInstance();
+//                printerManager.send820_FunctionCodeErrorResult(this.getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_EMONEY , false,
+//                        IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID);      //820へ決済中止を通知
             }
         }
 
@@ -894,7 +894,7 @@ public class EMoneyIdFragment extends BaseFragment implements EMoneyIdEventHandl
         CommonClickEvent.RecordButtonClickOperation(view, true);
         iCASClient.SetPinCancel(true);
         PrinterManager printerManager = PrinterManager.getInstance();
-        printerManager.send820_FunctionCodeErrorResult(this.getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_EMONEY , false,
-                IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID);      //820へ決済中止を通知
+//        printerManager.send820_FunctionCodeErrorResult(this.getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_EMONEY , false,
+//                IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID);      //820へ決済中止を通知
     }
 }

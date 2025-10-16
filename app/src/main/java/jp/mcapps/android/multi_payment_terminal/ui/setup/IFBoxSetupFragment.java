@@ -214,46 +214,46 @@ public class IFBoxSetupFragment extends Fragment implements IFBoxSetupEventHandl
     public void onFirmwareClick() {
         CommonClickEvent.RecordClickOperation("ファームウェア設定「詳細」", "IM-A820設定画面", false);
 //        if (AppPreference.getIFBoxOTAInfo() == null || _viewModel.getIFBoxUrl() == null) {
-        if (_viewModel.getIFBoxUrl() == null) {
-            new SetupAlertDialog().show(getChildFragmentManager(), null);
-        } else {
-            final Disposable disposable = _viewModel.getFirmwares().subscribe((firmwares, error) -> {
-                if (error != null) {
-                    Toast.makeText(requireContext(), "ファームウェア情報取得失敗", Toast.LENGTH_SHORT).show();
-                } else {
-                    final FirmWaresAdapter adapter = new FirmWaresAdapter(firmwares);
-                    _binding.recyclerViewFirmwares.setAdapter(adapter);
-
-                    adapter.setItemClickListener(firmWareInfo -> {
-                        if (AppPreference.isIFBoxSetupFinished()) {
-                            ConfirmDialog.newInstance("【書換確認】", confirmMessage(firmWareInfo), () -> {
-                                CommonClickEvent.RecordClickOperation("はい", "書換確認", false);
-                                firmwareUpdate(firmWareInfo);
-                            },() ->{
-                                CommonClickEvent.RecordClickOperation("いいえ", "書換確認", false);
-                            }).show(getChildFragmentManager(), null);
-                        } else {
-                            firmwareUpdate(firmWareInfo);
-                        }
-                    });
-
-                    _viewModel.setDisplayType(FIRMWARE_SELECT);
-                }
-            });
-        }
+//        if (_viewModel.getIFBoxUrl() == null) {
+//            new SetupAlertDialog().show(getChildFragmentManager(), null);
+//        } else {
+//            final Disposable disposable = _viewModel.getFirmwares().subscribe((firmwares, error) -> {
+//                if (error != null) {
+//                    Toast.makeText(requireContext(), "ファームウェア情報取得失敗", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    final FirmWaresAdapter adapter = new FirmWaresAdapter(firmwares);
+//                    _binding.recyclerViewFirmwares.setAdapter(adapter);
+//
+//                    adapter.setItemClickListener(firmWareInfo -> {
+//                        if (AppPreference.isIFBoxSetupFinished()) {
+//                            ConfirmDialog.newInstance("【書換確認】", confirmMessage(firmWareInfo), () -> {
+//                                CommonClickEvent.RecordClickOperation("はい", "書換確認", false);
+//                                firmwareUpdate(firmWareInfo);
+//                            },() ->{
+//                                CommonClickEvent.RecordClickOperation("いいえ", "書換確認", false);
+//                            }).show(getChildFragmentManager(), null);
+//                        } else {
+//                            firmwareUpdate(firmWareInfo);
+//                        }
+//                    });
+//
+//                    _viewModel.setDisplayType(FIRMWARE_SELECT);
+//                }
+//            });
+//        }
     }
 
     @Override
     public void onConfigurationClick() {
         CommonClickEvent.RecordClickOperation("パラメータ設定「詳細」", "IM-A820設定画面", false);
 //        if (AppPreference.getIFBoxOTAInfo() == null || _viewModel.getIFBoxUrl() == null) {
-        if (_viewModel.getIFBoxUrl() == null) {
-            new SetupAlertDialog().show(getChildFragmentManager(), null);
-        } else {
-            _viewModel.setDisplayType(PARAMETER_MENU);
-            WebView webView = requireActivity().findViewById(R.id.web_view);
-            webView.loadUrl(_viewModel.getIFBoxUrl() + "/setting/v1");
-        }
+//        if (_viewModel.getIFBoxUrl() == null) {
+//            new SetupAlertDialog().show(getChildFragmentManager(), null);
+//        } else {
+//            _viewModel.setDisplayType(PARAMETER_MENU);
+//            WebView webView = requireActivity().findViewById(R.id.web_view);
+//            webView.loadUrl(_viewModel.getIFBoxUrl() + "/setting/v1");
+//        }
     }
 
     @Override
@@ -313,19 +313,19 @@ public class IFBoxSetupFragment extends Fragment implements IFBoxSetupEventHandl
         Timber.i("接続確認開始");
         _viewModel.isExecuteFailure(false);
 
-        disposables.add(_viewModel.removeWifiP2pGroup()
-                .subscribeOn(Schedulers.io())
-                .doFinally(() -> {
-                    disposables.add(_viewModel.connectWifiP2p(ssid)
-                            .subscribe((success, error) -> {
-                                if (error != null) {
-                                    Timber.e("接続確認失敗");
-                                    _viewModel.isExecuteFailure(true);
-//                Toast.makeText(requireContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }));
-                })
-                .subscribe(() -> {}, e -> {}));
+//        disposables.add(_viewModel.removeWifiP2pGroup()
+//                .subscribeOn(Schedulers.io())
+//                .doFinally(() -> {
+//                    disposables.add(_viewModel.connectWifiP2p(ssid)
+//                            .subscribe((success, error) -> {
+//                                if (error != null) {
+//                                    Timber.e("接続確認失敗");
+//                                    _viewModel.isExecuteFailure(true);
+////                Toast.makeText(requireContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+//                                }
+//                            }));
+//                })
+//                .subscribe(() -> {}, e -> {}));
     }
 
     private void firmwareUpdate(FirmWareInfo firmWareInfo) {

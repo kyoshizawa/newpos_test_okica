@@ -33,7 +33,7 @@ import jp.mcapps.android.multi_payment_terminal.data.BusinessType;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentEmoneyOkicaBinding;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.ui.Converters;
 import jp.mcapps.android.multi_payment_terminal.ui.PostPaymentProcess;

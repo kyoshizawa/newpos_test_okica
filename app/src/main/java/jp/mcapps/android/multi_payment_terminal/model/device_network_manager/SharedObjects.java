@@ -32,16 +32,16 @@ import timber.log.Timber;
 
 class SharedObjects {
     // ログをフィルタをするときにタグが異なると読みにくいのでDeviceNetworkManagerで統一する
-    public final String TAG = DeviceNetworkManager.class.getSimpleName();
+    public final String TAG = "";
 
     public final Context appContext = MainApplication.getInstance();
 
-    public final DeviceNetworkManager deviceNetworkManager;
+    //public final DeviceNetworkManager deviceNetworkManager;
 
     public final ExecutorService pool = Executors.newFixedThreadPool(1);
 
-    public SharedObjects(DeviceNetworkManager deviceNetworkManager) {
-        this.deviceNetworkManager = deviceNetworkManager;
+    public SharedObjects() {
+        //this.deviceNetworkManager = deviceNetworkManager;
     }
 
     public final WifiP2pManager wifiP2pManager = (WifiP2pManager) appContext.getSystemService(Context.WIFI_P2P_SERVICE);

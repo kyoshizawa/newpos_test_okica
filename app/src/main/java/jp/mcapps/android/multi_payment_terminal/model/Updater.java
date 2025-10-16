@@ -45,7 +45,7 @@ import jp.mcapps.android.multi_payment_terminal.BuildConfig;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.data.DeviceServiceInfo;
 import jp.mcapps.android.multi_payment_terminal.data.FirmWareInfo;
-import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
+//import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
 import jp.mcapps.android.multi_payment_terminal.util.DeviceUtils;
 import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.IFBoxApi;
 import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.IFBoxApiImpl;
@@ -93,11 +93,11 @@ public class Updater {
     }
 
     private StorageDownloadFileOperation _operation;
-    private DeviceNetworkManager _deviceNetworkManager = null;
+    //private DeviceNetworkManager _deviceNetworkManager = null;
 
-    public Updater(DeviceNetworkManager deviceNetworkManager) {
-        _deviceNetworkManager = deviceNetworkManager;
-    }
+//    public Updater(DeviceNetworkManager deviceNetworkManager) {
+//        _deviceNetworkManager = deviceNetworkManager;
+//    }
 
     public boolean isForcedUpdate() {
         if (_updateList.size() == 0) {
@@ -719,13 +719,13 @@ public class Updater {
                 DeviceServiceInfo ds;
 
                 while (true) {
-                    ds = _deviceNetworkManager.getDeviceServiceInfo().getValue();
-                    if (ds.isAvailable()) {
-                            if (!inner.isDisposed()) {
-                                inner.onComplete();
-                            }
-                            break;
-                    };
+//                    ds = _deviceNetworkManager.getDeviceServiceInfo().getValue();
+//                    if (ds.isAvailable()) {
+//                            if (!inner.isDisposed()) {
+//                                inner.onComplete();
+//                            }
+//                            break;
+//                    };
 
                     sleep(1000);
                 }
@@ -737,63 +737,63 @@ public class Updater {
 
             c.subscribeOn(Schedulers.io()).subscribe(() -> {
                 try {
-                    DeviceServiceInfo ds;
-                    ds = _deviceNetworkManager.getDeviceServiceInfo().getValue();
-
-                    IFBoxApi api = new IFBoxApiImpl();
-                    api.setBaseUrl("http://" + ds.getAddress());
-
-                    api.postUpdate(targetFilename);
-
-                    Completable.create(reconnectEmmiter -> {
-                        // 再接続を待つ
-                        AtomicBoolean isLost = new AtomicBoolean(false);
-                        _deviceNetworkManager.getDeviceServiceInfo().subscribe(info -> {
-                            /**/ if (info.getLost()) isLost.set(true);  // 切断
-                            else if (isLost.get() && info.isAvailable()) {
-                                api.setBaseUrl("http://" + info.getAddress());
-                                reconnectEmmiter.onComplete();  // 切断後の再接続
-                            }
-                        });
-                    }).subscribe(() -> {
-                        AtomicReference<Version.Response> version = new AtomicReference<>(null);
-                        Runnable versionCheck = () -> {
-                            try {
-                                Version.Response v = api.getVersion();
-                                Timber.d("name: %s, model: %s, version: %s", v.appName, v.appModel, v.appVersion);
-
-                                version.set(v);
-                            } catch (Exception e) {
-                                Timber.e(e);
-                            }
-                        };
-
-                        // WiFi Direct接続直後は通信に失敗することがあるのでリトライする
-                        for (int i = 0; i < 3; i++) {
-                            versionCheck.run();
-                            if (version.get() != null) break;
-                            sleep(500);
-                        }
-
-                        if (version.get() == null) {
-                            return;
-                        }
-
-
-                        AppPreference.setIFBoxOTAInfo(firmware);
-//                        AppPreference.setIFBoxVersionInfo(version.get());
-
-                        if (!outer.isDisposed()) {
-                            outer.onComplete();
-                        }
-                        return;
-                    }, e -> {
-                        Timber.e(e);
-                        if (!outer.isDisposed()) {
-                            outer.onError(e);
-                        }
-                        return;
-                    });
+//                    DeviceServiceInfo ds;
+//                    ds = _deviceNetworkManager.getDeviceServiceInfo().getValue();
+//
+//                    IFBoxApi api = new IFBoxApiImpl();
+//                    api.setBaseUrl("http://" + ds.getAddress());
+//
+//                    api.postUpdate(targetFilename);
+//
+//                    Completable.create(reconnectEmmiter -> {
+//                        // 再接続を待つ
+//                        AtomicBoolean isLost = new AtomicBoolean(false);
+//                        _deviceNetworkManager.getDeviceServiceInfo().subscribe(info -> {
+//                            /**/ if (info.getLost()) isLost.set(true);  // 切断
+//                            else if (isLost.get() && info.isAvailable()) {
+//                                api.setBaseUrl("http://" + info.getAddress());
+//                                reconnectEmmiter.onComplete();  // 切断後の再接続
+//                            }
+//                        });
+//                    }).subscribe(() -> {
+//                        AtomicReference<Version.Response> version = new AtomicReference<>(null);
+//                        Runnable versionCheck = () -> {
+//                            try {
+//                                Version.Response v = api.getVersion();
+//                                Timber.d("name: %s, model: %s, version: %s", v.appName, v.appModel, v.appVersion);
+//
+//                                version.set(v);
+//                            } catch (Exception e) {
+//                                Timber.e(e);
+//                            }
+//                        };
+//
+//                        // WiFi Direct接続直後は通信に失敗することがあるのでリトライする
+//                        for (int i = 0; i < 3; i++) {
+//                            versionCheck.run();
+//                            if (version.get() != null) break;
+//                            sleep(500);
+//                        }
+//
+//                        if (version.get() == null) {
+//                            return;
+//                        }
+//
+//
+//                        AppPreference.setIFBoxOTAInfo(firmware);
+////                        AppPreference.setIFBoxVersionInfo(version.get());
+//
+//                        if (!outer.isDisposed()) {
+//                            outer.onComplete();
+//                        }
+//                        return;
+//                    }, e -> {
+//                        Timber.e(e);
+//                        if (!outer.isDisposed()) {
+//                            outer.onError(e);
+//                        }
+//                        return;
+//                    });
                 } catch (Exception e) {
                     Timber.e(e);
                     if (!outer.isDisposed()) {

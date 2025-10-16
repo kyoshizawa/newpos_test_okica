@@ -10,7 +10,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
 import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import timber.log.Timber;
 
 import static java.lang.Integer.parseInt;
@@ -18,10 +18,10 @@ import static java.lang.Integer.parseInt;
 public class AmountInputLt27ViewModel extends ViewModel {
     private static final int MAX_AMOUNT_DIGITS = 6;
 
-    private final IFBoxManager _ifBoxManager;
+    //private final IFBoxManager _ifBoxManager;
 
-    public AmountInputLt27ViewModel(IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager;
+    public AmountInputLt27ViewModel() {
+
     }
 
     private final MutableLiveData<Integer> _changeAmount = new MutableLiveData<>(0); // 入力金額
@@ -54,14 +54,14 @@ public class AmountInputLt27ViewModel extends ViewModel {
     }
 
     public void fetchMeterCharge() {
-        _ifBoxManager.fetchMeter()
-                .timeout(5, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {
-                    _paymentAmount.setValue(Amount.getTotalAmount());
-                }, error -> {
-                });
+//        _ifBoxManager.fetchMeter()
+//                .timeout(5, TimeUnit.SECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(() -> {
+//                    _paymentAmount.setValue(Amount.getTotalAmount());
+//                }, error -> {
+//                });
     }
 
     // 数字キータップ

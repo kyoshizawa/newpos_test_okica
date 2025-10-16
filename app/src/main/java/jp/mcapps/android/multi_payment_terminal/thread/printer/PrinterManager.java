@@ -42,7 +42,7 @@ import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorStac
 import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData;
 import jp.mcapps.android.multi_payment_terminal.database.pos.ServiceFunctionData;
 import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.BaseEMoneyOkicaViewModel;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorEventHandlers;
@@ -93,15 +93,15 @@ public class PrinterManager implements CommonErrorEventHandlers {
     private BaseEMoneyOkicaViewModel.HistoryData isHistoryDataOKICA;
     private String isOkicaHistoryPrintDateTime;
 
-    private static IFBoxManager _ifBoxManager;
-    public void setIFBoxManager( IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager ;
-    }
-    //ADD-S BMT S.Oyama 2024/11/18 フタバ双方向向け改修
-    public IFBoxManager getIFBoxManager() {
-        return _ifBoxManager;
-    }
-    //ADD-E BMT S.Oyama 2024/11/18 フタバ双方向向け改修
+//    private static IFBoxManager _ifBoxManager;
+//    public void setIFBoxManager( IFBoxManager ifBoxManager) {
+//        _ifBoxManager = ifBoxManager ;
+//    }
+//    //ADD-S BMT S.Oyama 2024/11/18 フタバ双方向向け改修
+//    public IFBoxManager getIFBoxManager() {
+//        return _ifBoxManager;
+//    }
+//    //ADD-E BMT S.Oyama 2024/11/18 フタバ双方向向け改修
 
     private SlipData _latestSlipData = null;
 
@@ -462,16 +462,16 @@ public class PrinterManager implements CommonErrorEventHandlers {
         isTransResultUnFinish = false;
         isResultWAON = resultWAON;
 
-        if (_ifBoxManager == null) {
-            PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-            return;
-        }
-
-        if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
-        {
-            PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-            return;
-        }
+//        if (_ifBoxManager == null) {
+//            PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
+//            return;
+//        }
+//
+//        if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
+//        {
+//            PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
+//            return;
+//        }
 
         DeviceClient.HistoryData[] historyData = new DeviceClient.HistoryData[3];
         if(isResultWAON.addInfo == null) isResultWAON.addInfo = new DeviceClient.AddInfo();
@@ -493,10 +493,10 @@ public class PrinterManager implements CommonErrorEventHandlers {
         }
         isResultWAON.addInfo.historyData = historyData;
 
-        IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
-        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-        tmpSend820Info.IsLoopBreakOut = false;
-        tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//        IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
+//        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//        tmpSend820Info.IsLoopBreakOut = false;
+//        tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
 
 
         isDemo();
@@ -505,40 +505,40 @@ public class PrinterManager implements CommonErrorEventHandlers {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                _meterDataV4InfoDisposable = _ifBoxManager.getMeterDataV4().subscribeOn(
-                        Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {     //AndroidSchedulers.mainThread()  Schedulers.newThread() Schedulers.io()
-                    Timber.i("[FUTABA-D]print_trans_history_waon_FutabaD():750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
-                    if (meter.meter_sub_cmd == 9) {
-                        if ((meter.zandaka_flg != null) && (meter.zandaka_flg == 2)) {             //残高フラグが取引履歴照会(2)の場合WAON歴通知
-                            Timber.i("[FUTABA-D]print_trans_history_waon_FutabaD():Waon History print  event ");
-                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
-                        }
-                    }
-                });
-
-                _meterDataV4ErrorDisposable = _ifBoxManager.getMeterDataV4Error().subscribeOn(
-                        Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
-                    Timber.e("[FUTABA-D]navigateToDiscountJob():Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
-                    tmpSend820Info.StatusCode = error.ErrorCode;
-                    tmpSend820Info.ErrorCode820 = error.ErrorCode820;
-
-                });
-
-                _ifBoxManager.send820_WaonHistoryStart( );               //WAON歴印刷開始要求 820へ
-
-                for (int i = 0; i < (PrinterConst.DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
-                {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                    }
-
-                    if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
-                    {
-                        tmpSend820Info.IsLoopBreakOut = true;
-                        break;
-                    }
-                }
+//                _meterDataV4InfoDisposable = _ifBoxManager.getMeterDataV4().subscribeOn(
+//                        Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {     //AndroidSchedulers.mainThread()  Schedulers.newThread() Schedulers.io()
+//                    Timber.i("[FUTABA-D]print_trans_history_waon_FutabaD():750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
+//                    if (meter.meter_sub_cmd == 9) {
+//                        if ((meter.zandaka_flg != null) && (meter.zandaka_flg == 2)) {             //残高フラグが取引履歴照会(2)の場合WAON歴通知
+//                            Timber.i("[FUTABA-D]print_trans_history_waon_FutabaD():Waon History print  event ");
+//                            tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
+//                        }
+//                    }
+//                });
+//
+//                _meterDataV4ErrorDisposable = _ifBoxManager.getMeterDataV4Error().subscribeOn(
+//                        Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
+//                    Timber.e("[FUTABA-D]navigateToDiscountJob():Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
+//                    tmpSend820Info.StatusCode = error.ErrorCode;
+//                    tmpSend820Info.ErrorCode820 = error.ErrorCode820;
+//
+//                });
+//
+//                _ifBoxManager.send820_WaonHistoryStart( );               //WAON歴印刷開始要求 820へ
+//
+//                for (int i = 0; i < (PrinterConst.DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
+//                {
+//                    try {
+//                        Thread.sleep(100);
+//                    } catch (InterruptedException e) {
+//                    }
+//
+//                    if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
+//                    {
+//                        tmpSend820Info.IsLoopBreakOut = true;
+//                        break;
+//                    }
+//                }
             }
         });
         thread.start();
@@ -557,32 +557,32 @@ public class PrinterManager implements CommonErrorEventHandlers {
                 _meterDataV4ErrorDisposable = null;
             }
 
-            if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
-                dismissPrintingDialog();
-                PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-                return;
-            } else {
-                switch (tmpSend820Info.StatusCode)                       //ステータスコードのチェック
-                {
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
-                        dismissPrintingDialog();
-                        PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-                        return;
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:           //タイムアウト
-                        dismissPrintingDialog();
-                        PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR_TIMEOUT);       //IFBOXタイムアウトエラー
-                        return;
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
-                        dismissPrintingDialog();
-                        PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-                        Timber.e("[FUTABA-D]820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
-                        return;
-
-                    default:
-                        //ここに到達する場合は，エラー無しでWAON歴印刷開始要求が送信されたことを意味する
-                        break;
-                }
-            }
+//            if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
+//                dismissPrintingDialog();
+//                PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
+//                return;
+//            } else {
+//                switch (tmpSend820Info.StatusCode)                       //ステータスコードのチェック
+//                {
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
+//                        dismissPrintingDialog();
+//                        PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
+//                        return;
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:           //タイムアウト
+//                        dismissPrintingDialog();
+//                        PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR_TIMEOUT);       //IFBOXタイムアウトエラー
+//                        return;
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
+//                        dismissPrintingDialog();
+//                        PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
+//                        Timber.e("[FUTABA-D]820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
+//                        return;
+//
+//                    default:
+//                        //ここに到達する場合は，エラー無しでWAON歴印刷開始要求が送信されたことを意味する
+//                        break;
+//                }
+//            }
             //ADD-E BMT S.Oyama 2024/10/11 フタバ双方向向け改修
 
         } catch (Exception e) {
@@ -1190,7 +1190,7 @@ public class PrinterManager implements CommonErrorEventHandlers {
                                     }
                                 }
                                 // フタバ双方向手動モードから双方向モードへの変更
-                                _ifBoxManager.printEndManual(true);
+                                //_ifBoxManager.printEndManual(true);
                             }
                         } else if (isTransResult == PrinterConst.TransResult_UnFinished) {
                             changePrintStatus(PrinterConst.PrintStatus_UPDATING);
@@ -1742,7 +1742,7 @@ public class PrinterManager implements CommonErrorEventHandlers {
                                     } else {
                                         //ADD-S BMT S.Oyama 2025/02/18 フタバ双方向向け改修
                                         //printerProc.printPrepaidTrans(isSlipDataIds, PrinterConst.SlipCopy_Merchant);
-                                        _ifBoxManager.send820_Reprint_KeyCode();                //SLIP組み立て止めて，セットキーを送るようにする
+                                        //_ifBoxManager.send820_Reprint_KeyCode();                //SLIP組み立て止めて，セットキーを送るようにする
                                         //ADD-E BMT S.Oyama 2025/02/18 フタバ双方向向け改修
                                     }
                                 }
@@ -1768,7 +1768,7 @@ public class PrinterManager implements CommonErrorEventHandlers {
                                     } else {
                                         //ADD-S BMT S.Oyama 2025/02/18 フタバ双方向向け改修
                                         //printerProc.printTrans(isSlipDataId, PrinterConst.SlipCopy_Merchant);
-                                        _ifBoxManager.send820_Reprint_KeyCode();            //SLIP組み立て止めて，セットキーを送るようにする
+                                        //_ifBoxManager.send820_Reprint_KeyCode();            //SLIP組み立て止めて，セットキーを送るようにする
                                         //ADD-E BMT S.Oyama 2025/02/18 フタバ双方向向け改修
                                     }
                                 }
@@ -1784,7 +1784,7 @@ public class PrinterManager implements CommonErrorEventHandlers {
                             //ADD-S BMT S.Oyama 2025/02/18 フタバ双方向向け改修
                             if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true){
                                 //ADD-S BMT S.Oyama 2025/03/11 フタバ双方向向け改修
-                                _ifBoxManager.send820_Reprint_KeyCode();                            //SLIP組み立て止めて，セットキーを送るようにする
+                                //_ifBoxManager.send820_Reprint_KeyCode();                            //SLIP組み立て止めて，セットキーを送るようにする
                                 //printerProc.sendWsPrintHistryFutabaDCoreErrorAck();                   //フタバDの場合，JSONでエラー応答を送る
                                 //ADD-E BMT S.Oyama 2025/03/11 フタバ双方向向け改修
                             } else {
@@ -1837,7 +1837,7 @@ public class PrinterManager implements CommonErrorEventHandlers {
                         //ADD-S BMT S.Oyama 2025/03/11 フタバ双方向向け改修
                         case PrinterConst.SlipType_AggregateFutabaD:
                             if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
-                                _ifBoxManager.send820_Reprint_KeyCode();                            //SLIP組み立て止めて，セットキーを送るようにする
+                                //_ifBoxManager.send820_Reprint_KeyCode();                            //SLIP組み立て止めて，セットキーを送るようにする
                                 TimerTask timerTask = new TimerTask() {
                                     @Override
                                     public void run() {
@@ -1860,14 +1860,14 @@ public class PrinterManager implements CommonErrorEventHandlers {
             /* 伝票印刷失敗(6033,6034)※LT27ヤザキ双方向専用 */
             // 何もしない
         //ADD-S BMT S.Oyama 2025/02/26 フタバ双方向向け改修
-        } else if (MainApplication.getInstance().getString(R.string.error_type_FutabaD_MeterErrorMes_Cancel_T).equals(errorCode) == true) {                 // 処理コード要求によるエラー表示　訂正キーをリクエストしているエラー
-            if ( IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {     //フタバDのみ実施
-                _ifBoxManager.send820_TeiseiKeyNonAck();                        //訂正キーを送信 ACKを必要としないモードで
-            }
-        } else if (MainApplication.getInstance().getString(R.string.error_type_FutabaD_MeterErrorMes_Cancel_R).equals(errorCode) == true) {                 // 処理コード要求によるエラー表示　異常処理コード画面戻り要求キーをリクエストしているエラー
-            if ( IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {     //フタバDのみ実施
-                _ifBoxManager.send820_GenericProcessCodeErrReturn();                        //異常処理コード画面戻り要求キーを送信 ACKを必要としないモードで
-            }
+//        } else if (MainApplication.getInstance().getString(R.string.error_type_FutabaD_MeterErrorMes_Cancel_T).equals(errorCode) == true) {                 // 処理コード要求によるエラー表示　訂正キーをリクエストしているエラー
+//            if ( IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {     //フタバDのみ実施
+//                _ifBoxManager.send820_TeiseiKeyNonAck();                        //訂正キーを送信 ACKを必要としないモードで
+//            }
+//        } else if (MainApplication.getInstance().getString(R.string.error_type_FutabaD_MeterErrorMes_Cancel_R).equals(errorCode) == true) {                 // 処理コード要求によるエラー表示　異常処理コード画面戻り要求キーをリクエストしているエラー
+//            if ( IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {     //フタバDのみ実施
+//                _ifBoxManager.send820_GenericProcessCodeErrReturn();                        //異常処理コード画面戻り要求キーを送信 ACKを必要としないモードで
+//            }
         //ADD-E BMT S.Oyama 2025/02/26 フタバ双方向向け改修
         }else{
             /* 用紙切れ以外のエラー */
@@ -2120,15 +2120,15 @@ public class PrinterManager implements CommonErrorEventHandlers {
             return;         //成り立たないときは処理中止
         }
 
-        if (_ifBoxManager == null) {
-            return;
-        }
-
-        if (_ifBoxManager.getIsConnected820() == false) {
-            setView(view);
-            PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);
-            return;
-        }
+//        if (_ifBoxManager == null) {
+//            return;
+//        }
+//
+//        if (_ifBoxManager.getIsConnected820() == false) {
+//            setView(view);
+//            PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);
+//            return;
+//        }
 
         //ADD-S BMT S.Oyama 2025/02/10 フタバ双方向向け改修
         //_ifBoxManager.send820_FunctionCodeErrorResult(tmpPhase, isACKResult);             //取り消しキー送付のやり方は辞める

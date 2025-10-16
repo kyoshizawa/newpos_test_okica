@@ -65,7 +65,7 @@ import jp.mcapps.android.multi_payment_terminal.database.pos.ServiceFunctionData
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptData;
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptDetail;
 import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
 import jp.mcapps.android.multi_payment_terminal.ui.auto_daily_report.AutoDailyReportFuelFragment;
@@ -150,16 +150,16 @@ public class PrinterProc {
 
     private boolean isRecovery = false;
 
-    private static IFBoxManager _ifBoxManager;
-
-    public void setIFBoxManager(IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager;
-    }
-
-    //ADD-S BMT S.Oyama 2024/10/11 フタバ双方向向け改修
-    public IFBoxManager getIFBoxManager() {
-        return _ifBoxManager;
-    }
+//    private static IFBoxManager _ifBoxManager;
+//
+//    public void setIFBoxManager(IFBoxManager ifBoxManager) {
+//        _ifBoxManager = ifBoxManager;
+//    }
+//
+//    //ADD-S BMT S.Oyama 2024/10/11 フタバ双方向向け改修
+//    public IFBoxManager getIFBoxManager() {
+//        return _ifBoxManager;
+//    }
 
     private String _DuplexComm_BlandName = "";              //双方向時，通信実施中のブランド名を保持
 
@@ -829,7 +829,7 @@ public class PrinterProc {
 
             // パラメータの格納
             _sendData.put("data", _params);
-            _ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
+            //_ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
         } catch (Exception e) {
             Timber.tag("Printer").e("%s：sendWsPrintdata->Exception e <%s>", _printDataRes.getString(R.string.printLog_printDataError), e);
             PrintDataError();
@@ -856,7 +856,7 @@ public class PrinterProc {
             _params.put("point_total", _slipData.watariSumPoint);
             // パラメータの格納
             _sendData.put("data", _params);
-            _ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
+            //_ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
         } catch (Exception e) {
             Timber.tag("Printer").e("%s：sendWsPrintdata_watari->Exception e <%s>", _printDataRes.getString(R.string.printLog_printDataError), e);
             PrintDataError();
@@ -872,7 +872,7 @@ public class PrinterProc {
             _sendData.put("cmd", "print_next");
             _sendData.put("timer", PrinterConst.DuplexPrintWaitTimer);
             // パラメータの格納
-            _ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
+            //_ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
         } catch (Exception e) {
             Timber.tag("Printer").e("%s：sendWsPrintNext->Exception e <%s>", _printDataRes.getString(R.string.printLog_printDataError), e);
             PrintDataError();
@@ -886,7 +886,7 @@ public class PrinterProc {
             _sendData.put("type", "/printdata/v1");
             _sendData.put("cmd", "print_nikkei");
             _sendData.put("timer", PrinterConst.DuplexPrintWaitTimer);
-            _ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimerAggregate);
+            //_ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimerAggregate);
         } catch (Exception e) {
             Timber.tag("Printer").e("%s：sendWsPrintAggregate->Exception e <%s>", _printDataRes.getString(R.string.printLog_printDataError), e);
             PrintDataError();
@@ -1015,7 +1015,7 @@ public class PrinterProc {
             setWsPrintdataV2(_params);
             // パラメータの格納
             _sendData.put("data", _params);
-            _ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
+            //_ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
         } catch (Exception e) {
             Timber.tag("Printer").e("%s：printTrans->Exception e <%s>", _printDataRes.getString(R.string.printLog_printDataError), e);
             PrintDataError();
@@ -1025,133 +1025,133 @@ public class PrinterProc {
 
     private void sendWsReprintdata_FutabaD() {
         Timber.i("[FUTABA-D]sendWsReprintdata_FutabaD");
-
-        if ( (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false)) {              //フタバD以外は処理しない
-            return ;
-        }
-
-        if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
-        {
-            PrinterManager.getInstance().PrinterDuplexError(PrinterConst.DuplexPrintStatus_DISCON);
-            Printing_end();
-            return ;
-        }
-
-        IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
-        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-        tmpSend820Info.IsLoopBreakOut = false;
-        tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-        tmpSend820Info.ErrorCodeExt1 = 0;
-
-        meterDataV4InfoDisposable = _ifBoxManager.getMeterDataV4().subscribeOn(
-                Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {     //AndroidSchedulers.mainThread()
-            Timber.i("[FUTABA-D]sendWsReprintdata_FutabaD:750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
-            if (meter.meter_sub_cmd == 5 || meter.sound_no == IFBoxManager.Send820Status_JobReq_FutabaD.JOBREQ_V3_PRINTSTART_RECV) {           //処理コード要求　かつ，V3系print_start print_end受信
-                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
-            }
-        });
-
-        meterDataV4ErrorDisposable = _ifBoxManager.getMeterDataV4Error().subscribeOn(
-                Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
-            Timber.e("[FUTABA-D]sendWsReprintdata_FutabaD:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
-            tmpSend820Info.StatusCode = error.ErrorCode;
-            tmpSend820Info.ErrorCode820 = error.ErrorCode820;
-
-        });
-
-        tmpSend820Info.ErrorCodeExt1 = 999999;               //通信等でエラー発生時は999999以外のエラーコードをセットする
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                _ifBoxManager.send820_Reprint_KeyCode();
-
-                for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
-                {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                    }
-
-                    if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
-                    {
-                        tmpSend820Info.IsLoopBreakOut = true;
-                        break;
-                    }
-                }
-            }
-        });
-        thread.start();
-
-        try {
-            thread.join();
-
-            if (meterDataV4InfoDisposable != null) {       //コールバック系を後始末
-                meterDataV4InfoDisposable.dispose();
-                meterDataV4InfoDisposable = null;
-            }
-
-            if (meterDataV4ErrorDisposable != null) {      //コールバック系を後始末
-                meterDataV4ErrorDisposable.dispose();
-                meterDataV4ErrorDisposable = null;
-            }
-
-            if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
-                tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
-            }
-            else
-            {
-                switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
-                {
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
-                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
-                        break;
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:            //タイムアウト
-                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
-                        break;
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE:         //選択モードエラー
-                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
-                        break;
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG:             //zandaka_flg送信エラー(1が返ってきていない)
-                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
-                        break;
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
-                        Timber.e("[FUTABA-D](demo)820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
-                        if (tmpSend820Info.ErrorCode820 == IFBoxManager.Send820Status_Error_FutabaD.ERROR_STATUS820_PAPERLACKING)       //用紙無しエラー
-                        {
-                            tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART;                     //用紙なしの場合はエラーコードを入れる
-                        } else {
-                            tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
-                        }
-                        break;
-                    default:
-                        //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
-                        break;
-                }
-            }
-
-        } catch (Exception e) {
-            Timber.e(e);
-            tmpSend820Info.ErrorCodeExt1 =  PrinterConst.DuplexPrintStatus_DATAERROR;
-        }
-
-        if (tmpSend820Info.ErrorCodeExt1 != 999999){           //エラーコードが設定されている場合
-            Handler handler= new Handler(Looper.getMainLooper());
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    if(tmpSend820Info.ErrorCodeExt1 == PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART) {           //用紙なしエラーの場合
-                        PrinterManager.getInstance().PrinterDuplexError(tmpSend820Info.ErrorCodeExt1);
-                    }
-                    else {                                                                              //その他のエラーの場合
-                        PrinterManager.getInstance().PrinterDuplexError(PrinterConst.DuplexPrintStatus_DISCON);
-                    }
-                    PrinterManager.getInstance().dismissPrintingDialogExt();
-                    PrintDataError();
-                    //Printing_end();
-                }
-            });
-        }
+//
+//        if ( (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false)) {              //フタバD以外は処理しない
+//            return ;
+//        }
+//
+//        if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
+//        {
+//            PrinterManager.getInstance().PrinterDuplexError(PrinterConst.DuplexPrintStatus_DISCON);
+//            Printing_end();
+//            return ;
+//        }
+//
+//        IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
+//        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//        tmpSend820Info.IsLoopBreakOut = false;
+//        tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//        tmpSend820Info.ErrorCodeExt1 = 0;
+//
+//        meterDataV4InfoDisposable = _ifBoxManager.getMeterDataV4().subscribeOn(
+//                Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {     //AndroidSchedulers.mainThread()
+//            Timber.i("[FUTABA-D]sendWsReprintdata_FutabaD:750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
+//            if (meter.meter_sub_cmd == 5 || meter.sound_no == IFBoxManager.Send820Status_JobReq_FutabaD.JOBREQ_V3_PRINTSTART_RECV) {           //処理コード要求　かつ，V3系print_start print_end受信
+//                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
+//            }
+//        });
+//
+//        meterDataV4ErrorDisposable = _ifBoxManager.getMeterDataV4Error().subscribeOn(
+//                Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
+//            Timber.e("[FUTABA-D]sendWsReprintdata_FutabaD:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
+//            tmpSend820Info.StatusCode = error.ErrorCode;
+//            tmpSend820Info.ErrorCode820 = error.ErrorCode820;
+//
+//        });
+//
+//        tmpSend820Info.ErrorCodeExt1 = 999999;               //通信等でエラー発生時は999999以外のエラーコードをセットする
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                _ifBoxManager.send820_Reprint_KeyCode();
+//
+//                for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
+//                {
+//                    try {
+//                        Thread.sleep(100);
+//                    } catch (InterruptedException e) {
+//                    }
+//
+//                    if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
+//                    {
+//                        tmpSend820Info.IsLoopBreakOut = true;
+//                        break;
+//                    }
+//                }
+//            }
+//        });
+//        thread.start();
+//
+//        try {
+//            thread.join();
+//
+//            if (meterDataV4InfoDisposable != null) {       //コールバック系を後始末
+//                meterDataV4InfoDisposable.dispose();
+//                meterDataV4InfoDisposable = null;
+//            }
+//
+//            if (meterDataV4ErrorDisposable != null) {      //コールバック系を後始末
+//                meterDataV4ErrorDisposable.dispose();
+//                meterDataV4ErrorDisposable = null;
+//            }
+//
+//            if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
+//                tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
+//            }
+//            else
+//            {
+//                switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
+//                {
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
+//                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
+//                        break;
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:            //タイムアウト
+//                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
+//                        break;
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE:         //選択モードエラー
+//                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
+//                        break;
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG:             //zandaka_flg送信エラー(1が返ってきていない)
+//                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
+//                        break;
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
+//                        Timber.e("[FUTABA-D](demo)820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
+//                        if (tmpSend820Info.ErrorCode820 == IFBoxManager.Send820Status_Error_FutabaD.ERROR_STATUS820_PAPERLACKING)       //用紙無しエラー
+//                        {
+//                            tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART;                     //用紙なしの場合はエラーコードを入れる
+//                        } else {
+//                            tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
+//                        }
+//                        break;
+//                    default:
+//                        //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
+//                        break;
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//            Timber.e(e);
+//            tmpSend820Info.ErrorCodeExt1 =  PrinterConst.DuplexPrintStatus_DATAERROR;
+//        }
+//
+//        if (tmpSend820Info.ErrorCodeExt1 != 999999){           //エラーコードが設定されている場合
+//            Handler handler= new Handler(Looper.getMainLooper());
+//            handler.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if(tmpSend820Info.ErrorCodeExt1 == PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART) {           //用紙なしエラーの場合
+//                        PrinterManager.getInstance().PrinterDuplexError(tmpSend820Info.ErrorCodeExt1);
+//                    }
+//                    else {                                                                              //その他のエラーの場合
+//                        PrinterManager.getInstance().PrinterDuplexError(PrinterConst.DuplexPrintStatus_DISCON);
+//                    }
+//                    PrinterManager.getInstance().dismissPrintingDialogExt();
+//                    PrintDataError();
+//                    //Printing_end();
+//                }
+//            });
+//        }
     }
 
 //ADD-S BMT S.Oyama 2024/09/3 フタバ双方向向け改修
@@ -1563,8 +1563,8 @@ public class PrinterProc {
 
             boolean tmpuseNewSendSystenFL = false;
             if (_slipData.transBrand.equals("分別チケット")) {                                            //分別チケットの場合
-                _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
-                _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.SEPARATION_TIKECT);
+                //_ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
+                //_ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.SEPARATION_TIKECT);
             } else if (_slipData.transBrand.equals("プリペイド")) {                                        //プリペイドの場合
                 int tmpTranType = _slipData.transType;              //transe_typeにプリペイド処理の挙動が記載される
                 int tmpSettlementSelectMode = 0;
@@ -1572,104 +1572,104 @@ public class PrinterProc {
                 //-- 以下   プリペイド向け決済選択の送信処理
                 switch(tmpTranType)
                 {
-                    case TransMap.TYPE_SALES :                      //売上
-                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_PAY;
-                        break;
-                    case TransMap.TYPE_CANCEL :                     //取消
-                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_PAYREFUND;
-                        break;
-                    case TransMap.TYPE_POINT :                      //ポイント付与
-                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_POINTADD;
-                        break;
-                    case TransMap.TYPE_POINT_CANCEL :               //ポイント取消
-                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_POINTREFUND;
-                        break;
-                    case TransMap.TYPE_CACHE_CHARGE :               //現金チャージ
-                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_CACHECHARGE;
-                        break;
-                    case TransMap.TYPE_CACHE_CHARGE_CANCEL :        //現金チャージ取消
-                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_CHCHECHARGEREFUND;
-                        break;
-                    case TransMap.TYPE_POINT_CHARGE :               //ポイントチャージ
-                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_POINTCHARGE;
-                        break;
-                    case TransMap.TYPE_PREPAID_CARDBUY  :           //プリペイド発売
-                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_CARDBUY;
-                        break;
+//                    case TransMap.TYPE_SALES :                      //売上
+//                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_PAY;
+//                        break;
+//                    case TransMap.TYPE_CANCEL :                     //取消
+//                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_PAYREFUND;
+//                        break;
+//                    case TransMap.TYPE_POINT :                      //ポイント付与
+//                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_POINTADD;
+//                        break;
+//                    case TransMap.TYPE_POINT_CANCEL :               //ポイント取消
+//                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_POINTREFUND;
+//                        break;
+//                    case TransMap.TYPE_CACHE_CHARGE :               //現金チャージ
+//                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_CACHECHARGE;
+//                        break;
+//                    case TransMap.TYPE_CACHE_CHARGE_CANCEL :        //現金チャージ取消
+//                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_CHCHECHARGEREFUND;
+//                        break;
+//                    case TransMap.TYPE_POINT_CHARGE :               //ポイントチャージ
+//                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_POINTCHARGE;
+//                        break;
+//                    case TransMap.TYPE_PREPAID_CARDBUY  :           //プリペイド発売
+//                        tmpSettlementSelectMode = IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_PREPAID_CARDBUY;
+//                        break;
                     default:
                         return;
                 }
 
-                boolean tmpSendOKNg = send820PrepaidSettlementSelectMode(tmpSettlementSelectMode);      //プリペイド向け決済選択の送信処理
-
-                if (tmpSendOKNg == false) {     //送信失敗時
-                    return;
-                }
+//                boolean tmpSendOKNg = send820PrepaidSettlementSelectMode(tmpSettlementSelectMode);      //プリペイド向け決済選択の送信処理
+//
+//                if (tmpSendOKNg == false) {     //送信失敗時
+//                    return;
+//                }
 
                 //-- 以上   プリペイド向け決済選択の送信処理
                 //-- 以下   プリペイド向け決済情報の送信処理準備
 
-                _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
-
-                switch(tmpTranType)
-                {
-                    case TransMap.TYPE_SALES :                      //売上
-                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_PAY);
-                        break;
-                    case TransMap.TYPE_CANCEL :                     //取消
-                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_PAYREFUND);
-                        break;
-                    case TransMap.TYPE_POINT :                      //ポイント付与
-                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_POINTADD);
-                        break;
-                    case TransMap.TYPE_POINT_CANCEL :               //ポイント取消
-                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_POINTREFUND);
-                        break;
-                    case TransMap.TYPE_CACHE_CHARGE :               //現金チャージ
-                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_CACHECHARGE);
-                        break;
-                    case TransMap.TYPE_CACHE_CHARGE_CANCEL :        //現金チャージ取消
-                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_CHCHECHARGEREFUND);
-                        break;
-                    case TransMap.TYPE_POINT_CHARGE :               //ポイントチャージ
-                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_POINTCHARGE);
-                        break;
-                    case TransMap.TYPE_PREPAID_CARDBUY  :           //プリペイド発売
-                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_CARDBUY);
-                        break;
-                }
+//                _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
+//
+//                switch(tmpTranType)
+//                {
+//                    case TransMap.TYPE_SALES :                      //売上
+//                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_PAY);
+//                        break;
+//                    case TransMap.TYPE_CANCEL :                     //取消
+//                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_PAYREFUND);
+//                        break;
+//                    case TransMap.TYPE_POINT :                      //ポイント付与
+//                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_POINTADD);
+//                        break;
+//                    case TransMap.TYPE_POINT_CANCEL :               //ポイント取消
+//                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_POINTREFUND);
+//                        break;
+//                    case TransMap.TYPE_CACHE_CHARGE :               //現金チャージ
+//                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_CACHECHARGE);
+//                        break;
+//                    case TransMap.TYPE_CACHE_CHARGE_CANCEL :        //現金チャージ取消
+//                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_CHCHECHARGEREFUND);
+//                        break;
+//                    case TransMap.TYPE_POINT_CHARGE :               //ポイントチャージ
+//                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_POINTCHARGE);
+//                        break;
+//                    case TransMap.TYPE_PREPAID_CARDBUY  :           //プリペイド発売
+//                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.PREPAID_CARDBUY);
+//                        break;
+//                }
                 //-- 以上   プリペイド向け決済情報の送信処理準備
             } else {                                                                                    //その他の場合
-                if (_slipData.transCashTogetherAmount > 0) {                                            //分別時の場合
-                    if (tmpSeparationMainSendFL == false) {                                             //分別1度目送信時
-                        if (_slipData.transBrand.equals("クレジット") == true) {                          //クレジットの場合
-                            _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
-                            _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.SEPARATION_CREDITCASH_FIRST);
-                        } else if (_slipData.transBrand.equals("交通系電子マネー") == true) {              //交通系電子マネーの場合
-                            _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
-                            _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.SEPARATION_SUICACASH_FIRST);
-                        } else if (_slipData.transBrand.equals("コード決済") == true) {                  //QR決済の場合
-                            _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
-                            _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.SEPARATION_QRCASH_FIRST);
-                        } else {
-                            _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);
-                            _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);
-                        }
-
-                        _DuplexComm_BlandName = _slipData.transBrand;               //送信するブランド名（送信確認で使用）
-                        _DuplexComm_SlipIDBackup = isSlipDataId;                    //送信するスリップID（送信確認で使用）
-
-                        tmpuseNewSendSystenFL = true;                               //新送信システムを使用
-                    } else {                                                                            //分別2度目送信時
-                        _params.put("pay_separation", 0);               // 分別払い有無
-                        _params.put("input_kingaku", 0);                //入力金額
-                        _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);
-                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);
-                    }
-                } else {
-                    _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);
-                    _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);
-                }
+//                if (_slipData.transCashTogetherAmount > 0) {                                            //分別時の場合
+//                    if (tmpSeparationMainSendFL == false) {                                             //分別1度目送信時
+//                        if (_slipData.transBrand.equals("クレジット") == true) {                          //クレジットの場合
+//                            _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
+//                            _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.SEPARATION_CREDITCASH_FIRST);
+//                        } else if (_slipData.transBrand.equals("交通系電子マネー") == true) {              //交通系電子マネーの場合
+//                            _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
+//                            _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.SEPARATION_SUICACASH_FIRST);
+//                        } else if (_slipData.transBrand.equals("コード決済") == true) {                  //QR決済の場合
+//                            _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
+//                            _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.SEPARATION_QRCASH_FIRST);
+//                        } else {
+//                            _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);
+//                            _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);
+//                        }
+//
+//                        _DuplexComm_BlandName = _slipData.transBrand;               //送信するブランド名（送信確認で使用）
+//                        _DuplexComm_SlipIDBackup = isSlipDataId;                    //送信するスリップID（送信確認で使用）
+//
+//                        tmpuseNewSendSystenFL = true;                               //新送信システムを使用
+//                    } else {                                                                            //分別2度目送信時
+//                        _params.put("pay_separation", 0);               // 分別払い有無
+//                        _params.put("input_kingaku", 0);                //入力金額
+//                        _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);
+//                        _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);
+//                    }
+//                } else {
+//                    _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);
+//                    _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);
+//                }
             }
 
             if (tmpKessaiKakuninFl == false) {                              //通常送信時(決済確認以外)
@@ -1680,12 +1680,12 @@ public class PrinterProc {
             // パラメータの格納
             _sendData.put("data", _params);
 
-            if (tmpuseNewSendSystenFL == false)             //新送信システムを使用しない場合
-            {
-                _ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
-            } else {                                        //新送信システムを使用する場合
-                _ifBoxManager.sendFutabaDExt(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
-            }
+//            if (tmpuseNewSendSystenFL == false)             //新送信システムを使用しない場合
+//            {
+//                _ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
+//            } else {                                        //新送信システムを使用する場合
+//                _ifBoxManager.sendFutabaDExt(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
+//            }
         } catch (Exception e) {
             Timber.tag("Printer").e("%s：printTrans->Exception e <%s>", _printDataRes.getString(R.string.printLog_printDataError), e);
             PrintDataError();
@@ -1856,7 +1856,7 @@ public class PrinterProc {
             // パラメータの格納
             _sendData.put("data", _params);
 
-            _ifBoxManager.sendFutabaDExt(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
+            //_ifBoxManager.sendFutabaDExt(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
         } catch (Exception e) {
             Timber.tag("Printer").e("%s：printTrans->Exception e <%s>", _printDataRes.getString(R.string.printLog_printDataError), e);
             PrintDataError();
@@ -1948,7 +1948,7 @@ public class PrinterProc {
             _sendData.put("type", "/printdata/v1");
             _sendData.put("cmd", "print_restart");
             _sendData.put("timer", PrinterConst.DuplexPrintWaitTimer);
-            _ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
+            //_ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
         } catch (Exception e) {
             Timber.tag("Printer").e("%s：sendWsPrintRestart->Exception e <%s>", _printDataRes.getString(R.string.printLog_printDataError), e);
             PrintDataError();
@@ -2350,43 +2350,43 @@ public class PrinterProc {
                     return;
             }
 
-            switch(tmpPhase) {
-                case IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_CREDIT:
-                    tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_credit);
-                    break;
-                case IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_EMONEY:
-                    switch(tmpSettlementMode)
-                    {
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_EDY:
-                            tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_edy);
-                            break;
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID:
-                            tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_id);
-                            break;
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_NANACO:
-                            tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_nanaco);
-                            break;
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_QUICPAY:
-                            tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_qp);
-                            break;
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_SUICA:
-                            tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_suica);
-                            break;
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_WAON:
-                            tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_waon);
-                            break;
-                        default:
-                            Timber.e("[FUTABA-D]%s：printTransFutabaD_SettlementAbort->tmpSettlementMode <%s>", _printDataRes.getString(R.string.printLog_printDataError), tmpSettlementMode);
-                            return;
-                    }
-                    break;
-                case IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_QR:
-                    tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_codetrans);
-                    break;
-                default:
-                    Timber.e("[FUTABA-D]%s：printTransFutabaD_SettlementAbort->tmpPhase <%s>", _printDataRes.getString(R.string.printLog_printDataError), tmpPhase);
-                    return;
-            }
+//            switch(tmpPhase) {
+//                case IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_CREDIT:
+//                    tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_credit);
+//                    break;
+//                case IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_EMONEY:
+//                    switch(tmpSettlementMode)
+//                    {
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_EDY:
+//                            tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_edy);
+//                            break;
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_ID:
+//                            tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_id);
+//                            break;
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_NANACO:
+//                            tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_nanaco);
+//                            break;
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_QUICPAY:
+//                            tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_qp);
+//                            break;
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_SUICA:
+//                            tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_suica);
+//                            break;
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_WAON:
+//                            tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_waon);
+//                            break;
+//                        default:
+//                            Timber.e("[FUTABA-D]%s：printTransFutabaD_SettlementAbort->tmpSettlementMode <%s>", _printDataRes.getString(R.string.printLog_printDataError), tmpSettlementMode);
+//                            return;
+//                    }
+//                    break;
+//                case IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_QR:
+//                    tmpslipData.transBrand = MainApplication.getInstance().getString(R.string.money_brand_codetrans);
+//                    break;
+//                default:
+//                    Timber.e("[FUTABA-D]%s：printTransFutabaD_SettlementAbort->tmpPhase <%s>", _printDataRes.getString(R.string.printLog_printDataError), tmpPhase);
+//                    return;
+//            }
                                                          //0123456789A123456789B12345    //*** 820側文字列変数処理が単純にmemcpy左詰めしている結果，構造体にゴミが入るため，その抑止として空白や0を入れる
             tmpslipData.termId                          = "                ";            // 端末ID系は空白15個入れる
             tmpslipData.termIdentId                     = "                ";            // 端末識別ID系は空白15個入れる
@@ -4874,7 +4874,7 @@ public class PrinterProc {
 
             // パラメータの格納
             _sendData.put("data", _params);
-            _ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
+//            _ifBoxManager.send(_sendData.toString(), PrinterConst.DuplexPrintResponseTimer);
         } catch (Exception e) {
             Timber.tag("Printer").e("%s：sendWsPrintHistryWaon->Exception e <%s>", _printDataRes.getString(R.string.printLog_printDataError), e);
             PrintDataError();
@@ -5102,10 +5102,10 @@ public class PrinterProc {
             // パラメータの格納
             _sendData.put("data", _params);
 
-            _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
-            _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.WAON_HISTORYJOBCORE);          //WAON歴出力本体
-
-            _ifBoxManager.sendFutabaDExt(_sendData.toString(), PrinterConst.DuplexMeterSendWaitTimerShortFutabaD);              //フタバD専用送出を利用
+//            _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
+//            _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.WAON_HISTORYJOBCORE);          //WAON歴出力本体
+//
+//            _ifBoxManager.sendFutabaDExt(_sendData.toString(), PrinterConst.DuplexMeterSendWaitTimerShortFutabaD);              //フタバD専用送出を利用
 
 
             Thread thread = new Thread(new Runnable() {
@@ -5210,10 +5210,10 @@ public class PrinterProc {
             // パラメータの格納
             _sendData.put("data", _params);
 
-            _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
-            _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.GENERICABORTCODE_NONACK);          //WAON歴出力本体 ACKなしで送出
-
-            _ifBoxManager.sendFutabaDExt(_sendData.toString(), PrinterConst.DuplexMeterSendWaitTimerShortFutabaD);              //フタバD専用送出を利用
+//            _ifBoxManager.setSendMeterDataStatus_General(IFBoxManager.SendMeterDataStatus_FutabaD.SENDING);
+//            _ifBoxManager.setSendMeterDataPhase_General(IFBoxManager.SendMeterDataStatus_FutabaD.GENERICABORTCODE_NONACK);          //WAON歴出力本体 ACKなしで送出
+//
+//            _ifBoxManager.sendFutabaDExt(_sendData.toString(), PrinterConst.DuplexMeterSendWaitTimerShortFutabaD);              //フタバD専用送出を利用
 
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -5567,14 +5567,14 @@ public class PrinterProc {
             Log_SlipName = _printDataRes.getString(R.string.print_aggregate_slip);
             Timber.tag("Printer").i("%s：%s", _printDataRes.getString(R.string.printLog_printDataSet), Log_SlipName);
             // 双方向用にデータをWS送信
-            _meterStatus = _ifBoxManager.getMeterStatus();
-            if (_meterStatus.equals("KUUSYA")) {
-                sendWsPrintAggregate();
-            } else {
-                // 集計印字の際にメーター状態が不正
-                Timber.tag("Printer").e("printer status err <%s>", _meterStatus);
-                Printing_Duplex("NG", 0, PrinterConst.DuplexPrintStatus_METERSTSERROR);
-            }
+//            _meterStatus = _ifBoxManager.getMeterStatus();
+//            if (_meterStatus.equals("KUUSYA")) {
+//                sendWsPrintAggregate();
+//            } else {
+//                // 集計印字の際にメーター状態が不正
+//                Timber.tag("Printer").e("printer status err <%s>", _meterStatus);
+//                Printing_Duplex("NG", 0, PrinterConst.DuplexPrintStatus_METERSTSERROR);
+//            }
         } else {
             // 別スレッド：伝票印刷関連データ取得
             Thread thread = new Thread(new Runnable() {
@@ -8472,133 +8472,133 @@ public class PrinterProc {
         if ( (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false)) {              //フタバD以外は処理しない
             return false;
         }
-
-        if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
-        {
-            PrinterManager.getInstance().PrinterDuplexError(PrinterConst.DuplexPrintStatus_DISCON);
-            Printing_end();
-            return false;
-        }
-
-        IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
-        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-        tmpSend820Info.IsLoopBreakOut = false;
-        tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-        tmpSend820Info.ErrorCodeExt1 = 0;
-
-        meterDataV4InfoDisposable = _ifBoxManager.getMeterDataV4().subscribeOn(
-                Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {     //AndroidSchedulers.mainThread()
-            Timber.i("[FUTABA-D]send820PrepaidSettlementSelectMode:750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
-            if (meter.meter_sub_cmd == 9) {              //ファンクション実行要求：決済選択イベント
-                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
-            }
-        });
-
-        meterDataV4ErrorDisposable = _ifBoxManager.getMeterDataV4Error().subscribeOn(
-                Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
-            Timber.e("[FUTABA-D]send820PrepaidSettlementSelectMode:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
-            tmpSend820Info.StatusCode = error.ErrorCode;
-            tmpSend820Info.ErrorCode820 = error.ErrorCode820;
-
-        });
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                _ifBoxManager.send820_SettlementSelectMode(tmpSettlementSelectMode, false);    //820へプリペイド系決済選択を送信
-                for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
-                {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                    }
-
-                    if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
-                    {
-                        tmpSend820Info.IsLoopBreakOut = true;
-                        break;
-                    }
-                }
-            }
-        });
-        thread.start();
-
-        tmpSend820Info.ErrorCodeExt1 = 999999;               //通信等でエラー発生時は999999以外のエラーコードをセットする
-        try {
-            thread.join();
-
-            if (meterDataV4InfoDisposable != null) {       //コールバック系を後始末
-                meterDataV4InfoDisposable.dispose();
-                meterDataV4InfoDisposable = null;
-            }
-
-            if (meterDataV4ErrorDisposable != null) {      //コールバック系を後始末
-                meterDataV4ErrorDisposable.dispose();
-                meterDataV4ErrorDisposable = null;
-            }
-
-            if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
-                tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
-            }
-            else
-            {
-                switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
-                {
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
-                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
-                        break;
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:            //タイムアウト
-                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
-                        break;
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE:         //選択モードエラー
-                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
-                        break;
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG:             //zandaka_flg送信エラー(1が返ってきていない)
-                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
-                        break;
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
-                        Timber.e("[FUTABA-D](demo)820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
-                        //ADD-S BMT S.Oyama 2025/01/29 フタバ双方向向け改修
-                        if (tmpSend820Info.ErrorCode820 == IFBoxManager.Send820Status_Error_FutabaD.ERROR_STATUS820_PAPERLACKING)       //用紙無しエラー
-                        {
-                            tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART;                     //用紙なしの場合はエラーコードを入れる
-                        } else {
-                            tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
-                        }
-                        break;
-                        //ADD-E BMT S.Oyama 2025/01/29 フタバ双方向向け改修
-                    default:
-                        //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
-                        break;
-                }
-            }
-
-
-        } catch (Exception e) {
-            Timber.e(e);
-            tmpSend820Info.ErrorCodeExt1 =  PrinterConst.DuplexPrintStatus_DATAERROR;
-        }
-
-        if (tmpSend820Info.ErrorCodeExt1 != 999999){           //エラーコードが設定されている場合
-            Handler handler= new Handler(Looper.getMainLooper());
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (tmpSend820Info.ErrorCodeExt1 == PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART) {           //用紙なしエラーの場合
-                        PrinterManager.getInstance().PrinterDuplexError(tmpSend820Info.ErrorCodeExt1);
-                    } else {                                                                              //その他のエラーの場合
-                        PrinterManager.getInstance().PrinterDuplexError(PrinterConst.DuplexPrintStatus_DISCON);
-                    }
-
-                    PrinterManager.getInstance().dismissPrintingDialogExt();
-                    PrintDataError();
-                    //Printing_end();
-                }
-            });
-
-            return false;
-        }
+//
+//        if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
+//        {
+//            PrinterManager.getInstance().PrinterDuplexError(PrinterConst.DuplexPrintStatus_DISCON);
+//            Printing_end();
+//            return false;
+//        }
+//
+//        IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
+//        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//        tmpSend820Info.IsLoopBreakOut = false;
+//        tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//        tmpSend820Info.ErrorCodeExt1 = 0;
+//
+//        meterDataV4InfoDisposable = _ifBoxManager.getMeterDataV4().subscribeOn(
+//                Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {     //AndroidSchedulers.mainThread()
+//            Timber.i("[FUTABA-D]send820PrepaidSettlementSelectMode:750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
+//            if (meter.meter_sub_cmd == 9) {              //ファンクション実行要求：決済選択イベント
+//                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
+//            }
+//        });
+//
+//        meterDataV4ErrorDisposable = _ifBoxManager.getMeterDataV4Error().subscribeOn(
+//                Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
+//            Timber.e("[FUTABA-D]send820PrepaidSettlementSelectMode:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
+//            tmpSend820Info.StatusCode = error.ErrorCode;
+//            tmpSend820Info.ErrorCode820 = error.ErrorCode820;
+//
+//        });
+//
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                _ifBoxManager.send820_SettlementSelectMode(tmpSettlementSelectMode, false);    //820へプリペイド系決済選択を送信
+//                for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
+//                {
+//                    try {
+//                        Thread.sleep(100);
+//                    } catch (InterruptedException e) {
+//                    }
+//
+//                    if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
+//                    {
+//                        tmpSend820Info.IsLoopBreakOut = true;
+//                        break;
+//                    }
+//                }
+//            }
+//        });
+//        thread.start();
+//
+//        tmpSend820Info.ErrorCodeExt1 = 999999;               //通信等でエラー発生時は999999以外のエラーコードをセットする
+//        try {
+//            thread.join();
+//
+//            if (meterDataV4InfoDisposable != null) {       //コールバック系を後始末
+//                meterDataV4InfoDisposable.dispose();
+//                meterDataV4InfoDisposable = null;
+//            }
+//
+//            if (meterDataV4ErrorDisposable != null) {      //コールバック系を後始末
+//                meterDataV4ErrorDisposable.dispose();
+//                meterDataV4ErrorDisposable = null;
+//            }
+//
+//            if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
+//                tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
+//            }
+//            else
+//            {
+//                switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
+//                {
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
+//                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
+//                        break;
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:            //タイムアウト
+//                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
+//                        break;
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE:         //選択モードエラー
+//                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
+//                        break;
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG:             //zandaka_flg送信エラー(1が返ってきていない)
+//                        tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
+//                        break;
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
+//                        Timber.e("[FUTABA-D](demo)820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
+//                        //ADD-S BMT S.Oyama 2025/01/29 フタバ双方向向け改修
+//                        if (tmpSend820Info.ErrorCode820 == IFBoxManager.Send820Status_Error_FutabaD.ERROR_STATUS820_PAPERLACKING)       //用紙無しエラー
+//                        {
+//                            tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART;                     //用紙なしの場合はエラーコードを入れる
+//                        } else {
+//                            tmpSend820Info.ErrorCodeExt1 = PrinterConst.DuplexPrintStatus_IFBOXERROR;                       //IFBOX接続エラー
+//                        }
+//                        break;
+//                        //ADD-E BMT S.Oyama 2025/01/29 フタバ双方向向け改修
+//                    default:
+//                        //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
+//                        break;
+//                }
+//            }
+//
+//
+//        } catch (Exception e) {
+//            Timber.e(e);
+//            tmpSend820Info.ErrorCodeExt1 =  PrinterConst.DuplexPrintStatus_DATAERROR;
+//        }
+//
+//        if (tmpSend820Info.ErrorCodeExt1 != 999999){           //エラーコードが設定されている場合
+//            Handler handler= new Handler(Looper.getMainLooper());
+//            handler.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if (tmpSend820Info.ErrorCodeExt1 == PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART) {           //用紙なしエラーの場合
+//                        PrinterManager.getInstance().PrinterDuplexError(tmpSend820Info.ErrorCodeExt1);
+//                    } else {                                                                              //その他のエラーの場合
+//                        PrinterManager.getInstance().PrinterDuplexError(PrinterConst.DuplexPrintStatus_DISCON);
+//                    }
+//
+//                    PrinterManager.getInstance().dismissPrintingDialogExt();
+//                    PrintDataError();
+//                    //Printing_end();
+//                }
+//            });
+//
+//            return false;
+//        }
 
         return true;
     }

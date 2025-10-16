@@ -49,13 +49,13 @@ import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.databinding.ActivityMainBinding;
 import jp.mcapps.android.multi_payment_terminal.devices.DiscoverDevice;
 import jp.mcapps.android.multi_payment_terminal.error.ErrorManage;
-import jp.mcapps.android.multi_payment_terminal.httpserver.events.EventBroker;
+//import jp.mcapps.android.multi_payment_terminal.httpserver.events.EventBroker;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountInfo;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountMenuInfo;
 import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
 import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
 import jp.mcapps.android.multi_payment_terminal.service.PeriodicErrorCheckService;
-import jp.mcapps.android.multi_payment_terminal.service.WifiP2pService;
+//import jp.mcapps.android.multi_payment_terminal.service.WifiP2pService;
 import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuDiscountFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuHomeFragment;
 import timber.log.Timber;
@@ -172,20 +172,20 @@ public class MainActivity extends AppCompatActivity {
 
         // 乗務員コード入力を受け付けていない状態(乗務員コード入力画面以外)で
         // タブレットが出庫になった場合、エラーをスタッキングする
-        EventBroker.signIn
-                .doOnSubscribe(_disposables::add)
-                .subscribeOn(Schedulers.newThread())
-                .subscribe(signIn -> {
-                    Timber.i("タブレットからの乗務員コードを受信: %s", signIn);
-
-                    final boolean needErrorStack = !_sharedViewModel.allowDriverSignIn()
-                            && !signIn.driverCode.equals(AppPreference.getDriverCode());
-
-                    if (needErrorStack) {
-                        ErrorManage errorManage = ErrorManage.getInstance();
-                        errorManage.stackingError(getString(R.string.error_type_payment_system_2015));
-                    }
-                });
+//        EventBroker.signIn
+//                .doOnSubscribe(_disposables::add)
+//                .subscribeOn(Schedulers.newThread())
+//                .subscribe(signIn -> {
+//                    Timber.i("タブレットからの乗務員コードを受信: %s", signIn);
+//
+//                    final boolean needErrorStack = !_sharedViewModel.allowDriverSignIn()
+//                            && !signIn.driverCode.equals(AppPreference.getDriverCode());
+//
+//                    if (needErrorStack) {
+//                        ErrorManage errorManage = ErrorManage.getInstance();
+//                        errorManage.stackingError(getString(R.string.error_type_payment_system_2015));
+//                    }
+//                });
 
 
         Toolbar toolbar = findViewById(R.id.toolbar_main);
@@ -382,8 +382,8 @@ public class MainActivity extends AppCompatActivity {
                     Intent gpsService = new Intent(getApplication(), GetGpsService.class);
                     startService(gpsService);
 
-                    Intent wifiP2pService = new Intent(this, WifiP2pService.class);
-                    startService(wifiP2pService);
+//                    Intent wifiP2pService = new Intent(this, WifiP2pService.class);
+//                    startService(wifiP2pService);
                 } else {
                     //拒否された場合
                     Toast toast = Toast.makeText(this, "位置情報は取得できません", Toast.LENGTH_SHORT);

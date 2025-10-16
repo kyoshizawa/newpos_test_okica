@@ -15,7 +15,7 @@ import java.net.UnknownHostException;
 
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.BuildConfig;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.webapi.HttpStatusException;
 //import jp.mcapps.android.multi_payment_terminal.webapi.paypf_activation.PaypfActivationApi;
 //import jp.mcapps.android.multi_payment_terminal.webapi.paypf_activation.PaypfActivationApiImpl;
@@ -34,13 +34,14 @@ public class DiscountJobFutabaDViewModel extends ViewModel {
     public static final int  DISCOUNTMODE_JOB5 = 5;            //割引５
 
 
-    private final IFBoxManager _ifBoxManager;
-    public IFBoxManager getIfBoxManager(){
-        return _ifBoxManager;
-    }
+//    private final IFBoxManager _ifBoxManager;
+//    public IFBoxManager getIfBoxManager(){
+//        return _ifBoxManager;
+//    }
 
-    public DiscountJobFutabaDViewModel(IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager;
+    public DiscountJobFutabaDViewModel() {
+
+        // _ifBoxManager = ifBoxManager;
     }
 
 

@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import timber.log.Timber;
 
 import static java.lang.Integer.parseInt;
@@ -24,8 +24,8 @@ import static jp.mcapps.android.multi_payment_terminal.AppPreference.isDemoMode;
 public class AutoDailyReportFuelViewModel extends ViewModel {
     private static final int MAX_FUEL_DIGITS = 6;           //最大桁数（小数込で6桁：実数は5桁）
 
-    private final IFBoxManager _ifBoxManager;
-    public IFBoxManager getIfBoxManager() { return _ifBoxManager; }
+//    private final IFBoxManager _ifBoxManager;
+//    public IFBoxManager getIfBoxManager() { return _ifBoxManager; }
 
     private MutableLiveData<String> _inputValueTxt = new MutableLiveData<>("");
     public MutableLiveData<String> getInputValueTxt() { return _inputValueTxt; }
@@ -47,8 +47,8 @@ public class AutoDailyReportFuelViewModel extends ViewModel {
     //public static Disposable meterDataV4InfoDisposable = null;
 
 
-    public AutoDailyReportFuelViewModel(IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager;
+    public AutoDailyReportFuelViewModel() {
+//        _ifBoxManager = ifBoxManager;
     }
 
 
@@ -320,9 +320,9 @@ public class AutoDailyReportFuelViewModel extends ViewModel {
      * @private
      */
     /******************************************************************************/
-    public boolean isConnected820() {
-        return _ifBoxManager.getIsConnected820();
-    }
+    //public boolean isConnected820() {
+//        return _ifBoxManager.getIsConnected820();
+//    }
 
     /******************************************************************************/
     /*!

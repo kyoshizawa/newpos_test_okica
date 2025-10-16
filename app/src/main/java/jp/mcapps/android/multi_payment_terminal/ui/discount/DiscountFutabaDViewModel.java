@@ -16,7 +16,7 @@ import java.net.UnknownHostException;
 
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.BuildConfig;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.util.DeviceUtils;
 import jp.mcapps.android.multi_payment_terminal.webapi.HttpStatusException;
 //import jp.mcapps.android.multi_payment_terminal.webapi.paypf_activation.PaypfActivationApi;
@@ -89,13 +89,14 @@ public class DiscountFutabaDViewModel extends ViewModel {
         _discountErrorMode.setValue(mode);
     }
 
-    private final IFBoxManager _ifBoxManager;
-    public IFBoxManager getIfBoxManager(){
-        return _ifBoxManager;
-    }
+//    private final IFBoxManager _ifBoxManager;
+//    public IFBoxManager getIfBoxManager(){
+//        return _ifBoxManager;
+//    }
 
-    public DiscountFutabaDViewModel(IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager;
+    public DiscountFutabaDViewModel() {
+
+
     }
 
 

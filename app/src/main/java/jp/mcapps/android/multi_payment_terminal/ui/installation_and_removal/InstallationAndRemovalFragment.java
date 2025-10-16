@@ -465,19 +465,19 @@ public class InstallationAndRemovalFragment extends BaseFragment implements Inst
             CommonClickEvent.RecordClickOperation("はい", "IM-A820解除確認", false);
             Amount.setMeterCharge(0);
             _installationAndRemovalViewModel.disconnectIFBox();
-            _installationAndRemovalViewModel.removeWifiP2pGroup()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doFinally(() -> {
-                        _installationAndRemovalViewModel.setDeviceInterlocking();
-                        Timber.i("正常終了:解除しました IM-A820のSSID確認画面で電源ボタンを長押しし、設定のクリアを行ってください");
-                        SuccessDialog.show(requireContext(), "解除しました\n\nIM-A820のSSID確認画面で電源ボタンを長押しし、設定のクリアを行ってください");
-                    })
-                    .subscribe(() -> { }, e -> {
-                        Timber.e("異常終了:解除失敗しました");
-                        Timber.e(e);
-                        ErrorDialog.show(requireContext(), "解除失敗しました");
-                    });
+//            _installationAndRemovalViewModel.removeWifiP2pGroup()
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .doFinally(() -> {
+//                        _installationAndRemovalViewModel.setDeviceInterlocking();
+//                        Timber.i("正常終了:解除しました IM-A820のSSID確認画面で電源ボタンを長押しし、設定のクリアを行ってください");
+//                        SuccessDialog.show(requireContext(), "解除しました\n\nIM-A820のSSID確認画面で電源ボタンを長押しし、設定のクリアを行ってください");
+//                    })
+//                    .subscribe(() -> { }, e -> {
+//                        Timber.e("異常終了:解除失敗しました");
+//                        Timber.e(e);
+//                        ErrorDialog.show(requireContext(), "解除失敗しました");
+//                    });
         },() ->{
             CommonClickEvent.RecordClickOperation("いいえ", "IM-A820解除確認", false);
         }).show(getChildFragmentManager(), null);
@@ -509,19 +509,19 @@ public class InstallationAndRemovalFragment extends BaseFragment implements Inst
         ConfirmDialog.newInstance("【タブレット連動解除確認】","解除しますか？", () -> {
             CommonClickEvent.RecordClickOperation("はい", "タブレット連動解除確認", false);
             Amount.setMeterCharge(0);
-            _installationAndRemovalViewModel.removeWifiP2pGroup()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doFinally(() -> {
-                        _installationAndRemovalViewModel.setDeviceInterlocking();
-                        Timber.i("正常終了:解除しました");
-                        SuccessDialog.show(requireContext(), "解除しました");
-                    })
-                    .subscribe(() -> { }, e -> {
-                        Timber.e("異常終了:解除失敗しました");
-                        Timber.e(e);
-                        ErrorDialog.show(requireContext(), "解除失敗しました");
-                    });
+//            _installationAndRemovalViewModel.removeWifiP2pGroup()
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .doFinally(() -> {
+//                        _installationAndRemovalViewModel.setDeviceInterlocking();
+//                        Timber.i("正常終了:解除しました");
+//                        SuccessDialog.show(requireContext(), "解除しました");
+//                    })
+//                    .subscribe(() -> { }, e -> {
+//                        Timber.e("異常終了:解除失敗しました");
+//                        Timber.e(e);
+//                        ErrorDialog.show(requireContext(), "解除失敗しました");
+//                    });
         },() ->{
             CommonClickEvent.RecordClickOperation("いいえ", "タブレット連動解除確認", false);
         }).show(getChildFragmentManager(), null);

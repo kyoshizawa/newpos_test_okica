@@ -43,8 +43,8 @@ import jp.mcapps.android.multi_payment_terminal.CommonClickEvent;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.data.DeviceServiceInfo;
 import jp.mcapps.android.multi_payment_terminal.data.FirmWareInfo;
-import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.Updater;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.IFBoxApi;
@@ -55,8 +55,8 @@ import timber.log.Timber;
 
 @SuppressWarnings("ALL")
 public class IFBoxSetupViewModel extends ViewModel {
-    private final DeviceNetworkManager _deviceNetworkManager;
-    private final IFBoxManager _ifBoxManager;
+//    private final DeviceNetworkManager _deviceNetworkManager;
+//    private final IFBoxManager _ifBoxManager;
     private final Application _app = MainApplication.getInstance();
     private final WifiManager _wifiManager = (WifiManager) _app.getSystemService(Context.WIFI_SERVICE);
     private final Updater _updater;
@@ -79,9 +79,9 @@ public class IFBoxSetupViewModel extends ViewModel {
         }
 
         if (!AppPreference.isIFBoxSetupFinished()) {
-            _deviceNetworkManager.deletePersistentGroup()
-                    .subscribeOn(Schedulers.io())
-                    .subscribe(()->{},e->{});
+//            _deviceNetworkManager.deletePersistentGroup()
+//                    .subscribeOn(Schedulers.io())
+//                    .subscribe(()->{},e->{});
         }
     };
 
@@ -109,9 +109,9 @@ public class IFBoxSetupViewModel extends ViewModel {
         public static final int VERSION_CHECKED = 3;
     }
 
-    public IFBoxSetupViewModel(DeviceNetworkManager deviceNetworkManager, IFBoxManager ifBoxManager, Updater updater) {
-        _deviceNetworkManager = deviceNetworkManager;
-        _ifBoxManager = ifBoxManager;
+    public IFBoxSetupViewModel(Updater updater) {
+//        _deviceNetworkManager = deviceNetworkManager;
+//        _ifBoxManager = ifBoxManager;
         _updater = updater;
     }
 
@@ -221,9 +221,9 @@ public class IFBoxSetupViewModel extends ViewModel {
 //        _app.unregisterReceiver(_wifiScanReceiver);
     }
 
-    public Completable removeWifiP2pGroup() {
-        return _deviceNetworkManager.deletePersistentGroup();
-    }
+//    public Completable removeWifiP2pGroup() {
+//        return _deviceNetworkManager.deletePersistentGroup();
+//    }
 
     public void wifiScan() {
         isWifiScanCompleted(false);
@@ -445,69 +445,69 @@ public class IFBoxSetupViewModel extends ViewModel {
                 })
                 // flatMap で後続の “接続確認成功” 以降に流し込む
                 .flatMap(network -> Single.<String>create(emitter -> {
-                    // --- ここから元の「接続確認成功」以降 ---
-                    Timber.i("接続確認成功");
-                    setConnectionStatus(ConnectionStatus.WIFI_CONNECTED);
-
-                    Timber.i("設定書き込み開始");
-                    // グループ情報到着待ち
-                    while (_deviceNetworkManager.getThisGroupInfo().getValue() == null) {
-                        if (emitter.isDisposed()) return;
-                        sleep(1000);
-                    }
-
-                    WifiP2pGroup wifiP2pGroup = _deviceNetworkManager.getThisGroupInfo().getValue();
-                    Wifi.Request wifiRequest = new Wifi.Request() {{
-                        ssid = wifiP2pGroup.getNetworkName();
-                        passphrase = wifiP2pGroup.getPassphrase();
-                    }};
-
-                    // ここで network を使ってソケットを取得
-                    try {
-                        _apiClient.setBaseUrl(null);
-                        _apiClient.postWifi(
-                                wifiRequest,
-                                network.getSocketFactory()     // ← ここに Network を渡す！
-                        );
-                    } catch (Exception e) {
-                        emitter.onError(new RuntimeException("IM-A820へのWiFi設定送信エラー", e));
-                        return;
-                    }
-
-                    // 設定書き込み後の待機
-                    DeviceServiceInfo deviceServiceInfo;
-                    do {
-                        if (emitter.isDisposed()) return;
-                        sleep(3000);
-                        deviceServiceInfo = _deviceNetworkManager.getDeviceServiceInfo().getValue();
-                    } while (deviceServiceInfo == null || !deviceServiceInfo.isAvailable());
-
-                    Timber.i("設定書き込み成功");
-                    setConnectionStatus(ConnectionStatus.CONFIG_UPLOADED);
-
-                    // バージョン取得（リトライ込み）
-                    Timber.i("設定完了確認開始");
-                    _apiClient.setBaseUrl("http://" + deviceServiceInfo.getAddress());
-                    Version.Response version = null;
-                    for (int i = 0; i < 3; i++) {
-                        try {
-                            version = _apiClient.getVersion();
-                            Timber.i("現行 name:%s model:%s version:%s",
-                                    version.appName, version.appModel, version.appVersion);
-                            break;
-                        } catch (Exception ex) {
-                            Timber.e("バージョン取得失敗 #%d", i);
-                            sleep(500);
-                        }
-                    }
-                    if (version == null) {
-                        emitter.onError(new RuntimeException("WiFi Direct疎通確認失敗"));
-                        return;
-                    }
-
-                    Timber.i("設定完了確認成功");
-                    setConnectionStatus(ConnectionStatus.WIFI_P2P_CONNECTED);
-                    Timber.i("接続完了しました。タップするとファームウェア設定に進みます。");
+//                    // --- ここから元の「接続確認成功」以降 ---
+//                    Timber.i("接続確認成功");
+//                    setConnectionStatus(ConnectionStatus.WIFI_CONNECTED);
+//
+//                    Timber.i("設定書き込み開始");
+//                    // グループ情報到着待ち
+//                    while (_deviceNetworkManager.getThisGroupInfo().getValue() == null) {
+//                        if (emitter.isDisposed()) return;
+//                        sleep(1000);
+//                    }
+//
+//                    WifiP2pGroup wifiP2pGroup = _deviceNetworkManager.getThisGroupInfo().getValue();
+//                    Wifi.Request wifiRequest = new Wifi.Request() {{
+//                        ssid = wifiP2pGroup.getNetworkName();
+//                        passphrase = wifiP2pGroup.getPassphrase();
+//                    }};
+//
+//                    // ここで network を使ってソケットを取得
+//                    try {
+//                        _apiClient.setBaseUrl(null);
+//                        _apiClient.postWifi(
+//                                wifiRequest,
+//                                network.getSocketFactory()     // ← ここに Network を渡す！
+//                        );
+//                    } catch (Exception e) {
+//                        emitter.onError(new RuntimeException("IM-A820へのWiFi設定送信エラー", e));
+//                        return;
+//                    }
+//
+//                    // 設定書き込み後の待機
+//                    DeviceServiceInfo deviceServiceInfo;
+//                    do {
+//                        if (emitter.isDisposed()) return;
+//                        sleep(3000);
+//                        deviceServiceInfo = _deviceNetworkManager.getDeviceServiceInfo().getValue();
+//                    } while (deviceServiceInfo == null || !deviceServiceInfo.isAvailable());
+//
+//                    Timber.i("設定書き込み成功");
+//                    setConnectionStatus(ConnectionStatus.CONFIG_UPLOADED);
+//
+//                    // バージョン取得（リトライ込み）
+//                    Timber.i("設定完了確認開始");
+//                    _apiClient.setBaseUrl("http://" + deviceServiceInfo.getAddress());
+//                    Version.Response version = null;
+//                    for (int i = 0; i < 3; i++) {
+//                        try {
+//                            version = _apiClient.getVersion();
+//                            Timber.i("現行 name:%s model:%s version:%s",
+//                                    version.appName, version.appModel, version.appVersion);
+//                            break;
+//                        } catch (Exception ex) {
+//                            Timber.e("バージョン取得失敗 #%d", i);
+//                            sleep(500);
+//                        }
+//                    }
+//                    if (version == null) {
+//                        emitter.onError(new RuntimeException("WiFi Direct疎通確認失敗"));
+//                        return;
+//                    }
+//
+//                    Timber.i("設定完了確認成功");
+//                    setConnectionStatus(ConnectionStatus.WIFI_P2P_CONNECTED);
+//                    Timber.i("接続完了しました。タップするとファームウェア設定に進みます。");
 
                     emitter.onSuccess("success");
                     // --- ここまで ---
@@ -536,7 +536,7 @@ public class IFBoxSetupViewModel extends ViewModel {
         return Single.<Network>create((SingleEmitter<Network> emitter) -> {
                     // １）P2P グループ情報をクリア
                     AppPreference.clearWifiP2pDeviceInfo();
-                    _deviceNetworkManager.restart();
+                    //_deviceNetworkManager.restart();
 
                     // ２）インフラWi-Fi or NetworkSpecifier で接続
                     if (Build.VERSION.SDK_INT >= 33) {
@@ -616,7 +616,7 @@ public class IFBoxSetupViewModel extends ViewModel {
         setUploadStatus(UploadStatus.NONE);
         setDisplayType(DisplayTypes.FIRMWARE_UPLOADING);
         // 接続処理スキップしてアップデートかける場合があるのでここでもセットする
-        _apiClient.setBaseUrl("http://" + _deviceNetworkManager.getDeviceServiceInfo().getValue().getAddress());
+        //_apiClient.setBaseUrl("http://" + _deviceNetworkManager.getDeviceServiceInfo().getValue().getAddress());
 
         return Completable.create(emitter -> {
             Timber.i("ファイルダウンロード開始");
@@ -635,14 +635,14 @@ public class IFBoxSetupViewModel extends ViewModel {
 
                 //ADD-S BMT S.Oyama 2024/12/16 フタバ双方向向け改修
                 Timber.i("[FUTABA-D]IFBoxSetupViewModel::firmwareUpdate() update start");
-                printerManager.getIFBoxManager().updateFirm820_Start();             //820ファームのアップデート開始　820側の/alive 停止
+                //printerManager.getIFBoxManager().updateFirm820_Start();             //820ファームのアップデート開始　820側の/alive 停止
                 //ADD-E BMT S.Oyama 2024/12/16 フタバ双方向向け改修
 
                 try {
                     _apiClient.postUpdate(targetFilename);
                     Timber.i("IM-A820に書き込み成功");
                     //ADD-S BMT S.Oyama 2024/12/16 フタバ双方向向け改修
-                    printerManager.getIFBoxManager().updateFirm820_Ended();             //820ファームのアップデート開始　820側の/alive 再開
+                    //printerManager.getIFBoxManager().updateFirm820_Ended();             //820ファームのアップデート開始　820側の/alive 再開
                     Timber.i("[FUTABA-D]IFBoxSetupViewModel::firmwareUpdate() update Success");
                     //ADD-E BMT S.Oyama 2024/12/16 フタバ双方向向け改修
                     setUploadStatus(UploadStatus.UPLOADED);
@@ -659,12 +659,12 @@ public class IFBoxSetupViewModel extends ViewModel {
 //                        });
 
                         Thread.sleep(5000);
-                        _deviceNetworkManager.getDeviceServiceInfo().subscribe(info -> {
-                            if (info.isAvailable()) {
-                                recoonectEmmiter.onComplete();  // 切断後の再接続
-                                _apiClient.setBaseUrl("http://" + info.getAddress());
-                            }
-                        });
+//                        _deviceNetworkManager.getDeviceServiceInfo().subscribe(info -> {
+//                            if (info.isAvailable()) {
+//                                recoonectEmmiter.onComplete();  // 切断後の再接続
+//                                _apiClient.setBaseUrl("http://" + info.getAddress());
+//                            }
+//                        });
                     }).subscribe(() -> {
                         AtomicReference<Version.Response> version = new AtomicReference<>(null);
                         Runnable wifiP2pVersionCheck = () -> {
@@ -695,7 +695,7 @@ public class IFBoxSetupViewModel extends ViewModel {
                         setUploadStatus(UploadStatus.VERSION_CHECKED);
                         AppPreference.setIFBoxOTAInfo(firmWareInfo);
 //                        AppPreference.setIFBoxVersionInfo(version.get());
-                        _ifBoxManager.restart();
+                        //_ifBoxManager.restart();
 
                         if (!emitter.isDisposed()) {
                             emitter.onComplete();
@@ -709,7 +709,7 @@ public class IFBoxSetupViewModel extends ViewModel {
                 } catch (Exception e) {
                     Timber.e("IM-A820に書き込み失敗");
                     //ADD-S BMT S.Oyama 2024/12/16 フタバ双方向向け改修
-                    printerManager.getIFBoxManager().updateFirm820_Ended();             //820ファームのアップデート開始　820側の/alive 再開
+                    //printerManager.getIFBoxManager().updateFirm820_Ended();             //820ファームのアップデート開始　820側の/alive 再開
                     Timber.i("[FUTABA-D]IFBoxSetupViewModel::firmwareUpdate() update Failed");
                     //ADD-E BMT S.Oyama 2024/12/16 フタバ双方向向け改修
                     Timber.e(e);
@@ -722,15 +722,15 @@ public class IFBoxSetupViewModel extends ViewModel {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public String getIFBoxUrl() {
-         DeviceServiceInfo service = _deviceNetworkManager.getDeviceServiceInfo().getValue();
-         if (service == null) return null;
-         try {
-             return "http://" + service.getAddress();
-         } catch(Exception e) {
-             return null;
-         }
-    }
+//    public String getIFBoxUrl() {
+//         DeviceServiceInfo service = _deviceNetworkManager.getDeviceServiceInfo().getValue();
+//         if (service == null) return null;
+//         try {
+//             return "http://" + service.getAddress();
+//         } catch(Exception e) {
+//             return null;
+//         }
+//    }
 
     private void sleep(long millis) {
         try { Thread.sleep(millis); } catch (InterruptedException ignore) { }

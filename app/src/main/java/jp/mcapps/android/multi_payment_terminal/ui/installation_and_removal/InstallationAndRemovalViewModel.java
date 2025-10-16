@@ -13,11 +13,11 @@ import io.reactivex.rxjava3.core.Completable;
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
 import jp.mcapps.android.multi_payment_terminal.database.history.driver.DriverDao;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
 import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
-import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
+//import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
 import jp.mcapps.android.multi_payment_terminal.ui.pin.PinInputViewModel;
 import jp.mcapps.android.multi_payment_terminal.webapi.jrem_activation.JremActivationApi;
 import jp.mcapps.android.multi_payment_terminal.webapi.jrem_activation.JremActivationApiImpl;
@@ -31,17 +31,17 @@ public class InstallationAndRemovalViewModel extends PinInputViewModel {
     private final JremOpener _opener = new JremOpener();
     private final QRSettlement _qr = new QRSettlement();
 
-    private final DeviceNetworkManager _deviceNetworkManager;
-    private final IFBoxManager _ifBoxManager;
+//    private final DeviceNetworkManager _deviceNetworkManager;
+//    private final IFBoxManager _ifBoxManager;
     private final Handler handler = new Handler(Looper.getMainLooper());
 
     {
         _pinDigits = 10;
     }
 
-    public InstallationAndRemovalViewModel(DeviceNetworkManager deviceNetworkManager, IFBoxManager ifBoxManager) {
-        _deviceNetworkManager = deviceNetworkManager;
-        _ifBoxManager = ifBoxManager;
+    public InstallationAndRemovalViewModel() {
+        //_deviceNetworkManager = deviceNetworkManager;
+        //_ifBoxManager = ifBoxManager;
     }
 
     private final MutableLiveData<Boolean> _hasError = new MutableLiveData<>(false);
@@ -182,12 +182,12 @@ public class InstallationAndRemovalViewModel extends PinInputViewModel {
     }
 
     public void disconnectIFBox() {
-        _ifBoxManager.stop();
+//        _ifBoxManager.stop();
     }
 
-    public Completable removeWifiP2pGroup() {
-        return _deviceNetworkManager.deletePersistentGroup();
-    }
+//    public Completable removeWifiP2pGroup() {
+////        return _deviceNetworkManager.deletePersistentGroup();
+//    }
 
     private MutableLiveData<Boolean> _isJremActivateIdEnabled = new MutableLiveData<>(AppPreference.getJremActivateId() != null && !AppPreference.getJremActivateId().equals(""));
     public MutableLiveData<Boolean> isJremActivateIdEnabled() { return _isJremActivateIdEnabled; }

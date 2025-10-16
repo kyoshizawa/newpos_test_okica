@@ -35,7 +35,7 @@ import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorStac
 import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorStackingData;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentDriverCodeBinding;
 import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorMap;
-import jp.mcapps.android.multi_payment_terminal.httpserver.events.EventBroker;
+//import jp.mcapps.android.multi_payment_terminal.httpserver.events.EventBroker;
 import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
 import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;
@@ -112,65 +112,65 @@ public class DriverCodeFragment extends Fragment implements DriverCodeEventHandl
             // 端末内部保持データの係員番号入力画面の表示確認
             if (AppPreference.isDriverCodeInput()) {
                 if (AppPreference.getTabletLinkInfo() != null) {
-
-                    _driverCodeViewModel.getTabletSignedInDriver()
-                            .subscribeOn(Schedulers.io())
-                            .doOnSubscribe(_disposables::add)
-                            .doOnSubscribe(d -> {
-                                _sharedViewModel.setLoading(true);
-                            })
-                            .doFinally(() -> {
-                                _sharedViewModel.setLoading(false);
-                            })
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe((d, e) -> {
-                                if (e != null) {
-                                    Timber.e(e);
-                                    EventBroker.signIn
-                                            .subscribeOn(Schedulers.newThread())
-                                            .doOnSubscribe(_disposables::add)
-                                            .observeOn(AndroidSchedulers.mainThread())
-                                            .subscribe(signIn -> {
-                                                _sharedViewModel.setLoading(true);
-
-                                                _driverCodeViewModel.setDriverCode(signIn.driverCode);
-                                                _driverCodeViewModel.setDriverName(signIn.driverName);
-                                                _driverCodeViewModel.isTabletLinkSuccess(true);
-                                                onEnter(this.getView());
-
-                                                _sharedViewModel.setLoading(false);
-                                            });
-                                    return;
-                                }
-
-                                _driverCodeViewModel.setDriverCode(d.code);
-                                _driverCodeViewModel.setDriverName(d.name);
-                                _driverCodeViewModel.isTabletLinkSuccess(true);
-                                onEnter(this.getView());
-                            });
+//
+//                    _driverCodeViewModel.getTabletSignedInDriver()
+//                            .subscribeOn(Schedulers.io())
+//                            .doOnSubscribe(_disposables::add)
+//                            .doOnSubscribe(d -> {
+//                                _sharedViewModel.setLoading(true);
+//                            })
+//                            .doFinally(() -> {
+//                                _sharedViewModel.setLoading(false);
+//                            })
+//                            .observeOn(AndroidSchedulers.mainThread())
+//                            .subscribe((d, e) -> {
+//                                if (e != null) {
+//                                    Timber.e(e);
+////                                    EventBroker.signIn
+////                                            .subscribeOn(Schedulers.newThread())
+////                                            .doOnSubscribe(_disposables::add)
+////                                            .observeOn(AndroidSchedulers.mainThread())
+////                                            .subscribe(signIn -> {
+////                                                _sharedViewModel.setLoading(true);
+////
+////                                                _driverCodeViewModel.setDriverCode(signIn.driverCode);
+////                                                _driverCodeViewModel.setDriverName(signIn.driverName);
+////                                                _driverCodeViewModel.isTabletLinkSuccess(true);
+////                                                onEnter(this.getView());
+////
+////                                                _sharedViewModel.setLoading(false);
+////                                            });
+//                                    return;
+//                                }
+//
+//                                _driverCodeViewModel.setDriverCode(d.code);
+//                                _driverCodeViewModel.setDriverName(d.name);
+//                                _driverCodeViewModel.isTabletLinkSuccess(true);
+//                                onEnter(this.getView());
+//                            });
+//                }
+//                // 表示設定の場合、HOME画面へ遷移させない（係員番号入力画面を表示）
+//            }else{
+//                // 非表示設定の場合、HOME画面へ遷移させる（係員番号入力画面を非表示）
+//                requireActivity().runOnUiThread(() -> {
+//                    NavigationWrapper.navigate(view, R.id.action_navigation_driver_code_to_navigation_redirect_to_menu);
+//                });
+//            }
+//        }else{
+//            // MC認証に失敗した場合、エラー設定
+//            AppPreference.setMcCarId(_app.getResources().getInteger(R.integer.setting_default_mc_driverid));
+//            if (CurrentRadio.getImageLevel() == GetRadioService.AIRPLANE_MODE) {
+//                // 機内モード状態の場合、機内モードのエラー設定
+//                _app.setErrorCode(_app.getString(R.string.error_type_airplane_mode));
+//            } else {
+//                _app.setErrorCode(_app.getString(R.string.error_type_payment_system_2094));
+//            }
+//            // HOME画面へ遷移させる（係員番号入力画面を非表示）
+//            requireActivity().runOnUiThread(() -> {
+//                NavigationWrapper.navigate(view, R.id.action_navigation_driver_code_to_navigation_redirect_to_menu);
                 }
-                // 表示設定の場合、HOME画面へ遷移させない（係員番号入力画面を表示）
-            }else{
-                // 非表示設定の場合、HOME画面へ遷移させる（係員番号入力画面を非表示）
-                requireActivity().runOnUiThread(() -> {
-                    NavigationWrapper.navigate(view, R.id.action_navigation_driver_code_to_navigation_redirect_to_menu);
-                });
             }
-        }else{
-            // MC認証に失敗した場合、エラー設定
-            AppPreference.setMcCarId(_app.getResources().getInteger(R.integer.setting_default_mc_driverid));
-            if (CurrentRadio.getImageLevel() == GetRadioService.AIRPLANE_MODE) {
-                // 機内モード状態の場合、機内モードのエラー設定
-                _app.setErrorCode(_app.getString(R.string.error_type_airplane_mode));
-            } else {
-                _app.setErrorCode(_app.getString(R.string.error_type_payment_system_2094));
-            }
-            // HOME画面へ遷移させる（係員番号入力画面を非表示）
-            requireActivity().runOnUiThread(() -> {
-                NavigationWrapper.navigate(view, R.id.action_navigation_driver_code_to_navigation_redirect_to_menu);
-            });
         }
-
     }
 
     @Override

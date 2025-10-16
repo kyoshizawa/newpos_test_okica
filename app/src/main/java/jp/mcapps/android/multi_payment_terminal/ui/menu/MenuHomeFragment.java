@@ -2,8 +2,8 @@ package jp.mcapps.android.multi_payment_terminal.ui.menu;
 
 import static android.content.Context.BATTERY_SERVICE;
 
-import static jp.mcapps.android.multi_payment_terminal.model.IFBoxManager.exitManualModeDisposable;
-import static jp.mcapps.android.multi_payment_terminal.model.IFBoxManager.meterStatNoticeDisposable;
+//import static jp.mcapps.android.multi_payment_terminal.model.IFBoxManager.exitManualModeDisposable;
+//import static jp.mcapps.android.multi_payment_terminal.model.IFBoxManager.meterStatNoticeDisposable;
 import static jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterProc.MANUALMODE_TRANS_TYPE_CODE_CANCEL;
 import static jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterProc.MANUALMODE_TRANS_TYPE_CODE_SALES;
 
@@ -58,7 +58,7 @@ import jp.mcapps.android.multi_payment_terminal.data.TransMap;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentMenuHomeBinding;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.SoundManager;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterConst;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
@@ -279,274 +279,274 @@ public class MenuHomeFragment extends BaseFragment {
 
         if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
             // メーターからの入庫通知を受信したら業務終了
-            if (meterStatNoticeDisposable == null) {
-                meterStatNoticeDisposable = _menuViewModel.getMeterStatNotice().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
-                    if (meter.info.equals("NYUUKO")) {
-                        _menuEventHandlers.businessEnd(getView(), _sharedViewModel);
-                    }
-                });
-            }
+//            if (meterStatNoticeDisposable == null) {
+//                meterStatNoticeDisposable = _menuViewModel.getMeterStatNotice().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
+//                    if (meter.info.equals("NYUUKO")) {
+//                        _menuEventHandlers.businessEnd(getView(), _sharedViewModel);
+//                    }
+//                });
+//            }
         }
         //ADD-S BMT S.Oyama 2024/09/18 フタバ双方向向け改修
-        else if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true || IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) == true)
-        {
-            if (IFBoxManager.meterDataV4Disposable_MenuHome == null) {
-                IFBoxManager.meterDataV4Disposable_MenuHome = _menuViewModel.getMeterDataV4().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
-                    Timber.i("[FUTABA-D]HOME Fragment:750<-820 meter_data event cmd:%d soundNo:%d zandaka_flg:%d trans_brand:%s",
-                            meter.meter_sub_cmd, meter.sound_no, meter.zandaka_flg, meter.trans_brand);
-
-                    if(meter.meter_sub_cmd == 4) {              //入庫通知
-                        Timber.i("[FUTABA-D]HOME Fragment:nyuko event   ");
-//                        _menuViewModel.send820AckNyuuko();          //820への入庫通知応答
-                        _menuEventHandlers.businessEnd(getView(), _sharedViewModel);
-                    } else if(meter.meter_sub_cmd == 3) {       //出庫通知
-                        //出庫処理は無し．応答ステータスのみ返す
-                        Timber.i("[FUTABA-D]HOME Fragment:syuko event   ");
-//                        _menuViewModel.send820AckSyukko("0000");          //820への出庫通知応答
-                    } else if (meter.meter_sub_cmd == 5) {       //処理コード通知
-                        PrinterManager printerManager = PrinterManager.getInstance();
-                        printerManager.setView(view);
-                        if (meter.sound_no != null) {
-                            switch (meter.sound_no) {
-                                case -3:            //メモリーカード未挿入時の「挿入してください」時の処理
-                                    if (_SDNotFoundErrorCount == 0) {           //複数回飛んでくるので抑止をいれる
-                                        _SDNotFoundErrorCount++;
-
-                                        if (_ProcessCodeErrKeyReq != 0)      //エラー表示中に他のエラーが発生した場合は非表示
-                                        {
-                                            printerManager.DissmissPrinterDuplexError();     //
-                                        }
-
-                                        Timber.i("[FUTABA-D]HOME Fragment:Sound event No -3 ");
-                                        printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_SDCARD_NOTFOUND);     //SDカード未挿入エラーを表示
-                                    }
-                                    break;
-                                case 3:             //メモリーカード未挿入時の「挿入してください」表示中止要求時
-                                    Timber.i("[FUTABA-D]HOME Fragment:Sound event No 3 ");
-                                    printerManager.DissmissPrinterDuplexError();     //SDカード未挿入エラーを非表示
-                                    _SDNotFoundErrorCount = 0;
-                                    break;
-                                case 9:             //用紙切れの処理
-                                    //ADD-S BMT S.Oyama 2025/01/22 フタバ双方向向け改修
-                                    Timber.i("[FUTABA-D]HOME Fragment:Sound event No 9 (Recipt Ticket Print) ");
-                                    _extPrintReciptTicketPrintedSW = -1;                     //領収書印刷完了スイッチをエラーありで立てる
-                                    try {
-                                        if (_progressDialog != null) {
-                                            _progressDialog.dismiss();
-                                            _progressDialog = null;
-                                        }
-                                    }
-                                    catch (Exception e) {
-                                        Timber.e(e);
-                                        _progressDialog = null;
-                                    }
-
-                                    //ADD-S BMT S.Oyama 2025/03/11 フタバ双方向向け改修
-                                    boolean tmpPaperLackingWithSetkey = _menuViewModel.getIFBoxManager().getIsPaperlackingWithSetkey();     //セットキー付きかどうか
-                                    if (tmpPaperLackingWithSetkey == true)  {
-                                        _menuViewModel.getIFBoxManager().setIsPaperlackingWithSetkey(false);     //セットキー付き印刷に失敗しましたフラグをリセット
-                                        printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_PAPERLACKING);             //印刷に失敗しました(セットキー付き)9116  WAON歴印字時等
-                                    }
-                                    else {
-                                        PrinterProc printerProc = PrinterProc.getInstance();
-                                        String tmpBlandName = printerProc.getDuplexPrint_BlandName();
-                                        if (tmpBlandName.equals(MainApplication.getInstance().getString(R.string.money_brand_credit)) == true) {
-                                            // ブランド名がクレジットの場合は，print_endで紙切れダイアログを出しているので，表示させない
-                                        } else {
-                                            printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART);       //印刷に失敗しました9110
-                                        }
-                                    }
-                                    //ADD-E BMT S.Oyama 2025/03/11 フタバ双方向向け改修
-
-                                    view.post(() -> {
-                                        _menuViewModel.getIFBoxManager().setExtPrintJobMode(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);           //印刷モード初期値へ
-                                    });
-                                    //ADD-E BMT S.Oyama 2025/01/22 フタバ双方向向け改修
-                                    break;
-                                case 1:             //領収書　チケット伝票時の印刷完了信号
-                                    Timber.i("[FUTABA-D]HOME Fragment:Sound event No 1 ");
-                                    _extPrintReciptTicketPrintedSW = 1;                     //領収書印刷完了スイッチを立てる
-                                    break;
-                                //ADD-S BMT S.Oyama 2025/02/26 フタバ双方向向け改修
-                                case 0:             //音声ガイダンス指定無し時に，FREE ER**系エラーチェックを実施する
-                                    Timber.i("[FUTABA-D]HOME Fragment:Sound event No 0 ");
-                                    Timber.i("[FUTABA-D]HOME Fragment:FREE Mes  %s, %s, %s ", meter.line_41, meter.line_42, meter.line_43);
-                                    if ((meter.line_1 != null) && (meter.line_2 != null)) {
-                                        Timber.i("[FUTABA-D]HOME Fragment:line1, lin2, line3  %s, %s, %s ", meter.line_1, meter.line_2, meter.line_3);
-                                        int tmpProcessCode = _menuViewModel.getIFBoxManager().send820_IsProcessCode_ErrorCD(meter.line_1);          //処理コード表示要求エラーコードはLine１に乗ってくる　エラーコードを取得
-                                        if (tmpProcessCode < 0) {           //エラーコードがある場合
-                                            String tmpProcessCodeStr[] = _menuViewModel.getIFBoxManager().send820_KeyAndErrDetail(meter.line_2);      //キー要求，エラーコード詳細を取得(配列２要素)
-
-                                            //ADD-S BMT S.Oyama 2025/04/02 フタバ双方向向け改修
-                                            if (tmpProcessCode == -20)          //FREE時
-                                            {
-                                                Timber.i("[FUTABA-D]HOME Fragment:FREE In ");
-                                                if ((meter.line_3 != null) && (meter.line_3.trim().length() > 0)) {
-                                                    // 処理コード表示要求に機能名（跳ね上がりなど）が含まれる場合
-                                                    recvMeterFuncMsg(view, tmpProcessCodeStr[0], tmpProcessCodeStr[1], meter.line_3);
-                                                }
-                                                else {
-                                                    int result = tmpProcessCodeStr[1].indexOf("TS ");             //エラーコード詳細に"TS "が含まれる場合はエラー発生
-                                                    if (result != -1) {
-                                                        OutputFreeMessageDialog(meter.line_41, meter.line_42, tmpProcessCodeStr[0]);     //フリーエラー発生時のメッセージ表示
-                                                        _ProcessCodeErrKeyReq = 1;           //処理コードエラー時のキー要求でのエラー表示フラグを立てる(SDカード未挿入時のエラー表示を抑止するため)
-                                                    }
-                                                }
-                                            }
-                                            else {              //FREE以外 ER**系エラー時
-                                                if (tmpProcessCodeStr[0].equals(IFBoxManager.Send820Status_ProcessCode_KeyREQ.KEYREQ_TEISEI) == true) {     //訂正キーが送られてきた場合
-                                                    printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_PROCESSCODE_TEISEIREQ);             //処理コード要求時　取消キー要求の場合　のエラー
-                                                    _ProcessCodeErrKeyReq = 1;           //処理コードエラー時のキー要求でのエラー表示フラグを立てる(SDカード未挿入時のエラー表示を抑止するため)
-                                                }
-                                            }
-                                            //ADD-E BMT S.Oyama 2025/04/02 フタバ双方向向け改修
-                                        }
-                                    }
-                                    break;
-                                //ADD-E BMT S.Oyama 2025/02/26 フタバ双方向向け改修
-                            }
-                        }
-                    } else if (meter.meter_sub_cmd == 9) {       //ファンクション実行要求：
-                        boolean tmpActFLG = false;
-                        String tmpBrand = "";
-                        if (meter.trans_brand != null ){
-                            tmpBrand = meter.trans_brand;
-                            if (meter.trans_brand.equals("クレジット") == true) {
-                                tmpActFLG = true;
-                            } else if (meter.trans_brand.equals("交通系電子マネー") == true) {
-                                tmpActFLG = true;
-                            } else if (meter.trans_brand.equals("コード決済") == true){
-                                tmpActFLG = true;
-                            }
-                        }
-
-                        if ((tmpActFLG == true) && (meter.separate_flg != 0)) {
-                            //PrinterProc printerProc = PrinterProc.getInstance();
-                            //printerProc.printTransFutabaD_Separation2ndSend();              //分別の2nd送信要求を返す
-
-                            PrinterManager printerManager = PrinterManager.getInstance();     //分別の2nd送信要求を返す
-                            printerManager.print_transFutabaDSeparation2nd(view);
-                        }
-
-                        Timber.i("[FUTABA-D]HOME Fragment:Function function event code:%d brand:%s", meter.meter_sub_cmd, tmpBrand);
-
-                    } else {
-                        if ((meter.trans_brand != null) && (meter.trans_brand.equals("決済確認") == true))               //ブランド名に決済確認指示が記載されている場合は
-                        {
-                            Timber.i("[FUTABA-D]HOME Fragment:Kessai Kakunin event ");
-
-                            PrinterProc printerProc = PrinterProc.getInstance();
-                            printerProc.printTransFutabaD_KessaiKakunin();              //直前の決済情報込で，決済確認ACKを返す
-                        }
-                    }
-                });
-
-                if (IFBoxManager.meterDataV4ErrorDisposable_MenuHome == null) {                 //送信中にエラー受信(タイムアウト，切断)
-                    IFBoxManager.meterDataV4ErrorDisposable_MenuHome =  _menuViewModel.getIFBoxManager().getMeterDataV4Error().subscribeOn(
-                            Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
-                        Timber.e("[FUTABA-D]onViewCreated() HomeFragment:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
-
-                        if (_menuViewModel.getIFBoxManager().getExtPrintJobMode().getValue() != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)
-                        {
-                            _extPrintReciptTicketPrintedSW = -1;                     //領収書印刷完了スイッチをエラーありで立てる
-
-                            try {
-                                if (_progressDialog != null) {
-                                    _progressDialog.dismiss();
-                                    _progressDialog = null;
-                                }
-
-                            }
-                            catch (Exception e) {
-                                Timber.e(e);
-                                _progressDialog = null;
-                            }
-                            view.post(() -> {
-                                _menuViewModel.getIFBoxManager().setExtPrintJobMode(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);           //印刷モード初期値へ
-                            });
-                        }
-
-                        PrinterManager printerManager = PrinterManager.getInstance();
-                        printerManager.setView(view);
-                        if (error.ErrorCode820 == IFBoxManager.Send820Status_Error_FutabaD.ERROR_STATUS820_PAPERLACKING)       //用紙無しエラー
-                        {
-                            PrinterProc printerProc = PrinterProc.getInstance();
-                            String tmpBlandName = printerProc.getDuplexPrint_BlandName();
-                            if (tmpBlandName.equals(MainApplication.getInstance().getString(R.string.money_brand_credit)) == true) {
-                                // ブランド名がクレジットの場合は，print_endで紙切れダイアログを出しているので，表示させない
-                            } else {
-                                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART);       //印刷に失敗しました
-                            }
-                        }
-                        else
-                        {
-                            //printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //820エラー
-                        }
-                    });
-                }
-            }
-        }
+//        else if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true || IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) == true)
+//        {
+//            if (IFBoxManager.meterDataV4Disposable_MenuHome == null) {
+//                IFBoxManager.meterDataV4Disposable_MenuHome = _menuViewModel.getMeterDataV4().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
+//                    Timber.i("[FUTABA-D]HOME Fragment:750<-820 meter_data event cmd:%d soundNo:%d zandaka_flg:%d trans_brand:%s",
+//                            meter.meter_sub_cmd, meter.sound_no, meter.zandaka_flg, meter.trans_brand);
+//
+//                    if(meter.meter_sub_cmd == 4) {              //入庫通知
+//                        Timber.i("[FUTABA-D]HOME Fragment:nyuko event   ");
+////                        _menuViewModel.send820AckNyuuko();          //820への入庫通知応答
+//                        _menuEventHandlers.businessEnd(getView(), _sharedViewModel);
+//                    } else if(meter.meter_sub_cmd == 3) {       //出庫通知
+//                        //出庫処理は無し．応答ステータスのみ返す
+//                        Timber.i("[FUTABA-D]HOME Fragment:syuko event   ");
+////                        _menuViewModel.send820AckSyukko("0000");          //820への出庫通知応答
+//                    } else if (meter.meter_sub_cmd == 5) {       //処理コード通知
+//                        PrinterManager printerManager = PrinterManager.getInstance();
+//                        printerManager.setView(view);
+//                        if (meter.sound_no != null) {
+//                            switch (meter.sound_no) {
+//                                case -3:            //メモリーカード未挿入時の「挿入してください」時の処理
+//                                    if (_SDNotFoundErrorCount == 0) {           //複数回飛んでくるので抑止をいれる
+//                                        _SDNotFoundErrorCount++;
+//
+//                                        if (_ProcessCodeErrKeyReq != 0)      //エラー表示中に他のエラーが発生した場合は非表示
+//                                        {
+//                                            printerManager.DissmissPrinterDuplexError();     //
+//                                        }
+//
+//                                        Timber.i("[FUTABA-D]HOME Fragment:Sound event No -3 ");
+//                                        printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_SDCARD_NOTFOUND);     //SDカード未挿入エラーを表示
+//                                    }
+//                                    break;
+//                                case 3:             //メモリーカード未挿入時の「挿入してください」表示中止要求時
+//                                    Timber.i("[FUTABA-D]HOME Fragment:Sound event No 3 ");
+//                                    printerManager.DissmissPrinterDuplexError();     //SDカード未挿入エラーを非表示
+//                                    _SDNotFoundErrorCount = 0;
+//                                    break;
+//                                case 9:             //用紙切れの処理
+//                                    //ADD-S BMT S.Oyama 2025/01/22 フタバ双方向向け改修
+//                                    Timber.i("[FUTABA-D]HOME Fragment:Sound event No 9 (Recipt Ticket Print) ");
+//                                    _extPrintReciptTicketPrintedSW = -1;                     //領収書印刷完了スイッチをエラーありで立てる
+//                                    try {
+//                                        if (_progressDialog != null) {
+//                                            _progressDialog.dismiss();
+//                                            _progressDialog = null;
+//                                        }
+//                                    }
+//                                    catch (Exception e) {
+//                                        Timber.e(e);
+//                                        _progressDialog = null;
+//                                    }
+//
+//                                    //ADD-S BMT S.Oyama 2025/03/11 フタバ双方向向け改修
+//                                    boolean tmpPaperLackingWithSetkey = _menuViewModel.getIFBoxManager().getIsPaperlackingWithSetkey();     //セットキー付きかどうか
+//                                    if (tmpPaperLackingWithSetkey == true)  {
+//                                        _menuViewModel.getIFBoxManager().setIsPaperlackingWithSetkey(false);     //セットキー付き印刷に失敗しましたフラグをリセット
+//                                        printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_PAPERLACKING);             //印刷に失敗しました(セットキー付き)9116  WAON歴印字時等
+//                                    }
+//                                    else {
+//                                        PrinterProc printerProc = PrinterProc.getInstance();
+//                                        String tmpBlandName = printerProc.getDuplexPrint_BlandName();
+//                                        if (tmpBlandName.equals(MainApplication.getInstance().getString(R.string.money_brand_credit)) == true) {
+//                                            // ブランド名がクレジットの場合は，print_endで紙切れダイアログを出しているので，表示させない
+//                                        } else {
+//                                            printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART);       //印刷に失敗しました9110
+//                                        }
+//                                    }
+//                                    //ADD-E BMT S.Oyama 2025/03/11 フタバ双方向向け改修
+//
+//                                    view.post(() -> {
+//                                        _menuViewModel.getIFBoxManager().setExtPrintJobMode(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);           //印刷モード初期値へ
+//                                    });
+//                                    //ADD-E BMT S.Oyama 2025/01/22 フタバ双方向向け改修
+//                                    break;
+//                                case 1:             //領収書　チケット伝票時の印刷完了信号
+//                                    Timber.i("[FUTABA-D]HOME Fragment:Sound event No 1 ");
+//                                    _extPrintReciptTicketPrintedSW = 1;                     //領収書印刷完了スイッチを立てる
+//                                    break;
+//                                //ADD-S BMT S.Oyama 2025/02/26 フタバ双方向向け改修
+//                                case 0:             //音声ガイダンス指定無し時に，FREE ER**系エラーチェックを実施する
+//                                    Timber.i("[FUTABA-D]HOME Fragment:Sound event No 0 ");
+//                                    Timber.i("[FUTABA-D]HOME Fragment:FREE Mes  %s, %s, %s ", meter.line_41, meter.line_42, meter.line_43);
+//                                    if ((meter.line_1 != null) && (meter.line_2 != null)) {
+//                                        Timber.i("[FUTABA-D]HOME Fragment:line1, lin2, line3  %s, %s, %s ", meter.line_1, meter.line_2, meter.line_3);
+//                                        int tmpProcessCode = _menuViewModel.getIFBoxManager().send820_IsProcessCode_ErrorCD(meter.line_1);          //処理コード表示要求エラーコードはLine１に乗ってくる　エラーコードを取得
+//                                        if (tmpProcessCode < 0) {           //エラーコードがある場合
+//                                            String tmpProcessCodeStr[] = _menuViewModel.getIFBoxManager().send820_KeyAndErrDetail(meter.line_2);      //キー要求，エラーコード詳細を取得(配列２要素)
+//
+//                                            //ADD-S BMT S.Oyama 2025/04/02 フタバ双方向向け改修
+//                                            if (tmpProcessCode == -20)          //FREE時
+//                                            {
+//                                                Timber.i("[FUTABA-D]HOME Fragment:FREE In ");
+//                                                if ((meter.line_3 != null) && (meter.line_3.trim().length() > 0)) {
+//                                                    // 処理コード表示要求に機能名（跳ね上がりなど）が含まれる場合
+//                                                    recvMeterFuncMsg(view, tmpProcessCodeStr[0], tmpProcessCodeStr[1], meter.line_3);
+//                                                }
+//                                                else {
+//                                                    int result = tmpProcessCodeStr[1].indexOf("TS ");             //エラーコード詳細に"TS "が含まれる場合はエラー発生
+//                                                    if (result != -1) {
+//                                                        OutputFreeMessageDialog(meter.line_41, meter.line_42, tmpProcessCodeStr[0]);     //フリーエラー発生時のメッセージ表示
+//                                                        _ProcessCodeErrKeyReq = 1;           //処理コードエラー時のキー要求でのエラー表示フラグを立てる(SDカード未挿入時のエラー表示を抑止するため)
+//                                                    }
+//                                                }
+//                                            }
+//                                            else {              //FREE以外 ER**系エラー時
+//                                                if (tmpProcessCodeStr[0].equals(IFBoxManager.Send820Status_ProcessCode_KeyREQ.KEYREQ_TEISEI) == true) {     //訂正キーが送られてきた場合
+//                                                    printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_PROCESSCODE_TEISEIREQ);             //処理コード要求時　取消キー要求の場合　のエラー
+//                                                    _ProcessCodeErrKeyReq = 1;           //処理コードエラー時のキー要求でのエラー表示フラグを立てる(SDカード未挿入時のエラー表示を抑止するため)
+//                                                }
+//                                            }
+//                                            //ADD-E BMT S.Oyama 2025/04/02 フタバ双方向向け改修
+//                                        }
+//                                    }
+//                                    break;
+//                                //ADD-E BMT S.Oyama 2025/02/26 フタバ双方向向け改修
+//                            }
+//                        }
+//                    } else if (meter.meter_sub_cmd == 9) {       //ファンクション実行要求：
+//                        boolean tmpActFLG = false;
+//                        String tmpBrand = "";
+//                        if (meter.trans_brand != null ){
+//                            tmpBrand = meter.trans_brand;
+//                            if (meter.trans_brand.equals("クレジット") == true) {
+//                                tmpActFLG = true;
+//                            } else if (meter.trans_brand.equals("交通系電子マネー") == true) {
+//                                tmpActFLG = true;
+//                            } else if (meter.trans_brand.equals("コード決済") == true){
+//                                tmpActFLG = true;
+//                            }
+//                        }
+//
+//                        if ((tmpActFLG == true) && (meter.separate_flg != 0)) {
+//                            //PrinterProc printerProc = PrinterProc.getInstance();
+//                            //printerProc.printTransFutabaD_Separation2ndSend();              //分別の2nd送信要求を返す
+//
+//                            PrinterManager printerManager = PrinterManager.getInstance();     //分別の2nd送信要求を返す
+//                            printerManager.print_transFutabaDSeparation2nd(view);
+//                        }
+//
+//                        Timber.i("[FUTABA-D]HOME Fragment:Function function event code:%d brand:%s", meter.meter_sub_cmd, tmpBrand);
+//
+//                    } else {
+//                        if ((meter.trans_brand != null) && (meter.trans_brand.equals("決済確認") == true))               //ブランド名に決済確認指示が記載されている場合は
+//                        {
+//                            Timber.i("[FUTABA-D]HOME Fragment:Kessai Kakunin event ");
+//
+//                            PrinterProc printerProc = PrinterProc.getInstance();
+//                            printerProc.printTransFutabaD_KessaiKakunin();              //直前の決済情報込で，決済確認ACKを返す
+//                        }
+//                    }
+//                });
+//
+//                if (IFBoxManager.meterDataV4ErrorDisposable_MenuHome == null) {                 //送信中にエラー受信(タイムアウト，切断)
+//                    IFBoxManager.meterDataV4ErrorDisposable_MenuHome =  _menuViewModel.getIFBoxManager().getMeterDataV4Error().subscribeOn(
+//                            Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
+//                        Timber.e("[FUTABA-D]onViewCreated() HomeFragment:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
+//
+//                        if (_menuViewModel.getIFBoxManager().getExtPrintJobMode().getValue() != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)
+//                        {
+//                            _extPrintReciptTicketPrintedSW = -1;                     //領収書印刷完了スイッチをエラーありで立てる
+//
+//                            try {
+//                                if (_progressDialog != null) {
+//                                    _progressDialog.dismiss();
+//                                    _progressDialog = null;
+//                                }
+//
+//                            }
+//                            catch (Exception e) {
+//                                Timber.e(e);
+//                                _progressDialog = null;
+//                            }
+//                            view.post(() -> {
+//                                _menuViewModel.getIFBoxManager().setExtPrintJobMode(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);           //印刷モード初期値へ
+//                            });
+//                        }
+//
+//                        PrinterManager printerManager = PrinterManager.getInstance();
+//                        printerManager.setView(view);
+//                        if (error.ErrorCode820 == IFBoxManager.Send820Status_Error_FutabaD.ERROR_STATUS820_PAPERLACKING)       //用紙無しエラー
+//                        {
+//                            PrinterProc printerProc = PrinterProc.getInstance();
+//                            String tmpBlandName = printerProc.getDuplexPrint_BlandName();
+//                            if (tmpBlandName.equals(MainApplication.getInstance().getString(R.string.money_brand_credit)) == true) {
+//                                // ブランド名がクレジットの場合は，print_endで紙切れダイアログを出しているので，表示させない
+//                            } else {
+//                                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART);       //印刷に失敗しました
+//                            }
+//                        }
+//                        else
+//                        {
+//                            //printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //820エラー
+//                        }
+//                    });
+//                }
+//            }
+//        }
         //ADD-E BMT S.Oyama 2024/09/18 フタバ双方向向け改修
 
         //ADD-S BMT S.Oyama 2025/01/22 フタバ双方向向け改修
         if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
-            if (_menuViewModel.getIFBoxManager().getExtPrintJobMode().getValue() != IFBoxManager.SendMeterDataStatus_FutabaD.NONE) {
-                showProgressDialog(view.getContext());
-
-                TimerTask timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-
-                        try {
-                            if (_progressDialog != null) {
-                                _progressDialog.dismiss();
-                                _progressDialog = null;
-                            }
-
-                        } catch (Exception e) {
-                            Timber.e(e);
-                            _progressDialog = null;
-                        }
-
-                        _extPrintEndedtimer = null;
-                        view.post(() -> {
-                            _menuViewModel.getIFBoxManager().setExtPrintJobMode(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);           //印刷モード初期値へ
-
-                            //DEL-S BMT S.Oyama 2025/02/05 フタバ双方向向け改修
-                            //if (_extPrintReciptTicketPrintedSW == 0)            //0の場合はガイダンス１．あるいは用紙切れを返却してこなかった＝印字タイムアウト
-                            //{
-                            //    PrinterManager printerManager = PrinterManager.getInstance();
-                            //    printerManager.setView(view);
-                            //    printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_TICKETRECEIPTKEY_ERR);       //レシートエラー　お取り扱いできません
-                            //}
-                            //DEL-E BMT S.Oyama 2025/02/05 フタバ双方向向け改修
-                            _extPrintReciptTicketPrintedSW = 0;                 //領収書印刷完了スイッチを落とす
-                        });
-                    }
-                };
-
-                _extPrintEndedtimer = new Timer();
-                _extPrintEndedtimer.schedule(timerTask, 5000);
-            }
+//            if (_menuViewModel.getIFBoxManager().getExtPrintJobMode().getValue() != IFBoxManager.SendMeterDataStatus_FutabaD.NONE) {
+//                showProgressDialog(view.getContext());
+//
+//                TimerTask timerTask = new TimerTask() {
+//                    @Override
+//                    public void run() {
+//
+//                        try {
+//                            if (_progressDialog != null) {
+//                                _progressDialog.dismiss();
+//                                _progressDialog = null;
+//                            }
+//
+//                        } catch (Exception e) {
+//                            Timber.e(e);
+//                            _progressDialog = null;
+//                        }
+//
+//                        _extPrintEndedtimer = null;
+//                        view.post(() -> {
+//                            _menuViewModel.getIFBoxManager().setExtPrintJobMode(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);           //印刷モード初期値へ
+//
+//                            //DEL-S BMT S.Oyama 2025/02/05 フタバ双方向向け改修
+//                            //if (_extPrintReciptTicketPrintedSW == 0)            //0の場合はガイダンス１．あるいは用紙切れを返却してこなかった＝印字タイムアウト
+//                            //{
+//                            //    PrinterManager printerManager = PrinterManager.getInstance();
+//                            //    printerManager.setView(view);
+//                            //    printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_TICKETRECEIPTKEY_ERR);       //レシートエラー　お取り扱いできません
+//                            //}
+//                            //DEL-E BMT S.Oyama 2025/02/05 フタバ双方向向け改修
+//                            _extPrintReciptTicketPrintedSW = 0;                 //領収書印刷完了スイッチを落とす
+//                        });
+//                    }
+//                };
+//
+//                _extPrintEndedtimer = new Timer();
+//                _extPrintEndedtimer.schedule(timerTask, 5000);
+//            }
         }
         //ADD-E BMT S.Oyama 2025/01/22 フタバ双方向向け改修
 
         if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL)) {
-            if (exitManualModeDisposable == null) {
-                exitManualModeDisposable = _menuViewModel.getExitManualMode().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(flg -> {
-                    _sharedViewModel.setUpdatedFlag(true);
-
-                    new AlertDialog.Builder(view.getContext())
-                            .setTitle("手動決済モード終了")
-                            .setMessage("手動決済モードを終了しました")
-                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                }
-                            })
-                            .show();
-                });
-            }
+//            if (exitManualModeDisposable == null) {
+//                exitManualModeDisposable = _menuViewModel.getExitManualMode().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(flg -> {
+//                    _sharedViewModel.setUpdatedFlag(true);
+//
+//                    new AlertDialog.Builder(view.getContext())
+//                            .setTitle("手動決済モード終了")
+//                            .setMessage("手動決済モードを終了しました")
+//                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                }
+//                            })
+//                            .show();
+//                });
+//            }
         }
     }
 
@@ -604,9 +604,9 @@ public class MenuHomeFragment extends BaseFragment {
         alertDialog.setPositiveButton("はい", new DialogInterface.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             public void onClick(DialogInterface dialog, int which) {
-                if (KeyCodeReqStr.equals(IFBoxManager.Send820Status_ProcessCode_KeyREQ.KEYREQ_TEISEI) == true) {     //訂正キーが送られてきた場合
-                    _menuViewModel.getIFBoxManager().send820_TeiseiKeyNonAck();           //訂正キー ACKなしで送付
-                }
+//                if (KeyCodeReqStr.equals(IFBoxManager.Send820Status_ProcessCode_KeyREQ.KEYREQ_TEISEI) == true) {     //訂正キーが送られてきた場合
+//                    _menuViewModel.getIFBoxManager().send820_TeiseiKeyNonAck();           //訂正キー ACKなしで送付
+//                }
             }
         });
         // ダイアログを表示
@@ -617,39 +617,39 @@ public class MenuHomeFragment extends BaseFragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     void recvMeterFuncMsg(View view, String msg1, String msg2, String funcName) {
         // 跳ね上がり
-        if (funcName.equals(IFBoxManager.Send820Status_ProcessCode_FuncNAME.FUNCNAME_HANEAGARI)) {
-            String kingaku = msg2.replaceAll(" ", "");
-            Timber.i("跳ね上がり %s", kingaku);
-            CommonErrorDialog dialog = new CommonErrorDialog();
-            dialog.ShowErrorMessage(getContext(), MainApplication.getInstance().getString(R.string.error_type_FutabaD_FareUp_Warning) + "@@@" + IFBoxManager.getFareUpMessage(kingaku) + "@@@");
-            dialog.setCommonErrorEventHandlers(new CommonErrorEventHandlers() {
-                @Override
-                public void onPositiveClick(String errorCode) {
-                    _menuViewModel.getIFBoxManager().send820_KeyCode(IFBoxManager.SendMeterDataStatus_FutabaD.RECEIPT_PRINT, 34, false); // 現金キーを送信
-                }
-                @Override
-                public void onNegativeClick(String errorCode) {}
-                @Override
-                public void onNeutralClick(String errorCode) {}
-                @Override
-                public void onDismissClick(String errorCode) {}
-            });
-
-        }
+//        if (funcName.equals(IFBoxManager.Send820Status_ProcessCode_FuncNAME.FUNCNAME_HANEAGARI)) {
+//            String kingaku = msg2.replaceAll(" ", "");
+//            Timber.i("跳ね上がり %s", kingaku);
+//            CommonErrorDialog dialog = new CommonErrorDialog();
+//            dialog.ShowErrorMessage(getContext(), MainApplication.getInstance().getString(R.string.error_type_FutabaD_FareUp_Warning) + "@@@" + IFBoxManager.getFareUpMessage(kingaku) + "@@@");
+//            dialog.setCommonErrorEventHandlers(new CommonErrorEventHandlers() {
+//                @Override
+//                public void onPositiveClick(String errorCode) {
+//                    _menuViewModel.getIFBoxManager().send820_KeyCode(IFBoxManager.SendMeterDataStatus_FutabaD.RECEIPT_PRINT, 34, false); // 現金キーを送信
+//                }
+//                @Override
+//                public void onNegativeClick(String errorCode) {}
+//                @Override
+//                public void onNeutralClick(String errorCode) {}
+//                @Override
+//                public void onDismissClick(String errorCode) {}
+//            });
+//
+//        }
 
         // 集計印字
-        if (funcName.equals(IFBoxManager.Send820Status_ProcessCode_FuncNAME.FUNCNAME_SYUUKEI)) {
-            // 通／他キーを送信後、メーターから「集計印字」や「セットキー」の文字を含んだ処理コード表示要求を受信するので、セットキーを送信する
-            //_menuViewModel.getIFBoxManager().setExtPrintJobMode(IFBoxManager.SendMeterDataStatus_FutabaD.RECEIPT_PRINT); //領収書印刷モード設定
-            _menuViewModel.getIFBoxManager().send820_KeyCode(IFBoxManager.SendMeterDataStatus_FutabaD.RECEIPT_PRINT, 22, false);
-        }
-
-        // 紙切れ
-        if (funcName.equals(IFBoxManager.Send820Status_ProcessCode_FuncNAME.FUNCNAME_KAMIGIRE) && msg1.equals(IFBoxManager.Send820Status_ProcessCode_KeyREQ.KEYREQ_SETKEY) == true) {
-            PrinterManager printerManager = PrinterManager.getInstance();
-            printerManager.setView(view);
-            printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_PAPERLACKING);
-        }
+//        if (funcName.equals(IFBoxManager.Send820Status_ProcessCode_FuncNAME.FUNCNAME_SYUUKEI)) {
+//            // 通／他キーを送信後、メーターから「集計印字」や「セットキー」の文字を含んだ処理コード表示要求を受信するので、セットキーを送信する
+//            //_menuViewModel.getIFBoxManager().setExtPrintJobMode(IFBoxManager.SendMeterDataStatus_FutabaD.RECEIPT_PRINT); //領収書印刷モード設定
+//            _menuViewModel.getIFBoxManager().send820_KeyCode(IFBoxManager.SendMeterDataStatus_FutabaD.RECEIPT_PRINT, 22, false);
+//        }
+//
+//        // 紙切れ
+//        if (funcName.equals(IFBoxManager.Send820Status_ProcessCode_FuncNAME.FUNCNAME_KAMIGIRE) && msg1.equals(IFBoxManager.Send820Status_ProcessCode_KeyREQ.KEYREQ_SETKEY) == true) {
+//            PrinterManager printerManager = PrinterManager.getInstance();
+//            printerManager.setView(view);
+//            printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_PAPERLACKING);
+//        }
     }
     //ADD-S BMT S.Oyama 2025/03/03 フタバ双方向向け改修
     /******************************************************************************/
@@ -767,37 +767,37 @@ public class MenuHomeFragment extends BaseFragment {
         //レシーバーの削除
         getContext().unregisterReceiver(batteryLevelReceiver);
 
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-            if (meterStatNoticeDisposable != null) {
-                meterStatNoticeDisposable.dispose();
-                meterStatNoticeDisposable = null;
-            }
-        }
+//        if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
+//            if (meterStatNoticeDisposable != null) {
+//                meterStatNoticeDisposable.dispose();
+//                meterStatNoticeDisposable = null;
+//            }
+//        }
 
         //ADD-S BMT S.Oyama 2024/09/18 フタバ双方向向け改修
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true || IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) == true)
-        {
-            if (IFBoxManager.meterDataV4Disposable_MenuHome != null) {
-                IFBoxManager.meterDataV4Disposable_MenuHome.dispose();
-                IFBoxManager.meterDataV4Disposable_MenuHome = null;
-            }
-
-            //ADD-S BMT S.Oyama 2025/01/22 フタバ双方向向け改修
-            if (IFBoxManager.meterDataV4ErrorDisposable_MenuHome != null) {
-                IFBoxManager.meterDataV4ErrorDisposable_MenuHome.dispose();
-                IFBoxManager.meterDataV4ErrorDisposable_MenuHome = null;
-            }
-            //ADD-E BMT S.Oyama 2025/01/22 フタバ双方向向け改修
-
-            if (exitManualModeDisposable != null) {
-                exitManualModeDisposable.dispose();
-                exitManualModeDisposable = null;
-            }
-        }
+//        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true || IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) == true)
+//        {
+//            if (IFBoxManager.meterDataV4Disposable_MenuHome != null) {
+//                IFBoxManager.meterDataV4Disposable_MenuHome.dispose();
+//                IFBoxManager.meterDataV4Disposable_MenuHome = null;
+//            }
+//
+//            //ADD-S BMT S.Oyama 2025/01/22 フタバ双方向向け改修
+//            if (IFBoxManager.meterDataV4ErrorDisposable_MenuHome != null) {
+//                IFBoxManager.meterDataV4ErrorDisposable_MenuHome.dispose();
+//                IFBoxManager.meterDataV4ErrorDisposable_MenuHome = null;
+//            }
+//            //ADD-E BMT S.Oyama 2025/01/22 フタバ双方向向け改修
+//
+//            if (exitManualModeDisposable != null) {
+//                exitManualModeDisposable.dispose();
+//                exitManualModeDisposable = null;
+//            }
+//        }
         //ADD-E BMT S.Oyama 2024/09/18 フタバ双方向向け改修
 
         //ADD-S BMT S.Oyama 2025/01/22 フタバ双方向向け改修
-        _menuViewModel.getIFBoxManager().setExtPrintJobMode(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);           //印刷モード初期値へ
+        //_menuViewModel.getIFBoxManager().setExtPrintJobMode(IFBoxManager.SendMeterDataStatus_FutabaD.NONE);           //印刷モード初期値へ
         //ADD-E BMT S.Oyama 2025/01/22 フタバ双方向向け改修
     }
 

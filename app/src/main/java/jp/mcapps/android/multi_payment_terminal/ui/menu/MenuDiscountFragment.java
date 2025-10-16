@@ -30,7 +30,7 @@ import jp.mcapps.android.multi_payment_terminal.data.OptionService;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentMenuDiscountBinding;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountInfo;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountMenuInfo;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterConst;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import timber.log.Timber;
@@ -324,16 +324,16 @@ public class MenuDiscountFragment extends BaseFragment {
         PrinterManager printerManager = PrinterManager.getInstance();
         printerManager.setView(this.getView());
 
-        if (_menuViewModel.getIFBoxManager() == null) {
-            printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-            return;
-        }
-
-        if (_menuViewModel.getIFBoxManager().getIsConnected820() == false)             //820未接続の場合
-        {
-            printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-            return;
-        }
+//        if (_menuViewModel.getIFBoxManager() == null) {
+//            printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
+//            return;
+//        }
+//
+//        if (_menuViewModel.getIFBoxManager().getIsConnected820() == false)             //820未接続の場合
+//        {
+//            printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
+//            return;
+//        }
 
         _menuEventHandlers.navigateToDiscountCard(this.getView(), _sharedViewModel, discountInfo);
 

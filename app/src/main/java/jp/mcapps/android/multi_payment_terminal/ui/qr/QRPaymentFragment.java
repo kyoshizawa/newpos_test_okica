@@ -39,7 +39,7 @@ import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.QRLayouts;
 import jp.mcapps.android.multi_payment_terminal.data.TransactionResults;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentQrBinding;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
 import jp.mcapps.android.multi_payment_terminal.ui.common_head.CommonHeadViewModel;
@@ -123,21 +123,21 @@ public class QRPaymentFragment extends BaseFragment implements QREventHandlers {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //ADD-S BMT S.Oyama 2025/02/07 フタバ双方向向け改修
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
-            _is820ResetAbort = false;
-            IFBoxManager.meterDataV4Disposable_ScanEmoneyQR = PrinterManager.getInstance().getIFBoxManager().
-                    getMeterDataV4().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
-                        Timber.i("[FUTABA-D]QRPaymentFragment:750<-820 meter_data event cmd:%d", meter.meter_sub_cmd);
-                        if (meter.meter_sub_cmd == 2)           //820よりリセットを送られてきた場合
-                        {
-                            Timber.i("[FUTABA-D]QRPaymentFragment:!!820 Recv Reset event");
-                            _is820ResetAbort = true;
-
-                            Intent intent = new Intent("CLOSE_QR_SCANNER");
-                            LocalBroadcastManager.getInstance(view.getContext()).sendBroadcast(intent);
-                        }
-                    });
-        }
+//        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
+//            _is820ResetAbort = false;
+//            IFBoxManager.meterDataV4Disposable_ScanEmoneyQR = PrinterManager.getInstance().getIFBoxManager().
+//                    getMeterDataV4().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
+//                        Timber.i("[FUTABA-D]QRPaymentFragment:750<-820 meter_data event cmd:%d", meter.meter_sub_cmd);
+//                        if (meter.meter_sub_cmd == 2)           //820よりリセットを送られてきた場合
+//                        {
+//                            Timber.i("[FUTABA-D]QRPaymentFragment:!!820 Recv Reset event");
+//                            _is820ResetAbort = true;
+//
+//                            Intent intent = new Intent("CLOSE_QR_SCANNER");
+//                            LocalBroadcastManager.getInstance(view.getContext()).sendBroadcast(intent);
+//                        }
+//                    });
+//        }
         //ADD-E BMT S.Oyama 2025/02/07 フタバ双方向向け改修
     }
 
@@ -145,12 +145,12 @@ public class QRPaymentFragment extends BaseFragment implements QREventHandlers {
     public void onDestroyView() {
         super.onDestroyView();
         //ADD-S BMT S.Oyama 2025/02/07 フタバ双方向向け改修
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
-            if (IFBoxManager.meterDataV4Disposable_ScanEmoneyQR != null) {
-                IFBoxManager.meterDataV4Disposable_ScanEmoneyQR.dispose();
-                IFBoxManager.meterDataV4Disposable_ScanEmoneyQR = null;
-            }
-        }
+//        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
+//            if (IFBoxManager.meterDataV4Disposable_ScanEmoneyQR != null) {
+//                IFBoxManager.meterDataV4Disposable_ScanEmoneyQR.dispose();
+//                IFBoxManager.meterDataV4Disposable_ScanEmoneyQR = null;
+//            }
+//        }
         //ADD-E BMT S.Oyama 2025/02/07 フタバ双方向向け改修
     }
 
@@ -202,13 +202,13 @@ public class QRPaymentFragment extends BaseFragment implements QREventHandlers {
                 _sharedViewModel.setActionBarColor(ActionBarColors.Normal);
                 //ADD-S BMT S.Oyama 2024/09/20 フタバ双方向向け改修
                 //ADD-S BMT S.Oyama 2025/02/07 フタバ双方向向け改修
-                if (_is820ResetAbort == false) {
-                    PrinterManager printerManager = PrinterManager.getInstance();
-                    printerManager.send820_FunctionCodeErrorResult(this.getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_QR, false, 0);      //820へ決済中止を通知
-                }
-                //ADD-E BMT S.Oyama 2025/02/07 フタバ双方向向け改修
-                //Amount.setFlatRateAmount(0);        // 分別払いからの遷移でないときは定額金額をクリア
-                NavigationWrapper.popBackStack(this);
+//                if (_is820ResetAbort == false) {
+//                    PrinterManager printerManager = PrinterManager.getInstance();
+//                    printerManager.send820_FunctionCodeErrorResult(this.getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_QR, false, 0);      //820へ決済中止を通知
+//                }
+//                //ADD-E BMT S.Oyama 2025/02/07 フタバ双方向向け改修
+//                //Amount.setFlatRateAmount(0);        // 分別払いからの遷移でないときは定額金額をクリア
+//                NavigationWrapper.popBackStack(this);
                 //ADD-E BMT S.Oyama 2024/09/20 フタバ双方向向け改修
             });
         }
@@ -266,10 +266,10 @@ public class QRPaymentFragment extends BaseFragment implements QREventHandlers {
             NavigationWrapper.popBackStack(this);
         } else {
             //ADD-S BMT S.Oyama 2024/09/20 フタバ双方向向け改修
-            PrinterManager printerManager = PrinterManager.getInstance();
-            printerManager.send820_FunctionCodeErrorResult(this.getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_QR , false,0);      //820へ決済中止を通知
-            //Amount.setFlatRateAmount(0);        // 分別払いからの遷移でないときは定額金額をクリア
-            NavigationWrapper.navigate(this, R.id.action_navigation_qr_payment_to_navigation_menu, params);
+//            PrinterManager printerManager = PrinterManager.getInstance();
+//            printerManager.send820_FunctionCodeErrorResult(this.getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_QR , false,0);      //820へ決済中止を通知
+//            //Amount.setFlatRateAmount(0);        // 分別払いからの遷移でないときは定額金額をクリア
+//            NavigationWrapper.navigate(this, R.id.action_navigation_qr_payment_to_navigation_menu, params);
             //ADD-E BMT S.Oyama 2024/09/20 フタバ双方向向け改修
         }
     }

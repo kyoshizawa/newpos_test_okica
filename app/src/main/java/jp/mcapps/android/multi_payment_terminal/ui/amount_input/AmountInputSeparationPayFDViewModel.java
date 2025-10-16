@@ -16,7 +16,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
 import timber.log.Timber;
 
@@ -66,16 +66,16 @@ public class AmountInputSeparationPayFDViewModel extends ViewModel {
     public static final int  AMOUNTINPUT_SEPARATIONEMONEYMODE_NANACO    = 6;            //NANACO
     public static final int  AMOUNTINPUT_SEPARATIONEMONEYMODE_OKICA     = 7;            //OKICA
 
-    private final IFBoxManager _ifBoxManager;
-    public IFBoxManager getIfBoxManager() {
-        return _ifBoxManager;
-    }
+    //private final IFBoxManager _ifBoxManager;
+    //public IFBoxManager getIfBoxManager() {
+//        return _ifBoxManager;
+//    }
 
     public static Disposable _meterDataV4InfoDisposable = null;
     public static Disposable _meterDataV4ErrorDisposable = null;
 
-    public AmountInputSeparationPayFDViewModel(IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager;
+    public AmountInputSeparationPayFDViewModel() {
+        //_ifBoxManager = ifBoxManager;
     }
 
     //InputMode
@@ -118,14 +118,14 @@ public class AmountInputSeparationPayFDViewModel extends ViewModel {
     private final MutableLiveData<Integer> _meterCharge = new MutableLiveData<>(Amount.getMeterCharge());
     public MutableLiveData<Integer> getMeterCharge() { return _meterCharge; }
     public void fetchMeterCharge() {
-        _ifBoxManager.fetchMeter()
-                .timeout(5, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {
-                    _meterCharge.setValue(Amount.getMeterCharge());
-                }, error -> {
-                });
+//        _ifBoxManager.fetchMeter()
+//                .timeout(5, TimeUnit.SECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(() -> {
+//                    _meterCharge.setValue(Amount.getMeterCharge());
+//                }, error -> {
+//                });
     }
 
 

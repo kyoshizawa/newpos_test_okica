@@ -26,7 +26,7 @@ import jp.mcapps.android.multi_payment_terminal.error.GmoErrorMap;
 import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorCodes;
 import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorMap;
 import jp.mcapps.android.multi_payment_terminal.logger.EventLogger;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
 import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
 import jp.mcapps.android.multi_payment_terminal.model.McAuthenticator;
@@ -54,14 +54,14 @@ public class StartViewModel extends ViewModel
     private final ArrayList<String> _errors = new ArrayList<String>();
     private final Handler _handler = new Handler(Looper.getMainLooper());
     private final OkicaMasterControl _okicaMasterCtrl = new OkicaMasterControl();
-    private final IFBoxManager _ifBoxManager;
+//    private final IFBoxManager _ifBoxManager;
     private final Updater _updater;
     private FirmWareInfo _ifBoxFirmWareInfo = null;
     private boolean isInitialized = false;
     private final EventLogger _eventLogger;
 
-    public StartViewModel(IFBoxManager ifBoxManager, EventLogger eventLogger, Updater updater) {
-        _ifBoxManager = ifBoxManager;
+    public StartViewModel(EventLogger eventLogger, Updater updater) {
+        //_ifBoxManager = ifBoxManager;
         _eventLogger = eventLogger;
         _updater = updater;
     }

@@ -65,10 +65,10 @@ public class CreditChecker {
         }
         return _instance;
     }
-    private static IFBoxManager _ifBoxManager;
-    public void setIFBoxManager( IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager ;
-    }
+//    private static IFBoxManager _ifBoxManager;
+//    public void setIFBoxManager( IFBoxManager ifBoxManager) {
+//        _ifBoxManager = ifBoxManager ;
+//    }
 
     //ADD-S BMT S.Oyama 2024/10/03 フタバ双方向向け改修
     private static Disposable _meterDataV4ErrorDisposable = null;
@@ -303,10 +303,10 @@ public class CreditChecker {
                     Timber.d("プリンターチェックOK");
                 } else {
                     // LT27の場合IM-A820未接続状態であれば使わせない
-                    if (!_ifBoxManager.isConnected()) {
-                        _listener.onFinished(app.getString(R.string.error_type_ifbox_connection_error));
-                        return;
-                    }
+//                    if (!_ifBoxManager.isConnected()) {
+//                        _listener.onFinished(app.getString(R.string.error_type_ifbox_connection_error));
+//                        return;
+//                    }
                 }
             }
 
@@ -354,31 +354,31 @@ public class CreditChecker {
             //決済選択キーコードの送出部（分別時は送出無し）
             if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
 
-                if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
-                {
-                    _listener.onFinished("6030");                       //IFBOX接続エラー
-                    return;
-                }
-
-                IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
-                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-                tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-
-                _meterDataV4InfoDisposable = _ifBoxManager.getMeterDataV4().subscribeOn(
-                        Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
-                    Timber.i("[FUTABA-D]CreditChecker:750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
-                    if(meter.meter_sub_cmd == 9) {              //ファンクション通知を受信
-                        Timber.i("[FUTABA-D]CreditChecker:Function Req event");
-                        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
-                    }
-                });
-
-                _meterDataV4ErrorDisposable = _ifBoxManager.getMeterDataV4Error().subscribeOn(
-                        Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
-                    Timber.e("[FUTABA-D]CreditChecker:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
-                    tmpSend820Info.StatusCode = error.ErrorCode;
-                    tmpSend820Info.ErrorCode820 = error.ErrorCode820;
-                });
+//                if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
+//                {
+//                    _listener.onFinished("6030");                       //IFBOX接続エラー
+//                    return;
+//                }
+//
+//                IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
+//                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//                tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//
+//                _meterDataV4InfoDisposable = _ifBoxManager.getMeterDataV4().subscribeOn(
+//                        Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
+//                    Timber.i("[FUTABA-D]CreditChecker:750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
+//                    if(meter.meter_sub_cmd == 9) {              //ファンクション通知を受信
+//                        Timber.i("[FUTABA-D]CreditChecker:Function Req event");
+//                        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
+//                    }
+//                });
+//
+//                _meterDataV4ErrorDisposable = _ifBoxManager.getMeterDataV4Error().subscribeOn(
+//                        Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
+//                    Timber.e("[FUTABA-D]CreditChecker:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
+//                    tmpSend820Info.StatusCode = error.ErrorCode;
+//                    tmpSend820Info.ErrorCode820 = error.ErrorCode820;
+//                });
 
 //                if (_Separation1stJobMode == AmountInputSeparationPayFDViewModel.AMOUNTINPUT_SEPARATIONMODE_TICKET) {        //初回分別がチケット時
 //                    _ifBoxManager.send820_SeparateTicketJobFix_KeyCode();        //分別完了時のセットキーコード送信
@@ -391,26 +391,26 @@ public class CreditChecker {
 //                    }
 //                }
 
-                if (type == BusinessType.REFUND) {              //取り消し時
-                    _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_CREDIT, true);                //決済選択モードを送信 クレジット取り消し
-                } else {
-                    _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_CREDIT, false);               //決済選択モードを送信 クレジット
-                }
-
-                boolean tmpLoopBreakOut = false;
-                for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
-                {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                    }
-
-                    if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
-                    {
-                        tmpLoopBreakOut = true;
-                        break;
-                    }
-                }
+//                if (type == BusinessType.REFUND) {              //取り消し時
+//                    _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_CREDIT, true);                //決済選択モードを送信 クレジット取り消し
+//                } else {
+//                    _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.SETTLEMENTSELECT_CREDIT, false);               //決済選択モードを送信 クレジット
+//                }
+//
+//                boolean tmpLoopBreakOut = false;
+//                for(int i = 0; i < (DuplexPrintResponseTimerSec + 1) * 10; i++)        //最大26秒ほど待ってみる
+//                {
+//                    try {
+//                        Thread.sleep(100);
+//                    } catch (InterruptedException e) {
+//                    }
+//
+//                    if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
+//                    {
+//                        tmpLoopBreakOut = true;
+//                        break;
+//                    }
+//                }
 
                 if (_meterDataV4InfoDisposable != null) {       //コールバック系を後始末
                     _meterDataV4InfoDisposable.dispose();
@@ -423,38 +423,38 @@ public class CreditChecker {
                     _meterDataV4ErrorDisposable = null;
                 }
 
-                if (tmpLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
-                    _listener.onFinished("6030");                       //IFBOX接続エラー
-                    return;
-                }
-                else
-                {
-                    switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
-                    {
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
-                            _listener.onFinished("6030");                       //IFBOX接続エラー
-                            return;
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:           //タイムアウト
-                            _listener.onFinished("6030");                       //IFBOX接続エラー
-                            return;
-                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
-                            Timber.e("[FUTABA-D]820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
-                            //ADD-S BMT S.Oyama 2025/01/29 フタバ双方向向け改修
-                            if (tmpSend820Info.ErrorCode820 == IFBoxManager.Send820Status_Error_FutabaD.ERROR_STATUS820_PAPERLACKING)       //用紙無しエラー
-                            {
-                                _listener.onFinished("");                           //用紙なしの場合は空文字を入れる(NULLはNG　9110を入れると２重でエラーが出る)
-                            }
-                            else
-                            {
-                                _listener.onFinished("6030");                       //IFBOX接続エラー
-                            }
-                            //ADD-E BMT S.Oyama 2025/01/29 フタバ双方向向け改修
-                            return;
-                        default:
-                            //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
-                            break;
-                    }
-                }
+//                if (tmpLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
+//                    _listener.onFinished("6030");                       //IFBOX接続エラー
+//                    return;
+//                }
+//                else
+//                {
+//                    switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
+//                    {
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
+//                            _listener.onFinished("6030");                       //IFBOX接続エラー
+//                            return;
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:           //タイムアウト
+//                            _listener.onFinished("6030");                       //IFBOX接続エラー
+//                            return;
+//                        case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
+//                            Timber.e("[FUTABA-D]820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
+//                            //ADD-S BMT S.Oyama 2025/01/29 フタバ双方向向け改修
+//                            if (tmpSend820Info.ErrorCode820 == IFBoxManager.Send820Status_Error_FutabaD.ERROR_STATUS820_PAPERLACKING)       //用紙無しエラー
+//                            {
+//                                _listener.onFinished("");                           //用紙なしの場合は空文字を入れる(NULLはNG　9110を入れると２重でエラーが出る)
+//                            }
+//                            else
+//                            {
+//                                _listener.onFinished("6030");                       //IFBOX接続エラー
+//                            }
+//                            //ADD-E BMT S.Oyama 2025/01/29 フタバ双方向向け改修
+//                            return;
+//                        default:
+//                            //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
+//                            break;
+//                    }
+//                }
             }
             //ADD-E BMT S.Oyama 2024/10/03 フタバ双方向向け改修
 

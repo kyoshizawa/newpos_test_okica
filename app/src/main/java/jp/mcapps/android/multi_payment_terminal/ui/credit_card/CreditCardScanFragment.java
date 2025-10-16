@@ -40,7 +40,7 @@ import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentCreditCardScanBinding;
 import jp.mcapps.android.multi_payment_terminal.model.Disposer;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+// import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
@@ -370,8 +370,8 @@ public class CreditCardScanFragment extends BaseFragment
             MainApplication.getInstance().setErrorCode(errorCode);
 
             PrinterManager printerManager = PrinterManager.getInstance();
-            printerManager.send820_FunctionCodeErrorResult(getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_CREDIT ,
-                                                    false, 0);      //820へ決済中止を通知
+//            printerManager.send820_FunctionCodeErrorResult(getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_CREDIT ,
+//                                                    false, 0);      //820へ決済中止を通知
 
             CreditSettlement creditSettlement = CreditSettlement.getInstance();
             if ((k_MSIC_KBN_IC == creditSettlement._creditResult.msICKbn || k_MSIC_KBN_CONTACTLESS_IC == creditSettlement._creditResult.msICKbn) &&
@@ -470,7 +470,7 @@ public class CreditCardScanFragment extends BaseFragment
 
         //ADD-S BMT S.Oyama 2024/09/19 フタバ双方向向け改修
         PrinterManager printerManager = PrinterManager.getInstance();
-        printerManager.send820_FunctionCodeErrorResult(view, IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_CREDIT , false, 0);      //820へ決済中止を通知
+//        printerManager.send820_FunctionCodeErrorResult(view, IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_CREDIT , false, 0);      //820へ決済中止を通知
 
         //Amount.setFlatRateAmount(0);        // 分別払いからの遷移でないときは定額金額をクリア
         NavigationWrapper.popBackStack(this);
@@ -513,7 +513,7 @@ public class CreditCardScanFragment extends BaseFragment
             MainApplication.getInstance().setErrorCode(errorCode);
 
             PrinterManager printerManager = PrinterManager.getInstance();
-            printerManager.send820_FunctionCodeErrorResult(getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_CREDIT , false,0);      //820へ決済中止を通知
+//            printerManager.send820_FunctionCodeErrorResult(getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_CREDIT , false,0);      //820へ決済中止を通知
 
             _sharedViewModel.setShowMarkNfc(false);
 
@@ -541,7 +541,7 @@ public class CreditCardScanFragment extends BaseFragment
             CardManager.getInstance(_creditSettlement.getActivateIF().getMode()).releaseAll();
 
             PrinterManager printerManager = PrinterManager.getInstance();
-            printerManager.send820_FunctionCodeErrorResult(getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_CREDIT , false, 0);      //820へ決済中止を通知
+//            printerManager.send820_FunctionCodeErrorResult(getView(), IFBoxManager.SendMeterDataStatus_FutabaD.ACKERR_STATUS_SETTLEMENTABORT_CREDIT , false, 0);      //820へ決済中止を通知
 
             _sharedViewModel.setLoading(false);
             _sharedViewModel.setShowMarkNfc(false);

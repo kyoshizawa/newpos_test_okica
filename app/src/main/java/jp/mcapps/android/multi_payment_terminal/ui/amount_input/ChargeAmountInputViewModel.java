@@ -16,7 +16,7 @@ import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
 import jp.mcapps.android.multi_payment_terminal.data.okica.ICMaster;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+// import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import timber.log.Timber;
 
 @SuppressWarnings("ALL")

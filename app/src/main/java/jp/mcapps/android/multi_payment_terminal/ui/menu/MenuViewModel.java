@@ -42,7 +42,7 @@ import jp.mcapps.android.multi_payment_terminal.devices.SamRW;
 import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorCodes;
 import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorMap;
 import jp.mcapps.android.multi_payment_terminal.logger.EventLogger;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
 import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
 import jp.mcapps.android.multi_payment_terminal.model.McAuthenticator;
@@ -60,11 +60,11 @@ import jp.mcapps.android.multi_payment_terminal.thread.emv.EmvCLProcess;
 import timber.log.Timber;
 
 public class MenuViewModel extends ViewModel implements LifecycleObserver {
-    private final IFBoxManager _ifBoxManager;
+    //private final IFBoxManager _ifBoxManager;
     private final EventLogger _eventLogger;
 
-    public MenuViewModel(IFBoxManager ifBoxManager, EventLogger eventLogger) {
-        _ifBoxManager = ifBoxManager;
+    public MenuViewModel(EventLogger eventLogger) {
+        //_ifBoxManager = ifBoxManager;
         _eventLogger = eventLogger;
     }
 
@@ -155,37 +155,38 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
         return _useCharge;
     }
 
-    public Completable checkMeterCharge() {
-        return _ifBoxManager.fetchMeter()
-                .timeout(5, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-    }
+//    public Completable checkMeterCharge() {
+////        return _ifBoxManager.fetchMeter()
+////                .timeout(5, TimeUnit.SECONDS)
+////                .subscribeOn(Schedulers.io())
+////                .observeOn(AndroidSchedulers.mainThread());
+//    }
 
-    public PublishSubject<Meter.ResponseStatus> getMeterStatNotice() {
-        return _ifBoxManager.getMeterStatNotice();
-    }
+//    public PublishSubject<Meter.ResponseStatus> getMeterStatNotice() {
+//        //return _ifBoxManager.getMeterStatNotice();
+//    }
 
-    public PublishSubject<Boolean> getExitManualMode() {
-        return _ifBoxManager.getExitManualMode();
-    }
-
-    public PublishSubject<Boolean> getPrintEndManual() {
-        return _ifBoxManager.getPrintEndManual();
-    }
+//    public PublishSubject<Boolean> getExitManualMode() {
+//        return _ifBoxManager.getExitManualMode();
+//    }
+//
+//    public PublishSubject<Boolean> getPrintEndManual() {
+//        return _ifBoxManager.getPrintEndManual();
+//    }
 
     private Disposable _meterDisposable;
 
     //ADD-S BMT S.Oyama 2024/09/18 フタバ双方向向け改修
-    public PublishSubject<Meter.ResponseFutabaD> getMeterDataV4() {
-        return _ifBoxManager.getMeterDataV4();
-    }
-
-    public MutableLiveData<Boolean> getIsKUUSHA()
-    {
-        String tmpStatus =_ifBoxManager.getMeterStatus();
-        return new MutableLiveData<>(tmpStatus.equals("KUUSYA"));
-    }
+//    public PublishSubject<Meter.ResponseFutabaD> getMeterDataV4() {
+//        //return _ifBoxManager.getMeterDataV4();
+//    }
+//
+//    public MutableLiveData<Boolean> getIsKUUSHA()
+//    {
+//        //String tmpStatus =_ifBoxManager.getMeterStatus();
+//        //return new MutableLiveData<>(tmpStatus.equals("KUUSYA"));
+//        return true;
+//    }
 
     public String getAggregateTitle() {
         if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D)) {
@@ -210,12 +211,12 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
         _cashAmount.setValue(Amount.getCashAmount());
         _ticketAmount.setValue(Amount.getTicketAmount());
         _PaidAmount.setValue(Amount.getPaidAmount());
-        _meterDisposable = _ifBoxManager.getMeterInfo().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
-            _totalAmount.setValue(Amount.getTotalAmount());
-            _cashAmount.setValue(Amount.getCashAmount());
-            _ticketAmount.setValue(Amount.getTicketAmount());
-            _PaidAmount.setValue(Amount.getPaidAmount());
-        });
+//        _meterDisposable = _ifBoxManager.getMeterInfo().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(meter -> {
+//            _totalAmount.setValue(Amount.getTotalAmount());
+//            _cashAmount.setValue(Amount.getCashAmount());
+//            _ticketAmount.setValue(Amount.getTicketAmount());
+//            _PaidAmount.setValue(Amount.getPaidAmount());
+//        });
     }
 
     //ADD-S BMT S.Oyama 2024/09/18 フタバ双方向向け改修
@@ -658,85 +659,6 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
     public boolean isSeparatePrepaidButtonEnabled() {
         return true;
     }
-
-    /******************************************************************************/
-    /*!
-     * @brief  820通信：入庫要求に対するACKを返す（フタバD等向け）
-     * @note   820通信：入庫要求に対するACKを返す（フタバD等向け）
-     * @param [in] なし
-     * @retval なし
-     * @return
-     * @private
-     */
-    /******************************************************************************/
-    public void send820AckNyuuko() {
-        // 820通信：入庫要求に対するACKを返す
-        _ifBoxManager.send820_ACK_Nyuuko();
-    }
-
-    /******************************************************************************/
-    /*!
-     * @brief  820通信：出庫要求に対するACKを返す（フタバD等向け）
-     * @note   820通信：出庫要求に対するACKを返す（フタバD等向け）
-     * @param [in] String tmpStatus 820へ返すステータスコード　前段処理に問題なければ"0000" 異常時はそれ以外
-     * @retval なし
-     * @return
-     * @private
-     */
-    /******************************************************************************/
-    public void send820AckSyukko(String tmpStatus) {
-        // 820通信：出庫要求に対するACKを返す
-        _ifBoxManager.send820_ACK_Syukko(tmpStatus);
-    }
-
-    /******************************************************************************/
-    /*!
-     * @brief  820通信：ifboxManagerインスタンスを得る（フタバD等向け）
-     * @note   820通信：ifboxManagerインスタンスを得る（フタバD等向け）
-     * @param [in] なし
-     * @retval なし
-     * @return　IFBoxManager のインスタンス
-     * @private
-     */
-    /******************************************************************************/
-    public IFBoxManager getIFBoxManager() {
-        return _ifBoxManager;
-    }
-
-    /******************************************************************************/
-    /*!
-     * @brief  820通信：決済確認に対するACKを返す（フタバD等向け）
-     * @note   820通信：決済確認に対するACKを返す（フタバD等向け）
-     * @param [in] String tmpStatus 820へ返すステータスコード　前段処理に問題なければ"0000" 異常時はそれ以外
-     * @retval なし
-     * @return
-     * @private
-     */
-    /******************************************************************************/
-//    public void send820AckSettlementReq() {
-//        // 820通信：決済確認に対するACKを返す
-//
-//        int tmpSettlementReqPhase = IFBoxManager.SendMeterDataStatus_FutabaD.ACK_SETTLEMENT_REQ_NONE;
-//
-//        PrinterProc printerProc = PrinterProc.getInstance();
-//        String tmpNowBland = printerProc.getDuplexComm_BlandName();         // 現在　メータとの通信を行っている決済ブランド名を取得
-//
-//        if ((tmpNowBland == null) || (tmpNowBland.equals(MainApplication.getInstance().getString(R.string.money_brand_suica)) == true))     //通信を行っていない場合
-//        {
-//            tmpSettlementReqPhase = IFBoxManager.SendMeterDataStatus_FutabaD.ACK_SETTLEMENT_REQ_NONE;
-//        } else if (tmpNowBland.equals(MainApplication.getInstance().getString(R.string.money_brand_suica))) {
-//            tmpSettlementReqPhase = IFBoxManager.SendMeterDataStatus_FutabaD.ACK_SETTLEMENT_REQ_SUICA;
-//        } else if (tmpNowBland.equals(MainApplication.getInstance().getString(R.string.money_brand_id))) {
-//            tmpSettlementReqPhase = IFBoxManager.SendMeterDataStatus_FutabaD.ACK_SETTLEMENT_REQ_ID;
-//        } else if (tmpNowBland.equals(MainApplication.getInstance().getString(R.string.money_brand_qp))) {
-//            tmpSettlementReqPhase = IFBoxManager.SendMeterDataStatus_FutabaD.ACK_SETTLEMENT_REQ_QUICPAY;
-//        } else if (tmpNowBland.equals(MainApplication.getInstance().getString(R.string.money_brand_waon))) {
-//            tmpSettlementReqPhase = IFBoxManager.SendMeterDataStatus_FutabaD.ACK_SETTLEMENT_REQ_WAON;
-//        } else{                     //指定ブランド以外
-//            tmpSettlementReqPhase = IFBoxManager.SendMeterDataStatus_FutabaD.ACK_SETTLEMENT_REQ_ERR;
-//        }
-//
-//    }
 
     /******************************************************************************/
     /*!

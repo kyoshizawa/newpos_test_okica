@@ -41,7 +41,7 @@ import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData;
 import jp.mcapps.android.multi_payment_terminal.model.CreditChecker;
 import jp.mcapps.android.multi_payment_terminal.model.EmoneyChecker;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaChecker;
 import jp.mcapps.android.multi_payment_terminal.model.QRChecker;
 import jp.mcapps.android.multi_payment_terminal.model.SeparationTicketChecker;
@@ -652,26 +652,26 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
     public void refundSeparationTicket2(View view, int slipId) {
         PrinterManager printerManager = PrinterManager.getInstance();
 
-        IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
-        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-        tmpSend820Info.IsLoopBreakOut = false;
-        tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//        IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info = new IFBoxManager.SendMeterDataInfo_FutabaD();
+//        tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//        tmpSend820Info.IsLoopBreakOut = false;
+//        tmpSend820Info.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
+//
+//        HistoryTransactionDetailViewModel._meterDataV4InfoDisposable = printerManager.getIFBoxManager().getMeterDataV4().subscribeOn(
+//                Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {     //AndroidSchedulers.mainThread()
+//            Timber.i("[FUTABA-D]HistoryEventHandlersImpl:750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
+//            if(meter.meter_sub_cmd == 9) {              //ファンクション通知を受信
+//                //tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
+//                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;
+//            }
+//        });
 
-        HistoryTransactionDetailViewModel._meterDataV4InfoDisposable = printerManager.getIFBoxManager().getMeterDataV4().subscribeOn(
-                Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {     //AndroidSchedulers.mainThread()
-            Timber.i("[FUTABA-D]HistoryEventHandlersImpl:750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
-            if(meter.meter_sub_cmd == 9) {              //ファンクション通知を受信
-                //tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
-                tmpSend820Info.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;
-            }
-        });
-
-        HistoryTransactionDetailViewModel._meterDataV4ErrorDisposable = printerManager.getIFBoxManager().getMeterDataV4Error().subscribeOn(
-                Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
-            Timber.e("[FUTABA-D]HistoryEventHandlersImpl:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
-            tmpSend820Info.StatusCode = error.ErrorCode;
-            tmpSend820Info.ErrorCode820 = error.ErrorCode820;
-        });
+//        HistoryTransactionDetailViewModel._meterDataV4ErrorDisposable = printerManager.getIFBoxManager().getMeterDataV4Error().subscribeOn(
+//                Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
+//            Timber.e("[FUTABA-D]HistoryEventHandlersImpl:Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
+//            tmpSend820Info.StatusCode = error.ErrorCode;
+//            tmpSend820Info.ErrorCode820 = error.ErrorCode820;
+//        });
 
         showProgressDialog(view.getContext());
 
@@ -696,18 +696,18 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
                     } catch (InterruptedException e) {
                     }
 
-                    if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
-                    {
-                        tmpSend820Info.IsLoopBreakOut = true;
-                        break;
-                    }
+//                    if (tmpSend820Info.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
+//                    {
+//                        tmpSend820Info.IsLoopBreakOut = true;
+//                        break;
+//                    }
                 }
 
                 _progressDialog.dismiss();    //ダイアログを閉じる
                 _progressDialog = null;
 
                 view.post(() -> {
-                    refundSeparationTicket3(view, tmpSend820Info);
+                    //refundSeparationTicket3(view, tmpSend820Info);
                 });
             }
         });
@@ -722,7 +722,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
         _progressDialog.show();
     }
 
-    private void refundSeparationTicket3(View view, IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820Info)
+    private void refundSeparationTicket3(View view)
     {
         String tmpErrorCode = "";
         try {
@@ -736,29 +736,29 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
                 AmountInputSeparationPayFDViewModel._meterDataV4ErrorDisposable = null;
             }
 
-            if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
-                tmpErrorCode = "6030";                       //IFBOX接続エラー
-            }
-            else
-            {
-                switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
-                {
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
-                        tmpErrorCode = "6030";                       //IFBOX接続エラー
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:            //タイムアウト
-                        tmpErrorCode = "6030";                       //IFBOX接続エラー
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE:         //選択モードエラー
-                        tmpErrorCode = "6030";                       //IFBOX接続エラー
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG:             //zandaka_flg送信エラー(1が返ってきていない)
-                        tmpErrorCode = "6030";                       //IFBOX接続エラー
-                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
-                        Timber.e("[FUTABA-D]820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
-                        tmpErrorCode = "6030";                       //IFBOX接続エラー
-                    default:
-                        //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
-                        break;
-                }
-            }
+//            if (tmpSend820Info.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
+//                tmpErrorCode = "6030";                       //IFBOX接続エラー
+//            }
+//            else
+//            {
+//                switch(tmpSend820Info.StatusCode)                       //ステータスコードのチェック
+//                {
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
+//                        tmpErrorCode = "6030";                       //IFBOX接続エラー
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:            //タイムアウト
+//                        tmpErrorCode = "6030";                       //IFBOX接続エラー
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SELECTMODE:         //選択モードエラー
+//                        tmpErrorCode = "6030";                       //IFBOX接続エラー
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_SENDNG:             //zandaka_flg送信エラー(1が返ってきていない)
+//                        tmpErrorCode = "6030";                       //IFBOX接続エラー
+//                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
+//                        Timber.e("[FUTABA-D]820 Inner error! ErrCD:%d", tmpSend820Info.ErrorCode820);
+//                        tmpErrorCode = "6030";                       //IFBOX接続エラー
+//                    default:
+//                        //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
+//                        break;
+//                }
+//            }
 
             if (tmpErrorCode.equals("") != true) {
                 CommonErrorDialog dialog = new CommonErrorDialog();

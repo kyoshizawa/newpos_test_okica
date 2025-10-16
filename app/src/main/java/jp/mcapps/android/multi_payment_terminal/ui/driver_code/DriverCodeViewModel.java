@@ -22,7 +22,7 @@ import jp.mcapps.android.multi_payment_terminal.database.history.driver.DriverDa
 import jp.mcapps.android.multi_payment_terminal.database.history.driver.DriverData;
 import jp.mcapps.android.multi_payment_terminal.model.McAuthenticator;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
-import jp.mcapps.android.multi_payment_terminal.model.TabletLinker;
+//import jp.mcapps.android.multi_payment_terminal.model.TabletLinker;
 import jp.mcapps.android.multi_payment_terminal.webapi.tablet.data.SignedIn;
 import timber.log.Timber;
 
@@ -33,11 +33,11 @@ public class DriverCodeViewModel extends ViewModel {
     private List<DriverDao.Driver> _drivers;
     private int _driverIdx = 0;
     private McTerminal _terminal = new McTerminal();
-    private final TabletLinker _tabletLinker;
-
-    public DriverCodeViewModel(TabletLinker tabletLinker) {
-        _tabletLinker = tabletLinker;
-    }
+//    private final TabletLinker _tabletLinker;
+//
+//    public DriverCodeViewModel(TabletLinker tabletLinker) {
+//        _tabletLinker = tabletLinker;
+//    }
 
     private final MutableLiveData<String> _driverCode = new MutableLiveData<String>("");
     public MutableLiveData<String> getDriverCode() { return _driverCode; }
@@ -76,9 +76,9 @@ public class DriverCodeViewModel extends ViewModel {
         new Thread(run).start();
     }
 
-    public Single<SignedIn.Response> getTabletSignedInDriver() {
-        return _tabletLinker.getSignedIn();
-    }
+//    public Single<SignedIn.Response> getTabletSignedInDriver() {
+//        return _tabletLinker.getSignedIn();
+//    }
 
     public boolean isHistoryExists() {
         return _drivers.size() > 0;

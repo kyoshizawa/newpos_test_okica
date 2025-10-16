@@ -11,7 +11,7 @@ import java.util.Date;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
+//import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
 import jp.mcapps.android.multi_payment_terminal.ui.Converters;
 import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.IFBoxApi;
 import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.IFBoxApiImpl;
@@ -22,10 +22,10 @@ public class DeviceCheckViewModel extends ViewModel {
             "デバイスチェック開始";
     private final Handler _handler = new Handler(Looper.getMainLooper());
 
-    private final DeviceNetworkManager _deviceNetworkManager;
+//    private final DeviceNetworkManager _deviceNetworkManager;
 
-    public DeviceCheckViewModel(DeviceNetworkManager deviceNetworkManager) {
-        _deviceNetworkManager = deviceNetworkManager;
+    public DeviceCheckViewModel() {
+//        _deviceNetworkManager = deviceNetworkManager;
     }
 
     //初期値 DEFAULT_STRING + 現在日時
@@ -58,7 +58,7 @@ public class DeviceCheckViewModel extends ViewModel {
     public Single<Meter.Response> checkMeter() {
         Single<Meter.Response> single = Single.create(emitter -> {
             final IFBoxApi apiClient = new IFBoxApiImpl();
-            apiClient.setBaseUrl("http://" + _deviceNetworkManager.getDeviceServiceInfo().getValue().getAddress());
+            apiClient.setBaseUrl("http://dum");
             try {
                 emitter.onSuccess(apiClient.getMeter());
             } catch (Exception e) {

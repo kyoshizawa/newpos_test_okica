@@ -24,7 +24,7 @@ import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
 import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+// import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterConst;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.ui.dialog.ConfirmDialog;
@@ -46,42 +46,42 @@ public class DiscountJobFutabaDEventHandlersImpl implements DiscountJobFutabaDEv
             PrinterManager printerManager = PrinterManager.getInstance();
             printerManager.setView(view);
 
-            if (_discountJobFutabaDViewModel.getIfBoxManager() == null) {
-                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-                return;
-            }
-
-            if (_discountJobFutabaDViewModel.getIfBoxManager().getIsConnected820() == false)             //820未接続の場合
-            {
-                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-                return;
-            }
+//            if (_discountJobFutabaDViewModel.getIfBoxManager() == null) {
+//                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
+//                return;
+//            }
+//
+//            if (_discountJobFutabaDViewModel.getIfBoxManager().getIsConnected820() == false)             //820未接続の場合
+//            {
+//                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
+//                return;
+//            }
 
             int tmpDiscountMode = _discountJobFutabaDViewModel.getdiscountJobMode().getValue();
             int tmpDiscountJobMode_FutabaD = 0;
-            switch (tmpDiscountMode) {
-                case 0:
-                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB1;
-                    break;
-                case 1:
-                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB2;
-                    break;
-                case 2:
-                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB3;
-                    break;
-                case 3:
-                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB4;
-                    break;
-                case 4:
-                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB5;
-                    break;
-            }
+//            switch (tmpDiscountMode) {
+//                case 0:
+//                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB1;
+//                    break;
+//                case 1:
+//                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB2;
+//                    break;
+//                case 2:
+//                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB3;
+//                    break;
+//                case 3:
+//                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB4;
+//                    break;
+//                case 4:
+//                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB5;
+//                    break;
+//            }
 
             Date exDate = new Date();   // 取引時間
             SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE);
             String tmpJobDateTime = dateFmt.format(exDate);
 
-            _discountJobFutabaDViewModel.getIfBoxManager().send820_DiscountExecution(tmpDiscountJobMode_FutabaD, tmpJobDateTime,"FFFFFFFF", 0);        //割引登録を送信 ACKなし
+//            _discountJobFutabaDViewModel.getIfBoxManager().send820_DiscountExecution(tmpDiscountJobMode_FutabaD, tmpJobDateTime,"FFFFFFFF", 0);        //割引登録を送信 ACKなし
         }
 
         Amount.setDiscountAvailable(1);     // 割引実施フラグをセット
@@ -104,39 +104,39 @@ public class DiscountJobFutabaDEventHandlersImpl implements DiscountJobFutabaDEv
         if ( (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true)) {
             PrinterManager printerManager = PrinterManager.getInstance();
             printerManager.setView(view);
-
-            if (_discountJobFutabaDViewModel.getIfBoxManager() == null) {
-                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-                return;
-            }
-
-            if (_discountJobFutabaDViewModel.getIfBoxManager().getIsConnected820() == false)             //820未接続の場合
-            {
-                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-                return;
-            }
+//
+//            if (_discountJobFutabaDViewModel.getIfBoxManager() == null) {
+//                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
+//                return;
+//            }
+//
+//            if (_discountJobFutabaDViewModel.getIfBoxManager().getIsConnected820() == false)             //820未接続の場合
+//            {
+//                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
+//                return;
+//            }
 
             int tmpDiscountMode = _discountJobFutabaDViewModel.getdiscountJobMode().getValue();
             int tmpDiscountJobMode_FutabaD = 0;
-            switch (tmpDiscountMode) {
-                case 0:
-                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB1;
-                    break;
-                case 1:
-                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB2;
-                    break;
-                case 2:
-                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB3;
-                    break;
-                case 3:
-                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB4;
-                    break;
-                case 4:
-                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB5;
-                    break;
-            }
+//            switch (tmpDiscountMode) {
+//                case 0:
+//                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB1;
+//                    break;
+//                case 1:
+//                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB2;
+//                    break;
+//                case 2:
+//                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB3;
+//                    break;
+//                case 3:
+//                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB4;
+//                    break;
+//                case 4:
+//                    tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_JOB5;
+//                    break;
+//            }
 
-            _discountJobFutabaDViewModel.getIfBoxManager().send820_FunctionCodeErrorResult(tmpDiscountJobMode_FutabaD, false);        //キャンセルを送信 ACKなし
+//            _discountJobFutabaDViewModel.getIfBoxManager().send820_FunctionCodeErrorResult(tmpDiscountJobMode_FutabaD, false);        //キャンセルを送信 ACKなし
         }
 
 

@@ -15,7 +15,7 @@ import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
-import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+//import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
 import timber.log.Timber;
 
@@ -59,10 +59,10 @@ public class AmountInputAdvancePayFDViewModel extends ViewModel {
 
     }
 
-    private final IFBoxManager _ifBoxManager;
-    public IFBoxManager getIfBoxManager() {
-        return _ifBoxManager;
-    }
+//    private final IFBoxManager _ifBoxManager;
+//    public IFBoxManager getIfBoxManager() {
+//        return _ifBoxManager;
+//    }
 
     public static Disposable _meterDataV4InfoDisposable = null;
     public static Disposable _meterDataV4ErrorDisposable = null;
@@ -71,8 +71,8 @@ public class AmountInputAdvancePayFDViewModel extends ViewModel {
     public static Disposable _meterDataV4ErrorDisposableAdvance = null;
     //ADD-E BMT S.Oyama 2025/02/27 フタバ双方向向け改修
 
-    public AmountInputAdvancePayFDViewModel(IFBoxManager ifBoxManager) {
-        _ifBoxManager = ifBoxManager;
+    public AmountInputAdvancePayFDViewModel() {
+        //_ifBoxManager = ifBoxManager;
     }
 
     //InputMode
@@ -107,14 +107,14 @@ public class AmountInputAdvancePayFDViewModel extends ViewModel {
     private final MutableLiveData<Integer> _meterCharge = new MutableLiveData<>(Amount.getMeterCharge());
     public MutableLiveData<Integer> getMeterCharge() { return _meterCharge; }
     public void fetchMeterCharge() {
-        _ifBoxManager.fetchMeter()
-                .timeout(5, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {
-                    _meterCharge.setValue(Amount.getMeterCharge());
-                }, error -> {
-                });
+//        _ifBoxManager.fetchMeter()
+//                .timeout(5, TimeUnit.SECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(() -> {
+//                    _meterCharge.setValue(Amount.getMeterCharge());
+//                }, error -> {
+//                });
     }
 
     //定額料金
@@ -245,7 +245,7 @@ public class AmountInputAdvancePayFDViewModel extends ViewModel {
      */
     /******************************************************************************/
     public boolean isConnected820() {
-        return _ifBoxManager.getIsConnected820();
+        return false;
     }
 
     /******************************************************************************/
@@ -317,7 +317,7 @@ public class AmountInputAdvancePayFDViewModel extends ViewModel {
             //else
             //{
                 int tmpAdvancePayAmount = _advancePayAmount.getValue();
-                _ifBoxManager.send820_AdvancedPay(IFBoxManager.SendMeterDataStatus_FutabaD.ADVANCEPAY_ADVANCE, tmpAdvancePayAmount);        //820へ送信
+                //_ifBoxManager.send820_AdvancedPay(IFBoxManager.SendMeterDataStatus_FutabaD.ADVANCEPAY_ADVANCE, tmpAdvancePayAmount);        //820へ送信
             //}
         } else if (mode.equals(InputModes.FLAT_RATE)) {                 //定額
             //if (isDemoMode() == true) {     //デモモード
@@ -326,7 +326,7 @@ public class AmountInputAdvancePayFDViewModel extends ViewModel {
             //else
             //{
                 int tmpFlatRateAmount = _flatRateAmount.getValue();
-                _ifBoxManager.send820_AdvancedPay(IFBoxManager.SendMeterDataStatus_FutabaD.ADVANCEPAY_FLATRATE, tmpFlatRateAmount);        //820へ送信
+                //_ifBoxManager.send820_AdvancedPay(IFBoxManager.SendMeterDataStatus_FutabaD.ADVANCEPAY_FLATRATE, tmpFlatRateAmount);        //820へ送信
             //}
         }
     }
@@ -477,7 +477,7 @@ public class AmountInputAdvancePayFDViewModel extends ViewModel {
     }
 
     public void flatClear() {
-        _ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.ADVANCEPAY_CLEAR, true);
+        //_ifBoxManager.send820_SettlementSelectMode(IFBoxManager.SendMeterDataStatus_FutabaD.ADVANCEPAY_CLEAR, true);
     }
 
     /******************************************************************************/

@@ -368,11 +368,11 @@ public class PeriodicErrorCheckService extends LifecycleService implements ViewM
             }
 
             //IM-A820連動チェック
-            if (_viewModel.isAccOn_IMA820() && AppPreference.getIFBoxVersionInfo() != null && !_viewModel.isIFBoxConnected()) {
-                errorList.add(getString(R.string.error_type_ifbox_connection_error));
-            } else {
-                removeList.add(getString(R.string.error_type_ifbox_connection_error));
-            }
+//            if (_viewModel.isAccOn_IMA820() && AppPreference.getIFBoxVersionInfo() != null && !_viewModel.isIFBoxConnected()) {
+//                errorList.add(getString(R.string.error_type_ifbox_connection_error));
+//            } else {
+//                removeList.add(getString(R.string.error_type_ifbox_connection_error));
+//            }
 
             //バッテリー残量チェック 15%以下になった場合のみ
             if (_isBatteryLow) {
@@ -416,8 +416,8 @@ public class PeriodicErrorCheckService extends LifecycleService implements ViewM
         registerReceiver(_batteryLowReceiver, batteryLow);
 
         //メーター状態チェック
-        _meterDisposable = _viewModel.getMeterInfo();
-        _viewModel.fetchMeter();
+//        _meterDisposable = _viewModel.getMeterInfo();
+//        _viewModel.fetchMeter();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
