@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_driver_code"
+    tools:context=".ui.driver_code.DriverCodeFragment">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.pin.PinInputViewModel" />
+
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.pin.PinInputEventHandlers" />
+
+        <variable
+            name="amount"
+            type="androidx.lifecycle.MutableLiveData&lt;String&gt;" />
+
+        <variable
+            name="display"
+            type="androidx.lifecycle.MutableLiveData&lt;String&gt;" />
+
+        <variable
+            name="limit"
+            type="androidx.lifecycle.MutableLiveData&lt;Integer&gt;" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F1F1F1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:orientation="vertical" >
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="36dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility='@{amount != null &amp;&amp; !amount.equals("") ? View.VISIBLE : View.GONE}'
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text='@{amount}'
+                    android:background="@drawable/stroke_gray"
+                    android:textSize="36sp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_margin_large" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text='@{display}'
+                android:hint="Please Enter PIN"
+                android:layout_marginHorizontal="@dimen/common_margin_large"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_pin_input_displayedpin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/common_margin"
+                android:layout_marginHorizontal="24dp"
+                android:text='@{viewModel.displayedPin}'
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text='@{"残り時間 " + Converters.integerToString(limit) + "秒"}'
+                android:visibility='@{limit > 0 ? View.VISIBLE : View.GONE}'
+                android:gravity="center"
+                android:hint="Left 35 S"
+                android:layout_marginTop="@dimen/common_margin"
+                android:layout_marginBottom="64dp"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal"
+                tools:ignore="PxUsage">
+                <!-- 数字ボタン -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/btn_pin_input_numbers_1"
+                            android:text='@{viewModel.numbers[1]}'
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:onClick='@{view -> handlers.onInputNumber(view, viewModel.numbers[1])}'
+                            android:background="@drawable/border_pin_input"
+                            android:textColor="@color/black"
+                            android:hint="1"
+                            android:gravity="center"
+                            android:textSize="@dimen/pin_btn_number_text_size"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/btn_pin_input_numbers_2"
+                            android:text='@{viewModel.numbers[2]}'
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:onClick='@{view -> handlers.onInputNumber(view, viewModel.numbers[2])}'
+                            android:background="@drawable/border_pin_input"
+                            android:textColor="@color/black"
+                            android:hint="2"
+                            android:gravity="center"
+                            android:textSize="@dimen/pin_btn_number_text_size"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/btn_pin_input_numbers_3"
+                            android:text='@{viewModel.numbers[3]}'
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:onClick='@{view -> handlers.onInputNumber(view, viewModel.numbers[3])}'
+                            android:background="@drawable/border_pin_input"
+                            android:textColor="@color/black"
+                            android:hint="3"
+                            android:gravity="center"
+                            android:textSize="@dimen/pin_btn_number_text_size"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/btn_pin_input_numbers_4"
+                            android:text='@{viewModel.numbers[4]}'
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:onClick='@{view -> handlers.onInputNumber(view, viewModel.numbers[4])}'
+                            android:background="@drawable/border_pin_input"
+                            android:textColor="@color/black"
+                            android:hint="4"
+                            android:gravity="center"
+                            android:textSize="@dimen/pin_btn_number_text_size"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/btn_pin_input_numbers_5"
+                            android:text='@{viewModel.numbers[5]}'
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:onClick='@{view -> handlers.onInputNumber(view, viewModel.numbers[5])}'
+                            android:background="@drawable/border_pin_input"
+                            android:textColor="@color/black"
+                            android:hint="5"
+                            android:gravity="center"
+                            android:textSize="@dimen/pin_btn_number_text_size"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/btn_pin_input_numbers_6"
+                            android:text='@{viewModel.numbers[6]}'
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:onClick='@{view -> handlers.onInputNumber(view, viewModel.numbers[6])}'
+                            android:background="@drawable/border_pin_input"
+                            android:textColor="@color/black"
+                            android:hint="6"
+                            android:gravity="center"
+                            android:textSize="@dimen/pin_btn_number_text_size"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/btn_pin_input_numbers_7"
+                            android:text='@{viewModel.numbers[7]}'
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:onClick='@{view -> handlers.onInputNumber(view, viewModel.numbers[7])}'
+                            android:background="@drawable/border_pin_input"
+                            android:textColor="@color/black"
+                            android:hint="7"
+                            android:gravity="center"
+                            android:textSize="@dimen/pin_btn_number_text_size"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/btn_pin_input_numbers_8"
+                            android:text='@{viewModel.numbers[8]}'
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:onClick='@{view -> handlers.onInputNumber(view, viewModel.numbers[8])}'
+                            android:background="@drawable/border_pin_input"
+                            android:textColor="@color/black"
+                            android:hint="8"
+                            android:gravity="center"
+                            android:textSize="@dimen/pin_btn_number_text_size"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/btn_pin_input_numbers_9"
+                            android:text='@{viewModel.numbers[9]}'
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:onClick='@{view -> handlers.onInputNumber(view, viewModel.numbers[9])}'
+                            android:background="@drawable/border_pin_input"
+                            android:textColor="@color/black"
+                            android:hint="9"
+                            android:gravity="center"
+                            android:textSize="@dimen/pin_btn_number_text_size"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/border_pin_input"
+                            android:textColor="@color/black"
+                            android:gravity="center"
+                            android:textSize="@dimen/pin_btn_number_text_size"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/btn_pin_input_numbers_0"
+                            android:text='@{viewModel.numbers[0]}'
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:onClick='@{view -> handlers.onInputNumber(view, viewModel.numbers[0])}'
+                            android:background="@drawable/border_pin_input"
+                            android:textColor="@color/black"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:textSize="@dimen/pin_btn_number_text_size"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/border_pin_input"
+                            android:textColor="@color/black"
+                            android:gravity="center"
+                            android:textSize="@dimen/pin_btn_number_text_size"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- 機能ボタン -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+                        <TextView
+                            android:id="@+id/btn_pin_input_cancel"
+                            android:text='CANCEL'
+                            android:tag="CANCEL"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:onClick='@{handlers::onCancel}'
+                            android:background="#FF4A1D"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:layout_weight="1"
+                            tools:ignore="NestedWeights" />
+
+                        <TextView
+                            android:id="@+id/btn_pin_input_correction"
+                            android:text='CLEAR'
+                            android:tag="CLEAR"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:onClick='@{handlers::onCorrection}'
+                            android:background="#CEC539"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/btn_pin_input_enter"
+                        android:text='ENTER'
+                        android:tag="ENTER"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:onClick='@{handlers::onEnter}'
+                        android:background="#3BCF39"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+            </LinearLayout>
+    </FrameLayout>
+</layout>

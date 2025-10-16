@@ -1,0 +1,28 @@
+{
+    "UserAgent": "aws-amplify-cli/0.1.0",
+    "Version": "0.1.0",
+    "IdentityManager": {
+        "Default": {}
+    },
+    "CredentialsProvider": {
+        "CognitoIdentity": {
+            "Default": {
+                "PoolId": "ap-northeast-1:8c6be30f-7241-4fa5-b602-e4dd81e9b5d5",
+                "Region": "ap-northeast-1"
+            }
+        }
+    },
+    "CognitoUserPool": {
+        "Default": {
+            "PoolId": "ap-northeast-1_Ca9VgTmXl",
+            "AppClientId": "1h6kgijtv8hqk2ebrv6n1uc7kv",
+            "AppClientSecret": "qn8oum724bh7oeprt12revh439gsvsd8r745h38nilcbq9hhq71",
+            "Region": "ap-northeast-1"
+        }
+    },
+    "Auth": {
+        "Default": {
+            "authenticationFlowType": "USER_SRP_AUTH"
+        }
+    }
+}

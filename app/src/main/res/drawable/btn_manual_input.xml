@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- ▽選択時の設定▽ -->
+    <item android:backgroundTint="@color/black" android:drawable="@drawable/btn_manual_input_checked" android:state_checked="true"  android:textColor="@color/black" android:color="@color/black">
+
+        <shape android:shape="rectangle">
+            <stroke android:width="3dp" android:color="@color/black"></stroke>
+        </shape>
+    </item>
+    <!-- ▽非選択時の設定▽ -->
+    <item android:backgroundTint="@color/white" android:drawable="@drawable/btn_manual_input_unchecked"  android:state_checked="false" android:textColor="@color/bar_manual_input_disabled_font" android:color="@color/bar_manual_input_disabled_font">
+        <shape android:shape="rectangle" android:textColor="@color/bar_manual_input_disabled_font">
+            <stroke android:width="3dp" android:color="@color/black"></stroke>
+        </shape>
+    </item>
+</selector>

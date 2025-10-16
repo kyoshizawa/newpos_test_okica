@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/history_radio">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryRadioForUserViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryEventHandlers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_radio_history_picked_date"
+            android:tag="日時選択"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_margin_small"
+            android:background="@drawable/stroke_gray"
+            android:text="@{viewModel.showDateTime}"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_prev_5minutes"
+            android:tag="@string/btn_prev_5minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:background="@drawable/ic_baseline_arrow_left_24"
+            android:onClick="@{view -> handlers.onChangePeriodClick(view, viewModel.pickedDate, viewModel.type, -5)}"
+            android:visibility="@{viewModel.hasPrev ? android.view.View.VISIBLE : android.view.View.GONE}"
+            app:layout_constraintEnd_toStartOf="@id/btn_select_datetime_radio"
+            app:layout_constraintTop_toTopOf="@id/text_prev_5minutes"
+            app:layout_constraintBottom_toBottomOf="@id/text_prev_5minutes"/>
+
+        <TextView
+            android:id="@+id/text_prev_5minutes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/common_margin_large"
+            android:text="@string/btn_prev_5minutes"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            android:visibility="@{viewModel.hasPrev ? android.view.View.VISIBLE : android.view.View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_select_datetime_radio"
+            app:layout_constraintEnd_toStartOf="@id/btn_select_datetime_radio"
+            app:layout_constraintTop_toTopOf="@+id/btn_select_datetime_radio" />
+
+        <Button
+            android:id="@+id/btn_select_datetime_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="日時変更"
+            android:onClick="@{view -> handlers.onDatePickerClick(view, viewModel.pickedDate, viewModel.minMonth)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_radio_history_picked_date"/>
+
+        <TextView
+            android:id="@+id/text_next_5minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_margin_large"
+            android:gravity="center_vertical"
+            android:text="@string/btn_next_5minutes"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            android:visibility="@{viewModel.hasNext ? android.view.View.VISIBLE : android.view.View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_select_datetime_radio"
+            app:layout_constraintStart_toEndOf="@+id/btn_select_datetime_radio"
+            app:layout_constraintTop_toTopOf="@+id/btn_select_datetime_radio"/>
+
+        <Button
+            android:id="@+id/btn_next_5minutes"
+            android:tag="@string/btn_next_5minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:background="@drawable/ic_baseline_arrow_right_24"
+            android:onClick="@{view -> handlers.onChangePeriodClick(view, viewModel.pickedDate, viewModel.type, 5)}"
+            android:visibility="@{viewModel.hasNext ? android.view.View.VISIBLE : android.view.View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/text_next_5minutes"
+            app:layout_constraintStart_toEndOf="@id/btn_select_datetime_radio"
+            app:layout_constraintTop_toTopOf="@+id/text_next_5minutes"/>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart_radio_level"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/common_margin_large"
+            android:visibility="@{viewModel.hasHistory ? android.view.View.VISIBLE : android.view.View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_select_datetime_radio"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/text_radio_level_chart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.errorText}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            android:textAlignment="center"
+            android:layout_marginTop="@dimen/common_margin_large"
+            android:visibility="@{viewModel.hasHistory ? android.view.View.GONE : android.view.View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_select_datetime_radio" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

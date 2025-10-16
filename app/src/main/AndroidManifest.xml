@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="jp.mcapps.android.multi_payment_terminal">
+
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+
+    <application
+        android:name=".MainApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MultiPaymentTerminal.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <!-- <activity android:name=".StartActivity" -->
+        <!-- android:theme="@style/AppThemeSplash"> -->
+        <activity
+            android:name=".StartActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="keyboard|keyboardHidden"
+            android:exported="true"/>
+        <activity
+            android:name=".CustomScannerActivity"
+            android:configChanges="keyboard|keyboardHidden" />
+        <activity
+            android:name=".TicketScannerActivity"
+            android:configChanges="keyboard|keyboardHidden" />
+
+        <service android:name=".service.GetRadioService" />
+        <service android:name=".service.GetGpsService" />
+        <service android:name=".service.PeriodicErrorCheckService" />
+        <service android:name=".service.WifiP2pService" />
+        <service android:name=".service.LogSendService" />
+        <service android:name=".service.PosTransactionService" />
+        <service android:name=".service.PeriodicGateCheckService" />
+
+        <uses-library android:name="com.pos.device" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_path" />
+        </provider>
+        <provider
+            android:name=".database.HistorySlipProvider"
+            android:authorities="jp.mcapps.android.multi_payment_terminal.provider2"
+            android:exported="true"
+            android:grantUriPermissions="true" />
+    </application>
+
+</manifest>

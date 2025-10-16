@@ -1,0 +1,61 @@
+package jp.mcapps.android.multi_payment_terminal.error;
+
+public class CreditErrorCodes {
+    /* ICチップ付カードの磁気をスワイプ */
+    public static final String T01 = "T01";
+    public static final String T02 = "T02";
+    public static final String T03 = "T03";
+    public static final String T04 = "T04";
+    public static final String T05 = "T05";
+    public static final String T06 = "T06";
+    public static final String T07 = "T07";
+    public static final String T08 = "T08";
+    public static final String T09 = "T09";
+    public static final String T10 = "T10";
+    public static final String T11 = "T11";
+    public static final String T12 = "T12";
+    public static final String T13 = "T13";
+    public static final String T14 = "T14";
+    public static final String T15 = "T15";
+    public static final String T16 = "T16";
+    public static final String T17 = "T17";
+    public static final String T18 = "T18";
+    public static final String T19 = "T19";
+    public static final String T20 = "T20";
+    public static final String T21 = "T21";
+    public static final String T22 = "T22";
+    public static final String T23 = "T23";
+    public static final String T24 = "T24";
+    public static final String T25 = "T25";
+    public static final String T26 = "T26";
+    public static final String T27 = "T27";
+    public static final String T28 = "T28";
+    public static final String T29 = "T29";
+    public static final String T30 = "T30";
+    public static final String T31 = "T31";
+    public static final String T32 = "T32";
+    public static final String T33 = "T33";
+    public static final String T34 = "T34";
+    public static final String T35 = "T35";
+    public static final String T91 = "T91";
+    public static final String T99 = "T99";     // 未定義エラー
+    public static final String G42 = "G42";
+    public static final String G55 = "G55";
+    public static final String G83 = "G83";
+    public static final String G12 = "G12";
+    public static final String G30 = "G30";
+    public static final String G54 = "G54";
+    public static final String G56 = "G56";
+    public static final String G60 = "G60";
+    public static final String G61 = "G61";
+    public static final String G65 = "G65";
+    public static final String G68 = "G68";
+    public static final String G71 = "G71";
+    public static final String G74 = "G74";
+    public static final String G78 = "G78";
+    public static final String G95 = "G95";
+    public static final String G97 = "G97";
+    public static final String G98 = "G98";
+    public static final String G99 = "G99";
+    public static final String H71 = "H71";
+}

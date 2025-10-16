@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.credit_card.CreditCardScanFragment"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.thread.emv.Constants.ActivateIF" />
+        <import type="jp.mcapps.android.multi_payment_terminal.thread.emv.Constants.CLState" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.credit_card.CreditCardScanViewModel" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+        <variable
+            name="commonHeadViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.common_head.CommonHeadViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.credit_card.CreditCardScanEventHandlers" />
+        <variable
+            name="pinInputHandlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.pin.PinInputEventHandlers" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility='@{viewModel.activateIF != ActivateIF.None ? View.VISIBLE : View.GONE}'>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility='@{!viewModel.isDemoPinInput ? View.VISIBLE : View.GONE}'
+            android:orientation="vertical">
+
+            <!--        <fragment-->
+            <!--            android:id="@+id/common_head"-->
+            <!--            android:name="jp.mcapps.android.multi_payment_terminal.ui.common_head.CommonHeadFragment"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content" />-->
+            <include
+                layout="@layout/fragment_common_head"
+                bind:viewModel='@{commonHeadViewModel}'
+                bind:sharedViewModel='@{sharedViewModel}' />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:rotation='@{sharedViewModel.isScreenInversion ? 180 : 0}'>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stroke_gray"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/common_margin"
+                    android:text="取引種別"
+                    android:layout_weight="1"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stroke_gray"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/common_margin"
+                    android:text='@{viewModel.businessType}'
+                    android:layout_weight="1"/>
+
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility='@{!viewModel.isFinished &amp;&amp; viewModel.CLState.message == null &amp;&amp; viewModel.CLState != CLState.SeePhone ? View.VISIBLE : View.GONE}' >
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_padding_large"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="70dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:tag="common_head"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility='@{viewModel.activateIF == ActivateIF.ALL ? View.VISIBLE : View.GONE}'
+                        android:src="@drawable/img_magnetic_ic_contactless" />
+
+                    <ImageView
+                        android:tag="common_head"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility='@{viewModel.activateIF == ActivateIF.MSIC ? View.VISIBLE : View.GONE}'
+                        android:src="@drawable/img_magnetic_ic" />
+
+                    <ImageView
+                        android:tag="common_head"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility='@{viewModel.activateIF == ActivateIF.CL ? View.VISIBLE : View.GONE}'
+                        android:src="@drawable/img_contactless" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="@dimen/common_margin"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="@dimen/common_btn_width"
+                            android:layout_height="@dimen/common_btn_height"
+                            android:onClick='@{handlers::onCancelClick}'
+                            android:backgroundTint="@color/btn_common_cancel"
+                            android:layout_gravity="center"
+                            android:text="@string/cancel_button_label_string"/>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="@dimen/common_btn_width"
+                            android:layout_height="@dimen/common_btn_height"
+                            android:visibility="invisible"
+                            android:layout_gravity="center" />
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:visibility='@{!viewModel.isFinished &amp;&amp; viewModel.CLState.message != null ? View.VISIBLE : View.GONE}'>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="24sp"
+                        android:text='@{viewModel.CLState.message}' />
+
+                    <jp.mcapps.android.multi_payment_terminal.ui.components.LinearProgress
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="@{!viewModel.isFinished &amp;&amp; viewModel.CLState == CLState.SeePhone ? View.VISIBLE : View.GONE}">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/img_smartphone" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="24sp"
+                        android:text="携帯電話の指示に\n従ってください" />
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:visibility='@{viewModel.isFinished ? View.VISIBLE : View.GONE}'
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <include
+                        layout="@layout/payment_finish"
+                        bind:result='@{viewModel.result}'
+                        bind:message='@{viewModel.finishedMessage}'
+                        bind:sharedViewModel='@{sharedViewModel}' />
+
+                </FrameLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+<!--        <include-->
+<!--            layout="@layout/fragment_pin_input"-->
+<!--            android:visibility='@{viewModel.isDemoPinInput ? View.VISIBLE : View.GONE}'-->
+<!--            bind:viewModel='@{viewModel}'-->
+<!--            bind:handlers='@{pinInputHandlers}'-->
+<!--            bind:display='@{viewModel.demoPinInputDisplay}' />-->
+
+    </FrameLayout>
+ </layout>

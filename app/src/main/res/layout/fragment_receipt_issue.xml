@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.AppPreference" />
+        <variable
+            name="slipData"
+            type="jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryReceiptIssueViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryEventHandlers" />
+    </data>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="領収書の発行"
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="@id/text1"
+                app:layout_constraintStart_toStartOf="@id/button3"
+                app:layout_constraintEnd_toEndOf="@id/button3"
+                app:layout_constraintBottom_toTopOf="@id/button3">
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_manual_input"
+                    android:button="@null"
+                    android:checked="@{!viewModel.isDetail}"
+                    android:gravity="center"
+                    android:onClick='@{() -> handlers.onSelectReceiptTypeClick(false, viewModel)}'
+                    android:text="金額のみ"
+                    android:textSize="20sp"
+                    android:textColor="@drawable/btn_manual_input" />
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_manual_input"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:checked="@{viewModel.isDetail}"
+                    android:onClick='@{() -> handlers.onSelectReceiptTypeClick(true, viewModel)}'
+                    android:text="明細付き"
+                    android:textSize="20sp"
+                    android:textColor="@drawable/btn_manual_input" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/green_500"
+                android:onClick="@{view -> handlers.onReceiptClick(view, slipData.id, viewModel.isDetail)}"
+                android:text="発行"
+                android:textSize="28sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>

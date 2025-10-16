@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_type_payment_system_2001">2001</string>
+    <string name="error_message_payment_system_2001">金額エラー</string>
+    <string name="error_detail_payment_system_2001">料金を入力してください</string>
+
+    <string name="error_type_payment_system_2002">2002</string>
+    <string name="error_message_payment_system_2002">金額警告</string>
+    <string name="error_detail_payment_system_2002">入力金額が合計金額に反映されていません\nよろしいですか?</string>
+
+    <string name="error_type_payment_system_2009">2009</string>
+    <string name="error_message_payment_system_2009">2重決済確認</string>
+    <string name="error_detail_payment_system_2009">直前に同一金額の決済を行っています\n2重決済でないことを確認してから決済を行ってください</string>
+
+    <string name="error_type_payment_system_2010">2010</string>
+    <string name="error_message_payment_system_2010">係員番号未入力</string>
+    <string name="error_detail_payment_system_2010">係員番号が入力されていません</string>
+
+    <string name="error_type_payment_system_2011">2011</string>
+    <string name="error_message_payment_system_2011">係員番号未入力</string>
+    <string name="error_detail_payment_system_2011">係員番号が入力されていません\n最後に利用した係員番号を使用しますか</string>
+
+    <string name="error_type_payment_system_2012">2012</string>
+    <string name="error_message_payment_system_2012">係員番号未登録</string>
+    <string name="error_detail_payment_system_2012">入力された係員番号は登録されていません</string>
+
+    <string name="error_type_payment_system_2013">2013</string>
+    <string name="error_message_payment_system_2013">係員番号未入力</string>
+    <string name="error_detail_payment_system_2013">係員番号が入力されていないため、ご利用できません。\n業務メニューより、係員番号を入力してください。</string>
+
+    <string name="error_type_payment_system_2015">2015</string>
+    <string name="error_message_payment_system_2015">係員番号変更</string>
+    <string name="error_detail_payment_system_2015">係員番号の変更を検知しました\n業務メニューより、係員番号を入力してください。</string>
+
+    <string name="error_type_payment_system_2018">2018</string>
+    <string name="error_message_payment_system_2018">データ送信エラー</string>
+    <string name="error_detail_payment_system_2018">送信に失敗しました。\n業務メニューより、再開局を実施してください。\n改善しない場合はお問い合わせください。</string>
+
+    <string name="error_type_payment_system_2019">2019</string>
+    <string name="error_message_payment_system_2019">データ送信エラー</string>
+    <string name="error_detail_payment_system_2019">送信に失敗しました。\n業務メニューより、再開局を実施してください。\n改善しない場合はお問い合わせください。</string>
+
+    <string name="error_type_payment_system_2020">2020</string>
+    <string name="error_message_payment_system_2020">号機番号未入力</string>
+    <string name="error_detail_payment_system_2020">号機番号が入力されていません</string>
+
+    <string name="error_type_payment_system_2021">2021</string>
+    <string name="error_message_payment_system_2021">号機番号未入力</string>
+    <string name="error_detail_payment_system_2021">号機番号が入力されていません\n最後に利用した号機番号を使用しますか</string>
+
+    <string name="error_type_payment_system_2030">2030</string>
+    <string name="error_message_payment_system_2030">システム認証エラー</string>
+    <string name="error_detail_payment_system_2030">詳細コード：E0101\n端末認証に失敗しました。\n業務メニューより、再開局を実施してください。</string>
+
+    <string name="error_type_payment_system_2031">2031</string>
+    <string name="error_message_payment_system_2031">システム認証エラー</string>
+    <string name="error_detail_payment_system_2031">詳細コード：E0102\n端末認証に失敗しました。\n業務メニューより、再開局を実施してください。</string>
+
+    <string name="error_type_payment_system_2032">2032</string>
+    <string name="error_message_payment_system_2032">システム認証エラー</string>
+    <string name="error_detail_payment_system_2032">詳細コード：E0201\n端末認証に失敗しました。\n業務メニューより、再開局を実施してください。</string>
+
+    <string name="error_type_payment_system_2033">2033</string>
+    <string name="error_message_payment_system_2033">システム認証エラー</string>
+    <string name="error_detail_payment_system_2033">詳細コード：E0202\n端末認証に失敗しました。\n業務メニューより、再開局を実施してください。</string>
+
+    <string name="error_type_payment_system_2034">2034</string>
+    <string name="error_message_payment_system_2034">システム認証エラー</string>
+    <string name="error_detail_payment_system_2034">詳細コード：E0203\n端末認証に失敗しました。\n業務メニューより、再開局を実施してください。</string>
+
+    <string name="error_type_payment_system_2035">2035</string>
+    <string name="error_message_payment_system_2035">システム認証エラー</string>
+    <string name="error_detail_payment_system_2035">詳細コード：E0301\n端末認証に失敗しました。\n業務メニューより、再開局を実施してください。</string>
+
+    <string name="error_type_payment_system_2036">2036</string>
+    <string name="error_message_payment_system_2036">システム認証エラー</string>
+    <string name="error_detail_payment_system_2036">詳細コード：E0302\n端末認証に失敗しました。\n業務メニューより、再開局を実施してください。</string>
+
+    <string name="error_type_payment_system_2037">2037</string>
+    <string name="error_message_payment_system_2037">システム認証エラー</string>
+    <string name="error_detail_payment_system_2037">詳細コード：E0303\n端末認証に失敗しました。\n業務メニューより、再開局を実施してください。</string>
+
+    <string name="error_type_payment_system_2050">2050</string>
+    <string name="error_message_payment_system_2050">設定情報取得エラー</string>
+    <string name="error_detail_payment_system_2050">詳細コード：E0501\n設定情報の取得に失敗しました。\n業務メニューより、再開局を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_payment_system_2051">2051</string>
+    <string name="error_message_payment_system_2051">設定情報取得エラー</string>
+    <string name="error_detail_payment_system_2051">詳細コード：E0502\n設定情報の取得に失敗しました。\n業務メニューより、再開局を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_payment_system_2052">2052</string>
+    <string name="error_message_payment_system_2052">設定情報取得エラー</string>
+    <string name="error_detail_payment_system_2052">詳細コード：E0503\n設定情報の取得に失敗しました。\n業務メニューより、再開局を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_payment_system_2053">2053</string>
+    <string name="error_message_payment_system_2053">設定情報取得エラー</string>
+    <string name="error_detail_payment_system_2053">詳細コード：E0504\n設定情報の取得に失敗しました。\n業務メニューより、再開局を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_payment_system_2054">2054</string>
+    <string name="error_message_payment_system_2054">設定情報パラメータ異常</string>
+    <string name="error_detail_payment_system_2054">設定情報のパラメータが異常です。\n業務メニューより、再開局を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_payment_system_2094">2094</string>
+    <string name="error_message_payment_system_2094">決済システム認証エラー</string>
+    <string name="error_detail_payment_system_2094">業務メニューより、再開局を実施してください。\n改善しない場合はお問い合わせください。</string>
+
+    <string name="error_type_payment_system_2095">2095</string>
+    <string name="error_message_payment_system_2095">2重決済確認</string>
+    <string name="error_detail_payment_system_2095">同一営業で決済を行っています\n2重決済でないことを確認してから決済を行ってください</string>
+
+    <!-- センターから端末で未定義のエラーが返ってきた時 -->
+    <string name="error_type_payment_system_undefined_error">9999</string>
+    <string name="error_message_payment_system_undefined_error">センター通信エラー</string>
+    <string name="error_detail_payment_system_undefined_error">詳細コード：%s\nしばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <!-- 端末内部で発生したエラー -->
+    <string name="error_type_payment_system_internal_error">99999</string>
+    <string name="error_message_payment_system_internal_error">端末内部エラー</string>
+    <string name="error_detail_payment_system_internal_error">詳細コード：99999\nしばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string-array name="error_payment_system_2001">
+        <item>@string/error_type_payment_system_2001</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2001</item>
+        <item>@string/error_detail_payment_system_2001</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2002">
+        <item>@string/error_type_payment_system_2002</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2002</item>
+        <item>@string/error_detail_payment_system_2002</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2009">
+        <item>@string/error_type_payment_system_2009</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2009</item>
+        <item>@string/error_detail_payment_system_2009</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2010">
+        <item>@string/error_type_payment_system_2010</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2010</item>
+        <item>@string/error_detail_payment_system_2010</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2011">
+        <item>@string/error_type_payment_system_2011</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2011</item>
+        <item>@string/error_detail_payment_system_2011</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2012">
+        <item>@string/error_type_payment_system_2012</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2012</item>
+        <item>@string/error_detail_payment_system_2012</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2013">
+        <item>@string/error_type_payment_system_2013</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2013</item>
+        <item>@string/error_detail_payment_system_2013</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2015">
+        <item>@string/error_type_payment_system_2015</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2015</item>
+        <item>@string/error_detail_payment_system_2015</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2018">
+        <item>@string/error_type_payment_system_2018</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2018</item>
+        <item>@string/error_detail_payment_system_2018</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2019">
+        <item>@string/error_type_payment_system_2019</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2019</item>
+        <item>@string/error_detail_payment_system_2019</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2020">
+        <item>@string/error_type_payment_system_2020</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2020</item>
+        <item>@string/error_detail_payment_system_2020</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2021">
+        <item>@string/error_type_payment_system_2021</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2021</item>
+        <item>@string/error_detail_payment_system_2021</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2030">
+        <item>@string/error_type_payment_system_2030</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2030</item>
+        <item>@string/error_detail_payment_system_2030</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2031">
+        <item>@string/error_type_payment_system_2031</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2031</item>
+        <item>@string/error_detail_payment_system_2031</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2032">
+        <item>@string/error_type_payment_system_2032</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2032</item>
+        <item>@string/error_detail_payment_system_2032</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2033">
+        <item>@string/error_type_payment_system_2033</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2033</item>
+        <item>@string/error_detail_payment_system_2033</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2034">
+        <item>@string/error_type_payment_system_2034</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2034</item>
+        <item>@string/error_detail_payment_system_2034</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2035">
+        <item>@string/error_type_payment_system_2035</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2035</item>
+        <item>@string/error_detail_payment_system_2035</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2036">
+        <item>@string/error_type_payment_system_2036</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2036</item>
+        <item>@string/error_detail_payment_system_2036</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2037">
+        <item>@string/error_type_payment_system_2037</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2037</item>
+        <item>@string/error_detail_payment_system_2037</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2050">
+        <item>@string/error_type_payment_system_2050</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2050</item>
+        <item>@string/error_detail_payment_system_2050</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2051">
+        <item>@string/error_type_payment_system_2051</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2051</item>
+        <item>@string/error_detail_payment_system_2051</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2052">
+        <item>@string/error_type_payment_system_2052</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2052</item>
+        <item>@string/error_detail_payment_system_2052</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2053">
+        <item>@string/error_type_payment_system_2053</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2053</item>
+        <item>@string/error_detail_payment_system_2053</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2054">
+        <item>@string/error_type_payment_system_2054</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2054</item>
+        <item>@string/error_detail_payment_system_2054</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2094">
+        <item>@string/error_type_payment_system_2094</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2094</item>
+        <item>@string/error_detail_payment_system_2094</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_2095">
+        <item>@string/error_type_payment_system_2095</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_2095</item>
+        <item>@string/error_detail_payment_system_2095</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_undefined_error">
+        <item>@string/error_type_payment_system_undefined_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_undefined_error</item>
+        <item>@string/error_detail_payment_system_undefined_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_payment_system_internal_error">
+        <item>@string/error_type_payment_system_internal_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_payment_system_internal_error</item>
+        <item>@string/error_detail_payment_system_internal_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+</resources>

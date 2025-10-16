@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_driver_code"
+    tools:context=".ui.driver_code.DriverCodeFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+
+        <import type="jp.mcapps.android.multi_payment_terminal.AppPreference" />
+
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.update.UpdateViewModel.Stages" />
+
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.update.UpdateViewModel" />
+
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.update.UpdateEventHandlers" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/common_padding_large"
+                android:layout_marginRight="@dimen/common_padding_large"
+                android:orientation="vertical"
+                android:visibility="@{viewModel.stage == Stages.Top ? View.VISIBLE : View.GONE}">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_launcher"
+                        tools:ignore="ContentDescription" />
+
+                    <LinearLayout
+                        android:id="@+id/version_app_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/common_margin_large"
+                        android:background="@drawable/ripple_to_developer_screen"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick='@{handlers::onVersionClick}'
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/common_padding_large">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_name"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text='@{viewModel.apkVersionName + "(" + viewModel.apkVersionCode + ")"}'
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility='@{viewModel.buildDate != " " ? View.VISIBLE : View.GONE}'
+                            android:text='@{viewModel.buildDate}'
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:onClick='@{handlers::onVersionDetailClick}'
+                        android:text="詳細"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <!-- 区切り線 -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="オンライン更新"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="更新チェックを行い、最新の状態にアップデートします。"
+                    android:textSize="14sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="@dimen/common_btn_width"
+                            android:layout_height="@dimen/common_btn_height"
+                            android:layout_gravity="center"
+                            android:onClick='@{v -> handlers.onOnlineUpdate(v, false)}'
+                            android:text="通常更新" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="@dimen/common_btn_width"
+                            android:layout_height="@dimen/common_btn_height"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/btn_common_cancel"
+                            android:onClick='@{v -> handlers.onOnlineUpdate(v, true)}'
+                            android:text="先行更新" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <!-- 区切り線 -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="オフライン更新"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="USBメモリーにアプリを入れ、端末に接続してから\nアプリ更新ボタンを押してください。"
+                    android:textSize="14sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="@dimen/common_btn_width"
+                            android:layout_height="@dimen/common_btn_height"
+                            android:layout_gravity="center"
+                            android:onClick='@{handlers::onUSBUpdate}'
+                            android:text="アプリ更新" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="@dimen/common_btn_width"
+                            android:layout_height="@dimen/common_btn_height"
+                            android:layout_gravity="center"
+                            android:visibility="invisible" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility='@{viewModel.isPrepaid ? View.VISIBLE : View.GONE}'>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_launcher"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:id="@+id/version_app_info2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/common_margin_large"
+                            android:background="@drawable/ripple_to_developer_screen"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="vertical"
+                            android:paddingLeft="@dimen/common_padding_large">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/prepaid_app_name"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text='@{viewModel.prepaidAppApkVersionName + "(" + viewModel.prepaidAppApkVersionCode + ")"}'
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <!--                <Button-->
+                        <!--                    android:text="詳細"-->
+                        <!--                    android:onClick='@{handlers::onVersionDetailClick}'-->
+                        <!--                    android:layout_width="60dp"-->
+                        <!--                    android:layout_height="40dp"-->
+                        <!--                    android:layout_gravity="center"-->
+                        <!--                    android:textSize="12sp" />-->
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
+
+                    <!-- 区切り線 -->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/black" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="オンライン更新"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="更新チェックを行い、最新の状態にアップデートします。"
+                        android:textSize="14sp" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <Button
+                                android:layout_width="@dimen/common_btn_width"
+                                android:layout_height="@dimen/common_btn_height"
+                                android:layout_gravity="center"
+                                android:onClick='@{v -> handlers.onPrepaidAppOnlineUpdate(v, false)}'
+                                android:text="通常更新" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <Button
+                                android:layout_width="@dimen/common_btn_width"
+                                android:layout_height="@dimen/common_btn_height"
+                                android:layout_gravity="center"
+                                android:backgroundTint="@color/btn_common_cancel"
+                                android:onClick='@{v -> handlers.onPrepaidAppOnlineUpdate(v, true)}'
+                                android:text="先行更新" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
+
+                    <!-- 区切り線 -->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/black" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="オフライン更新"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="USBメモリーにアプリを入れ、端末に接続してから\nアプリ更新ボタンを押してください。"
+                        android:textSize="14sp" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <Button
+                                android:layout_width="@dimen/common_btn_width"
+                                android:layout_height="@dimen/common_btn_height"
+                                android:layout_gravity="center"
+                                android:onClick='@{handlers::onUSBUpdate}'
+                                android:text="アプリ更新" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <Button
+                                android:layout_width="@dimen/common_btn_width"
+                                android:layout_height="@dimen/common_btn_height"
+                                android:layout_gravity="center"
+                                android:visibility="invisible" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+
+        <!-- 更新確認中画面 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility='@{viewModel.stage == Stages.Checking ? View.VISIBLE : View.GONE}'>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/common_margin_large"
+                    android:background="@drawable/stroke_gray"
+                    android:gravity="center"
+                    android:padding="@dimen/common_margin_large"
+                    android:text="アップデートを\nチェックしています"
+                    android:textSize="24sp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- 更新確認画面 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility='@{viewModel.stage == Stages.Confirm ? View.VISIBLE : View.GONE}'>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/common_margin_large"
+                android:background="@drawable/stroke_gray"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/common_margin_large">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="アップデートがあります\nアップデートしますか？"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text='※更新後アプリは再起動します'
+                    android:textColor="@color/design_default_color_error"
+                    android:textSize="16sp"
+                    android:visibility="@{viewModel.needReboot ? View.VISIBLE : View.GONE}" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="@dimen/common_btn_height"
+                android:layout_gravity="bottom|left"
+                android:layout_margin="@dimen/common_margin_large"
+                android:backgroundTint="@color/btn_common_cancel"
+                android:onClick='@{handlers::onCancelClick}'
+                android:text="キャンセル" />
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="@dimen/common_btn_height"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="@dimen/common_margin_large"
+                android:onClick='@{handlers::onUpdateClick}'
+                android:text="アップデート" />
+        </FrameLayout>
+
+        <!-- ダウンロード中 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility='@{viewModel.stage == Stages.Downloading ? View.VISIBLE : View.GONE}'>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text='@{"[" + viewModel.downloadFileNo + "/" + viewModel.downloadTotalNum + "]"}'
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="ダウンロードしています"
+                    android:textSize="24sp" />
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:min="0"
+                    android:progress='@{viewModel.progress}' />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- インストール中 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility='@{viewModel.stage == Stages.Installing ? View.VISIBLE : View.GONE}'>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/common_margin_large"
+                    android:background="@drawable/stroke_gray"
+                    android:gravity="center"
+                    android:padding="@dimen/common_margin_large"
+                    android:text='@{"インストール中"}'
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!-- 更新成功 or 更新失敗画面 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility='@{viewModel.stage == Stages.Finished ? View.VISIBLE : View.GONE}'>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text='@{viewModel.resultMessage}'
+                android:textSize="24sp"
+                android:visibility='@{viewModel.resultMessage != null ? View.VISIBLE : View.GONE}' />
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="@dimen/common_btn_height"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="@dimen/common_margin_large"
+                android:backgroundTint="@color/btn_common_cancel"
+                android:onClick='@{handlers::onClose}'
+                android:text="閉じる"
+                android:visibility='@{viewModel.resultMessage != null ? View.VISIBLE : View.GONE}' />
+        </FrameLayout>
+
+    </FrameLayout>
+</layout>

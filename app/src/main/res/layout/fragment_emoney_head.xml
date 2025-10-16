@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.emoney.EmoneyHeadViewModel" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/image_emoney_head_radio_level"
+            android:layout_width="@dimen/menu_head_icon_size_large"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="@dimen/common_margin_small"
+            app:imageResource="@{viewModel.radioImageResource}"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/text_emoney_head_amount"
+            android:text=""
+            android:visibility='@{viewModel.amountVisibility}'
+            android:rotation='@{sharedViewModel.isScreenInversion ? 180 : 0}'
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:background="@drawable/border_menu_head_amount"
+            android:textSize="@dimen/menu_head_amount_text_size" />
+
+        <FrameLayout
+            android:id="@+id/image_emoney_head_warning"
+            android:layout_width="@dimen/menu_head_icon_size_large"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:layout_marginStart="@dimen/common_margin_small"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+</layout>

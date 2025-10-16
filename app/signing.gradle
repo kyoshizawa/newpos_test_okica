@@ -1,0 +1,14 @@
+//キーファイルやパスワード等をgitへコミットしないでください。
+android {
+    signingConfigs {
+        debug {
+            storeFile file("key/debug.keystore")
+        }
+        release {
+            storeFile file("..")
+            storePassword ".."
+            keyAlias ".."
+            keyPassword ".."
+        }
+    }
+}

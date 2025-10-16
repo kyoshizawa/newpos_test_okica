@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.data.QRLayouts" />
+        <import type="jp.mcapps.android.multi_payment_terminal.data.QRPayTypeCodes.Flags" />
+        <variable
+            name="layout"
+            type="int" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.CustomScannerViewModel" />
+        <variable
+            name="commonHeadViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.common_head.CommonHeadViewModel" />
+        <variable
+            name="activity"
+            type="jp.mcapps.android.multi_payment_terminal.CustomScannerActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_custom_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="jp.mcapps.android.multi_payment_terminal.CustomScannerActivity">
+
+        <include
+            android:id="@+id/top_bar"
+            layout="@layout/app_bar_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <include
+            android:id="@+id/common_head"
+            layout="@layout/fragment_common_head"
+            android:visibility='@{layout == QRLayouts.PAYMENT ? View.VISIBLE : View.GONE}'
+            bind:viewModel='@{commonHeadViewModel}'
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/top_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/text_read"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/common_head"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/text_read_qr"
+            android:text="QRコードやバーコードを\n15秒以内に読み取ってください"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility='@{layout == QRLayouts.DEVICE_CHECK ? View.VISIBLE : View.GONE}'
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/text_read_qr_pos"
+            android:text="QRコードやバーコードを\nをスキャンして下さい。"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility='@{layout == QRLayouts.POS ? View.VISIBLE : View.GONE}'
+            android:textSize="18sp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ic_light_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="15dp"
+            android:onClick='@{activity::onSwitchLight}'
+            android:visibility='@{viewModel.useLight ? View.VISIBLE : View.GONE}'
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_flashlight_on_36" />
+
+        <ImageView
+            android:id="@+id/ic_light_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="15dp"
+            android:onClick='@{activity::onSwitchLight}'
+            android:visibility='@{!viewModel.useLight ? View.VISIBLE : View.GONE}'
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_flashlight_off_36" />
+
+        <com.journeyapps.barcodescanner.DecoratedBarcodeView
+            android:id="@+id/zxing_barcode_scanner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="@dimen/common_margin_small"
+            android:layout_marginHorizontal="0dp"
+            app:zxing_scanner_layout="@layout/custom_barcode_scanner"
+            app:layout_constraintTop_toBottomOf="@id/text_read"
+            app:layout_constraintBottom_toTopOf="@id/flow_without_aliplus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flow_without_aliplus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxHeight="100dp"
+            android:orientation="horizontal"
+            app:flow_wrapMode="chain"
+            app:flow_verticalAlign="top"
+            app:flow_horizontalAlign="start"
+            app:flow_horizontalStyle="packed"
+            app:flow_horizontalBias="0"
+            android:visibility='@{layout == QRLayouts.PAYMENT ? View.VISIBLE : View.GONE}'
+            android:layout_marginHorizontal="@dimen/common_margin_small"
+            app:layout_constraintBottom_toTopOf="@id/flow_in_aliplus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flow_in_aliplus"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            app:flow_wrapMode="chain"
+            app:flow_verticalAlign="top"
+            app:flow_horizontalAlign="start"
+            app:flow_verticalBias="0"
+            app:flow_horizontalBias="0"
+            android:layout_marginStart="@dimen/common_margin_small"
+            android:layout_marginEnd="@dimen/common_margin"
+            android:visibility='@{viewModel.getFlag(Flags.ALIPAYPLUS) != 0 &amp;&amp; layout == QRLayouts.PAYMENT ? View.VISIBLE : View.GONE}'
+            app:layout_constraintBottom_toTopOf="@id/btn_cancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_hol_center"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="@dimen/common_btn_width"
+            android:layout_height="@dimen/common_btn_height"
+            android:backgroundTint="@color/btn_common_cancel"
+            android:onClick='@{activity::onCancelClick}'
+            android:layout_gravity="center"
+            android:text="@string/cancel_button_label_string"
+            android:layout_marginBottom="@dimen/common_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/gl_hol_center"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.AppPreference" />
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.aggregate.AggregateViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.aggregate.AggregateEventHandlers" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_primary"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_business_aggregate"
+            android:textSize="@dimen/history_title_text_size"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.startDate}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="～"
+                android:layout_margin="@dimen/common_margin_small"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.endDate}"/>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="0,3"
+                    android:layout_marginTop="@dimen/common_margin_large">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="金種"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="　決済件数"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="　取消件数"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="小計"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/btn_home_credit"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/btn_home_credit).settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/btn_home_credit).cancelCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/btn_home_credit).subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_suica"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_suica).settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_suica).cancelCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_suica).subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_id"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_id).settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_id).cancelCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_id).subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_waon"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_waon).settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_waon).cancelCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_waon).subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_nanaco"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_nanaco).settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="-"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_nanaco).subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_edy"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_edy).settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="-"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_edy).subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_qp"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_qp).settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_qp).cancelCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_qp).subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/btn_home_qr"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/btn_home_qr).settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/btn_home_qr).cancelCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/btn_home_qr).subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_okica"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_okica).settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_okica).cancelCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_okica).subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{AppPreference.isServicePos() || AppPreference.isServiceTicket() ? View.VISIBLE : View.GONE}">
+
+                        <TextView
+                            android:text="@string/money_brand_cash"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_cash).settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_cash).cancelCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_cash).subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{AppPreference.isServicePos() || AppPreference.isFixedAmountPostalOrder() ? View.VISIBLE : View.GONE}">
+
+                        <TextView
+                            android:text="@string/money_brand_postal_order"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_postal_order).settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_postal_order).cancelCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_postal_order).subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{AppPreference.getIsPrepaid() ? View.VISIBLE : View.GONE}">
+
+                        <TextView
+                            android:text="@string/prepaid_brand"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/prepaid_brand).settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/prepaid_brand).cancelCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/prepaid_brand).subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:text="合計"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.total.settlementCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.total.cancelCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.total.subtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="0,2"
+                    android:layout_marginTop="@dimen/common_margin_large">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="金種"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="　処理未了件数"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="小計"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_suica"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_suica).unfinishedCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_suica).unfinishedSubtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_id"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_id).unfinishedCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_id).unfinishedSubtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_waon"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_waon).unfinishedCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_waon).unfinishedSubtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_nanaco"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_nanaco).unfinishedCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_nanaco).unfinishedSubtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_edy"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_edy).unfinishedCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_edy).unfinishedSubtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_qp"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_qp).unfinishedCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_qp).unfinishedSubtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_codetrans"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_codetrans).unfinishedCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_codetrans).unfinishedSubtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="@string/money_brand_okica"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.aggregate.get(@string/money_brand_okica).unfinishedCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.aggregate.get(@string/money_brand_okica).unfinishedSubtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:text="合計"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.total.unfinishedCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToNumberFormat(viewModel.total.unfinishedSubtotal)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+                    </TableRow>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="0,1"
+                    android:layout_marginTop="@dimen/common_margin_large">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="センター未送信売上件数"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.unsentCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{AppPreference.isServicePos() ? View.VISIBLE : View.GONE}">
+
+                        <TextView
+                            android:text="POS未送信一件明細件数"
+                            style="@style/StyleAggregateTableText"/>
+
+                        <TextView
+                            android:text="@{Converters.integerToString(viewModel.unsentPosCnt)}"
+                            style="@style/StyleAggregateTableText"
+                            android:gravity="end"/>
+
+                    </TableRow>
+                </TableLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout >
+
+</layout>

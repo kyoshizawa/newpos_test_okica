@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryEventHandlers" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryTransactionDetailViewModel" />
+        <variable
+            name="slipData"
+            type="jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title_history_trans_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/stroke_gray"
+            android:text="取引履歴詳細"
+            android:padding="@dimen/common_margin_small"
+            android:layout_margin="@dimen/common_margin"
+            android:textSize="@dimen/driver_code_history_text_size"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/label_term_seq"
+            android:text="機器通番　："
+            style="@style/StyleTransactionDetail"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/title_history_trans_detail"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:text="@{Converters.integerToString(slipData.termSequence)}"
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/barrier_history_trans_detail"
+            app:layout_constraintTop_toTopOf="@id/label_term_seq"/>
+
+        <TextView
+            android:id="@+id/label_money_brand"
+            android:text="マネー種別："
+            style="@style/StyleTransactionDetail"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/label_term_seq"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:text="@{slipData.transBrand}"
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/barrier_history_trans_detail"
+            app:layout_constraintTop_toTopOf="@id/label_money_brand"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isQr ? View.VISIBLE : View.GONE}"
+            app:constraint_referenced_ids="label_code_brand, value_code_brand" />
+
+        <TextView
+            android:id="@+id/label_code_brand"
+            android:text="ブランド名："
+            style="@style/StyleTransactionDetail"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/label_money_brand"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/value_code_brand"
+            android:text='@{viewModel.isNoQrBrandName ? "(不明)" : slipData.codetransPayTypeName}'
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/barrier_history_trans_detail"
+            app:layout_constraintTop_toTopOf="@id/label_code_brand"/>
+
+        <TextView
+            android:id="@+id/label_trans_type"
+            android:text="取引内容　："
+            style="@style/StyleTransactionDetail"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/label_code_brand"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:text="@{Converters.transTypeToString(slipData.transType)}"
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/barrier_history_trans_detail"
+            app:layout_constraintTop_toTopOf="@id/label_trans_type"/>
+
+        <TextView
+            android:id="@+id/label_trans_result"
+            android:text="取引結果　："
+            style="@style/StyleTransactionDetail"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/label_trans_type"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:text="@{Converters.transResultToString(slipData.transResult)}"
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/barrier_history_trans_detail"
+            app:layout_constraintTop_toTopOf="@id/label_trans_result"/>
+
+        <TextView
+            android:id="@+id/label_trans_date"
+            android:text="取引日時　："
+            style="@style/StyleTransactionDetail"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/label_trans_result"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:text="@{slipData.transDate}"
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/barrier_history_trans_detail"
+            app:layout_constraintTop_toTopOf="@id/label_trans_date"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isCredit ? View.VISIBLE : View.GONE}"
+            app:constraint_referenced_ids="label_card_company, value_card_company" />
+
+        <TextView
+            android:id="@+id/label_card_company"
+            android:text="カード会社："
+            style="@style/StyleTransactionDetail"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/label_trans_date"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/value_card_company"
+            android:text="@{slipData.cardCompany}"
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/barrier_history_trans_detail"
+            app:layout_constraintTop_toTopOf="@id/label_card_company"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isQr || viewModel.isCash || viewModel.isPostalOrder || viewModel.isWatari ? View.GONE : View.VISIBLE}"
+            app:constraint_referenced_ids="label_card_num, value_card_num" />
+
+        <TextView
+            android:id="@+id/label_card_num"
+            android:text="カード番号："
+            style="@style/StyleTransactionDetail"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/label_card_company"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/value_card_num"
+            android:text="@{slipData.cardIdMerchant}"
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/barrier_history_trans_detail"
+            app:layout_constraintTop_toTopOf="@id/label_card_num"/>
+
+        <TextView
+            android:id="@+id/label_trans_amount"
+            android:text="取引金額　："
+            style="@style/StyleTransactionDetail"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/label_card_num"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/value_trans_amount"
+            android:text="@{Converters.integerToNumberFormat(slipData.transAmount)}"
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/barrier_history_trans_detail"
+            app:layout_constraintTop_toTopOf="@id/label_trans_amount"/>
+
+        <TextView
+            android:text="円"
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/value_trans_amount"
+            app:layout_constraintTop_toTopOf="@id/value_trans_amount"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{!viewModel.isWatari ? View.GONE : View.VISIBLE}"
+            app:constraint_referenced_ids="label_add_point, value_add_point" />
+
+        <TextView
+            android:id="@+id/label_add_point"
+            android:text="ポイント数："
+            style="@style/StyleTransactionDetail"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/label_trans_amount"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/value_add_point"
+            android:text="@{Converters.integerToNumberFormat(slipData.watariPoint)}"
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/barrier_history_trans_detail"
+            app:layout_constraintTop_toTopOf="@id/label_add_point"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.hasBalance ? View.VISIBLE : View.GONE}"
+            app:constraint_referenced_ids="label_balance, value_trans_detail_balance" />
+
+        <TextView
+            android:id="@+id/label_balance"
+            android:text='@{viewModel.isUnFinished ? "取引前残高：" : "取引後残高："}'
+            style="@style/StyleTransactionDetail"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/label_trans_amount"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/value_trans_detail_balance"
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/barrier_history_trans_detail"
+            app:layout_constraintTop_toTopOf="@id/label_balance"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{slipData.transCashTogetherAmount != 0 ? View.VISIBLE : View.GONE}"
+            app:constraint_referenced_ids="label_cash_together_amount, value_cash_together_amount" />
+
+        <TextView
+            android:id="@+id/label_cash_together_amount"
+            android:text="現金併用額："
+            style="@style/StyleTransactionDetail"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/label_balance"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/value_cash_together_amount"
+            style="@style/StyleTransactionDetail"
+            app:layout_constraintStart_toEndOf="@id/barrier_history_trans_detail"
+            app:layout_constraintTop_toTopOf="@id/label_cash_together_amount"/>
+
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{!viewModel.isManual ? View.GONE : View.VISIBLE}"
+            app:constraint_referenced_ids="label_is_manual" />
+
+        <TextView
+            android:id="@+id/label_is_manual"
+            android:text="手動決済"
+            style="@style/StyleTransactionDetail"
+            android:textColor="@color/red"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toBottomOf="@id/label_cash_together_amount"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_history_trans_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="label_term_seq, label_money_brand, label_code_brand, label_trans_type, label_trans_result, label_trans_date, label_card_company, label_card_num, label_trans_amount, label_balance, label_cash_together_amount" />
+
+        <Button
+            android:id="@+id/btn_history_transaction_detail_receipt_issue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:visibility="@{viewModel.isVisibility ? View.VISIBLE : View.GONE}"
+            android:onClick="@{v -> handlers.onReceiptIssueClick(v, slipData.id, slipData.transactionTerminalType)}"
+            android:text="領収書発行"
+            app:layout_constraintStart_toStartOf="@+id/btn_history_transaction_detail_cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btn_history_transaction_detail_reprinting"
+            app:layout_constraintBottom_toTopOf="@+id/btn_history_transaction_detail_cancel"
+            />
+
+        <Button
+            android:id="@+id/btn_history_transaction_detail_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="取消"
+            android:layout_margin="@dimen/common_margin"
+            android:layout_gravity="center"
+            android:enabled="@{viewModel.cancelable}"
+            android:onClick="@{v -> handlers.onCancelClick(v, slipData.transBrand, slipData.id, slipData.transactionTerminalType, slipData.purchasedTicketDealId, sharedViewModel, slipData.transType, slipData.transTypeCode)}"
+            android:backgroundTint="@drawable/btn_common_cancel_state_list"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_history_transaction_detail_reprinting"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"/>
+
+        <Button
+            android:id="@+id/btn_history_transaction_detail_reprinting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="再印刷"
+            android:layout_margin="@dimen/common_margin"
+            android:layout_gravity="center"
+            android:enabled="@{viewModel.isSuccess}"
+            android:onClick="@{view -> handlers.onRePrintingClick(view, slipData.id, slipData.transBrand, slipData.transType, slipData.transactionTerminalType)}"
+            app:layout_constraintStart_toEndOf="@id/btn_history_transaction_detail_cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+<!--         <Button-->
+<!--           android:id="@+id/btn_history_transaction_detail_recovery"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_margin="@dimen/common_margin"-->
+<!--            android:layout_weight="1"-->
+<!--            android:onClick="@{view -> handlers.onRecoveryClick(view, slipData.transBrand, slipData.id, slipData.transType)}"-->
+<!--            android:text="リカバリ"-->
+<!--            android:visibility='@{viewModel.unfinished ? View.VISIBLE : View.GONE}' />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    android:id="@+id/fragment_driver_code"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="androidx.lifecycle.MutableLiveData" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <import type="jp.mcapps.android.multi_payment_terminal.data.TransactionResults" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+        <variable
+            name="message"
+            type="androidx.lifecycle.MutableLiveData&lt;String&gt;" />
+        <variable
+            name="result"
+            type="MutableLiveData&lt;TransactionResults&gt;" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="460dp">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:tag="反転"
+                android:background="@null"
+                android:src="@drawable/ic_baseline_crop_rotate_36"
+                android:onClick="@{() -> sharedViewModel.inverseScreen()}"
+                android:layout_margin="@dimen/common_margin" />
+
+            <!-- 決済成功時 -->
+            <ImageView
+                android:visibility='@{result == TransactionResults.SUCCESS ? View.VISIBLE : View.GONE}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_check_circle_outline_180"
+                android:rotation='@{sharedViewModel.isScreenInversion ? 180 : 0}' />
+
+            <!-- 決済エラー時 -->
+            <ImageView
+                android:visibility='@{result == TransactionResults.FAILURE ? View.VISIBLE : View.GONE}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_error_outline_180"
+                android:rotation='@{sharedViewModel.isScreenInversion ? 180 : 0}' />
+
+            <ImageView
+                android:visibility='@{result == TransactionResults.UNKNOWN ? View.VISIBLE : View.GONE}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_help_outline_180"
+                android:rotation='@{sharedViewModel.isScreenInversion ? 180 : 0}' />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rotation='@{sharedViewModel.isScreenInversion ? 180 : 0}'
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_margin"
+                android:layout_marginRight="@dimen/common_margin"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin"
+                android:background="@drawable/stroke_gray"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text='@{message}'
+                    android:minLines="3"
+                    android:maxLines="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

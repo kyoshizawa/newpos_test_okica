@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- //ADD-S BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.AppPreference" />
+        <import type="jp.mcapps.android.multi_payment_terminal.data.BusinessType" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEventHandlers" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- アイコン付きボタン -->
+        <Button
+            android:id="@+id/btn_menu_prepaid_buy"
+            android:tag="プリペイド発売"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_prepaid_pay"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_prepaid_reversal"
+            style="@style/StyleOtherIconButton"/>
+
+        <!--android:onClick="@{v -> handlers.navigateToEmoneySuicaPrestageProcess(v, BusinessType.PAYMENT, sharedViewModel)}" -->
+
+        <Button
+            android:id="@+id/btn_menu_prepaid_pay"
+            android:tag="プリペイド支払"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_prepaid_buy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_prepaid_charge"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_prepaid_reversal"
+            android:tag="プリペイド取消"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_prepaid_buy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_prepaid_charge"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_prepaid_pointcharge"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_prepaid_charge"
+            android:tag="プリペイドチャージ"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_prepaid_pay"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_prepaid_reversal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_prepaid_pointcharge"
+            style="@style/StyleOtherIconButton"/>
+
+
+        <Button
+            android:id="@+id/btn_menu_prepaid_chargecancel"
+            android:tag="プリペイドチャージ取消"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_prepaid_charge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_prepaid_pointcharge"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_prepaid_pointcancel"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_prepaid_pointcharge"
+            android:tag="プリペイドポイントチャージ"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_prepaid_charge"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_prepaid_chargecancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_prepaid_pointcancel"
+            style="@style/StyleOtherIconButton"/>
+
+
+        <Button
+            android:id="@+id/btn_menu_prepaid_pointadd"
+            android:tag="プリペイドポイント付与"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_prepaid_pointcharge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_prepaid_pointcancel"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_prepaid_next"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_prepaid_pointcancel"
+            android:tag="プリペイドポイント取消"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_prepaid_pointcharge"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_prepaid_pointadd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_prepaid_next"
+            style="@style/StyleOtherIconButton"/>
+
+        <!-- ダミー -->
+        <Button
+            android:id="@+id/btn_menu_prepaid_next"
+            style="@style/StyleOtherButton"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.555"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_prepaid_pointcancel" />
+
+
+        <!-- プリペイド発売用 -->
+        <TextView
+            android:id="@+id/text_menu_prepaid_buy"
+            android:text="プリペイド発売"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_prepaid_buy"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_buy"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_buy"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_prepaid_buy"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_prepaid_buy"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_prepaid_buy"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_buy"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_buy"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_prepaid_buy"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- プリペイド支払用 -->
+        <TextView
+            android:id="@+id/text_menu_prepaid_pay"
+            android:text="プリペイド支払"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_prepaid_pay"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_pay"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_pay"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_prepaid_pay"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_prepaid_pay"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_prepaid_pay"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_pay"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_pay"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_prepaid_pay"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- プリペイド取消用 -->
+        <TextView
+            android:id="@+id/text_menu_prepaid_reversal"
+            android:text="プリペイド取消"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_prepaid_reversal"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_reversal"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_reversal"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_prepaid_reversal"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_prepaid_reversal"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_prepaid_reversal"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_reversal"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_reversal"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_prepaid_reversal"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- プリペイドチャージ用 -->
+        <TextView
+            android:id="@+id/text_menu_prepaid_charge"
+            android:text="プリペイドチャージ"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_prepaid_charge"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_charge"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_charge"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_prepaid_charge"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_prepaid_charge"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_prepaid_charge"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_charge"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_charge"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_prepaid_charge"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- プリペイドチャージ取消用 -->
+        <TextView
+            android:id="@+id/text_menu_prepaid_chargecancel"
+            android:text="チャージ取消"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_prepaid_chargecancel"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_chargecancel"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_chargecancel"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_prepaid_chargecancel"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_prepaid_chargecancel"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_prepaid_chargecancel"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_chargecancel"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_chargecancel"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_prepaid_chargecancel"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- プリペイドポイントチャージ用 -->
+        <TextView
+            android:id="@+id/text_menu_prepaid_pointcharge"
+            android:text="ポイントチャージ"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_prepaid_pointcharge"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_pointcharge"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_pointcharge"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_prepaid_pointcharge"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_prepaid_pointcharge"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_prepaid_pointcharge"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_pointcharge"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_pointcharge"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_prepaid_pointcharge"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- プリペイドポイント付与用 -->
+        <TextView
+            android:id="@+id/text_menu_prepaid_pointadd"
+            android:text="ポイント付与"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_prepaid_pointadd"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_pointadd"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_pointadd"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_prepaid_pointadd"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+
+        <ImageView
+            android:id="@+id/img_menu_prepaid_pointadd"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_prepaid_pointadd"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_pointadd"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_pointadd"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_prepaid_pointadd"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- プリペイドポイント取消用 -->
+        <TextView
+            android:id="@+id/text_menu_prepaid_pointcancel"
+            android:text="ポイント取消"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_prepaid_pointcancel"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_pointcancel"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_pointcancel"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_prepaid_pointcancel"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+
+        <ImageView
+            android:id="@+id/img_menu_prepaid_pointcancel"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_prepaid_pointcancel"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_prepaid_pointcancel"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_prepaid_pointcancel"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_prepaid_pointcancel"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+<!-- //ADD-E BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->

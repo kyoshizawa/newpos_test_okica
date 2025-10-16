@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_type_option_service_5001">5001</string>
+    <string name="error_message_option_service_5001">オプションサービス通信エラー</string>
+    <string name="error_detail_option_service_5001">詳細コード：400\nオプションサービスの通信でエラーが発生しました。\n管理者に連絡してください。</string>
+
+    <string name="error_type_option_service_5002">5002</string>
+    <string name="error_message_option_service_5002">オプションサービス通信エラー</string>
+    <string name="error_detail_option_service_5002">詳細コード：401\nオプションサービスの通信でエラーが発生しました。\n管理者に連絡してください。</string>
+
+    <string name="error_type_option_service_5003">5003</string>
+    <string name="error_message_option_service_5003">オプションサービス通信エラー</string>
+    <string name="error_detail_option_service_5003">詳細コード：403\nオプションサービスの通信でエラーが発生しました。\n管理者に連絡してください。</string>
+
+    <string name="error_type_option_service_5004">5004</string>
+    <string name="error_message_option_service_5004">オプションサービス通信エラー</string>
+    <string name="error_detail_option_service_5004">詳細コード：404\nオプションサービスの通信でエラーが発生しました。\n管理者に連絡してください。</string>
+
+    <string name="error_type_option_service_5005">5005</string>
+    <string name="error_message_option_service_5005">オプションサービス通信エラー</string>
+    <string name="error_detail_option_service_5005">詳細コード：500\nオプションサービスの通信でエラーが発生しました。\n管理者に連絡してください。</string>
+
+    <string name="error_type_option_service_5020">5020</string>
+    <string name="error_message_option_service_5020">オプションサービス通信エラー</string>
+    <string name="error_detail_option_service_5020">詳細コード：A5098\nオプションサービスの通信でエラーが発生しました。\n管理者に連絡してください。</string>
+
+    <string name="error_type_option_service_5021">5021</string>
+    <string name="error_message_option_service_5021">オプションサービス通信エラー</string>
+    <string name="error_detail_option_service_5021">詳細コード：A5099\nオプションサービスの通信でエラーが発生しました。\n管理者に連絡してください。</string>
+
+    <string name="error_type_option_service_5099">5099</string>
+    <string name="error_message_option_service_5099">オプションサービス通信エラー</string>
+    <string name="error_detail_option_service_5099">詳細コード：%s\nオプションサービスの通信でエラーが発生しました。\n管理者に連絡してください。</string>
+
+    <string name="error_type_option_service_5101">5101</string>
+    <string name="error_message_option_service_5101">読み込み待ちタイムアウト</string>
+    <string name="error_detail_option_service_5101">タイムアウトする前にカードを読み込ませてください。</string>
+
+    <string name="error_type_option_service_5102">5102</string>
+    <string name="error_message_option_service_5102">カード判定失敗</string>
+    <string name="error_detail_option_service_5102">詳細コード：0001\nカードの判定に失敗しました。\nこのカードはお取扱いできません。</string>
+
+    <string name="error_type_option_service_5103">5103</string>
+    <string name="error_message_option_service_5103">未登録カード</string>
+    <string name="error_detail_option_service_5103">詳細コード：0002\n登録されていないカードです。\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_option_service_5109">5109</string>
+    <string name="error_message_option_service_5109">有効性確認エラー</string>
+    <string name="error_detail_option_service_5109">詳細コード：%s\nご利用頂けないカードです\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_option_service_5901">5901</string>
+    <string name="error_message_option_service_5901">読み込み待ちタイムアウト</string>
+    <string name="error_detail_option_service_5901">タイムアウトする前にカードを読み込ませてください。</string>
+
+    <string name="error_type_option_service_5902">5902</string>
+    <string name="error_message_option_service_5902">カード利用失敗</string>
+    <string name="error_detail_option_service_5902">カード利用が拒否されました。\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_option_service_5903">5903</string>
+    <string name="error_message_option_service_5903">利用不可検知</string>
+    <string name="error_detail_option_service_5903">もう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_option_service_5990">5990</string>
+    <string name="error_message_option_service_5990">金額エラー</string>
+    <string name="error_detail_option_service_5990">999,999円以下で指定してください。</string>
+
+    <string name="error_type_option_service_5991">5991</string>
+    <string name="error_message_option_service_5991">2重付与確認</string>
+    <string name="error_detail_option_service_5991">直前に同一金額のポイント付与を行っています。\n2重付与でないことを確認してから付与を行ってください。</string>
+
+    <string name="error_type_option_service_5992">5992</string>
+    <string name="error_message_option_service_5992">通信エラー</string>
+    <string name="error_detail_option_service_5992">もう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_option_service_5993">5993</string>
+    <string name="error_message_option_service_5993">ポイント操作失敗</string>
+    <string name="error_detail_option_service_5993">もう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string-array name="error_option_service_5001">
+        <item>@string/error_type_option_service_5001</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5001</item>
+        <item>@string/error_detail_option_service_5001</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5002">
+        <item>@string/error_type_option_service_5002</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5002</item>
+        <item>@string/error_detail_option_service_5002</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5003">
+        <item>@string/error_type_option_service_5003</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5003</item>
+        <item>@string/error_detail_option_service_5003</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5004">
+        <item>@string/error_type_option_service_5004</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5004</item>
+        <item>@string/error_detail_option_service_5004</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5005">
+        <item>@string/error_type_option_service_5005</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5005</item>
+        <item>@string/error_detail_option_service_5005</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5020">
+        <item>@string/error_type_option_service_5020</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5020</item>
+        <item>@string/error_detail_option_service_5020</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5021">
+        <item>@string/error_type_option_service_5021</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5021</item>
+        <item>@string/error_detail_option_service_5021</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5099">
+        <item>@string/error_type_option_service_5099</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5099</item>
+        <item>@string/error_detail_option_service_5099</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5101">
+        <item>@string/error_type_option_service_5101</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5101</item>
+        <item>@string/error_detail_option_service_5101</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5102">
+        <item>@string/error_type_option_service_5102</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5102</item>
+        <item>@string/error_detail_option_service_5102</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5103">
+        <item>@string/error_type_option_service_5103</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5103</item>
+        <item>@string/error_detail_option_service_5103</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5109">
+        <item>@string/error_type_option_service_5109</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5109</item>
+        <item>@string/error_detail_option_service_5109</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5901">
+        <item>@string/error_type_option_service_5901</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5901</item>
+        <item>@string/error_detail_option_service_5901</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5902">
+        <item>@string/error_type_option_service_5902</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5902</item>
+        <item>@string/error_detail_option_service_5902</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5903">
+        <item>@string/error_type_option_service_5903</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5903</item>
+        <item>@string/error_detail_option_service_5903</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5990">
+        <item>@string/error_type_option_service_5990</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5990</item>
+        <item>@string/error_detail_option_service_5990</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5991">
+        <item>@string/error_type_option_service_5991</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5991</item>
+        <item>@string/error_detail_option_service_5991</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5992">
+        <item>@string/error_type_option_service_5992</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5992</item>
+        <item>@string/error_detail_option_service_5992</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_option_service_5993">
+        <item>@string/error_type_option_service_5993</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_option_service_5993</item>
+        <item>@string/error_detail_option_service_5993</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    android:id="@+id/container_main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+        <variable
+            name="mode"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel.ScreenMode" />
+    </data>
+
+    <FrameLayout
+        android:background="@color/bg_primary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/app_main_bar"
+                layout="@layout/app_bar_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                bind:sharedViewModel='@{viewModel}'/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_main_nav_host"
+                    android:name="androidx.navigation.fragment.NavHostFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:defaultNavHost="true"
+                    app:navGraph="@navigation/main_navigation" />
+            </ScrollView>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/loading"
+            android:visibility='@{viewModel.isLoading ? View.VISIBLE : View.GONE}'
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#AE000000">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+    </FrameLayout>
+</layout>

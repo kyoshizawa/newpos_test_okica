@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.data.BusinessType" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuViewModel" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEventHandlers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- アイコン付きボタン -->
+
+        <Button
+            android:id="@+id/btn_menu_other_validation"
+            android:tag="@string/btn_other_validation"
+            style="@style/StyleOtherIconButton"
+            android:onClick='@{handlers::navigateToValidationCheck}'
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_other_fixed_amount_postal_order"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_other_watari"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_menu_other_watari"
+            android:tag="@string/btn_other_watari"
+            style="@style/StyleOtherIconButton"
+            android:onClick='@{view -> handlers.navigateToWatari(view, BusinessType.POINT_ADD, sharedViewModel)}'
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_other_validation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_other_prepaid" />
+
+        <Button
+            android:id="@+id/btn_menu_other_fixed_amount_postal_order"
+            android:tag="@string/btn_other_fixed_amount_postal_order"
+            android:onClick='@{view -> handlers.navigateToCashInput(view, sharedViewModel, @id/action_navigation_others_to_fragment_cash_input)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_other_validation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_other_prepaid"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_other_discount"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_other_prepaid"
+            android:tag="@string/btn_other_prepaid"
+            android:text="@string/btn_other_prepaid"
+            android:textSize="24sp"
+            android:onClick="@{view -> handlers.navigateToPrepaidApp(view)}"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_other_watari"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_other_fixed_amount_postal_order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_other_empty2"
+            style="@style/StyleOtherIconButton"/>
+
+        <!-- android:onClick='@{view -> handlers.navigateMenu(view, @id/action_navigation_menu_others_to_navigation_menu_separation)}' -->
+
+        <Button
+            android:id="@+id/btn_menu_other_discount"
+            android:tag="割引"
+            android:text="割引"
+            android:textSize="24sp"
+            android:onClick='@{view -> handlers.navigateToDiscountMenu(view)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_other_fixed_amount_postal_order"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_other_empty2"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_other_next"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_other_empty2"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_other_prepaid"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_other_discount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_other_next"
+            android:enabled="false"
+            style="@style/StyleOtherIconButton"/>
+
+        <!-- アイコンなしボタン（6機能以上に増えたとき用のボタン） -->
+        <Button
+            android:id="@+id/btn_menu_other_next"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_other_empty2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/StyleOtherButton"
+            android:visibility="invisible"/>
+
+        <!-- 有効性確認ボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_other_validation"
+            android:text="@string/btn_other_validation"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_other_validation"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_other_validation"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_other_validation"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_other_validation"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_other_validation"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_other_validation"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_other_validation"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_other_validation"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_other_validation"
+            android:src="@drawable/ic_other_validation"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- ポイントボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_other_watari"
+            android:text="@string/btn_other_watari"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_other_watari"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_other_watari"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_other_watari"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_other_watari"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_other_watari"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_other_watari"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_other_watari"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_other_watari"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_other_watari"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- 郵便小為替 -->
+        <TextView
+            android:id="@+id/text_menu_other_fixed_amount_postal_order"
+            android:text="@string/btn_other_fixed_amount_postal_order"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_other_fixed_amount_postal_order"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_other_fixed_amount_postal_order"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_other_fixed_amount_postal_order"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_other_fixed_amount_postal_order"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_other_fixed_amount_postal_order"
+            style="@style/StyleOtherIconButtonImage"
+            android:src="@drawable/ic_other_postal_money"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_other_fixed_amount_postal_order"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_other_fixed_amount_postal_order"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_other_fixed_amount_postal_order"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_other_fixed_amount_postal_order"
+            tools:ignore="ContentDescription" />
+
+        <!-- プリペイドボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_other_prepaid"
+            android:text=""
+            app:layout_constraintTop_toTopOf="@id/btn_menu_other_prepaid"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_other_prepaid"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_other_prepaid"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_other_prepaid"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_other_prepaid"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_other_prepaid"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_other_prepaid"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_other_prepaid"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_other_prepaid"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription"
+            android:visibility="invisible"
+            />
+
+        <!-- 割引 -->
+        <TextView
+            android:id="@+id/text_menu_other_discount"
+            android:text=""
+            app:layout_constraintTop_toTopOf="@id/btn_menu_other_discount"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_other_discount"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_other_discount"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_other_discount"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_other_discount"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_other_discount"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_other_discount"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_other_discount"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_other_discount"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription"
+            android:visibility="invisible"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,1211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@+id/navigation_driver_code">
+
+    <fragment
+        android:id="@+id/navigation_menu"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuFragment"
+        tools:layout="@layout/fragment_menu" >
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <argument
+            android:name="brand"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_info"
+            app:destination="@id/navigation_info" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_history_radio_for_user"
+            app:destination="@id/navigation_history_radio_for_user" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_history_transaction"
+            app:destination="@id/navigation_history_transaction" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_settings"
+            app:destination="@id/navigation_settings" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_history_operation"
+            app:destination="@id/navigation_history_operation" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_driver_code"
+            app:destination="@id/navigation_driver_code"
+            app:popUpTo="@id/navigation_driver_code"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_history_transaction_detail"
+            app:destination="@id/navigation_history_transaction_detail" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_aggregate"
+            app:destination="@id/navigation_aggregate" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_device_check"
+            app:destination="@id/navigation_device_check" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_history_error"
+            app:destination="@id/navigation_history_error" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_amount_input"
+            app:destination="@id/navigation_amount_input" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_credit_card_scan"
+            app:destination="@id/navigation_credit_card_scan" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_suica"
+            app:destination="@id/navigation_emoney_suica" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_id"
+            app:destination="@id/navigation_emoney_id" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_waon"
+            app:destination="@id/navigation_emoney_waon" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_edy"
+            app:destination="@id/navigation_emoney_edy" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_quicpay"
+            app:destination="@id/navigation_emoney_quicpay" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_nanaco"
+            app:destination="@id/navigation_emoney_nanaco" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_okica"
+            app:destination="@id/navigation_emoney_okica" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_installation_and_removal"
+            app:destination="@id/navigation_installation_and_removal" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_qr_payment"
+            app:destination="@id/navigation_qr_payment" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_history_aggregate"
+            app:destination="@id/navigation_history_aggregate" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_car_id"
+            app:destination="@id/navigation_car_id" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_update"
+            app:destination="@id/navigation_update" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_history_validation_check"
+            app:destination="@id/navigation_history_validation_check" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_validation_check"
+            app:destination="@id/navigation_validation_check" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_watari"
+            app:destination="@id/navigation_watari" />
+        <action
+            android:id="@+id/action_navigation_others_to_fragment_cash_input"
+            app:destination="@id/fragment_cash_input" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_amount_input_lt27"
+            app:destination="@id/navigation_amount_input_lt27" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_charge_amount_input"
+            app:destination="@id/navigation_charge_amount_input" />
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_cart_confirm"
+            app:destination="@id/cartConfirmFragment" />
+        <!--<action
+            android:id="@+id/action_navigation_menu_to_navigation_product_select"
+            app:destination="@id/navigation_product_select" />-->
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_cash_input"
+            app:destination="@id/fragment_cash_input" />
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_ticket_search"
+            app:destination="@id/ticketSearchFragment" />
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_ticket_gate_settings"
+            app:destination="@id/ticketGateSettingsFragment" />
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_ticket_issue"
+            app:destination="@id/ticketIssueFragment"
+            app:popUpTo="@id/navigation_menu" />
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_cash_changer_payment"
+            app:destination="@id/fragment_cash_changer_payment" />
+        <action
+            android:id="@+id/action_navigation_menu_to_external_device"
+            app:destination="@id/external_device" />
+
+        <!-- //ADD-S BMT S.Oyama 2024/09/03 フタバ双方向向け改修-->
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_amount_input_advancepay_fd"
+            app:destination="@id/navigation_amount_input_advancepay_fd" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_amount_input_separationpay_fd"
+            app:destination="@id/navigation_amount_input_separationpay_fd" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_discount_fd"
+            app:destination="@id/navigation_discount_fd" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_discountjob_fd"
+            app:destination="@id/navigation_discountjob_fd" />
+
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_suica"
+            app:destination="@id/navigation_emoney_suica_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_id"
+            app:destination="@id/navigation_emoney_id_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_waon"
+            app:destination="@id/navigation_emoney_waon_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_edy"
+            app:destination="@id/navigation_emoney_edy_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_quicpay"
+            app:destination="@id/navigation_emoney_quicpay_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_nanaco"
+            app:destination="@id/navigation_emoney_nanaco_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_okica"
+            app:destination="@id/navigation_emoney_okica_separationpay" />
+
+        <!-- //ADD-S BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
+        <action
+            android:id="@+id/action_navigation_menu_business_to_auto_daily_report"
+            app:destination="@id/navigation_menu_auto_daily_report"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+        <!--
+        <action
+            android:id="@+id/action_navigation_menu_auto_daily_report_to_navigation_auto_daily_report_fuel"
+            app:destination="@id/navigation_auto_daily_report_fuel" />
+        -->
+        <!-- //ADD-E BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
+
+        <!--
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_credit_card_scan"
+            app:destination="@id/navigation_credit_card_scan_separationpay" />
+        -->
+        <!-- //ADD-E BMT S.Oyama 2024/09/03 フタバ双方向向け改修-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_info"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.info.InfoFragment"
+        tools:layout="@layout/fragment_info" >
+        <action
+            android:id="@+id/action_navigation_info_to_developer_menu_navigation"
+            app:destination="@id/developer_menu_navigation"
+            app:popUpTo="@+id/navigation_redirect_to_menu" />
+        <action
+            android:id="@+id/action_navigation_info_to_navigation_history_transaction"
+            app:destination="@id/navigation_history_transaction" />
+    </fragment>
+
+    <navigation
+        android:id="@+id/developer_menu_navigation"
+        app:startDestination="@+id/navigation_developer_menu">
+
+        <fragment
+            android:id="@+id/navigation_developer_menu"
+            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperMenuFragment"
+            tools:layout="@layout/fragment_developer_menu" >
+            <action
+                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_realtime_gps"
+                app:destination="@id/navigation_developer_realtime_gps" />
+            <action
+                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_history_gps"
+                app:destination="@id/navigation_developer_history_gps" />
+            <action
+                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_realtime_radio"
+                app:destination="@id/navigation_developer_realtime_radio" />
+            <action
+                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_history_radio"
+                app:destination="@id/navigation_developer_history_radio" />
+            <action
+                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_add_dummy_transaction"
+                app:destination="@id/navigation_developer_add_dummy_transaction" />
+            <action
+                android:id="@+id/action_navigation_developer_menu_to_navigation_developer_add_dummy_driver"
+                app:destination="@id/navigation_developer_add_dummy_driver" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/navigation_developer_realtime_gps"
+            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperRealtimeGpsFragment"
+            tools:layout="@layout/fragment_developer_realtime_gps" >
+        </fragment>
+
+        <fragment
+            android:id="@+id/navigation_developer_history_gps"
+            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperHistoryGpsFragment"
+            tools:layout="@layout/fragment_developer_history_gps" >
+        </fragment>
+
+        <fragment
+            android:id="@+id/navigation_developer_history_radio"
+            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperHistoryRadioFragment"
+            tools:layout="@layout/fragment_developer_history_radio" >
+        </fragment>
+
+        <fragment
+            android:id="@+id/navigation_developer_realtime_radio"
+            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperRealtimeRadioFragment"
+            tools:layout="@layout/fragment_developer_realtime_radio" >
+        </fragment>
+
+        <fragment
+            android:id="@+id/navigation_developer_add_dummy_transaction"
+            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperAddDummyTransactionFragment"
+            tools:layout="@layout/fragment_developer_add_dummy_transaction" >
+        </fragment>
+
+        <fragment
+            android:id="@+id/navigation_developer_add_dummy_driver"
+            android:name="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperAddDummyDriverFragment"
+            tools:layout="@layout/fragment_developer_add_dummy_driver" >
+        </fragment>
+
+    </navigation>
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.settings.SettingsFragment"/>
+
+    <fragment
+        android:id="@+id/navigation_history_radio_for_user"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryRadioForUserFragment"
+        tools:layout="@layout/fragment_history_radio_for_user" />
+
+    <fragment
+        android:id="@+id/navigation_history_transaction"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryTransactionFragment"
+        tools:layout="@layout/fragment_history_transaction" >
+        <action
+            android:id="@+id/action_navigation_history_transaction_to_navigation_history_transaction_detail"
+            app:destination="@id/navigation_history_transaction_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_product_select"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.ProductSelectFragment"
+        tools:layout="@layout/fragment_pos_product_select" >
+        <action
+            android:id="@+id/action_navigation_product_select_to_fragment_cart_manual_input"
+            app:destination="@id/fragment_cart_manual_input" />
+        <!--<action
+            android:id="@+id/action_navigation_product_select_to_posQRFragment"
+            app:destination="@id/navigation_pos_qr" />-->
+        <action
+            android:id="@+id/action_navigation_product_select_to_cartConfirmFragment"
+            app:destination="@id/cartConfirmFragment"
+            app:popUpTo="@id/cartConfirmFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_history_transaction_detail"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryTransactionDetailFragment"
+        tools:layout="@layout/fragment_history_transaction_detail" >
+        <argument
+            android:name="SLIP_ID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_suica"
+            app:destination="@id/navigation_emoney_suica" />
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_id"
+            app:destination="@id/navigation_emoney_id" />
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_waon"
+            app:destination="@id/navigation_emoney_waon" />
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_edy"
+            app:destination="@id/navigation_emoney_edy" />
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_credit"
+            app:destination="@id/navigation_credit_card_scan" />
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_quicpay"
+            app:destination="@id/navigation_emoney_quicpay" />
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_nanaco"
+            app:destination="@id/navigation_emoney_nanaco" />
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_okica"
+            app:destination="@id/navigation_emoney_okica" />
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_qr_refund"
+            app:destination="@id/navigation_qr_refund" />
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_history_receipt_issue"
+            app:destination="@id/navigation_history_receipt_issue" />
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_fragment_cash_confirm"
+            app:destination="@id/fragment_cash_confirm" />
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_watari"
+            app:destination="@id/navigation_watari"/>
+        <action
+            android:id="@+id/action_navigation_history_transaction_detail_to_fragment_cash_changer_payment"
+            app:destination="@id/fragment_cash_changer_payment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_history_receipt_issue"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryReceiptIssueFragment"
+        tools:layout="@layout/fragment_receipt_issue">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_history_operation"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryOperationFragment"
+        tools:layout="@layout/fragment_history_operation" />
+
+    <fragment
+        android:id="@+id/navigation_driver_code"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.driver_code.DriverCodeFragment"
+        tools:layout="@layout/fragment_driver_code" >
+        <action
+            android:id="@+id/action_navigation_driver_code_to_navigation_redirect_to_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_aggregate"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.aggregate.AggregateFragment"
+        tools:layout="@layout/fragment_aggregate" />
+
+    <fragment
+        android:id="@+id/navigation_device_check"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.device_check.DeviceCheckFragment"
+        tools:layout="@layout/fragment_device_check" />
+
+    <fragment
+        android:id="@+id/navigation_installation_and_removal"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.installation_and_removal.InstallationAndRemovalFragment"
+        tools:layout="@layout/fragment_installation_and_removal" >
+        <argument
+            android:name="showSuccessDialog"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_navigation_installation_and_removal_to_navigation_car_id"
+            app:destination="@id/navigation_car_id" />
+        <action
+            android:id="@+id/action_navigation_installation_and_removal_to_navigation_ifbox_setup"
+            app:destination="@id/navigation_ifbox_setup" />
+        <action
+            android:id="@+id/action_navigation_installation_and_removal_to_navigation_tablet_link_setup"
+            app:destination="@id/navigation_tablet_link_setup" />
+        <action
+            android:id="@+id/action_navigation_installation_and_removal_to_navigation_installation_okica"
+            app:destination="@id/navigation_installation_okica" />
+        <action
+            android:id="@+id/action_navigation_installation_and_removal_to_navigation_pos_activation"
+            app:destination="@id/navigation_pos_activation" />
+        <action
+            android:id="@+id/action_navigation_installation_and_removal_to_navigation_ticket_activation"
+            app:destination="@id/navigation_ticket_activation" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_pos_activation"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos_activation.PosActivationFragment"
+        tools:layout="@layout/fragment_pos_activation"/>
+
+    <fragment
+        android:id="@+id/navigation_ticket_activation"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.ticket_activation.TicketActivationFragment"
+        tools:layout="@layout/fragment_ticket_activation"/>
+
+    <fragment
+        android:id="@+id/navigation_installation_okica"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.installation_and_removal.InstallationOkicaFragment"
+        tools:layout="@layout/fragment_installation_okica" />
+
+    <fragment
+        android:id="@+id/navigation_history_error"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryErrorFragment"
+        tools:layout="@layout/fragment_history_error" />
+
+    <fragment
+        android:id="@+id/navigation_amount_input"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputFragment"
+        tools:layout="@layout/fragment_amount_input" >
+        <action
+            android:id="@+id/action_navigation_amount_input_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_credit_card_scan"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.credit_card.CreditCardScanFragment"
+        tools:layout="@layout/fragment_credit_card_scan" >
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_credit_card_scan_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_suica"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.suica.EMoneySuicaFragment"
+        tools:layout="@layout/fragment_emoney_suica">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_suica_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_id"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.id.EMoneyIdFragment"
+        tools:layout="@layout/fragment_emoney_id">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_id_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_waon"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.waon.EMoneyWaonFragment"
+        tools:layout="@layout/fragment_emoney_waon">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_waon_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_edy"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.edy.EMoneyEdyFragment"
+        tools:layout="@layout/fragment_emoney_edy">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_edy_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_quicpay"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.quicpay.EMoneyQuicPayFragment"
+        tools:layout="@layout/fragment_emoney_quicpay">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_quicpay_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_nanaco"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.nanaco.EMoneyNanacoFragment"
+        tools:layout="@layout/fragment_emoney_nanaco">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_nanaco_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_qr_payment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.qr.QRPaymentFragment"
+        tools:layout="@layout/fragment_qr" >
+        <action
+            android:id="@+id/action_navigation_qr_payment_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_okica"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.EMoneyOkicaFragment"
+        tools:layout="@layout/fragment_emoney_okica">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <argument
+            android:name="amount"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_okica_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_qr_refund"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.qr.QRRefundFragment"
+        tools:layout="@layout/fragment_qr" >
+        <action
+            android:id="@+id/action_navigation_qr_refund_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_history_aggregate"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryAggregateFragment"
+        tools:layout="@layout/fragment_history_aggregate" />
+
+    <fragment
+        android:id="@+id/navigation_car_id"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.car_id.CarIdFragment"
+        tools:layout="@layout/fragment_car_id" >
+        <argument
+            android:name="destination"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_car_id_to_navigation_installation_and_removal"
+            app:destination="@id/navigation_installation_and_removal"
+            app:popUpTo="@+id/navigation_installation_and_removal"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_update"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.update.UpdateFragment"
+        tools:layout="@layout/fragment_update">
+        <action
+            android:id="@+id/action_navigation_update_to_developer_menu_navigation"
+            app:destination="@id/developer_menu_navigation"
+            app:popUpTo="@+id/navigation_redirect_to_menu" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_ifbox_setup"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.setup.IFBoxSetupFragment"
+        tools:layout="@layout/fragment_ifbox_setup" />
+
+    <fragment
+        android:id="@+id/navigation_history_validation_check"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryValidationCheckFragment"
+        tools:layout="@layout/fragment_history_validation_check" />
+
+    <fragment
+        android:id="@+id/navigation_validation_check"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.others.ValidationCheckFragment"
+        tools:layout="@layout/fragment_validation_check">
+        <action
+            android:id="@+id/action_navigation_validation_check_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_watari"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.others.WatariFragment"
+        tools:layout="@layout/fragment_watari">
+        <action
+            android:id="@+id/action_navigation_watari_to_navigation_menu"
+            app:destination="@id/navigation_menu"
+            app:popUpTo="@+id/navigation_menu" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_tablet_link_setup"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.setup.TabletLinkSetupFragment"
+        tools:layout="@layout/fragment_tablet_link_setup" />
+
+    <fragment
+        android:id="@+id/navigation_amount_input_lt27"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputLt27Fragment"
+        tools:layout="@layout/fragment_amount_input_lt27" >
+        <action
+            android:id="@+id/action_navigation_amount_input_lt27_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_charge_amount_input"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.amount_input.ChargeAmountInputFragment"
+        tools:layout="@layout/fragment_charge_amount_input" >
+        <action
+            android:id="@+id/action_navigation_charge_amount_input_to_navigation_emoney_okica"
+            app:destination="@id/navigation_emoney_okica"
+            app:popUpTo="@+id/navigation_charge_amount_input"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_pos_qr"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.PosQRFragment"
+        tools:layout="@layout/fragment_pos_qr">
+        <action
+            android:id="@+id/action_navigation_pos_qr_to_cart_confirm_fragment"
+            app:destination="@id/cartConfirmFragment"
+            app:popUpTo="@id/cartConfirmFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartConfirmFragment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CartConfirmFragment"
+        android:label="CartConfirmFragment"
+        tools:layout="@layout/fragment_pos_cart_confirm">
+        <action
+            android:id="@+id/action_cartConfirmFragment_to_navigation_product_select"
+            app:destination="@id/navigation_product_select" />
+        <!--<action
+            android:id="@+id/action_cartConfirmFragment_to_navigation_pos_qr"
+            app:destination="@id/navigation_pos_qr" />-->
+        <action
+            android:id="@+id/action_cartConfirmFragment_to_inputCartFragment"
+            app:destination="@id/inputCartFragment" />
+        <action
+            android:id="@+id/action_cartConfirmFragment_to_navigation_menu"
+            app:destination="@id/navigation_menu" />
+        <action
+            android:id="@+id/action_cartConfirmFragment_to_fragment_cart_manual_input"
+            app:destination="@id/fragment_cart_manual_input" />
+        <action
+            android:id="@+id/action_cartConfirmFragment_to_selectInputFragment"
+            app:destination="@id/selectInputFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inputCartFragment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.InputCartFragment"
+        android:label="InputCartFragment"
+        tools:layout="@layout/fragment_pos_cart_input">
+        <argument
+            android:name="product_id"
+            app:argType="integer" />
+        <argument
+            android:name="count"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_inputCartFragment_to_cartConfirmFragment"
+            app:destination="@id/cartConfirmFragment"
+            app:popUpTo="@id/cartConfirmFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectInputFragment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.PosSelectInputFragment"
+        android:label="SelectInputFragment">
+        <action
+            android:id="@+id/action_selectInputFragment_to_inputCartFragment"
+            app:destination="@id/inputCartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_cart_manual_input"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CartManualInputFragment"
+        android:label="cart_manual_input"
+        >
+        <action
+            android:id="@+id/action_fragment_cart_manual_input_to_cartConfirmFragment"
+            app:destination="@id/cartConfirmFragment"
+            app:popUpTo="@id/cartConfirmFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_cash_input"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CashInputFragment"
+        tools:layout="@layout/fragment_cash_input">
+        <action
+            android:id="@+id/action_fragment_cash_input_to_fragment_cash_confirm"
+            app:destination="@id/fragment_cash_confirm" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_cash_confirm"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CashConfirmFragment"
+        tools:layout="@layout/fragment_cash_confirm">
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_ticket_issue"
+            app:destination="@id/ticketIssueFragment"
+            app:popUpTo="@id/navigation_menu" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_redirect_to_menu"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.RedirectToMenuFragment">
+        <action
+            android:id="@+id/action_redirect_to_menu"
+            app:destination="@id/navigation_menu" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_cash_changer_payment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CashChangerPaymentFragment"
+        tools:layout="@layout/fragment_cash_changer_payment">
+    </fragment>
+
+    <!-- 自動つり銭機連動用 -->
+    <fragment
+        android:id="@+id/external_device"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuExternalDeviceFragment"
+        tools:layout="@layout/fragment_menu_external_device">
+        <action
+            android:id="@+id/action_navigation_menu_to_external_device_cash_changer"
+            app:destination="@id/external_device_cash_changer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/external_device_cash_changer"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuCashChangerFragment"
+        tools:layout="@layout/fragment_menu_cash_changer">
+    </fragment>
+
+    <action android:id="@+id/action_global_navigation_menu" app:destination="@id/navigation_redirect_to_menu" app:popUpTo="@id/navigation_redirect_to_menu" app:popUpToInclusive="true"/>
+    <action android:id="@+id/action_global_navigation_pos_qr" app:destination="@id/navigation_pos_qr"/>
+    <fragment
+        android:id="@+id/ticketSearchFragment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketSearchFragment"
+        tools:layout="@layout/fragment_ticket_search">
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_ticket_class"
+            app:destination="@id/ticketClassFragment" />
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_ticket_embark"
+            app:destination="@id/ticketEmbarkFragment" />
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_ticket_disembark"
+            app:destination="@id/ticketDisembarkFragment" />
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_ticket_search_results"
+            app:destination="@id/ticketSearchResultsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketClassFragment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketClassFragment"
+        tools:layout="@layout/fragment_ticket_class">
+        <action
+            android:id="@+id/action_ticketClassFragment_to_ticketSearchFragment"
+            app:destination="@id/ticketSearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketEmbarkFragment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketEmbarkFragment"
+        tools:layout="@layout/fragment_ticket_embark">
+    </fragment>
+    <fragment
+        android:id="@+id/ticketDisembarkFragment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketDisembarkFragment"
+        tools:layout="@layout/fragment_ticket_disembark">
+    </fragment>
+    <fragment
+        android:id="@+id/ticketSearchResultsFragment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketSearchResultsFragment"
+        tools:layout="@layout/fragment_ticket_search_results">
+        <action
+            android:id="@+id/action_ticketSearchResultsFragment_to_navigation_menu"
+            app:destination="@id/navigation_menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketIssueFragment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketIssueFragment"
+        tools:layout="@layout/fragment_ticket_issue">
+        <action
+            android:id="@+id/action_ticketIssueFragment_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_ticketIssueFragment_to_fragment_cash_confirm"
+            app:destination="@id/fragment_cash_confirm" />
+        <action
+            android:id="@+id/action_ticketIssueFragment_to_navigation_credit"
+            app:destination="@id/navigation_credit_card_scan" />
+        <action
+            android:id="@+id/action_ticketIssueFragment_to_navigation_qr_refund"
+            app:destination="@id/navigation_qr_refund" />
+        <action
+            android:id="@+id/action_ticketIssueFragment_to_navigation_emoney_suica"
+            app:destination="@id/navigation_emoney_suica" />
+        <action
+            android:id="@+id/action_ticketIssueFragment_to_navigation_emoney_waon"
+            app:destination="@id/navigation_emoney_waon" />
+        <action
+            android:id="@+id/action_ticketIssueFragment_to_navigation_emoney_id"
+            app:destination="@id/navigation_emoney_id" />
+        <action
+            android:id="@+id/action_ticketIssueFragment_to_navigation_emoney_quicpay"
+            app:destination="@id/navigation_emoney_quicpay" />
+        <action
+            android:id="@+id/action_ticketIssueFragment_to_navigation_emoney_okica"
+            app:destination="@id/navigation_emoney_okica" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketGateSettingsFragment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketGateSettingsFragment"
+        tools:layout="@layout/fragment_ticket_gate_settings">
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_ticket_qr_scan"
+            app:destination="@id/ticketGateQrScanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketGateQrScanFragment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketGateQrScanFragment"
+        tools:layout="@layout/fragment_ticket_gate_qr_scan">
+        <action
+            android:id="@+id/action_navigation_menu_to_fragment_ticket_qr_scan_results"
+            app:destination="@id/ticketGateQrScanResultsFragment" />
+        <action
+            android:id="@+id/action_ticketGateQrScanFragment_to_navigation_menu"
+            app:destination="@id/navigation_menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketGateQrScanResultsFragment"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketGateQrScanResultsFragment"
+        tools:layout="@layout/fragment_ticket_gate_qr_scan_results">
+        <argument
+            android:name="QrScanResults"
+            app:argType="jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketGateQrScanResults"/>
+    </fragment>
+
+    <!-- //ADD-S BMT S.Oyama 2024/09/03 フタバ双方向向け改修-->
+    <fragment
+        android:id="@+id/navigation_amount_input_advancepay_fd"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputAdvancePayFDFragment"
+        tools:layout="@layout/fragment_amount_input_advancepay_fd">
+        <action
+            android:id="@+id/action_navigation_amount_input_advancepay_fd_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_amount_input_separationpay_fd"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDFragment"
+        tools:layout="@layout/fragment_amount_input_separationpay_fd">
+        <action
+            android:id="@+id/action_navigation_amount_input_separationpay_fd_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_suica"
+            app:destination="@id/navigation_emoney_suica_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_id"
+            app:destination="@id/navigation_emoney_id_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_waon"
+            app:destination="@id/navigation_emoney_waon_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_edy"
+            app:destination="@id/navigation_emoney_edy_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_quicpay"
+            app:destination="@id/navigation_emoney_quicpay_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_nanaco"
+            app:destination="@id/navigation_emoney_nanaco_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_okica"
+            app:destination="@id/navigation_emoney_okica_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_credit_card_scan"
+            app:destination="@id/navigation_credit_card_scan_separationpay" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_qr"
+            app:destination="@id/navigation_qr_payment" />
+        <action
+            android:id="@+id/action_navigation_separationpay_to_navigation_menu_separation_with_ticket"
+            app:destination="@id/navigation_menu_separation_with_ticket" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_discount_fd"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.discount.DiscountFutabaDFragment"
+        tools:layout="@layout/fragment_discount_futabad">
+        <action
+            android:id="@+id/action_navigation_discount_fd_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_discountjob_fd"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.discount.DiscountJobFutabaDFragment"
+        tools:layout="@layout/fragment_discountjob_futabad">
+        <action
+            android:id="@+id/action_navigation_discountjob_fd_to_navigation_menu"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_navigation_discountjob_fd_to_navigation_menu2"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_credit_card_scan_separationpay"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.credit_card.CreditCardScanFragment"
+        tools:layout="@layout/fragment_credit_card_scan">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_credit_card_scan_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_emoney_suica_separationpay"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.suica.EMoneySuicaFragment"
+        tools:layout="@layout/fragment_emoney_suica">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_suica_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+        <!--
+        <action
+            android:id="@+id/action_navigation_emoney_suica_to_navigation_menu_separation"
+            app:destination="@id/navigation_menu_separation"
+            app:popUpTo="@+id/navigation_menu_separation"
+            app:popUpToInclusive="true"/>
+        -->
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_id_separationpay"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.id.EMoneyIdFragment"
+        tools:layout="@layout/fragment_emoney_id">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_id_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_waon_separationpay"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.waon.EMoneyWaonFragment"
+        tools:layout="@layout/fragment_emoney_waon">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_waon_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_edy_separationpay"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.edy.EMoneyEdyFragment"
+        tools:layout="@layout/fragment_emoney_edy">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_edy_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_quicpay_separationpay"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.quicpay.EMoneyQuicPayFragment"
+        tools:layout="@layout/fragment_emoney_quicpay">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_quicpay_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_nanaco_separationpay"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.nanaco.EMoneyNanacoFragment"
+        tools:layout="@layout/fragment_emoney_nanaco">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_nanaco_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_emoney_okica_separationpay"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.EMoneyOkicaFragment"
+        tools:layout="@layout/fragment_emoney_okica">
+        <argument
+            android:name="slipId"
+            app:argType="integer" />
+        <argument
+            android:name="amount"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_emoney_okica_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <!-- //ADD-E BMT S.Oyama 2024/09/03 フタバ双方向向け改修-->
+    <!-- //ADD-S BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
+    <fragment
+        android:id="@+id/navigation_menu_auto_daily_report"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuAutoDailyReportFragment"
+        tools:layout="@layout/fragment_menu_auto_daily_report">
+
+        <action
+            android:id="@+id/action_navigation_menu_auto_daily_report_to_navigation_auto_daily_report_fuel"
+            app:destination="@id/navigation_auto_daily_report_fuel"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+        <action
+            android:id="@+id/action_navigation_menu_auto_daily_report_to_navigation_menu"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:popUpTo="@+id/navigation_redirect_to_menu"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_auto_daily_report_fuel"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.auto_daily_report.AutoDailyReportFuelFragment"
+        tools:layout="@layout/fragment_auto_daily_report_fuel" />
+
+    <!-- 分別：チケット　金額入力後メニュー -->
+    <fragment
+        android:id="@+id/navigation_menu_separation_with_ticket"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuSeparationWithTicketFragment"
+        tools:layout="@layout/fragment_menu_separation_with_ticket" >
+
+        <action
+            android:id="@+id/action_navigation_menu_separation_with_ticket_to_navigation_menu_emoney"
+            app:destination="@id/navigation_menu_emoney"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigation_menu_separation_with_ticket_to_navigation_home"
+            app:destination="@id/navigation_redirect_to_menu"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigation_separationpay_with_ticket_to_navigation_credit_card_scan"
+            app:destination="@id/navigation_credit_card_scan_separationpay" />
+
+        <action
+            android:id="@+id/action_navigation_separationpay_with_ticket_to_navigation_qr"
+            app:destination="@id/navigation_qr_payment" />
+
+    </fragment>
+
+
+    <!-- //ADD-E BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
+    <fragment
+        android:id="@+id/navigation_menu_emoney"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEMoneyFragment"
+        tools:layout="@layout/fragment_menu_emoney" >
+        <action
+            android:id="@+id/action_navigation_menu_emoney_to_navigation_menu_balance"
+            app:destination="@id/navigation_menu_balance"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigation_menu_emoney_to_navigation_menu_charge"
+            app:destination="@id/navigation_menu_charge"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_suica"
+            app:destination="@id/navigation_emoney_suica" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_id"
+            app:destination="@id/navigation_emoney_id" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_waon"
+            app:destination="@id/navigation_emoney_waon" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_edy"
+            app:destination="@id/navigation_emoney_edy" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_quicpay"
+            app:destination="@id/navigation_emoney_quicpay" />
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_emoney_nanaco"
+            app:destination="@id/navigation_emoney_nanaco" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_menu_balance"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuBalanceFragment"
+        tools:layout="@layout/fragment_menu_balance" />
+
+    <fragment
+        android:id="@+id/navigation_menu_charge"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuChargeFragment"
+        tools:layout="@layout/fragment_menu_charge" />
+
+</navigation>

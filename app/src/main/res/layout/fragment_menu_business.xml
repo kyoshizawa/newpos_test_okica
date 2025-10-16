@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuViewModel" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEventHandlers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- //ADD-S BMT S.Oyama 2025/01/09 フタバ双方向向け改修 -->
+        <Button
+            android:id="@+id/btn_menu_business_receipt"
+            android:text="@string/btn_business_receipt"
+            android:onClick='@{view -> handlers.navigateToReceipt(view)}'
+            android:visibility="@{ viewModel.getisFutabaDMode() ? View.VISIBLE : View.GONE }"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_ticket"
+            style="@style/StyleBusinessButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_business_ticket"
+            android:text="@string/btn_business_ticket"
+            android:onClick='@{view -> handlers.navigateToTicketPrint(view)}'
+            android:visibility="@{ viewModel.getisFutabaDMode() ? View.VISIBLE : View.GONE }"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_receipt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_auto_daily_report"
+            style="@style/StyleBusinessButton"/>
+        <!-- //ADD-E BMT S.Oyama 2025/01/09 フタバ双方向向け改修 -->
+        <!-- //ADD-S BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
+        <Button
+            android:id="@+id/btn_menu_business_auto_daily_report"
+            android:text="@string/btn_business_auto_daily_report"
+            android:onClick='@{view -> handlers.navigateMain(view, @id/action_navigation_menu_business_to_auto_daily_report)}'
+            android:visibility="@{ viewModel.getisFutabaDMode() ? View.VISIBLE : View.GONE }"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_ticket"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_emoney_opening"
+            style="@style/StyleBusinessButton"/>
+        <!-- @{viewModel.isCashChangerActivated ? View.VISIBLE : View.GONE} -->
+        <!-- //ADD-E BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
+
+        <Button
+            android:id="@+id/btn_menu_business_emoney_opening"
+            android:text="@string/btn_business_emoney_opening"
+            android:onClick='@{v -> handlers.manualOpening(v, sharedViewModel)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_auto_daily_report"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_driver_code_input"
+            style="@style/StyleBusinessButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_business_driver_code_input"
+            android:text="@string/btn_business_driver_code_input"
+            android:visibility="@{viewModel.driverInfoVisibility ? android.view.View.VISIBLE : android.view.View.GONE}"
+            android:onClick="@{view -> handlers.navigateMain(view, @id/action_navigation_menu_to_navigation_driver_code)}"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_emoney_opening"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_car_id_input"
+            style="@style/StyleBusinessButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_business_car_id_input"
+            android:text="@string/btn_business_car_id_input"
+            android:visibility="@{viewModel.carIdVisibility ? android.view.View.VISIBLE : android.view.View.GONE}"
+            android:onClick="@{handlers::navigateToInputCarId}"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_driver_code_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_send_log"
+            style="@style/StyleBusinessButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_business_send_log"
+            android:text="@string/btn_business_send_log"
+            android:onClick="@{view -> handlers.sendLog(view, sharedViewModel)}"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_car_id_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_aggregate"
+            style="@style/StyleBusinessButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_business_aggregate"
+            android:text="@string/btn_business_aggregate"
+            android:onClick='@{view -> handlers.navigateMain(view, @id/action_navigation_menu_to_navigation_aggregate)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_send_log"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_refresh_pos_data"
+            style="@style/StyleBusinessButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_business_refresh_pos_data"
+            android:text="@string/btn_business_refresh_pos_data"
+            android:onClick='@{view -> handlers.refreshPosProducts(view, sharedViewModel)}'
+            android:visibility="@{viewModel.isPosActivated ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_aggregate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_menu_business_ticket_data"
+            style="@style/StyleBusinessButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_business_ticket_data"
+            android:onClick='@{view -> handlers.refreshTicketSales(view, sharedViewModel)}'
+            android:text="@string/btn_business_ticket_data"
+            android:visibility="@{viewModel.isTicketActivated ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_refresh_pos_data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_menu_business_balance"
+            style="@style/StyleBusinessButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_business_balance"
+            style="@style/StyleBusinessButton"
+            android:onClick='@{view -> handlers.navigateMenu(view, @id/action_navigation_menu_business_to_navigation_menu_balance)}'
+            android:text="@string/btn_business_balance"
+            android:visibility="@{viewModel.isTicketActivated ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@+id/btn_menu_business_ticket_data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_menu_business_external_device"
+            />
+
+        <Button
+            android:id="@+id/btn_menu_business_external_device"
+            android:text="@string/btn_business_external_device"
+            android:onClick='@{view -> handlers.navigateMain(view, @id/action_navigation_menu_to_external_device)}'
+            android:visibility="@{viewModel.isCashChangerActivated ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_balance"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_manual"
+            style="@style/StyleBusinessButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_business_manual"
+            android:text="@string/btn_business_manual"
+            android:onClick='@{view -> handlers.navigateToManualMenu(view, sharedViewModel)}'
+            android:visibility="@{ viewModel.getisFutabaDMode() ? View.VISIBLE : View.GONE }"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_external_device"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_menu_business_duplex"
+            style="@style/StyleBusinessButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_business_duplex"
+            android:text="@string/btn_business_duplex"
+            android:onClick='@{view -> handlers.navigateToDuplexMenu(view, sharedViewModel)}'
+            android:visibility="@{ viewModel.getisManualMode() ? View.VISIBLE : View.GONE }"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_manual"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/StyleBusinessButton"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

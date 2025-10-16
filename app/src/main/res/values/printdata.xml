@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ブランド名 -->
+    <string name="print_brand_credit">@string/money_brand_credit</string>
+    <string name="print_brand_unionpay">銀聯</string>
+    <string name="print_brand_mcprepaid">プリペイド</string>
+    <string name="print_brand_suica">@string/money_brand_suica</string>
+    <string name="print_brand_waon">@string/money_brand_waon</string>
+    <string name="print_brand_nanaco">@string/money_brand_nanaco</string>
+    <string name="print_brand_edy_rakute">@string/money_brand_edy</string>
+    <string name="print_brand_id">@string/money_brand_id</string>
+    <string name="print_brand_quicpay">@string/money_brand_qp</string>
+    <string name="print_brand_okica">@string/money_brand_okica</string>
+    <string name="print_brand_cash">@string/money_brand_cash</string>
+    <string name="print_brand_codetrans">@string/money_brand_codetrans</string>
+    <string name="print_brand_watari">@string/point_brand_watari</string>
+    <string name="print_brand_lans">ＬＡＮＳ</string>
+    <string name="print_brand_postal_order">@string/money_brand_postal_order</string>
+
+    <!-- 票名 -->
+    <string name="print_payment_slip">売上票</string>
+    <string name="print_cancel_slip">取消票</string>
+    <string name="print_point_add_slip">ポイント付与票</string>
+    <string name="print_point_cancel_slip">ポイント取消票</string>
+    <string name="print_charge_slip">チャージ票</string>
+    <string name="print_charge_cancel_slip">チャージ取消票</string>
+    <string name="print_unfinished_slip">処理未了票</string>
+    <string name="print_failure_slip">障害票</string>
+    <string name="print_trans_unfinished_slip">決済未完了票</string>
+    <string name="print_history_slip">履歴照会票</string>
+    <string name="print_okica_history_slip">残高履歴票</string>
+    <string name="print_aggregate_slip">集計票</string>
+    <string name="print_detail_statement">取引明細書</string>
+    <string name="print_receipt">領収書</string>
+    <string name="print_receipt_detail">領収書明細</string>
+    <string name="print_point_charge_slip">ポイントチャージ票</string>
+    <string name="print_charge_payment_slip">チャージ売上票</string>
+
+    <!-- 再 -->
+    <string name="print_slip_again">[再]</string>
+
+    <!-- デモモード -->
+    <string-array name="print_slip_demo">
+        <item>┏━━━━━━┓</item>
+        <item>┃　ＤＥＭＯ　┃</item>
+        <item>┗━━━━━━┛</item>
+    </string-array>
+
+    <!-- 手動決済モード -->
+    <string-array name="print_slip_manual">
+        <item>┏━━━━━━┓</item>
+        <item>┃＊手動決済＊┃</item>
+        <item>┗━━━━━━┛</item>
+    </string-array>
+
+    <!-- 控名 -->
+    <string name="print_merchant">(加盟店控え)</string>
+    <string name="print_customer">(お客様控え)</string>
+
+    <!-- 車両番号 -->
+    <string name="print_car_id">号機</string>
+
+    <!-- 電話番号 -->
+    <string name="print_merchant_tel_number">電話番号</string>
+
+    <!-- 係員番号 -->
+    <string name="print_driver_id">係員番号</string>
+
+    <!-- 機器番号 -->
+    <string name="print_term_id">機器番号</string>
+
+    <!-- 機器通番 -->
+    <string name="print_term_sequence">機器通番</string>
+
+    <!-- カード会社名 -->
+    <string name="print_card_company">カード会社</string>
+
+    <!-- カード番号 -->
+    <string name="print_card_id">カード番号</string>
+    <string name="print_card_id_null">----------------</string>
+    <string name="print_suica_card_id_null">-----------------</string>
+
+    <!-- カード通番 -->
+    <string name="print_card_sequence_number">カード通番</string>
+
+    <!-- 有効期限 -->
+    <string name="print_card_exp_date">有効期限</string>
+
+    <!-- 伝票番号 -->
+    <string name="print_slip_number">伝票番号</string>
+    <string name="print_slip_number_null">-----</string>
+
+    <!-- 取消番号 -->
+    <string name="print_old_slip_number">取消番号</string>
+    <string name="print_old_slip_number_null">-----</string>
+
+    <!-- 取引通番 -->
+    <string name="print_card_trans_number">取引通番</string>
+    <string name="print_card_trans_number_null">-----</string>
+
+    <!-- Edy取引通番 -->
+    <string name="print_edy_trans_number">Edy取引通番</string>
+
+    <!-- 承認番号 -->
+    <string name="print_auth_id">承認番号</string>
+
+    <!-- 処理通番 -->
+    <string name="print_auth_sequence_number">処理通番</string>
+
+    <!-- 決済種別-->
+    <string name="print_trans_type">決済種別</string>
+
+    <!-- 取引内容 -->
+    <string name="print_trans_detail">取引内容</string>
+
+    <!-- 売上 -->
+    <string name="print_trans_payment">売上</string>
+
+    <!-- 取消 -->
+    <string name="print_trans_cancel">取消</string>
+
+    <!-- 支払区分 -->
+    <string name="print_installment">支払区分</string>
+
+    <!-- 商品区分 -->
+    <string name="print_commodity_code">商品区分</string>
+
+    <!-- IC/MS/CL -->
+    <string name="print_credit_type">IC/MS/CL</string>
+
+    <!-- IC -->
+    <string name="print_credit_ic">IC</string>
+
+    <!-- MS -->
+    <string name="print_credit_ms">MS</string>
+
+    <!-- CL -->
+    <string name="print_credit_cl">CL</string>
+
+    <!-- ARC -->
+    <string name="print_credit_arc">ARC</string>
+
+    <!-- AID -->
+    <string name="print_credit_aid">AID</string>
+
+    <!-- APL -->
+    <string name="print_credit_apl">APL</string>
+
+    <!-- 決済内容 -->
+    <string name="print_codetrans_detail">決済内容</string>
+
+    <!-- 支払 -->
+    <string name="print_codetrans_payment">支払</string>
+
+    <!-- 取消 -->
+    <string name="print_codetrans_cancel">取消</string>
+
+    <!-- 決済金額 -->
+    <string name="print_codetrans_payment_amount">決済金額</string>
+
+    <!-- 残高 -->
+    <string name="print_codetrans_after_amount">残高</string>
+
+    <!-- 合計 -->
+    <string name="print_total_amount">合計</string>
+    <string name="print_total_fare">運賃</string>
+    <string name="print_receipt_total_amount">領収金額</string>
+    <string name="print_receipt_total_amount_end">-</string>
+    <string name="print_total_pay_amount">売上金額</string>
+    <string name="print_total_pay_cancel_amount">取消金額</string>
+    <string name="print_total_other_amount">対象金額</string>
+
+    <!-- インボイス情報　　消費税 -->
+    <string name="print_invoice_tax_h">(</string>
+    <string name="print_invoice_tax_e">%対象)</string>
+
+    <!-- 入金 -->
+    <string name="print_charge_amount">入金</string>
+
+    <!-- チャージ -->
+    <string name="print_charge">チャージ</string>
+
+    <!-- 増減額 -->
+    <string-array name="print_adj_amount">
+        <item>(内増減額</item>
+        <item>)</item>
+    </string-array>
+
+    <!-- 端末番号-->
+    <string name="print_term_ident_id">端末番号</string>
+    <string name="print_okica_term_ident_id">OKICA端末番号</string>
+    <string name="print_suica_term_ident_id_null">-------------</string>
+    <string name="print_edy_rakute_term_ident_id_null">--------</string>
+    <string name="print_nanaco_term_ident_id_null">--------------------</string>
+
+    <!-- ユニークID-->
+    <string name="print_common_name">ユニークID</string>
+
+    <!-- 現金-->
+    <string name="print_trans_cash_together_amount">現金</string>
+
+    <!-- 為替類-->
+    <string name="print_trans_postal_order_amount">為替類</string>
+
+    <!-- 履歴件数-->
+    <string-array name="print_history">
+        <item>＜履歴１＞</item>
+        <item>＜履歴２＞</item>
+        <item>＜履歴３＞</item>
+    </string-array>
+
+    <!-- 決済日時-->
+    <string name="print_trans_time">決済日時</string>
+    <!-- 決済通番-->
+    <string name="print_trans_number">決済通番</string>
+    <!-- 決済種別番号-->
+    <string name="print_trans_type_code">決済種別番号</string>
+    <string name="print_trans_type_code_null">--</string>
+    <!-- 決済種別名-->
+    <string name="print_trans_type_name">決済種別名</string>
+    <string name="print_trans_type_name_null">----</string>
+    <!-- チャージ金額-->
+    <string name="print_trans_cash_charge_amount">チャージ金額</string>
+    <!-- 決済金額-->
+    <string name="print_trans_amount">決済金額</string>
+    <!-- 決済後残高-->
+    <string name="print_trans_after_amount">決済後残高</string>
+
+    <!-- 履歴件数-->
+    <string-array name="print_history_trade_type">
+        <item>その他</item>
+        <item>支払</item>
+        <item>返品</item>
+        <item>ポイントチャージ</item>
+        <item>現金チャージ</item>
+        <item>チャージ取消</item>
+        <item>支払＋オートチャージ</item>
+        <item>支払取消</item>
+        <item>オートチャージ</item>
+    </string-array>
+
+    <!-- 日付-->
+    <string name="print_history_date">日付</string>
+    <!-- 種別-->
+    <string name="print_history_process_type">種別</string>
+    <!-- 残高-->
+    <string name="print_history_balance">残高</string>
+
+    <!-- 残高履歴の処理種別-->
+    <string-array name="print_okica_history_process_type">
+        <item>入場</item>
+        <item>出場</item>
+        <item>SFチャージ</item>
+        <item>乗車券購入</item>
+        <item>精算(金券利用)</item>
+        <item>乗越し精算</item>
+        <item>窓口精算機出場</item>
+        <item>新規チャージ</item>
+        <item>控除</item>
+        <item>バス出場</item>
+        <item>紛失再発行</item>
+        <item>障害再発行</item>
+        <item>SF入場＆SFチャージ</item>
+        <item>バス出場＆SFチャージ</item>
+        <item>バス精算(金券利用)</item>
+        <item>バス＆SFチャージ</item>
+        <item>バス控除</item>
+        <item>バス入場キャンセル</item>
+        <item>バスチケット購入</item>
+        <item>バスチケット控除</item>
+        <item>物販利用</item>
+        <item>ポイントチャージ</item>
+        <item>物販チャージ</item>
+        <item>物販利用取消</item>
+        <item>ポイント処理</item>
+    </string-array>
+
+    <!-- 決済前残高(null) -->
+    <string name="print_trans_before_balance_null">\\-----</string>
+
+    <!-- 交通系 -->
+    <string name="print_suica_xxx">交通系</string>
+    <!-- 楽天Edy -->
+    <string name="print_edy_rakute_xxx">Edy</string>
+    <!-- WAON -->
+    <string name="print_waon_xxx">WAON</string>
+    <!-- nanaco -->
+    <string name="print_nanaco_xxx">nanaco</string>
+    <!-- iD -->
+    <string name="print_iD_xxx">iD</string>
+
+    <!-- ブランド 支払 -->
+    <string name="print_xxx_payment">支払</string>
+    <string name="print_okica_payment">物販利用</string>
+
+    <!-- ブランド 取消 -->
+    <string name="print_xxx_cancel">取消</string>
+    <string name="print_okica_cancel">物販利用取消</string>
+
+    <!-- ブランド チャージ -->
+    <string name="print_okica_charge">物販チャージ</string>
+
+    <!-- ブランド 残高 -->
+    <string name="print_xxx_trans_after_balance">残高</string>
+    <string name="print_okica_trans_after_balance">残高</string>
+
+    <!-- ブランド 決済前残高 -->
+    <string name="print_xxx_trans_before_balance">決済前残高</string>
+    <string name="print_okica_trans_before_balance">決済前残高</string>
+
+    <!-- ブランド 取引通番 -->
+    <string name="print_xxx_trans_number">取引通番</string>
+
+    <!-- Edy 取引通番(null) -->
+    <string name="print_edy_rakute_trans_number_null">----------</string>
+
+    <!-- 取引レシートタイトル(Edy専用) -->
+    <string name="print_edy_trans_title">Edy残高は以下のとおりです</string>
+
+    <!-- ポイント付与可能なカードの場合（固定メッセージ） -->
+    <string-array name="print_pint_grant_msg">
+        <item>累計ポイントは最寄りのイオンの</item>
+        <item>お店、イオン銀行ＡＴＭでご確認</item>
+        <item>ください。　　　　　　　　　　</item>
+    </string-array>
+
+    <!-- 署名欄 -->
+    <string name="print_credit_signature">ご署名 SIGNATURE</string>
+
+    <!-- PIN認証済み -->
+    <string-array name="print_pin_verified">
+        <item>暗証番号は確認済みです</item>
+        <item>サインは省略いたします</item>
+    </string-array>
+
+    <!-- 処理未了 -->
+    <string name="print_unfinished">処理未了</string>
+
+    <!-- 障害 -->
+    <string name="print_failure">障害</string>
+
+    <!-- 決済未完了 -->
+    <string name="print_trans_unfinished">決済未完了</string>
+
+    <!-- 処理未了の印刷内容 -->
+    <string-array name="print_unfinished_content">
+        <item>決済が正常終了しませんでした</item>
+        <item>後日連絡が必要になる可能性がある</item>
+        <item>為、下記のチェック項目を確認うえ</item>
+        <item>事務所へ提出してください</item>
+        <item>－－－チェック項目－－－</item>
+        <item>①カード残高を確認し、残高を記入</item>
+        <item>　＿＿＿＿＿＿＿＿＿＿＿＿＿＿円</item>
+        <item>②本伝票の決済前残高とカード残高</item>
+        <item>　①を比較し、該当(□)にチェック</item>
+        <item>　□差額あり：決済成立</item>
+        <item>　□差額なし：決済不成立</item>
+        <item>③カード番号を記入</item>
+        <item>　＿＿＿＿＿＿＿＿＿＿＿＿＿＿</item>
+        <item>④お客様氏名と連絡先を記入</item>
+        <item>　氏名</item>
+        <item>　＿＿＿＿＿＿＿＿＿＿＿＿＿＿</item>
+        <item>　連絡先</item>
+        <item>　＿＿＿＿＿＿＿＿＿＿＿＿＿＿</item>
+    </string-array>
+
+    <!-- 処理未了の印刷内容（コード決済） -->
+    <string-array name="print_codetrans_unfinished_content">
+        <item>決済が正常終了しませんでした</item>
+        <item>後日連絡が必要になる可能性がある</item>
+        <item>為、下記のチェック項目を確認うえ</item>
+        <item>事務所へ提出してください</item>
+        <item>－－－チェック項目－－－</item>
+        <item>①お客様のアプリで取引履歴を</item>
+        <item>　確認し、該当(□)にチェック</item>
+        <item>　□決済成立</item>
+        <item>　□決済不成立</item>
+        <item>②決済種別を記入 (例：PayPay)</item>
+        <item>　＿＿＿＿＿＿＿＿＿＿＿＿＿＿</item>
+        <item>③お客様氏名と連絡先を記入</item>
+        <item>　氏名</item>
+        <item>　＿＿＿＿＿＿＿＿＿＿＿＿＿＿</item>
+        <item>　連絡先</item>
+        <item>　＿＿＿＿＿＿＿＿＿＿＿＿＿＿</item>
+    </string-array>
+
+    <!-- ご記入欄 -->
+    <string name="print_write_in_column">ご記入欄</string>
+
+    <!-- お客様氏名・連絡先 -->
+    <string name="print_name_and_contact">( お客様氏名・連絡先 )</string>
+
+    <!-- 集計(取引) -->
+    <string name="print_aggregate_trans_ok">取引</string>
+
+    <!-- 集計(処理未了) -->
+    <string name="print_aggregate_trans_unfinished">処理未了</string>
+
+    <!-- 集計(明細) -->
+    <string name="print_aggregate_trans_detail">明細</string>
+
+    <!-- 取引区別※売上と取消以外 -->
+    <string name="print_aggregate_trans_type_unfinished">未了</string>
+    <string name="print_aggregate_trans_type_charge">現ﾁｬｰｼﾞ</string>
+    <string name="print_aggregate_trans_type_unfinished_charge">現ﾁｬｰｼﾞ未了</string>
+    <string name="print_aggregate_trans_type_point_charge">Pﾁｬｰｼﾞ</string>
+
+    <!-- 売上総額対象外 -->
+    <string name="print_aggregate_TransFinished_TotalAmount_NA">※[*]マークは売上総額対象外です</string>
+
+    <!-- (X件) -->
+    <string-array name="print_aggregate_count">
+        <item>(</item>
+        <item>件)</item>
+    </string-array>
+
+    <!-- 合計(X件)　売上総額 -->
+    <string-array name="print_aggregate_TransOK_TransCnt_TotalAmount">
+        <item>合計(</item>
+        <item>件)</item>
+        <item>売上総額</item>
+    </string-array>
+
+    <!-- 計（X件）　未了総額 -->
+    <string-array name="print_aggregate_TransUnfinished_TransCnt_TotalAmount">
+        <item>計(</item>
+        <item>件)</item>
+        <item>未了総額</item>
+    </string-array>
+
+    <!-- 領収書 -->
+    <string name="print_receipt_name_column">様</string>
+    <string-array name="print_receipt_proviso_column">
+        <item>上記金額を領収致しました</item>
+        <item>但</item>
+        <item>として</item>
+    </string-array>
+    <string-array name="print_receipt_stamp">
+        <item>┌──────┐</item>
+        <item>│　　　　　　│</item>
+        <item>└──────┘</item>
+    </string-array>
+
+    <!-- 宛名 -->
+    <string name="print_recipient">様</string>
+
+    <!-- インボイス番号 -->
+    <string name="print_invoice_number">登録番号</string>
+
+    <!-- メモ欄 -->
+    <string-array name="print_memo">
+        <item>お買上詳細は上記の通りです。</item>
+        <item>[*]は軽減税率対象です。</item>
+        <item>取消内容は上記の通りです。</item>
+    </string-array>
+
+    <!-- 予約番号 -->
+    <string name="print_reservation_number">予約番号</string>
+    <!-- 大人 -->
+    <string name="print_adult">大人</string>
+    <!-- 小人 -->
+    <string name="print_child">小人</string>
+    <!-- 障がい者 大人 -->
+    <string name="print_adult_disability">障がい者 大人</string>
+    <!-- 障がい者 小人 -->
+    <string name="print_child_disability">障がい者 小人</string>
+    <!-- 介助者 -->
+    <string name="print_caregiver">介助者</string>
+    <!-- 乳幼児 -->
+    <string name="print_baby">乳幼児</string>
+
+    <!-- 注意文 -->
+    <string-array name="print_caution">
+        <item>●チケットは折り曲げたり、くしゃ</item>
+        <item>くしゃにしないでください。</item>
+    </string-array>
+
+    <!-- ポイント情報 -->
+    <string-array name="print_point_detail">
+        <item>タクシー運賃</item>
+        <item>円相当のポイントを</item>
+    </string-array>
+
+    <!-- ポイント加算/減算情報 -->
+    <string name="print_point_detail_add">加算しました。</string>
+    <string name="print_point_detail_cancel">取消しました。</string>
+
+    <!-- 累計ポイント -->
+    <string name="print_point_sum">累計ポイント</string>
+
+    <!-- ポイント注意書き -->
+    <string-array name="print_point_note">
+        <item>今回ご利用のポイント反映にはお時</item>
+        <item>間を頂きます。</item>
+    </string-array>
+
+    <!-- プリペイド -->
+    <string name="print_prepaid_pay">プリペイド支払</string>
+    <string name="print_prepaid_balance">プリペイド残額</string>
+    <string name="print_this_time_point">今回ポイント</string>
+    <string-array name="print_prepaid_next_expired">
+        <item>内</item>
+        <item>末日に失効</item>
+    </string-array>
+    <string name="print_prepaid_pay_cancel">プリペイド取消</string>
+    <string name="print_cancel_point">取消ポイント</string>
+    <string name="print_prepaid_charge_amount">チャージ額</string>
+    <string name="print_prepaid_charge_amount_cancel">チャージ取消額</string>
+    <string name="print_prepaid_charge_point">チャージポイント</string>
+
+    <!-- ライン -->
+    <string-array name="print_line">
+        <item>================================</item>
+        <item>────────────────</item>
+        <item>━━━━━━━━━━━━━━━━</item>
+        <item>■■■■■■■■■■■■</item>
+    </string-array>
+
+    <!-- ログ名称 -->
+    <string name="printLog_printDataSet">印刷データ</string>
+    <string name="printLog_printInvoiceDataSet">インボイス情報</string>
+    <string name="printLog_printStart">印刷開始</string>
+    <string name="printLog_printStart_NG">印刷開始不可</string>
+    <string name="printLog_printEnd">印刷結果</string>
+    <string name="printLog_RePrint">印刷再開</string>
+    <string name="printLog_StopRePrint">印刷再開中止</string>
+    <string name="printLog_printDataError">印刷データ異常</string>
+    <string name="printLog_printfareError">印字データ対象外</string>
+    <string name="printLog_deviceCheckResult">デバイスチェック結果</string>
+    <string name="printLog_printerErrorCheck">異常確認</string>
+    <string name="printLog_printDataAmounts">金額データ</string>
+    <string name="printLog_ServicePos">POS設定</string>
+    <string name="printLog_printQRTicketDataSet">QRチケット印刷データ</string>
+    
+
+</resources>

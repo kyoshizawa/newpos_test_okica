@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setting_header_operating_mode">動作モード</string>
+    <string name="setting_key_demo_mode" translatable="false">setting_demo_mode</string>
+    <string name="setting_title_demo_mode">デモモード</string>
+    <bool name="setting_default_demo_mode">false</bool>
+    
+    <string name="setting_header_sound">音量設定</string>
+    <string name="setting_title_sound_payment">決済音</string>
+    <string name="confirm_key_sound_payment" translatable="false">confirm_sound_payment</string>
+    <integer name="confirm_default_sound_payment">5</integer>
+    <string name="setting_title_sound_guidance">案内音</string>
+    <string name="confirm_key_sound_guidance" translatable="false">confirm_sound_guidance</string>
+    <integer name="confirm_default_sound_guidance">5</integer>
+
+    <string name="setting_header_screen">画面設定</string>
+    <string name="setting_title_brightness">明るさ</string>
+    <string name="confirm_key_brightness" translatable="false">confirm_brightness</string>
+    <integer name="confirm_default_brightness">5</integer>
+
+    <string name="setting_key_driverid_input" translatable="false">setting_driverid_input</string>
+    <bool name="setting_default_driverid_input">false</bool>
+    <string name="setting_key_carid_input" translatable="false">setting_carid_input</string>
+    <bool name="setting_default_carid_input">false</bool>
+    <string name="setting_key_driverid_history" translatable="false">setting_driverid_history</string>
+    <bool name="setting_default_driverid_history">false</bool>
+    <string name="setting_key_money_credit" translatable="false">setting_money_credit</string>
+    <bool name="setting_default_money_credit">false</bool>
+    <string name="setting_key_pinless_enabled" translatable="false">setting_pinless_enabled</string>
+    <bool name="setting_default_pinless_enabled">false</bool>
+    <string name="setting_key_pinless_limit_fare" translatable="false">setting_pinless_limit_fare</string>
+    <integer name="setting_default_pinless_limit_fare">0</integer>
+    <string name="setting_key_money_contactless" translatable="false">setting_money_contactless</string>
+    <bool name="setting_default_money_contactless">false</bool>
+    <string name="setting_key_money_unionpay" translatable="false">setting_money_unionpay</string>
+    <bool name="setting_default_money_unionpay">false</bool>
+    <string name="setting_key_money_suica" translatable="false">setting_money_suica</string>
+    <bool name="setting_default_money_suica">false</bool>
+    <string name="setting_key_money_id" translatable="false">setting_money_id</string>
+    <bool name="setting_default_money_id">false</bool>
+    <string name="setting_key_money_waon" translatable="false">setting_money_waon</string>
+    <bool name="setting_default_money_waon">false</bool>
+    <string name="setting_key_money_nanaco" translatable="false">setting_money_nanaco</string>
+    <bool name="setting_default_money_nanaco">false</bool>
+    <string name="setting_key_money_edy" translatable="false">setting_money_edy</string>
+    <bool name="setting_default_money_edy">false</bool>
+    <string name="setting_key_money_quicpay" translatable="false">setting_money_quicpay</string>
+    <bool name="setting_default_money_quicpay">false</bool>
+    <string name="setting_key_money_okica" translatable="false">setting_money_okica</string>
+    <bool name="setting_default_money_okica">false</bool>
+    <string name="setting_key_money_qr" translatable="false">setting_money_qr</string>
+    <bool name="setting_default_money_qr">false</bool>
+    <bool name="setting_default_service_pos">false</bool>
+    <string name="setting_key_watari_point" translatable="false">setting_watari_point</string>
+    <bool name="setting_default_watari_point">false</bool>
+    <string name="setting_key_product_code" translatable="false">setting_product_code</string>
+    <string name="setting_default_product_code">240</string>
+    <string name="setting_key_jrem_activateid" translatable="false">setting_jrem_activateid</string>
+    <string name="setting_default_jrem_activateid" translatable="false">activateid</string>
+    <string name="setting_key_jrem_password" translatable="false">setting_jrem_password</string>
+    <string name="setting_key_jrem_unique_id" translatable="false">setting_jrem_unique_id</string>
+    <string name="setting_default_jrem_password" translatable="false">password</string>
+    <string name="setting_key_input_1yen" translatable="false">setting_input_1yen</string>
+    <bool name="setting_default_input_1yen">true</bool>
+    <string name="setting_key_withcash_1yen" translatable="false">setting_withcash_1yen</string>
+    <bool name="setting_default_withcash_1yen">true</bool>
+    <string name="setting_key_version" translatable="false">setting_version</string>
+    <integer name="setting_default_version">1</integer>
+    <string name="setting_key_screenlock_enabled" translatable="false">setting_screenlock_enabled</string>
+    <bool name="setting_default_screenlock_enabled">false</bool>
+    <string name="setting_key_screenlock_password" translatable="false">setting_screenlock_password</string>
+    <string name="setting_default_screenlock_password">0000</string>
+    <string name="setting_key_timeout_screen" translatable="false">setting_timeout_screen</string>
+    <integer name="setting_default_timeout_screen">300</integer>
+    <string name="setting_key_screen_lock_sec" translatable="false">setting_screen_lock_sec</string>
+    <integer name="setting_default_screen_lock_sec">0</integer>
+    <string name="setting_key_merchant_name" translatable="false">setting_merchant_name</string>
+    <string name="setting_default_merchant_name">モバイルクリエイト株式会社</string>
+    <string name="setting_key_merchant_office" translatable="false">setting_merchant_office</string>
+    <string name="setting_default_merchant_office">大分本社</string>
+    <string name="setting_key_merchant_telnumber" translatable="false">setting_merchant_telnumber</string>
+    <!-- <string name="setting_default_merchant_telnumber">097–576–8181</string> -->
+    <!-- –(en dash?)だと印字が崩れる -->
+    <string name="setting_default_merchant_telnumber">097-576-8181</string>
+    <string name="setting_key_antlog_enabled" translatable="false">setting_antlog_enabled</string>
+    <bool name="setting_default_antlog_enabled">true</bool>
+    <string name="setting_key_antlog_time" translatable="false">setting_antlog_time</string>
+    <integer name="setting_default_antlog_time">10</integer>
+    <string name="setting_key_gpslog_enabled" translatable="false">setting_gpslog_enabled</string>
+    <bool name="setting_default_gpslog_enabled">true</bool>
+    <string name="setting_key_gpslog_time" translatable="false">setting_gpslog_time</string>
+    <integer name="setting_default_gpslog_time">180</integer>
+    <string name="setting_key_gpslog_distance" translatable="false">setting_gpslog_distance</string>
+    <integer name="setting_default_gpslog_distance">100</integer>
+    <string name="setting_key_mc_driverid" translatable="false">setting_mc_driverid</string>
+    <integer name="setting_default_mc_driverid">999</integer>
+    <string name="setting_key_mc_carid" translatable="false">setting_mc_carid</string>
+    <integer name="setting_default_mc_carid">0</integer>
+    <string name="setting_key_mc_termid" translatable="false">setting_mc_termid</string>
+    <string name="setting_default_mc_termid">1234567890123</string>
+    <string name="setting_key_qr_userid" translatable="false">setting_qr_userid</string>
+    <string name="setting_default_qr_userid">qr_user</string>
+    <string name="setting_key_qr_password" translatable="false">setting_qr_password</string>
+    <string name="setting_default_qr_password">qr_pass</string>
+    <string name="setting_key_invoice_no" translatable="false">setting_invoice_no</string>
+    <string name="setting_key_receiptTax" translatable="false">setting_receiptTax</string>
+    <string name="setting_key_supplier_cd" translatable="false">setting_supplier_cd</string>
+    <string name="setting_key_max_amount_type" translatable="false">setting_max_amount_type</string>
+    <string name="setting_key_pos_merchant_name" translatable="false">setting_pos_merchant_name</string>
+    <string name="setting_key_pos_merchant_office" translatable="false">setting_pos_merchant_office</string>
+    <string name="setting_key_pos_merchant_telnumber" translatable="false">setting_pos_merchant_telnumber</string>
+    <string name="setting_key_pos_address" translatable="false">setting_pos_address</string>
+    <string name="setting_key_standard_tax_rate" translatable="false">setting_standard_tax_rate</string>
+    <string name="setting_key_reduced_tax_rate" translatable="false">setting_reduced_tax_rate</string>
+    <string name="setting_key_tax_rounding" translatable="false">setting_tax_rounding</string>
+    <string name="setting_key_address" translatable="false">setting_address</string>
+    <string name="setting_key_slip_title" translatable="false">setting_slip_title</string>
+    <string name="setting_key_receipt_count" translatable="false">setting_receipt_count</string>
+    <string name="setting_key_is_product_category" translatable="false">setting_is_product_category</string>
+    <bool name="setting_default_is_product_category">false</bool>
+    <string name="setting_key_is_pos_receipt" translatable="false">setting_is_pos_receipt</string>
+    <bool name="setting_default_is_pos_receipt">false</bool>
+    <string name="setting_key_is_manual_amount" translatable="false">setting_is_manual_amount</string>
+    <bool name="setting_default_is_manual_amount">false</bool>
+    <bool name="setting_default_service_ticket">false</bool>
+
+    <string name="setting_key_btn_back">btn_back</string>
+    <string name="setting_default_opening_datetime">2000/01/01 00:00:00</string>
+    <string name="setting_key_developer_mode" translatable="false">setting_developer_mode</string>
+    <bool name="setting_default_developer_mode">false</bool>
+    <string name="setting_aggregate_detail" translatable="false">setting_aggregate_detail</string>
+    <bool name="setting_default_aggregate_detail">false</bool>
+    <string name="setting_key_organization_id" translatable="false">setting_organization_id</string>
+    <string name="setting_key_demo_screen_timeout" translatable="false">setting_demo_screen_timeout</string>
+    <string name="setting_key_demo_screen_lock" translatable="false">setting_demo_screen_lock</string>
+
+    <string name="setting_key_okica_termid" translatable="false">setting_okica_termid</string>
+    <string name="setting_key_okica_access_token" translatable="false">setting_okica_access_token</string>
+    <string name="setting_key_okica_auth_code" translatable="false">setting_okica_auth_code</string>
+    <string name="setting_key_okica_terminal_info" translatable="false">setting_okica_terminal_info</string>
+    <string name="setting_key_okica_ic_master_info" translatable="false">setting_okica_ic_master_info</string>
+    <string name="setting_key_okica_access_key_info" translatable="false">setting_okica_access_key_info</string>
+
+    <string name="setting_key_service_pos" translatable="false">setting_service_pos</string>
+    <string name="setting_key_service_pos_access_token" translatable="false">setting_service_pos_access_token</string>
+    <string name="setting_key_service_pos_refresh_token" translatable="false">setting_service_pos_refresh_token</string>
+
+    <string name="setting_tax_roundings_floor">切り捨て</string>
+    <string name="setting_tax_roundings_ceiling">切り上げ</string>
+    <string name="setting_tax_roundings_round">四捨五入</string>
+
+    <string name="setting_key_cashchanger" translatable="false">setting_cashchanger</string>
+    <bool name="setting_default_cashchanger">false</bool>
+
+    <string name="setting_key_cashdrawer_type" translatable="false">setting_cashdrawer_type</string>
+    <integer name="setting_default_cashdrawer_type">0</integer>
+
+    <string name="setting_boolean_true_on">ON</string>
+    <string name="setting_boolean_false_off">OFF</string>
+
+    <string name="setting_key_service_ticket" translatable="false">setting_service_ticket</string>
+    <string name="setting_key_service_ticket_access_token" translatable="false">setting_service_ticket_access_token</string>
+    <string name="setting_key_service_ticket_refresh_token" translatable="false">setting_service_ticket_refresh_token</string>
+
+    <string name="setting_key_prepaid" translatable="false">setting_prepaid</string>
+    <bool name="setting_default_prepaid">false</bool>
+    <string name="setting_key_prepaid_domain" translatable="false">setting_prepaid_domain</string>
+    <string name="setting_default_prepaid_domain" />
+    <string name="setting_key_prepaid_key" translatable="false">setting_prepaid_key</string>
+    <string name="setting_default_prepaid_key" />
+
+    <string name="setting_max_amount_type_default">100万円未満</string>
+    <string name="setting_max_amount_type_large">1,000万円未満</string>
+
+    <string-array name="ticket_gate_start">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+    </string-array>
+    <string-array name="ticket_gate_update_interval">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>10</item>
+    </string-array>
+
+    <string name="setting_key_is_fixed_amount_postal_order" translatable="false">setting_key_is_fixed_amount_postal_order</string>
+    <bool name="setting_default_is_fixed_amount_postal_order">false</bool>
+</resources>

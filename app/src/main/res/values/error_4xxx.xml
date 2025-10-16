@@ -1,0 +1,2517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- JREM認証 -->
+    <string name="error_message_jrem_activation">電子マネー認証エラー</string>
+
+    <string name="error_type_jrem_activation_4001">4001</string>
+    <string name="error_detail_jrem_activation_4001">詳細コード：T_E0110\n認証に失敗しました。\n管理者に連絡してください。</string>
+    <string name="error_type_jrem_activation_4002">4002</string>
+    <string name="error_detail_jrem_activation_4002">詳細コード：T_E0125\n認証に失敗しました。\n管理者に連絡してください。</string>
+    <string name="error_type_jrem_activation_4003">4003</string>
+    <string name="error_detail_jrem_activation_4003">詳細コード：T_E0128\n認証に失敗しました。\n管理者に連絡してください。</string>
+    <string name="error_type_jrem_activation_4004">4004</string>
+    <string name="error_detail_jrem_activation_4004">詳細コード：T_E0215\n認証に失敗しました。\n管理者に連絡してください。</string>
+    <string name="error_type_jrem_activation_4005">4005</string>
+    <string name="error_detail_jrem_activation_4005">詳細コード：T_E0216\n認証に失敗しました。\n管理者に連絡してください。</string>
+    <string name="error_type_jrem_activation_4006">4006</string>
+    <string name="error_detail_jrem_activation_4006">詳細コード：T_E0221\n認証に失敗しました。\n管理者に連絡してください。</string>
+    <string name="error_type_jrem_activation_4007">4007</string>
+    <string name="error_detail_jrem_activation_4007">詳細コード：T_E0222\n認証に失敗しました。\n管理者に連絡してください。</string>
+    <string name="error_type_jrem_activation_4008">4008</string>
+    <string name="error_detail_jrem_activation_4008">詳細コード：T_E0225\n認証に失敗しました。\n管理者に連絡してください。</string>
+    <string name="error_type_jrem_activation_4009">4009</string>
+    <string name="error_detail_jrem_activation_4009">詳細コード：%s\n認証に失敗しました。\n管理者に連絡してください。</string>
+
+    <!-- JREM RAS -->
+    <string name="error_type_jrem_ras_4010">4010</string>
+    <string name="error_message_jrem_ras_4010">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4010">詳細コード：82\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4011">4011</string>
+    <string name="error_message_jrem_ras_4011">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4011">詳細コード：83\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_14011">14011</string>
+    <string name="error_message_jrem_ras_14011">無効カード検知</string>
+    <string name="error_detail_jrem_ras_14011">詳細コード：83\nこのカードはお取扱いできません。\nお客さまよりカード裏面（モバイルはアプリ内）のＷＡＯＮのコールセンターにお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4012">4012</string>
+    <string name="error_message_jrem_ras_4012">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4012">詳細コード：90\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4013">4013</string>
+    <string name="error_message_jrem_ras_4013">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4013">詳細コード：91\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4014">4014</string>
+    <string name="error_message_jrem_ras_4014">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4014">詳細コード：92\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_14014">14014</string>
+    <string name="error_message_jrem_ras_14014">無効カード検知</string>
+    <string name="error_detail_jrem_ras_14014">詳細コード：92\nこのカードはお取扱いできません。\nお客さまよりカード裏面（モバイルはアプリ内）のＷＡＯＮのコールセンターにお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4015">4015</string>
+    <string name="error_message_jrem_ras_4015">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4015">詳細コード：93\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4016">4016</string>
+    <string name="error_message_jrem_ras_4016">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4016">詳細コード：111\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4017">4017</string>
+    <string name="error_message_jrem_ras_4017">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4017">詳細コード：305\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4018">4018</string>
+    <string name="error_message_jrem_ras_4018">残高不足</string>
+    <string name="error_detail_jrem_ras_4018">詳細コード：88\nカードの残高がありません。\n別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_jrem_ras_14018">14018</string>
+    <string name="error_message_jrem_ras_14018">利用不可検出</string>
+    <string name="error_detail_jrem_ras_14018">詳細コード：88\nこのカードはお取扱いできません。\nカード発行元へお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4019">4019</string>
+    <string name="error_message_jrem_ras_4019">別カードタッチ</string>
+    <string name="error_detail_jrem_ras_4019">詳細コード：96\n異なるカードがタッチされました。\n前回と同じカードをタッチしてください。</string>
+
+    <string name="error_type_jrem_ras_4020">4020</string>
+    <string name="error_message_jrem_ras_4020">別カードタッチ</string>
+    <string name="error_detail_jrem_ras_4020">詳細コード：110\n異なるカードがタッチされました。\n前回と同じカードをタッチしてください。</string>
+
+    <string name="error_type_jrem_ras_4021">4021</string>
+    <string name="error_message_jrem_ras_4021">タッチ待ちタイムアウト</string>
+    <string name="error_detail_jrem_ras_4021">詳細コード：95\nタイムアウトする前にカードをタッチしてください。</string>
+
+    <string name="error_type_jrem_ras_14021">14021</string>
+    <string name="error_message_jrem_ras_14021">無効カード検出</string>
+    <string name="error_detail_jrem_ras_14021">詳細コード：95\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4022">4022</string>
+    <string name="error_message_jrem_ras_4022">決済未了</string>
+    <string name="error_detail_jrem_ras_4022">詳細コード：353\n別カードがタッチされたか再タッチ待ちタイムアウトが発生したため、決済が正常に完了しませんでした。</string>
+
+    <string name="error_type_jrem_ras_14022">14022</string>
+    <string name="error_message_jrem_ras_14022">決済未了</string>
+    <string name="error_detail_jrem_ras_14022">詳細コード：353\n別カードがタッチされたか再タッチ待ちタイムアウトが発生したため、決済が正常に完了しませんでした。\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4023">4023</string>
+    <string name="error_message_jrem_ras_4023">通信エラー</string>
+    <string name="error_detail_jrem_ras_4023">詳細コード：256\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4024">4024</string>
+    <string name="error_message_jrem_ras_4024">通信エラー</string>
+    <string name="error_detail_jrem_ras_4024">詳細コード：497\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4025">4025</string>
+    <string name="error_message_jrem_ras_4025">通信エラー</string>
+    <string name="error_detail_jrem_ras_4025">詳細コード：498\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4026">4026</string>
+    <string name="error_message_jrem_ras_4026">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4026">詳細コード：289\n管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4027">4027</string>
+    <string name="error_message_jrem_ras_4027">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4027">詳細コード：290\n管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4028">4028</string>
+    <string name="error_message_jrem_ras_4028">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4028">詳細コード：385\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4029">4029</string>
+    <string name="error_message_jrem_ras_4029">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4029">詳細コード：409\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4030">4030</string>
+    <string name="error_message_jrem_ras_4030">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4030">詳細コード：511\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4031">4031</string>
+    <string name="error_message_jrem_ras_4031">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4031">詳細コード：772\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4032">4032</string>
+    <string name="error_message_jrem_ras_4032">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4032">詳細コード：774\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4033">4033</string>
+    <string name="error_message_jrem_ras_4033">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4033">詳細コード：784\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4034">4034</string>
+    <string name="error_message_jrem_ras_4034">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4034">詳細コード：785\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4035">4035</string>
+    <string name="error_message_jrem_ras_4035">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4035">詳細コード：786\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4036">4036</string>
+    <string name="error_message_jrem_ras_4036">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4036">詳細コード：787\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4037">4037</string>
+    <string name="error_message_jrem_ras_4037">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4037">詳細コード：788\nこのカードはお取扱いできません。\nお客さまよりカード裏面（モバイルはアプリ内）のＷＡＯＮのコールセンターにお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4038">4038</string>
+    <string name="error_message_jrem_ras_4038">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4038">詳細コード：1032\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4039">4039</string>
+    <string name="error_message_jrem_ras_4039">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4039">詳細コード：1044\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4040">4040</string>
+    <string name="error_message_jrem_ras_4040">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4040">詳細コード：1281\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4041">4041</string>
+    <string name="error_message_jrem_ras_4041">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4041">詳細コード：522\nサービス対象外のカードを検知しました。\n別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_jrem_ras_4042">4042</string>
+    <string name="error_message_jrem_ras_4042">残高不足</string>
+    <string name="error_detail_jrem_ras_4042">詳細コード：817\nカードの残高がありません。\n別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_jrem_ras_4043">4043</string>
+    <string name="error_message_jrem_ras_4043">残高不足</string>
+    <string name="error_detail_jrem_ras_4043">詳細コード：1043\nカードの残高がありません。\n別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_jrem_ras_4044">4044</string>
+    <string name="error_message_jrem_ras_4044">残高不足</string>
+    <string name="error_detail_jrem_ras_4044">詳細コード：1282\nカードの残高がありません。\n別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_jrem_ras_4045">4045</string>
+    <string name="error_message_jrem_ras_4045">別カードタッチ</string>
+    <string name="error_detail_jrem_ras_4045">詳細コード：514\n異なるカードがタッチされました。\n前回と同じカードをタッチしてください。</string>
+
+    <string name="error_type_jrem_ras_4046">4046</string>
+    <string name="error_message_jrem_ras_4046">別カードタッチ</string>
+    <string name="error_detail_jrem_ras_4046">詳細コード：791\n異なるカードがタッチされました。\n前回と同じカードをタッチしてください。</string>
+
+    <string name="error_type_jrem_ras_4048">4048</string>
+    <string name="error_message_jrem_ras_4048">タッチ不足検知</string>
+    <string name="error_detail_jrem_ras_4048">詳細コード：87\n決済が完了しませんでした。\n決済前残高とカード残高を比較してください。</string>
+
+    <string name="error_type_jrem_ras_14048">14048</string>
+    <string name="error_message_jrem_ras_14048">タッチ不足検知</string>
+    <string name="error_detail_jrem_ras_14048">詳細コード：87\n決済が完了しませんでした。\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4049">4049</string>
+    <string name="error_message_jrem_ras_4049">タッチ不足検知</string>
+    <string name="error_detail_jrem_ras_4049">詳細コード：836\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4050">4050</string>
+    <string name="error_message_jrem_ras_4050">タッチ不足検知</string>
+    <string name="error_detail_jrem_ras_4050">詳細コード：837\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4051">4051</string>
+    <string name="error_message_jrem_ras_4051">暗証番号入力超過</string>
+    <string name="error_detail_jrem_ras_4051">詳細コード：504\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4052">4052</string>
+    <string name="error_message_jrem_ras_4052">入力タイムアウト</string>
+    <string name="error_detail_jrem_ras_4052">詳細コード：506\nもう一度最初からお取引をやり直してください。\nタイムアウトする前に、暗証番号を入力してください。</string>
+
+    <string name="error_type_jrem_ras_4053">4053</string>
+    <string name="error_message_jrem_ras_4053">限度額オーバー</string>
+    <string name="error_detail_jrem_ras_4053">詳細コード：512\n利用限度を超えています。\n別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_jrem_ras_4054">4054</string>
+    <string name="error_message_jrem_ras_4054">限度額オーバー</string>
+    <string name="error_detail_jrem_ras_4054">詳細コード：816\nポイントの残高が上限を超えてしまいます。\nポイント利用後に決済してください。</string>
+
+    <string name="error_type_jrem_ras_4055">4055</string>
+    <string name="error_message_jrem_ras_4055">有効期限切れ</string>
+    <string name="error_detail_jrem_ras_4055">詳細コード：524\nカードの有効期限が切れています。\n別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_jrem_ras_4056">4056</string>
+    <string name="error_message_jrem_ras_4056">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4056">詳細コード：505\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4057">4057</string>
+    <string name="error_message_jrem_ras_4057">無効カード検知</string>
+    <string name="error_detail_jrem_ras_4057">詳細コード：519\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4058">4058</string>
+    <string name="error_message_jrem_ras_4058">ロック検知</string>
+    <string name="error_detail_jrem_ras_4058">詳細コード：768\nこのカードはお取扱いできません。\nお客さまよりカード裏面（モバイルはアプリ内）のＷＡＯＮのコールセンターにお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4059">4059</string>
+    <string name="error_message_jrem_ras_4059">ロック検知</string>
+    <string name="error_detail_jrem_ras_4059">詳細コード：769\nこのカードはお取扱いできません。\nお客さまよりカード裏面（モバイルはアプリ内）のＷＡＯＮのコールセンターにお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4060">4060</string>
+    <string name="error_message_jrem_ras_4060">ロック検知</string>
+    <string name="error_detail_jrem_ras_4060">詳細コード：770\nこのカードはお取扱いできません。\nお客さまよりカード裏面（モバイルはアプリ内）のＷＡＯＮのコールセンターにお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4061">4061</string>
+    <string name="error_message_jrem_ras_4061">ロック検知</string>
+    <string name="error_detail_jrem_ras_4061">詳細コード：771\nこのカードはお取扱いできません。\nお客さまよりカード裏面（モバイルはアプリ内）のＷＡＯＮのコールセンターにお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4062">4062</string>
+    <string name="error_message_jrem_ras_4062">取消不可</string>
+    <string name="error_detail_jrem_ras_4062">詳細コード：801\n取消できません。\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4063">4063</string>
+    <string name="error_message_jrem_ras_4063">取消不可</string>
+    <string name="error_detail_jrem_ras_4063">詳細コード：876\n取消できません。\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4064">4064</string>
+    <string name="error_message_jrem_ras_4064">取消不可</string>
+    <string name="error_detail_jrem_ras_4064">詳細コード：804\n取消できません。\n取消後の残高が上限度額を超えてしまいます。</string>
+
+    <string name="error_type_jrem_ras_4065">4065</string>
+    <string name="error_message_jrem_ras_4065">通信エラー</string>
+    <string name="error_detail_jrem_ras_4065">詳細コード：508\nもう一度最初からお取引をやり直してください。\n改善しない場合はカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_jrem_ras_4066">4066</string>
+    <string name="error_message_jrem_ras_4066">通信エラー</string>
+    <string name="error_detail_jrem_ras_4066">詳細コード：509\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4067">4067</string>
+    <string name="error_message_jrem_ras_4067">通信エラー</string>
+    <string name="error_detail_jrem_ras_4067">詳細コード：510\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4068">4068</string>
+    <string name="error_message_jrem_ras_4068">通信エラー</string>
+    <string name="error_detail_jrem_ras_4068">詳細コード：854\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4069">4069</string>
+    <string name="error_message_jrem_ras_4069">通信エラー</string>
+    <string name="error_detail_jrem_ras_4069">詳細コード：855\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4070">4070</string>
+    <string name="error_message_jrem_ras_4070">通信エラー</string>
+    <string name="error_detail_jrem_ras_4070">詳細コード：856\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4071">4071</string>
+    <string name="error_message_jrem_ras_4071">通信エラー</string>
+    <string name="error_detail_jrem_ras_4071">詳細コード：857\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4072">4072</string>
+    <string name="error_message_jrem_ras_4072">通信エラー</string>
+    <string name="error_detail_jrem_ras_4072">詳細コード：869\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4073">4073</string>
+    <string name="error_message_jrem_ras_4073">通信エラー</string>
+    <string name="error_detail_jrem_ras_4073">詳細コード：1037\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4074">4074</string>
+    <string name="error_message_jrem_ras_4074">通信エラー</string>
+    <string name="error_detail_jrem_ras_4074">詳細コード：1038\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4075">4075</string>
+    <string name="error_message_jrem_ras_4075">通信エラー</string>
+    <string name="error_detail_jrem_ras_4075">詳細コード：1039\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4076">4076</string>
+    <string name="error_message_jrem_ras_4076">通信エラー</string>
+    <string name="error_detail_jrem_ras_4076">詳細コード：1040\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_jrem_ras_4077">4077</string>
+    <string name="error_message_jrem_ras_4077">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4077">詳細コード：386\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4078">4078</string>
+    <string name="error_message_jrem_ras_4078">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4078">詳細コード：501\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4079">4079</string>
+    <string name="error_message_jrem_ras_4079">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4079">詳細コード：838\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4080">4080</string>
+    <string name="error_message_jrem_ras_4080">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4080">詳細コード：839\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4081">4081</string>
+    <string name="error_message_jrem_ras_4081">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4081">詳細コード：1042\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4082">4082</string>
+    <string name="error_message_jrem_ras_4082">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4082">詳細コード：503\n管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4083">4083</string>
+    <string name="error_message_jrem_ras_4083">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4083">詳細コード：835\n管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4084">4084</string>
+    <string name="error_message_jrem_ras_4084">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4084">詳細コード：1027\n管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4085">4085</string>
+    <string name="error_message_jrem_ras_4085">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4085">詳細コード：1280\n管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_ras_4086">4086</string>
+    <string name="error_message_jrem_ras_4086">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4086">詳細コード：517\n前回の取引を完了させてください。</string>
+
+    <string name="error_type_jrem_ras_4087">4087</string>
+    <string name="error_message_jrem_ras_4087">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4087">詳細コード：1031\n前回の取引を完了させてください。</string>
+
+    <string name="error_type_jrem_ras_4088">4088</string>
+    <string name="error_message_jrem_ras_4088">利用不可検知</string>
+    <string name="error_detail_jrem_ras_4088">詳細コード：1030\n当該マネーの売上が多数存在します。\n業務終了してください。</string>
+
+    <string name="error_type_jrem_ras_4089">4089</string>
+    <string name="error_message_jrem_ras_4089">決済エラー</string>
+    <string name="error_detail_jrem_ras_4089">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_icas_4090">4090</string>
+    <string name="error_message_icas_4090">通信エラー</string>
+    <string name="error_detail_icas_4090">詳細コード：7\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_icas_4091">4091</string>
+    <string name="error_message_icas_4091">通信エラー</string>
+    <string name="error_detail_icas_4091">詳細コード：9\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_icas_4092">4092</string>
+    <string name="error_message_icas_4092">通信エラー</string>
+    <string name="error_detail_icas_4092">詳細コード：11\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_icas_4093">4093</string>
+    <string name="error_message_icas_4093">通信エラー</string>
+    <string name="error_detail_icas_4093">詳細コード：12\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_icas_4094">4094</string>
+    <string name="error_message_icas_4094">通信エラー</string>
+    <string name="error_detail_icas_4094">詳細コード：13\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_icas_4095">4095</string>
+    <string name="error_message_icas_4095">通信エラー</string>
+    <string name="error_detail_icas_4095">詳細コード：14\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_icas_4096">4096</string>
+    <string name="error_message_icas_4096">通信エラー</string>
+    <string name="error_detail_icas_4096">詳細コード：15\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_icas_4097">4097</string>
+    <string name="error_message_icas_4097">通信エラー</string>
+    <string name="error_detail_icas_4097">詳細コード：16\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_icas_4099">4099</string>
+    <string name="error_message_icas_4099">通信エラー</string>
+    <string name="error_detail_icas_4099">詳細コード：%s\nもう一度最初からお取引をやり直してください。</string>
+
+    <!-- 交通系(41) -->
+    <string name="error_type_suica_closed_error">4101</string>
+    <string name="error_message_suica_closed_error">交通系電子マネー閉局エラー</string>
+    <string name="error_detail_suica_closed_error">業務メニューより、再開局を実施してください。</string>
+
+    <string name="error_type_suica_power_off_error">4102</string>
+    <string name="error_message_suica_power_off_error">交通系電子マネー電断検知</string>
+    <string name="error_detail_suica_power_off_error">意図しないシャットダウンを検知しました。\n決済状態のチェックを行います。</string>
+
+    <string name="error_type_suica_upper_limit_error">4103</string>
+    <string name="error_message_suica_upper_limit_error">交通系電子マネー金額エラー</string>
+    <string name="error_detail_suica_upper_limit_error">99,999円以下で決済してください</string>
+
+    <string name="error_type_opening_suica_warning">4110</string>
+    <string name="error_message_opening_suica_warning">交通系電子マネー開局警告</string>
+    <string name="error_detail_opening_suica_warning">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_opening_suica_error">4111</string>
+    <string name="error_message_opening_suica_error">交通系電子マネー開局エラー</string>
+    <string name="error_detail_opening_suica_error">業務メニューより、再開局を実施してください</string>
+
+    <!-- iD(42) -->
+    <string name="error_type_id_closed_error">4201</string>
+    <string name="error_message_id_closed_error">iD閉局エラー</string>
+    <string name="error_detail_id_closed_error">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_id_power_off_error">4202</string>
+    <string name="error_message_id_power_off_error">iD電断検知</string>
+    <string name="error_detail_id_power_off_error">意図しないシャットダウンを検知しました。\n決済状態のチェックを行います。</string>
+
+    <string name="error_type_id_upper_limit_error">4203</string>
+    <string name="error_message_id_upper_limit_error">iD金額エラー</string>
+    <string name="error_detail_id_upper_limit_error">999,999円以下で決済してください</string>
+
+    <string name="error_type_id_pin_error">4204</string>
+    <string name="error_message_id_pin_error">暗証番号入力エラー</string>
+    <string name="error_detail_id_pin_error">暗証番号が間違っています。</string>
+
+    <string name="error_type_opening_id_warning">4210</string>
+    <string name="error_message_opening_id_warning">iD開局警告</string>
+    <string name="error_detail_opening_id_warning">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_opening_id_error">4211</string>
+    <string name="error_message_opening_id_error">iD開局エラー</string>
+    <string name="error_detail_opening_id_error">業務メニューより、再開局を実施してください</string>
+
+    <!-- WAON(43) -->
+    <string name="error_type_waon_closed_error">4301</string>
+    <string name="error_message_waon_closed_error">WAON閉局エラー</string>
+    <string name="error_detail_waon_closed_error">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_waon_power_off_error">4302</string>
+    <string name="error_message_waon_power_off_error">WAON電断検知</string>
+    <string name="error_detail_waon_power_off_error">意図しないシャットダウンを検知しました。\n決済状態のチェックを行います。</string>
+
+    <string name="error_type_waon_upper_limit_error">4303</string>
+    <string name="error_message_waon_upper_limit_error">WAON金額エラー</string>
+    <string name="error_detail_waon_upper_limit_error">100,000円以下で決済してください</string>
+
+    <string name="error_type_opening_waon_warning">4310</string>
+    <string name="error_message_opening_waon_warning">WAON開局警告</string>
+    <string name="error_detail_opening_waon_warning">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_opening_waon_error">4311</string>
+    <string name="error_message_opening_waon_error">WAON開局エラー</string>
+    <string name="error_detail_opening_waon_error">業務メニューより、再開局を実施してください</string>
+
+    <!-- nanaco(44) -->
+    <string name="error_type_nanaco_closed_error">4401</string>
+    <string name="error_message_nanaco_closed_error">nanaco閉局エラー</string>
+    <string name="error_detail_nanaco_closed_error">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_nanaco_power_off_error">4402</string>
+    <string name="error_message_nanaco_power_off_error">nanaco電断検知</string>
+    <string name="error_detail_nanaco_power_off_error">意図しないシャットダウンを検知しました。\n決済状態のチェックを行います。</string>
+
+    <string name="error_type_nanaco_upper_limit_error">4403</string>
+    <string name="error_message_nanaco_upper_limit_error">nanaco金額エラー</string>
+    <string name="error_detail_nanaco_upper_limit_error">999,999円以下で決済してください</string>
+
+    <string name="error_type_nanaco_near_full_warning">4404</string>
+    <string name="error_message_nanaco_near_full_warning">nanacoニアフル発生</string>
+    <string name="error_detail_nanaco_near_full_warning">一旦業務終了を実施し、再度起動してください。</string>
+
+    <string name="error_type_nanaco_journal_warning">4405</string>
+    <string name="error_message_nanaco_journal_warning">nanaco日計処理失敗</string>
+    <string name="error_detail_nanaco_journal_warning">業務メニューより、再開局を実施してください。</string>
+
+    <string name="error_type_opening_nanaco_warning">4410</string>
+    <string name="error_message_opening_nanaco_warning">nanaco開局警告</string>
+    <string name="error_detail_opening_nanaco_warning">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_opening_nanaco_error">4411</string>
+    <string name="error_message_opening_nanaco_error">nanaco開局エラー</string>
+    <string name="error_detail_opening_nanaco_error">業務メニューより、再開局を実施してください</string>
+
+    <!-- 楽天Edy(45) -->
+    <string name="error_type_edy_closed_error">4501</string>
+    <string name="error_message_edy_closed_error">Edy閉局エラー</string>
+    <string name="error_detail_edy_closed_error">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_edy_power_off_error">4502</string>
+    <string name="error_message_edy_power_off_error">Edy電断検知</string>
+    <string name="error_detail_edy_power_off_error">意図しないシャットダウンを検知しました。\n決済状態のチェックを行います。</string>
+
+    <string name="error_type_edy_upper_limit_error">4503</string>
+    <string name="error_message_edy_upper_limit_error">Edy金額エラー</string>
+    <string name="error_detail_edy_upper_limit_error">999,999円以下で決済してください</string>
+
+    <string name="error_type_edy_before_init_communication_error">4504</string>
+    <string name="error_message_edy_before_init_communication_error">Edy初回通信実施前</string>
+    <string name="error_detail_edy_before_init_communication_error">保守メニューより、Edy初回通信を実施してください。</string>
+
+    <string name="error_type_edy_init_communication_error">4505</string>
+    <string name="error_message_edy_init_communication_error">Edy初回通信失敗</string>
+    <string name="error_detail_edy_init_communication_error">再度Edy初回通信を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_edy_near_full_warning">4506</string>
+    <string name="error_message_edy_near_full_warning">Edyニアフル発生</string>
+    <string name="error_detail_edy_near_full_warning">一旦業務終了を実施し、再度起動してください。</string>
+
+    <string name="error_type_edy_journal_warning">4507</string>
+    <string name="error_message_edy_journal_warning">Edy締め処理失敗</string>
+    <string name="error_detail_edy_journal_warning">業務メニューより、再開局を実施してください。</string>
+
+    <string name="error_type_opening_edy_warning">4510</string>
+    <string name="error_message_opening_edy_warning">Edy開局警告</string>
+    <string name="error_detail_opening_edy_warning">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_opening_edy_error">4511</string>
+    <string name="error_message_opening_edy_error">Edy開局エラー</string>
+    <string name="error_detail_opening_edy_error">業務メニューより、再開局を実施してください</string>
+
+    <!-- QUICPay(46) -->
+    <string name="error_type_quicpay_closed_error">4601</string>
+    <string name="error_message_quicpay_closed_error">QUICPay閉局エラー</string>
+    <string name="error_detail_quicpay_closed_error">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_quicpay_power_off_error">4602</string>
+    <string name="error_message_quicpay_power_off_error">QUICPay電断検知</string>
+    <string name="error_detail_quicpay_power_off_error">意図しないシャットダウンを検知しました。\n決済状態のチェックを行います。</string>
+
+    <string name="error_type_quicpay_upper_limit_error">4603</string>
+    <string name="error_message_quicpay_upper_limit_error">QUICPay金額エラー</string>
+    <string name="error_detail_quicpay_upper_limit_error">999,999円以下で決済してください</string>
+
+    <string name="error_type_quicpay_journal_error">4604</string>
+    <string name="error_message_quicpay_journal_error">QUICPay日計処理失敗</string>
+    <string name="error_detail_quicpay_journal_error">業務メニューより、再開局を実施してください。</string>
+
+    <string name="error_type_opening_quicpay_warning">4610</string>
+    <string name="error_message_opening_quicpay_warning">QUICPay開局警告</string>
+    <string name="error_detail_opening_quicpay_warning">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_opening_quicpay_error">4611</string>
+    <string name="error_message_opening_quicpay_error">QUICPay開局エラー</string>
+    <string name="error_detail_opening_quicpay_error">業務メニューより、再開局を実施してください</string>
+
+    <!-- Okica(47) -->
+    <string name="error_type_okica_closed_error">4701</string>
+    <string name="error_message_okica_closed_error">OKICA閉局エラー</string>
+    <string name="error_detail_okica_closed_error">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_okica_power_off_error">4702</string>
+    <string name="error_message_okica_power_off_error">OKICA電断検知</string>
+    <string name="error_detail_okica_power_off_error">意図しないシャットダウンを検知しました。\n残高照会を行ってください。</string>
+
+    <string name="error_type_okica_upper_limit_error">4703</string>
+    <string name="error_message_okica_upper_limit_error">OKICA金額エラー</string>
+    <string name="error_detail_okica_upper_limit_error">99,999円以下で決済してください</string>
+
+    <string name="error_type_okica_charge_upper_limit_error">4704</string>
+    <string name="error_message_okica_charge_upper_limit_error">OKICAチャージ金額オーバー</string>
+    <string name="error_detail_okica_charge_upper_limit_error">%s</string>
+
+    <string name="error_type_opening_okica_warning">4710</string>
+    <string name="error_message_opening_okica_warning">OKICA開局警告</string>
+    <string name="error_detail_opening_okica_warning">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_opening_okica_error">4711</string>
+    <string name="error_message_opening_okica_error">OKICA開局エラー</string>
+    <string name="error_detail_opening_okica_error">業務メニューより、再開局を実施してください</string>
+
+    <string name="error_type_okica_sam_init_error">4750</string>
+    <string name="error_message_okica_sam_init_error">SAMカードエラー</string>
+    <string name="error_detail_okica_sam_init_error">SAMカードが挿入されていないか、故障している可能性があります。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_okica_wait_timeout_error">4751</string>
+    <string name="error_message_okica_wait_timeout_error">タッチ待ちタイムアウト</string>
+    <string name="error_detail_okica_wait_timeout_error">タイムアウトする前にカードをタッチしてください。</string>
+
+    <string name="error_type_okica_common_judge_detect_num_error">4752</string>
+    <string name="error_message_okica_common_judge_detect_num_error">カード判定エラー</string>
+    <string name="error_detail_okica_common_judge_detect_num_error">複数枚のカードが検出されました。</string>
+
+    <string name="error_type_okica_common_judge_read_error">4753</string>
+    <string name="error_message_okica_common_judge_read_error">カード判定エラー</string>
+    <string name="error_detail_okica_common_judge_read_error">カードを正しく読み取れませんでした。</string>
+
+    <string name="error_type_okica_common_judge_idi_error">4754</string>
+    <string name="error_message_okica_common_judge_idi_error">カード判定エラー</string>
+    <string name="error_detail_okica_common_judge_idi_error">カードを正しく読み取れませんでした。</string>
+
+    <string name="error_type_okica_common_judge_version_error">4755</string>
+    <string name="error_message_okica_common_judge_version_error">カード判定エラー</string>
+    <string name="error_detail_okica_common_judge_version_error">ご利用頂けないカードです。</string>
+
+    <string name="error_type_okica_common_judge_master_data_error">4756</string>
+    <string name="error_message_okica_common_judge_master_data_error">カード判定エラー</string>
+    <string name="error_detail_okica_common_judge_master_data_error">ご利用頂けないカードです。</string>
+
+    <string name="error_type_okica_common_judge_ic_type_error">4757</string>
+    <string name="error_message_okica_common_judge_ic_type_error">カード判定エラー</string>
+    <string name="error_detail_okica_common_judge_ic_type_error">ご利用頂けないカードです。</string>
+
+    <string name="error_type_okica_common_judge_data_item_error">4758</string>
+    <string name="error_message_okica_common_judge_data_item_error">カード判定エラー</string>
+    <string name="error_detail_okica_common_judge_data_item_error">ご利用頂けないカードです。</string>
+
+    <string name="error_type_okica_common_judge_activation_error">4759</string>
+    <string name="error_message_okica_common_judge_activation_error">カード判定エラー</string>
+    <string name="error_detail_okica_common_judge_activation_error">ご利用頂けないカードです。</string>
+
+    <string name="error_type_okica_common_judge_10_years_unused_error">4760</string>
+    <string name="error_message_okica_common_judge_10_years_unused_error">カード判定エラー</string>
+    <string name="error_detail_okica_common_judge_10_years_unused_error">ご利用頂けないカードです。</string>
+
+    <string name="error_type_okica_common_judge_card_unavailable_error">4761</string>
+    <string name="error_message_okica_common_judge_card_unavailable_error">カード判定エラー</string>
+    <string name="error_detail_okica_common_judge_card_unavailable_error">ご利用頂けないカードです。</string>
+
+    <string name="error_type_okica_common_judge_card_expired_error">4762</string>
+    <string name="error_message_okica_common_judge_card_expired_error">カード判定エラー</string>
+    <string name="error_detail_okica_common_judge_card_expired_error">ご利用頂けないカードです。</string>
+
+    <string name="error_type_okica_common_judge_nega_check_error">4763</string>
+    <string name="error_message_okica_common_judge_nega_check_error">カード判定エラー</string>
+    <string name="error_detail_okica_common_judge_nega_check_error">ご利用頂けないカードです。</string>
+
+    <string name="error_type_okica_insufficient_balance_error">4764</string>
+    <string name="error_message_okica_insufficient_balance_error">残高不足</string>
+    <string name="error_detail_okica_insufficient_balance_error">カードの残高がありません。\n別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_okica_another_card_touch_error">4765</string>
+    <string name="error_message_okica_another_card_touch_error">別カードタッチ</string>
+    <string name="error_detail_okica_another_card_touch_error">異なるカードがタッチされました。</string>
+
+    <string name="error_type_okica_unprocessed_another_card_touch_error">4766</string>
+    <string name="error_message_okica_unprocessed_another_card_touch_error">決済未了</string>
+    <string name="error_detail_okica_unprocessed_another_card_touch_error">別カードがタッチされたため、決済が正常に完了しませんでした。</string>
+
+    <string name="error_type_okica_unprocessed_timeout_error">4767</string>
+    <string name="error_message_okica_unprocessed_timeout_error">決済未了</string>
+    <string name="error_detail_okica_unprocessed_timeout_error">再タッチ待ちタイムアウトが発生したため、決済が正常に完了しませんでした。</string>
+
+    <string name="error_type_okica_unprocessed_unexpected_error">4768</string>
+    <string name="error_message_okica_unprocessed_unexpected_error">決済未了</string>
+    <string name="error_detail_okica_unprocessed_unexpected_error">決済が正常に完了しませんでした。</string>
+
+    <string name="error_type_okica_sam_sdk_error">4769</string>
+    <string name="error_message_okica_sam_sdk_error">機器異常検出</string>
+    <string name="error_detail_okica_sam_sdk_error">もう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_okica_card_sdk_error">4770</string>
+    <string name="error_message_okica_card_sdk_error">機器異常検出</string>
+    <string name="error_detail_okica_card_sdk_error">もう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_okica_transaction_error">4771</string>
+    <string name="error_message_okica_transaction_error">取引エラー</string>
+    <string name="error_detail_okica_transaction_error">もう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_okica_sf_judge_cancel_error">4772</string>
+    <string name="error_message_okica_sf_judge_cancel_error">取消エラー</string>
+    <string name="error_detail_okica_sf_judge_cancel_error">取消できません。\n決済後に他の取引が行われています。</string>
+
+    <string name="error_type_okica_data_error">4773</string>
+    <string name="error_message_okica_data_error">OKICAデータエラー</string>
+    <string name="error_detail_okica_data_error">業務メニューより、再開局を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_okica_not_installed_error">4774</string>
+    <string name="error_message_okica_not_installed_error">OKICA未設置エラー</string>
+    <string name="error_detail_okica_not_installed_error">OKICA設置作業が行われていません。\n管理者に連絡してください。</string>
+
+    <string name="error_type_okica_force_deactivation">4775</string>
+    <string name="error_message_okica_force_deactivation">OKICA強制撤去</string>
+    <string name="error_detail_okica_force_deactivation">OKICA強制撤去が行われました。</string>
+
+    <string name="error_type_okica_force_deactivation_uri_exist_error">4776</string>
+    <string name="error_message_okica_force_deactivation_uri_exist_error">OKICA強制撤去</string>
+    <string name="error_detail_okica_force_deactivation_uri_exist_error">強制撤去の通知がありました。\n未送信の売上が存在するため、業務終了後に再起動してください。</string>
+
+    <string name="error_type_okica_force_deactivation_aggregate_exist_error">4777</string>
+    <string name="error_message_okica_force_deactivation_aggregate_exist_error">OKICA強制撤去</string>
+    <string name="error_detail_okica_force_deactivation_aggregate_exist_error">強制撤去の通知がありました。\n未印刷の集計が存在するため、業務終了後に再起動してください。</string>
+
+    <string name="error_type_okica_not_available">4778</string>
+    <string name="error_message_okica_not_available">OKICA利用不可</string>
+    <string name="error_detail_okica_not_available">OKICA利用不可に設定されました。\n撤去操作を行ってください。</string>
+
+    <string name="error_type_certificate_emoney_error">4901</string>
+    <string name="error_message_certificate_emoney_error">電子マネーデータエラー</string>
+    <string name="error_detail_certificate_emoney_error">業務メニューより、再開局を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_activate_emoney_error">4902</string>
+    <string name="error_message_activate_emoney_error">電子マネー認証エラー</string>
+    <string name="error_detail_activate_emoney_error">業務メニューより、再開局を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_opening_emoney_error">4903</string>
+    <string name="error_message_opening_emoney_error">電子マネー開局エラー</string>
+    <string name="error_detail_opening_emoney_error">業務メニューより、再開局を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_jrem_activate_uninstall_error">4910</string>
+    <string name="error_message_jrem_activate_uninstall_error">電子マネー認証解除エラー</string>
+    <string name="error_detail_jrem_activate_uninstall_error">認証解除に失敗しました。\n管理者に連絡してください。</string>
+
+    <string-array name="error_jrem_activation_4001">
+        <item>@string/error_type_jrem_activation_4001</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_activation</item>
+        <item>@string/error_detail_jrem_activation_4001</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_activation_4002">
+        <item>@string/error_type_jrem_activation_4002</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_activation</item>
+        <item>@string/error_detail_jrem_activation_4002</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_activation_4003">
+        <item>@string/error_type_jrem_activation_4003</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_activation</item>
+        <item>@string/error_detail_jrem_activation_4003</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_activation_4004">
+        <item>@string/error_type_jrem_activation_4004</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_activation</item>
+        <item>@string/error_detail_jrem_activation_4004</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_activation_4005">
+        <item>@string/error_type_jrem_activation_4005</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_activation</item>
+        <item>@string/error_detail_jrem_activation_4005</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_activation_4006">
+        <item>@string/error_type_jrem_activation_4006</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_activation</item>
+        <item>@string/error_detail_jrem_activation_4006</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_activation_4007">
+        <item>@string/error_type_jrem_activation_4007</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_activation</item>
+        <item>@string/error_detail_jrem_activation_4007</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_activation_4008">
+        <item>@string/error_type_jrem_activation_4008</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_activation</item>
+        <item>@string/error_detail_jrem_activation_4008</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_activation_4009">
+        <item>@string/error_type_jrem_activation_4009</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_activation</item>
+        <item>@string/error_detail_jrem_activation_4009</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4010">
+        <item>@string/error_type_jrem_ras_4010</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4010</item>
+        <item>@string/error_detail_jrem_ras_4010</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4011">
+        <item>@string/error_type_jrem_ras_4011</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4011</item>
+        <item>@string/error_detail_jrem_ras_4011</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_14011">
+        <item>@string/error_type_jrem_ras_14011</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_14011</item>
+        <item>@string/error_detail_jrem_ras_14011</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4012">
+        <item>@string/error_type_jrem_ras_4012</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4012</item>
+        <item>@string/error_detail_jrem_ras_4012</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4013">
+        <item>@string/error_type_jrem_ras_4013</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4013</item>
+        <item>@string/error_detail_jrem_ras_4013</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4014">
+        <item>@string/error_type_jrem_ras_4014</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4014</item>
+        <item>@string/error_detail_jrem_ras_4014</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_14014">
+        <item>@string/error_type_jrem_ras_14014</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_14014</item>
+        <item>@string/error_detail_jrem_ras_14014</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4015">
+        <item>@string/error_type_jrem_ras_4015</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4015</item>
+        <item>@string/error_detail_jrem_ras_4015</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4016">
+        <item>@string/error_type_jrem_ras_4016</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4016</item>
+        <item>@string/error_detail_jrem_ras_4016</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4017">
+        <item>@string/error_type_jrem_ras_4017</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4017</item>
+        <item>@string/error_detail_jrem_ras_4017</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4018">
+        <item>@string/error_type_jrem_ras_4018</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4018</item>
+        <item>@string/error_detail_jrem_ras_4018</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_14018">
+        <item>@string/error_type_jrem_ras_14018</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_14018</item>
+        <item>@string/error_detail_jrem_ras_14018</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4019">
+        <item>@string/error_type_jrem_ras_4019</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4019</item>
+        <item>@string/error_detail_jrem_ras_4019</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4020">
+        <item>@string/error_type_jrem_ras_4020</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4020</item>
+        <item>@string/error_detail_jrem_ras_4020</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4021">
+        <item>@string/error_type_jrem_ras_4021</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4021</item>
+        <item>@string/error_detail_jrem_ras_4021</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_14021">
+        <item>@string/error_type_jrem_ras_14021</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_14021</item>
+        <item>@string/error_detail_jrem_ras_14021</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4022">
+        <item>@string/error_type_jrem_ras_4022</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4022</item>
+        <item>@string/error_detail_jrem_ras_4022</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_14022">
+        <item>@string/error_type_jrem_ras_14022</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_14022</item>
+        <item>@string/error_detail_jrem_ras_14022</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4023">
+        <item>@string/error_type_jrem_ras_4023</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4023</item>
+        <item>@string/error_detail_jrem_ras_4023</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4024">
+        <item>@string/error_type_jrem_ras_4024</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4024</item>
+        <item>@string/error_detail_jrem_ras_4024</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4025">
+        <item>@string/error_type_jrem_ras_4025</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4025</item>
+        <item>@string/error_detail_jrem_ras_4025</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4026">
+        <item>@string/error_type_jrem_ras_4026</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4026</item>
+        <item>@string/error_detail_jrem_ras_4026</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4027">
+        <item>@string/error_type_jrem_ras_4027</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4027</item>
+        <item>@string/error_detail_jrem_ras_4027</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4028">
+        <item>@string/error_type_jrem_ras_4028</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4028</item>
+        <item>@string/error_detail_jrem_ras_4028</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4029">
+        <item>@string/error_type_jrem_ras_4029</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4029</item>
+        <item>@string/error_detail_jrem_ras_4029</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4030">
+        <item>@string/error_type_jrem_ras_4030</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4030</item>
+        <item>@string/error_detail_jrem_ras_4030</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4031">
+        <item>@string/error_type_jrem_ras_4031</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4031</item>
+        <item>@string/error_detail_jrem_ras_4031</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4032">
+        <item>@string/error_type_jrem_ras_4032</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4032</item>
+        <item>@string/error_detail_jrem_ras_4032</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4033">
+        <item>@string/error_type_jrem_ras_4033</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4033</item>
+        <item>@string/error_detail_jrem_ras_4033</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4034">
+        <item>@string/error_type_jrem_ras_4034</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4034</item>
+        <item>@string/error_detail_jrem_ras_4034</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4035">
+        <item>@string/error_type_jrem_ras_4035</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4035</item>
+        <item>@string/error_detail_jrem_ras_4035</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4036">
+        <item>@string/error_type_jrem_ras_4036</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4036</item>
+        <item>@string/error_detail_jrem_ras_4036</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4037">
+        <item>@string/error_type_jrem_ras_4037</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4037</item>
+        <item>@string/error_detail_jrem_ras_4037</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4038">
+        <item>@string/error_type_jrem_ras_4038</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4038</item>
+        <item>@string/error_detail_jrem_ras_4038</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4039">
+        <item>@string/error_type_jrem_ras_4039</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4039</item>
+        <item>@string/error_detail_jrem_ras_4039</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4040">
+        <item>@string/error_type_jrem_ras_4040</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4040</item>
+        <item>@string/error_detail_jrem_ras_4040</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4041">
+        <item>@string/error_type_jrem_ras_4041</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4041</item>
+        <item>@string/error_detail_jrem_ras_4041</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4042">
+        <item>@string/error_type_jrem_ras_4042</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4042</item>
+        <item>@string/error_detail_jrem_ras_4042</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4043">
+        <item>@string/error_type_jrem_ras_4043</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4043</item>
+        <item>@string/error_detail_jrem_ras_4043</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4044">
+        <item>@string/error_type_jrem_ras_4044</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4044</item>
+        <item>@string/error_detail_jrem_ras_4044</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4045">
+        <item>@string/error_type_jrem_ras_4045</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4045</item>
+        <item>@string/error_detail_jrem_ras_4045</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4046">
+        <item>@string/error_type_jrem_ras_4046</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4046</item>
+        <item>@string/error_detail_jrem_ras_4046</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4048">
+        <item>@string/error_type_jrem_ras_4048</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4048</item>
+        <item>@string/error_detail_jrem_ras_4048</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_14048">
+        <item>@string/error_type_jrem_ras_14048</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_14048</item>
+        <item>@string/error_detail_jrem_ras_14048</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4049">
+        <item>@string/error_type_jrem_ras_4049</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4049</item>
+        <item>@string/error_detail_jrem_ras_4049</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4050">
+        <item>@string/error_type_jrem_ras_4050</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4050</item>
+        <item>@string/error_detail_jrem_ras_4050</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4051">
+        <item>@string/error_type_jrem_ras_4051</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4051</item>
+        <item>@string/error_detail_jrem_ras_4051</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4052">
+        <item>@string/error_type_jrem_ras_4052</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4052</item>
+        <item>@string/error_detail_jrem_ras_4052</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4053">
+        <item>@string/error_type_jrem_ras_4053</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4053</item>
+        <item>@string/error_detail_jrem_ras_4053</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4054">
+        <item>@string/error_type_jrem_ras_4054</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4054</item>
+        <item>@string/error_detail_jrem_ras_4054</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4055">
+        <item>@string/error_type_jrem_ras_4055</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4055</item>
+        <item>@string/error_detail_jrem_ras_4055</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4056">
+        <item>@string/error_type_jrem_ras_4056</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4056</item>
+        <item>@string/error_detail_jrem_ras_4056</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4057">
+        <item>@string/error_type_jrem_ras_4057</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4057</item>
+        <item>@string/error_detail_jrem_ras_4057</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4058">
+        <item>@string/error_type_jrem_ras_4058</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4058</item>
+        <item>@string/error_detail_jrem_ras_4058</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4059">
+        <item>@string/error_type_jrem_ras_4059</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4059</item>
+        <item>@string/error_detail_jrem_ras_4059</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4060">
+        <item>@string/error_type_jrem_ras_4060</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4060</item>
+        <item>@string/error_detail_jrem_ras_4060</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4061">
+        <item>@string/error_type_jrem_ras_4061</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4061</item>
+        <item>@string/error_detail_jrem_ras_4061</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4062">
+        <item>@string/error_type_jrem_ras_4062</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4062</item>
+        <item>@string/error_detail_jrem_ras_4062</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4063">
+        <item>@string/error_type_jrem_ras_4063</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4063</item>
+        <item>@string/error_detail_jrem_ras_4063</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4064">
+        <item>@string/error_type_jrem_ras_4064</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4064</item>
+        <item>@string/error_detail_jrem_ras_4064</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4065">
+        <item>@string/error_type_jrem_ras_4065</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4065</item>
+        <item>@string/error_detail_jrem_ras_4065</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4066">
+        <item>@string/error_type_jrem_ras_4066</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4066</item>
+        <item>@string/error_detail_jrem_ras_4066</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4067">
+        <item>@string/error_type_jrem_ras_4067</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4067</item>
+        <item>@string/error_detail_jrem_ras_4067</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4068">
+        <item>@string/error_type_jrem_ras_4068</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4068</item>
+        <item>@string/error_detail_jrem_ras_4068</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4069">
+        <item>@string/error_type_jrem_ras_4069</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4069</item>
+        <item>@string/error_detail_jrem_ras_4069</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4070">
+        <item>@string/error_type_jrem_ras_4070</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4070</item>
+        <item>@string/error_detail_jrem_ras_4070</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4071">
+        <item>@string/error_type_jrem_ras_4071</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4071</item>
+        <item>@string/error_detail_jrem_ras_4071</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4072">
+        <item>@string/error_type_jrem_ras_4072</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4072</item>
+        <item>@string/error_detail_jrem_ras_4072</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4073">
+        <item>@string/error_type_jrem_ras_4073</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4073</item>
+        <item>@string/error_detail_jrem_ras_4073</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4074">
+        <item>@string/error_type_jrem_ras_4074</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4074</item>
+        <item>@string/error_detail_jrem_ras_4074</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4075">
+        <item>@string/error_type_jrem_ras_4075</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4075</item>
+        <item>@string/error_detail_jrem_ras_4075</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4076">
+        <item>@string/error_type_jrem_ras_4076</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4076</item>
+        <item>@string/error_detail_jrem_ras_4076</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4077">
+        <item>@string/error_type_jrem_ras_4077</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4077</item>
+        <item>@string/error_detail_jrem_ras_4077</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4078">
+        <item>@string/error_type_jrem_ras_4078</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4078</item>
+        <item>@string/error_detail_jrem_ras_4078</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4079">
+        <item>@string/error_type_jrem_ras_4079</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4079</item>
+        <item>@string/error_detail_jrem_ras_4079</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4080">
+        <item>@string/error_type_jrem_ras_4080</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4080</item>
+        <item>@string/error_detail_jrem_ras_4080</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4081">
+        <item>@string/error_type_jrem_ras_4081</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4081</item>
+        <item>@string/error_detail_jrem_ras_4081</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4082">
+        <item>@string/error_type_jrem_ras_4082</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4082</item>
+        <item>@string/error_detail_jrem_ras_4082</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4083">
+        <item>@string/error_type_jrem_ras_4083</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4083</item>
+        <item>@string/error_detail_jrem_ras_4083</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4084">
+        <item>@string/error_type_jrem_ras_4084</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4084</item>
+        <item>@string/error_detail_jrem_ras_4084</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4085">
+        <item>@string/error_type_jrem_ras_4085</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4085</item>
+        <item>@string/error_detail_jrem_ras_4085</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4086">
+        <item>@string/error_type_jrem_ras_4086</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4086</item>
+        <item>@string/error_detail_jrem_ras_4086</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4087">
+        <item>@string/error_type_jrem_ras_4087</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4087</item>
+        <item>@string/error_detail_jrem_ras_4087</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4088">
+        <item>@string/error_type_jrem_ras_4088</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4088</item>
+        <item>@string/error_detail_jrem_ras_4088</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_ras_4089">
+        <item>@string/error_type_jrem_ras_4089</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_ras_4089</item>
+        <item>@string/error_detail_jrem_ras_4089</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_icas_4090">
+        <item>@string/error_type_icas_4090</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_icas_4090</item>
+        <item>@string/error_detail_icas_4090</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_icas_4091">
+        <item>@string/error_type_icas_4091</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_icas_4091</item>
+        <item>@string/error_detail_icas_4091</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_icas_4092">
+        <item>@string/error_type_icas_4092</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_icas_4092</item>
+        <item>@string/error_detail_icas_4092</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_icas_4093">
+        <item>@string/error_type_icas_4093</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_icas_4093</item>
+        <item>@string/error_detail_icas_4093</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_icas_4094">
+        <item>@string/error_type_icas_4094</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_icas_4094</item>
+        <item>@string/error_detail_icas_4094</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_icas_4095">
+        <item>@string/error_type_icas_4095</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_icas_4095</item>
+        <item>@string/error_detail_icas_4095</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_icas_4096">
+        <item>@string/error_type_icas_4096</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_icas_4096</item>
+        <item>@string/error_detail_icas_4096</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_icas_4097">
+        <item>@string/error_type_icas_4097</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_icas_4097</item>
+        <item>@string/error_detail_icas_4097</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_icas_4099">
+        <item>@string/error_type_icas_4099</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_icas_4099</item>
+        <item>@string/error_detail_icas_4099</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_suica_closed_error">
+        <item>@string/error_type_suica_closed_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_suica_closed_error</item>
+        <item>@string/error_detail_suica_closed_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_suica_power_off_error">
+        <item>@string/error_type_suica_power_off_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_suica_power_off_error</item>
+        <item>@string/error_detail_suica_power_off_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_suica_upper_limit_error">
+        <item>@string/error_type_suica_upper_limit_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_suica_upper_limit_error</item>
+        <item>@string/error_detail_suica_upper_limit_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_opening_suica_warning">
+        <item>@string/error_type_opening_suica_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_suica_warning</item>
+        <item>@string/error_detail_opening_suica_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_stacking</item>
+    </string-array>
+
+    <string-array name="error_opening_suica_error">
+        <item>@string/error_type_opening_suica_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_suica_error</item>
+        <item>@string/error_detail_opening_suica_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_id_closed_error">
+        <item>@string/error_type_id_closed_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_id_closed_error</item>
+        <item>@string/error_detail_id_closed_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_id_power_off_error">
+        <item>@string/error_type_id_power_off_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_id_power_off_error</item>
+        <item>@string/error_detail_id_power_off_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_id_upper_limit_error">
+        <item>@string/error_type_id_upper_limit_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_id_upper_limit_error</item>
+        <item>@string/error_detail_id_upper_limit_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_id_pin_error">
+        <item>@string/error_type_id_pin_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_id_pin_error</item>
+        <item>@string/error_detail_id_pin_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_invisible</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_opening_id_warning">
+        <item>@string/error_type_opening_id_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_id_warning</item>
+        <item>@string/error_detail_opening_id_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_stacking</item>
+    </string-array>
+
+    <string-array name="error_opening_id_error">
+        <item>@string/error_type_opening_id_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_id_error</item>
+        <item>@string/error_detail_opening_id_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_waon_closed_error">
+        <item>@string/error_type_waon_closed_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_waon_closed_error</item>
+        <item>@string/error_detail_waon_closed_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_waon_power_off_error">
+        <item>@string/error_type_waon_power_off_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_waon_power_off_error</item>
+        <item>@string/error_detail_waon_power_off_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_waon_upper_limit_error">
+        <item>@string/error_type_waon_upper_limit_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_waon_upper_limit_error</item>
+        <item>@string/error_detail_waon_upper_limit_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_opening_waon_warning">
+        <item>@string/error_type_opening_waon_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_waon_warning</item>
+        <item>@string/error_detail_opening_waon_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_stacking</item>
+    </string-array>
+
+    <string-array name="error_opening_waon_error">
+        <item>@string/error_type_opening_waon_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_waon_error</item>
+        <item>@string/error_detail_opening_waon_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_nanaco_closed_error">
+        <item>@string/error_type_nanaco_closed_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_nanaco_closed_error</item>
+        <item>@string/error_detail_nanaco_closed_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_nanaco_power_off_error">
+        <item>@string/error_type_nanaco_power_off_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_nanaco_power_off_error</item>
+        <item>@string/error_detail_nanaco_power_off_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_nanaco_upper_limit_error">
+        <item>@string/error_type_nanaco_upper_limit_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_nanaco_upper_limit_error</item>
+        <item>@string/error_detail_nanaco_upper_limit_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_nanaco_near_full_warning">
+        <item>@string/error_type_nanaco_near_full_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_nanaco_near_full_warning</item>
+        <item>@string/error_detail_nanaco_near_full_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_nanaco_journal_warning">
+        <item>@string/error_type_nanaco_journal_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_nanaco_journal_warning</item>
+        <item>@string/error_detail_nanaco_journal_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_opening_nanaco_warning">
+        <item>@string/error_type_opening_nanaco_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_nanaco_warning</item>
+        <item>@string/error_detail_opening_nanaco_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_stacking</item>
+    </string-array>
+
+    <string-array name="error_opening_nanaco_error">
+        <item>@string/error_type_opening_nanaco_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_nanaco_error</item>
+        <item>@string/error_detail_opening_nanaco_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_edy_closed_error">
+        <item>@string/error_type_edy_closed_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_edy_closed_error</item>
+        <item>@string/error_detail_edy_closed_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_edy_power_off_error">
+        <item>@string/error_type_edy_power_off_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_edy_power_off_error</item>
+        <item>@string/error_detail_edy_power_off_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_edy_upper_limit_error">
+        <item>@string/error_type_edy_upper_limit_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_edy_upper_limit_error</item>
+        <item>@string/error_detail_edy_upper_limit_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_edy_before_init_communication_error">
+        <item>@string/error_type_edy_before_init_communication_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_edy_before_init_communication_error</item>
+        <item>@string/error_detail_edy_before_init_communication_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_edy_init_communication_error">
+        <item>@string/error_type_edy_init_communication_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_edy_init_communication_error</item>
+        <item>@string/error_detail_edy_init_communication_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_edy_near_full_warning">
+        <item>@string/error_type_edy_near_full_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_edy_near_full_warning</item>
+        <item>@string/error_detail_edy_near_full_warning</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_edy_journal_warning">
+        <item>@string/error_type_edy_journal_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_edy_journal_warning</item>
+        <item>@string/error_detail_edy_journal_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_opening_edy_warning">
+        <item>@string/error_type_opening_edy_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_edy_warning</item>
+        <item>@string/error_detail_opening_edy_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_stacking</item>
+    </string-array>
+
+    <string-array name="error_opening_edy_error">
+        <item>@string/error_type_opening_edy_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_edy_error</item>
+        <item>@string/error_detail_opening_edy_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_quicpay_closed_error">
+        <item>@string/error_type_quicpay_closed_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_quicpay_closed_error</item>
+        <item>@string/error_detail_quicpay_closed_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_quicpay_power_off_error">
+        <item>@string/error_type_quicpay_power_off_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_quicpay_power_off_error</item>
+        <item>@string/error_detail_quicpay_power_off_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_quicpay_upper_limit_error">
+        <item>@string/error_type_quicpay_upper_limit_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_quicpay_upper_limit_error</item>
+        <item>@string/error_detail_quicpay_upper_limit_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_quicpay_journal_error">
+        <item>@string/error_type_quicpay_journal_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_quicpay_journal_error</item>
+        <item>@string/error_detail_quicpay_journal_error</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_opening_quicpay_warning">
+        <item>@string/error_type_opening_quicpay_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_quicpay_warning</item>
+        <item>@string/error_detail_opening_quicpay_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_stacking</item>
+    </string-array>
+
+    <string-array name="error_opening_quicpay_error">
+        <item>@string/error_type_opening_quicpay_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_quicpay_error</item>
+        <item>@string/error_detail_opening_quicpay_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_closed_error">
+        <item>@string/error_type_okica_closed_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_closed_error</item>
+        <item>@string/error_detail_okica_closed_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_power_off_error">
+        <item>@string/error_type_okica_power_off_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_power_off_error</item>
+        <item>@string/error_detail_okica_power_off_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_upper_limit_error">
+        <item>@string/error_type_okica_upper_limit_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_upper_limit_error</item>
+        <item>@string/error_detail_okica_upper_limit_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_charge_upper_limit_error">
+        <item>@string/error_type_okica_charge_upper_limit_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_charge_upper_limit_error</item>
+        <item>@string/error_detail_okica_charge_upper_limit_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_opening_okica_warning">
+        <item>@string/error_type_opening_okica_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_okica_warning</item>
+        <item>@string/error_detail_opening_okica_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_stacking</item>
+    </string-array>
+
+    <string-array name="error_opening_okica_error">
+        <item>@string/error_type_opening_okica_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_okica_error</item>
+        <item>@string/error_detail_opening_okica_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_stacking</item>
+    </string-array>
+
+    <string-array name="error_okica_sam_init_error">
+        <item>@string/error_type_okica_sam_init_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_sam_init_error</item>
+        <item>@string/error_detail_okica_sam_init_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_wait_timeout_error">
+        <item>@string/error_type_okica_wait_timeout_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_wait_timeout_error</item>
+        <item>@string/error_detail_okica_wait_timeout_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_common_judge_detect_num_error">
+        <item>@string/error_type_okica_common_judge_detect_num_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_common_judge_detect_num_error</item>
+        <item>@string/error_detail_okica_common_judge_detect_num_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_common_judge_read_error">
+        <item>@string/error_type_okica_common_judge_read_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_common_judge_read_error</item>
+        <item>@string/error_detail_okica_common_judge_read_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_common_judge_idi_error">
+        <item>@string/error_type_okica_common_judge_idi_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_common_judge_idi_error</item>
+        <item>@string/error_detail_okica_common_judge_idi_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_common_judge_version_error">
+        <item>@string/error_type_okica_common_judge_version_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_common_judge_version_error</item>
+        <item>@string/error_detail_okica_common_judge_version_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_common_judge_master_data_error">
+        <item>@string/error_type_okica_common_judge_master_data_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_common_judge_master_data_error</item>
+        <item>@string/error_detail_okica_common_judge_master_data_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_common_judge_ic_type_error">
+        <item>@string/error_type_okica_common_judge_ic_type_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_common_judge_ic_type_error</item>
+        <item>@string/error_detail_okica_common_judge_ic_type_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_common_judge_data_item_error">
+        <item>@string/error_type_okica_common_judge_data_item_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_common_judge_data_item_error</item>
+        <item>@string/error_detail_okica_common_judge_data_item_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_common_judge_activation_error">
+        <item>@string/error_type_okica_common_judge_activation_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_common_judge_activation_error</item>
+        <item>@string/error_detail_okica_common_judge_activation_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_common_judge_10_years_unused_error">
+        <item>@string/error_type_okica_common_judge_10_years_unused_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_common_judge_10_years_unused_error</item>
+        <item>@string/error_detail_okica_common_judge_10_years_unused_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_common_judge_card_unavailable_error">
+        <item>@string/error_type_okica_common_judge_card_unavailable_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_common_judge_card_unavailable_error</item>
+        <item>@string/error_detail_okica_common_judge_card_unavailable_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_common_judge_card_expired_error">
+        <item>@string/error_type_okica_common_judge_card_expired_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_common_judge_card_expired_error</item>
+        <item>@string/error_detail_okica_common_judge_card_expired_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_common_judge_nega_check_error">
+        <item>@string/error_type_okica_common_judge_nega_check_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_common_judge_nega_check_error</item>
+        <item>@string/error_detail_okica_common_judge_nega_check_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_insufficient_balance_error">
+        <item>@string/error_type_okica_insufficient_balance_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_insufficient_balance_error</item>
+        <item>@string/error_detail_okica_insufficient_balance_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_another_card_touch_error">
+        <item>@string/error_type_okica_another_card_touch_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_another_card_touch_error</item>
+        <item>@string/error_detail_okica_another_card_touch_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_unprocessed_another_card_touch_error">
+        <item>@string/error_type_okica_unprocessed_another_card_touch_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_unprocessed_another_card_touch_error</item>
+        <item>@string/error_detail_okica_unprocessed_another_card_touch_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_unprocessed_timeout_error">
+        <item>@string/error_type_okica_unprocessed_timeout_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_unprocessed_timeout_error</item>
+        <item>@string/error_detail_okica_unprocessed_timeout_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_unprocessed_unexpected_error">
+        <item>@string/error_type_okica_unprocessed_unexpected_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_unprocessed_unexpected_error</item>
+        <item>@string/error_detail_okica_unprocessed_unexpected_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_sam_sdk_error">
+        <item>@string/error_type_okica_sam_sdk_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_sam_sdk_error</item>
+        <item>@string/error_detail_okica_sam_sdk_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_card_sdk_error">
+        <item>@string/error_type_okica_card_sdk_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_card_sdk_error</item>
+        <item>@string/error_detail_okica_card_sdk_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_transaction_error">
+        <item>@string/error_type_okica_transaction_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_transaction_error</item>
+        <item>@string/error_detail_okica_transaction_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_sf_judge_cancel_error">
+        <item>@string/error_type_okica_sf_judge_cancel_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_sf_judge_cancel_error</item>
+        <item>@string/error_detail_okica_sf_judge_cancel_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_data_error">
+        <item>@string/error_type_okica_data_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_data_error</item>
+        <item>@string/error_detail_okica_data_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_not_installed_error">
+        <item>@string/error_type_okica_not_installed_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_not_installed_error</item>
+        <item>@string/error_detail_okica_not_installed_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_force_deactivation">
+        <item>@string/error_type_okica_force_deactivation</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_force_deactivation</item>
+        <item>@string/error_detail_okica_force_deactivation</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_force_deactivation_uri_exist_error">
+        <item>@string/error_type_okica_force_deactivation_uri_exist_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_force_deactivation_uri_exist_error</item>
+        <item>@string/error_detail_okica_force_deactivation_uri_exist_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_force_deactivation_aggregate_exist_error">
+        <item>@string/error_type_okica_force_deactivation_aggregate_exist_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_force_deactivation_aggregate_exist_error</item>
+        <item>@string/error_detail_okica_force_deactivation_aggregate_exist_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_okica_not_available">
+        <item>@string/error_type_okica_not_available</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_okica_not_available</item>
+        <item>@string/error_detail_okica_not_available</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_certificate_emoney_error">
+        <item>@string/error_type_certificate_emoney_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_certificate_emoney_error</item>
+        <item>@string/error_detail_certificate_emoney_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_opening_emoney_error">
+        <item>@string/error_type_opening_emoney_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_opening_emoney_error</item>
+        <item>@string/error_detail_opening_emoney_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_activate_emoney_error">
+        <item>@string/error_type_activate_emoney_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_activate_emoney_error</item>
+        <item>@string/error_detail_activate_emoney_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_jrem_activate_uninstall_error">
+        <item>@string/error_type_jrem_activate_uninstall_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_jrem_activate_uninstall_error</item>
+        <item>@string/error_detail_jrem_activate_uninstall_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+</resources>

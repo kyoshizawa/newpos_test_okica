@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.Version" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="バージョン詳細"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@color/secondary"
+            android:padding="@dimen/common_padding"
+            android:textSize="24sp" />
+
+<!--        <Space android:layout_width="match_parent" android:layout_height="30dp" />-->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_large"
+                android:orientation="vertical">
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:text="アプリバージョン"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:layout_weight="3"/>-->
+
+<!--                    <TextView-->
+<!--                        android:text="1.0.0 (3)"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:layout_weight="7"/>-->
+<!--                </LinearLayout>-->
+
+<!--                <Space android:layout_width="match_parent"  android:layout_height="30dp" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:text="クレジットバージョン"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:layout_weight="3"/>-->
+
+<!--                    <TextView-->
+<!--                        android:text="1.0.2"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:layout_weight="7"/>-->
+<!--                </LinearLayout>-->
+
+<!--                <Space android:layout_width="match_parent"  android:layout_height="30dp" />-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal">-->
+
+<!--                        <TextView-->
+<!--                            android:text="電子マネーバージョン"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textSize="16sp"-->
+<!--                            android:layout_weight="3"/>-->
+<!--                    </LinearLayout>-->
+
+                    <Space android:layout_width="match_parent"  android:layout_height="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="交通系電子マネー"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="3"/>
+
+                        <TextView
+                            android:text='@{Version.SUICA != null ? Version.SUICA : "―"}'
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="7"/>
+                    </LinearLayout>
+
+                    <Space android:layout_width="match_parent"  android:layout_height="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="iD"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="3"/>
+
+                        <TextView
+                            android:text='@{Version.ID != null ? Version.ID : "―"}'
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="7"/>
+                    </LinearLayout>
+
+                    <Space android:layout_width="match_parent"  android:layout_height="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="WAON"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="3"/>
+
+                        <TextView
+                            android:text='@{Version.WAON != null ? Version.WAON : "―"}'
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="7"/>
+                    </LinearLayout>
+
+                    <Space android:layout_width="match_parent"  android:layout_height="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="nanaco"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="3"/>
+
+                        <TextView
+                            android:text='@{Version.NANACO != null ? Version.NANACO : "―"}'
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="7"/>
+                    </LinearLayout>
+
+                    <Space android:layout_width="match_parent"  android:layout_height="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="楽天Edy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="3"/>
+
+                        <TextView
+                            android:text='@{Version.EDY != null ? Version.EDY : "―"}'
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="7"/>
+                    </LinearLayout>
+
+                    <Space android:layout_width="match_parent"  android:layout_height="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="QUICPay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="3"/>
+
+                        <TextView
+                            android:text='@{Version.QUICPAY != null ? Version.QUICPAY : "―"}'
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="7"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+<!--                <Space android:layout_width="match_parent"  android:layout_height="30dp" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:text="コード決済バージョン"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:layout_weight="3"/>-->
+
+<!--                    <TextView-->
+<!--                        android:text="―"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:layout_weight="7"/>-->
+<!--                </LinearLayout>-->
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

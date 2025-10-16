@@ -1,0 +1,435 @@
+<resources>
+    <string name="prepaid_app_name">プリペイドアプリ</string>
+
+    <!-- 汎用的な文字列 -->
+    <string name="btn_back_text">戻る</string>
+    <string name="btn_home_text">ホーム</string>
+    <string name="yen">円</string>
+    <string name="yen_mark">￥</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="hour">時</string>
+    <string name="minutes">分</string>
+    <string name="second">秒</string>
+    <string name="credit_card">クレジットカード</string>
+    <string name="enable">有効</string>
+    <string name="disable">無効</string>
+    <string name="colon_mark">：</string>
+
+    <!-- 数字入力共通 -->
+    <string name="btn_common_enter_horizontal">決定</string>
+    <string name="btn_common_cancel_horizontal">取消</string>
+    <string name="btn_common_correction_horizontal">訂正</string>
+    <string name="btn_common_clear_horizontal">クリア</string>
+    <string name="btn_common_enter_horizontal_en">Enter</string>
+    <string name="btn_common_cancel_horizontal_en">Cancel</string>
+    <string name="btn_common_correction_horizontal_en">Clear</string>
+    <string name="btn_common_num_1">1</string>
+    <string name="btn_common_num_2">2</string>
+    <string name="btn_common_num_3">3</string>
+    <string name="btn_common_num_4">4</string>
+    <string name="btn_common_num_5">5</string>
+    <string name="btn_common_num_6">6</string>
+    <string name="btn_common_num_7">7</string>
+    <string name="btn_common_num_8">8</string>
+    <string name="btn_common_num_9">9</string>
+    <string name="btn_common_num_0">0</string>
+    <string name="btn_common_num_00">00</string>
+    <string name="btn_common_confirmed">確定</string>
+    <!-- //ADD-S BMT S.Oyama 2024/11/20 フタバ双方向向け改修 -->
+    <string name="btn_common_num_dot">.</string>
+    <!-- //ADD-E BMT S.Oyama 2024/11/20 フタバ双方向向け改修 -->
+
+    <!-- アクションバーに表示するタイトル -->
+    <string name="bar_title_demo_mode">"  "デモ\nモード</string>
+    <!-- デモ用の乗務員名 -->
+    <string name="demo_driver_name">デモ係員</string>
+
+    <string name="bar_title_manual_mode">"  "手動\nモード</string>
+
+    <!-- 電子マネー関連（JREMの業務アプリ開発ガイドラインより） -->
+    <string name="amount_label_string">金額</string>
+    <string name="currency_string">円</string>
+    <string name="balance_label_string">残高</string>
+    <string name="cancel_button_label_string">中止</string>
+    <string name="check">確認</string>
+    <string name="retry">リトライ</string>
+    <string name="total_amount">全額引去</string>
+    <string name="payment">支払</string>
+    <string name="charge_card">チャージ</string>
+    <string name="balance_inquiry">残高照会</string>
+    <string name="check_business">過去取引照会</string>
+    <string name="previous_balance_label_string">決済前残高</string>
+    <string name="card_touch_wait_common">カードをタッチしてください</string>
+    <string name="working_settle_message_common">決済処理中です</string>
+    <string name="cancel_message">中止しました</string>
+    <string name="settlement_incomplete">決済が完了しませんでした</string>
+    <string name="success_message">ありがとうございました</string>
+    <string name="insufficient_message">残高が不足しています</string>
+    <string name="failed_message">お取り扱いできません</string>
+    <string name="retry_message">もう一度タッチしてください</string>
+    <string name="get_idi">IDi 取得</string>
+    <string name="money_brand_suica">交通系電子マネー</string>
+    <string name="cancel_last_business">直前取引取消</string>
+    <string name="settlement_incomplete_different_card">別カードがタッチされたため決済が完了しませんでした</string>
+    <string name="money_brand_edy">楽天Edy</string>
+    <string name="force_balance_inquiry_edy">強残</string>
+    <string name="card_history_edy">カード取引履歴</string>
+    <string name="complete_message_edy">Edy 取引が完了しました</string>
+    <string name="insufficient_message_edy">残高不足です</string>
+    <string name="forced_balance_edy">決済が完了しませんでした。引き続き残高照会を実施します。</string>
+    <string name="end_transaction_edy">Edy 取引を終了します</string>
+    <string name="please_wait_edy">しばらくおまちください</string>
+    <string name="different_card_retouch_edy">カードが違います。最初のカードをタッチしてください。</string>
+    <string name="unable_to_charge_over_amount">上限額オーバー チャージできません</string>
+    <string name="unable_to_charge_expired">有効期限切れカード チャージできません</string>
+    <string name="money_brand_waon">WAON</string>
+    <string name="point_currency_string_waon">Ｐ</string>
+    <string name="point_label_string_waon">ポイント</string>
+    <string name="point_balance_label_string_waon">ポイント残高</string>
+    <string name="charge_point_waon">ポイントチャージ</string>
+    <string name="cancel_value_waon">支払取消</string>
+    <string name="cancel_charge_waon">チャージ取消</string>
+    <string name="auto_charge_waon">オートチャージ実行中です</string>
+    <string name="not_available_different_card_waon">カードが違います。お取扱いできません</string>
+    <string name="settlement_incomplete_different_card_waon">カードが違います。決済が完了しませんでした。</string>
+    <string name="money_brand_nanaco">nanaco</string>
+    <string name="different_card_retouch_nanaco">カードが違います。最初のカードをタッチしてください。</string>
+    <string name="money_brand_id">iD</string>
+    <string name="balance_inquiry_id">照会</string>
+    <string name="cancel_last_business_id">取消・返品</string>
+    <string name="manual_returning_id">マニュアル返品</string>
+    <string name="please_wait_id">しばらくお待ちください</string>
+    <string name="money_brand_qp">QUICPay</string>
+    <string name="balance_inquiry_qp">照会</string>
+    <string name="cancel_last_business_qp">取消・返品</string>
+    <string name="manual_returning_qp">マニュアル返品</string>
+    <string name="under_inquiry_qp">カード会社問合わせ中</string>
+    <string name="connection_info">接続情報</string>
+    <string name="connection_ima820">IM-A820</string>
+    <string name="connection_tablet">タブレット</string>
+
+    <!-- OKICA関連 -->
+    <string name="money_brand_okica">OKICA</string>
+
+    <!-- クレジット関連 -->
+    <string name="money_brand_credit">クレジット</string>
+
+    <!-- コード決済関連 -->
+    <string name="money_brand_codetrans">コード決済</string>
+
+    <!-- 現金決済関連 -->
+    <string name="money_brand_cash">現金</string>
+
+    <!-- 郵便小為替決済関連 -->
+    <string name="money_brand_postal_order">為替類</string>
+
+    <!-- 和多利関連 -->
+    <string name="point_brand_watari">ポイント</string>
+
+    <!-- プリペイド -->
+    <string name="prepaid_brand">プリペイド</string>
+
+    <!-- メニューアイテム -->
+    <string name="menu_home_fragment_info">設定情報</string>
+    <string name="menu_home_fragment_device_check">デバイスチェック</string>
+    <string name="menu_home_fragment_settings">設定</string>
+    <string name="menu_home_fragment_installation_and_removal">保守</string>
+    <string name="menu_home_fragment_update_check">更新確認</string>
+    <string name="menu_home_fragment_menu_close">閉じる</string>
+
+    <string name="menu_head_driver_code">係員番号</string>
+    <string name="menu_head_car_id">号機番号</string>
+    <string name="driver_code_message">係員番号を入力してください</string>
+    <string name="car_id_message">号機番号を入力してください</string>
+
+    <string name="charge_message">チャージ金額を入力してください</string>
+
+    <!-- 開発者画面 メニュー項目 -->
+    <string-array name="developer_menu_array">
+        <item>GPSリアルタイム確認</item>
+        <item>GPS状況詳細履歴</item>
+        <item>電波状況リアルタイム確認</item>
+        <item>電波状況詳細履歴</item>
+        <item>ダミー決済追加(デモモードのみ)</item>
+        <item>ダミー乗務員追加(デモモードのみ)</item>
+        <item>取引履歴クリア</item>
+    </string-array>
+
+    <!-- 決済種別 -->
+    <string-array name="trans_brand">
+        <item>@string/btn_home_credit</item>
+        <!--<item>@string/btn_other_unionpay</item>-->
+        <item>@string/money_brand_suica</item>
+        <!--<item>@string/money_brand_id</item>-->
+        <!--<item>@string/money_brand_waon</item>-->
+        <!--<item>@string/money_brand_nanaco</item>-->
+        <!--<item>@string/money_brand_edy</item>-->
+        <!--<item>@string/money_brand_qp</item>-->
+        <!--<item>@string/btn_home_qr</item>-->
+    </string-array>
+
+    <!-- 取引種別 -->
+    <string-array name="trans_type">
+        <item>引去</item>
+        <item>取消</item>
+    </string-array>
+
+    <!-- ホーム画面 -->
+    <string name="btn_home_credit">クレジット</string>
+    <string name="btn_home_emoney">電子マネー</string>
+    <string name="btn_home_qr">コード決済</string>
+    <string name="btn_home_other">その他</string>
+    <string name="btn_home_operation">直前取引</string>
+    <string name="btn_home_history">履歴</string>
+    <string name="btn_home_business">業務</string>
+    <string name="btn_home_business_end">業務終了</string>
+    <string name="btn_pos_cart">商品カート</string>
+    <string name="btn_product_selection">商品選択</string>
+    <string name="btn_ticket_sales">チケット販売</string>
+    <string name="btn_ticket_gate">改札</string>
+    <string name="btn_home_cash">現金支払</string>
+    <string name="btn_home_cashchanger">自動釣銭機</string>
+
+    <!-- 履歴画面 -->
+    <string name="btn_history_transaction">取引履歴</string>
+    <string name="btn_history_daily_total">集計履歴</string>
+    <string name="btn_history_error">エラー履歴</string>
+    <string name="btn_history_operation">操作履歴</string>
+    <string name="btn_history_radio">電波履歴</string>
+    <string name="btn_history_daily_total_print">集計印字</string>
+
+    <!-- 業務画面 -->
+    <string name="btn_business_emoney_opening">再開局</string>
+    <string name="btn_business_driver_code_input">係員番号入力</string>
+    <string name="btn_business_car_id_input">号機番号入力</string>
+    <string name="btn_business_send_log">端末情報送信</string>
+    <string name="btn_business_aggregate">集計表示</string>
+    <string name="btn_business_refresh_pos_data">POSデータ更新</string>
+    <string name="btn_business_ticket_data">チケットデータ更新</string>
+    <string name="btn_business_balance">残高照会</string>
+    <string name="btn_business_external_device">外部機器</string>
+    <string name="btn_business_manual">手動決済</string>
+    <string name="btn_business_duplex">双方向決済</string>
+    <string name="btn_business_end">業務終了</string>
+    <!-- //ADD-S BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
+    <string name="btn_business_auto_daily_report">自動日報/その他</string>
+    <!-- //ADD-E BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
+    <!-- //ADD-S BMT S.Oyama 2025/01/09 フタバ双方向向け改修 -->
+    <string name="btn_business_receipt">領収書</string>
+    <string name="btn_business_ticket">チケット伝票</string>
+    <!-- //ADD-E BMT S.Oyama 2025/01/09 フタバ双方向向け改修 -->
+
+    <!-- その他決済画面 -->
+    <string name="btn_other_unionpay">銀聯</string>
+    <string name="btn_other_prepaid">プリペイド</string>
+    <string name="btn_other_validation">有効性確認</string>
+    <string name="btn_other_watari">ポイント</string>
+    <string name="btn_other_fixed_amount_postal_order">為替類</string>
+
+    <!-- 外部機器画面 -->
+    <string name="btn_external_device_cash_changer">つり銭機</string>
+
+    <!-- つり銭機画面 -->
+    <string name="btn_cashchanger_reconnect">再接続</string>
+    <string name="btn_cashchanger_cashcount">残高印刷</string>
+    <string name="btn_cashchanger_enddeposit">入金終了</string>
+
+    <string name="title_cashchanger">自動つり銭機</string>
+    <string name="title_cashchanger_status">接続状態</string>
+    <string name="title_cashchanger_cashcount">つり銭機内残高</string>
+    <string name="status_cashchanger_getting">取得中・・・</string>
+    <string name="status_cashchanger_connect_ok">正常　　　　</string>
+    <string name="status_cashchanger_connect_ng">接続異常　　</string>
+
+    <!-- デバイスチェック画面 -->
+    <string name="btn_device_check_magnetic">磁気R</string>
+    <string name="btn_device_check_ic">接触IC</string>
+    <string name="btn_device_check_contactless">非接触IC</string>
+    <string name="btn_device_check_felica">FeliCa</string>
+    <string name="btn_device_check_camera">カメラ</string>
+    <string name="btn_device_check_printer">プリンター</string>
+    <string name="btn_device_check_gps">GPS</string>
+    <string name="btn_device_check_sim">SIM</string>
+    <string name="btn_device_check_sam">SAM</string>
+    <string name="btn_device_check_wifi">WiFi</string>
+    <string name="btn_device_check_terminal">端末情報</string>
+    <string name="btn_device_check_meter">メーター</string>
+    <string name="btn_device_check_clear">結果クリア</string>
+
+    <!-- 金額入力画面 -->
+    <string name="btn_amount_input_increase">増額</string>
+    <string name="btn_amount_input_decrease">減額</string>
+    <string name="btn_amount_input_back">→</string>
+    <string name="btn_amount_input_flat_rate">定額</string>
+    <string name="btn_amount_input_reset">増減取消</string>
+    <string name="btn_amount_input_reset_1">増減</string>
+    <string name="btn_amount_input_reset_2">取消</string>
+    <string name="btn_amount_input_enter">入力</string>
+    <string name="btn_amount_input_fix">金額確定</string>
+    <string name="btn_amount_input_fix_1">金額</string>
+    <string name="btn_amount_input_fix_2">確定</string>
+    <string name="btn_amount_input_advancepay_flatRate">定額\n立替</string>
+    <string name="btn_amount_input_separation">分別</string>
+    <string name="text_amount_input_total">合計金額</string>
+    <string name="text_amount_input_change">入力金額</string>
+    <string name="text_amount_input_deposit">お預り金額</string>
+    <string name="text_amount_input_over">おつり</string>
+    <string name="text_amount_input_advancepay">立替金額</string>
+    <string name="text_amount_input_flatrate">定額金額"</string>
+    <string name="list_amount_input_advancepay">立替金額</string>
+    <string name="list_amount_input_flatrate">定額金額</string>
+    <string name="list_amount_input_ticket">チケット金額</string>
+    <string name="list_amount_input_settlement">決済金額</string>
+    <string name="list_amount_input_cancel_advancepay_flatRate">定額・立替取消</string>
+    <string name="list_amount_input_cancel_separation">分別金額取消</string>
+
+    <!-- 現金分割入力画面（LT-27双方向） -->
+    <string name="text_amount_input_lt27_emoney">決済金額</string>
+    <string name="btn_amount_input_lt27_emoney_1">決済</string>
+    <string name="btn_amount_input_lt27_emoney_2">金額</string>
+    <string name="text_amount_input_lt27_cash">現金分割</string>
+    <string name="btn_amount_input_lt27_cash_1">現金</string>
+    <string name="btn_amount_input_lt27_cash_2">分割</string>
+    <string name="btn_amount_input_lt27_cancel">分割取消</string>
+    <string name="btn_amount_input_lt27_cancel_1">分割</string>
+    <string name="btn_amount_input_lt27_cancel_2">取消</string>
+
+    <string name="text_credit_card_pin_input_prompt">暗証番号を入力してください</string>
+    <string name="text_credit_card_pin_input_remaining_time">残り時間：</string>
+    <string name="text_credit_card_pin_input_value">＊</string>
+
+    <!-- チケット販売画面 -->
+    <string name="ticket_class_title">　チケット分類</string>
+    <string name="ticket_embark_title">のりば</string>
+    <string name="ticket_disembark_title">おりば</string>
+    <string name="ticket_issue_title">ＱＲ券</string>
+
+    <!-- 自動つり銭機画面 -->
+    <string name="text_amount_cash_changer_confirm">支払</string>
+    <string name="text_amount_cash_changer_input">入金</string>
+    <string name="text_amount_cash_changer_change">お釣り</string>
+    <string name="text_amount_cash_changer_cancel">取消</string>
+
+    <!-- 履歴操作ボタン -->
+    <string name="btn_prev_1hour">1時間戻る</string>
+    <string name="btn_next_1hour">1時間進む</string>
+    <string name="btn_prev_5minutes">5分戻る</string>
+    <string name="btn_next_5minutes">5分進む</string>
+    <string name="btn_change_datetime">日時変更</string>
+    <string name="btn_clear_history">履歴クリア</string>
+
+    <!-- GPS情報項目 -->
+    <string name="text_current_time">現在時刻</string>
+    <string name="text_update_time">更新時刻</string>
+    <string name="text_gps_latitude">緯度</string>
+    <string name="text_gps_longitude">経度</string>
+    <string name="text_gps_horizontal_accuracy">水平精度</string>
+    <string name="text_gps_altitude">高度</string>
+    <string name="text_gps_bearing">方位</string>
+    <string name="text_gps_speed">速度</string>
+    <string name="text_gps_satellites">衛星数</string>
+    <string name="unit_degree">°</string>
+    <string name="unit_meter">m</string>
+    <string name="unit_speed">km/時</string>
+    <string name="unit_sate">個</string>
+    <string name="label_accuracy_head">(±</string>
+    <string name="label_accuracy_tail">m)</string>
+
+    <string-array name="demo_timeout_list">
+        <item>30秒</item>
+        <item>3分</item>
+        <item>24時間</item>
+    </string-array>
+
+    <string-array name="demo_timeout_values">
+        <item>30</item>
+        <item>180</item>
+        <item>86400</item>
+    </string-array>
+
+    <string-array name="demo_lock_list">
+        <item>即時</item>
+        <item>5分</item>
+        <item>6時間</item>
+    </string-array>
+
+    <string-array name="demo_lock_values">
+        <item>0</item>
+        <item>300</item>
+        <item>21600</item>
+    </string-array>
+
+    <!-- チケット検索条件画面 -->
+    <string name="text_ticket_embark">のりば</string>
+    <string name="text_ticket_embark_selection">のりばを選択して下さい</string>
+    <string name="text_ticket_disembark">おりば</string>
+    <string name="text_ticket_disembark_selection">おりばを選択して下さい</string>
+    <string name="text_ticket_adult">大人</string>
+    <string name="text_ticket_child">小人</string>
+    <string name="text_ticket_adult_disability">障がい者 大人</string>
+    <string name="text_ticket_child_disability">障がい者 小人</string>
+    <string name="text_ticket_caregiver">介助者</string>
+    <string name="text_ticket_baby">乳幼児</string>
+    <string name="btn_ticket_search">検　索</string>
+    <string name="btn_minus">－</string>
+    <string name="btn_plus">＋</string>
+
+    <!-- チケット検索結果画面 -->
+    <string name="btn_prev_trip">前の便に変更</string>
+    <string name="btn_next_trip">次の便に変更</string>
+    <string name="btn_proceed_to_payment">決済に進む</string>
+    <string name="text_ticket_total_adult">合計：</string>
+    <string name="text_tickets_number">枚券</string>
+
+    <!-- チケットQR券発行画面 -->
+    <string name="btn_qr_issue">発行</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_issue_cancel">中止</string>
+
+    <!-- チケット改札設定画面 -->
+    <string name="text_location">設置場所</string>
+    <string name="text_location_explain">改札端末設置場所を設定します。</string>
+    <string name="text_gate_start">検札開始(分)</string>
+    <string name="text_gate_start_explain">出発時刻何分前からその便の検札開始を\n行うか設定します。</string>
+    <string name="text_auto_update_mode">便自動更新</string>
+    <string name="text_auto_update_mode_explain">検札対象便をセンターより自動で取得し\n更新します。</string>
+    <string name="text_update_interval">便更新間隔(分)</string>
+    <string name="text_update_interval_explain">自動更新時の更新間隔を設定します。</string>
+    <string name="text_route">経路</string>
+    <string name="text_route_explain">便自動更新設定がOFFの時、検札対象と\nする便を手動で選択できます。</string>
+    <string name="text_trip_select">便の選択</string>
+    <string name="btn_change_qr_scan">変更してかざし待ちへ</string>
+    <string name="btn_qr_scan">かざし待ちへ</string>
+
+    <!-- チケットかざし待ち画面 -->
+    <string name="text_via">～</string>
+    <string name="text_Information">QRコードをかざして下さい</string>
+    <string name="text_Information_en">Please hold the QR code</string>
+    <string name="text_attention_1">手続きは</string>
+    <string name="text_attention_2">からとなります</string>
+    <string name="text_attention_en">Procedures start from</string>
+    <string name="text_Init">手続き開始までお待ち下さい</string>
+    <string name="text_Init_en">Please wait</string>
+
+    <!-- チケット確認画面 -->
+    <string name="text_ticket_ok_message">ご入場ください</string>
+    <string name="text_ticket_ok_message_english">Please Enter</string>
+    <string name="text_ticket_ng_message">入場できません</string>
+    <string name="text_ticket_ng_message_english">Can Not Enter</string>
+    <string name="text_ticket_count_total">合計</string>
+    <string name="text_ticket_people">人</string>
+    <string name="text_ticket_multiplication">ｘ</string>
+
+    <!-- //ADD-S BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
+    <string name="btn_auto_daily_report_fuel">燃料入力(空車時)</string>
+    <string name="btn_auto_daily_report_break">休憩(空車時)</string>
+    <string name="btn_auto_daily_report_numberofpeople">人数入力(実車時)</string>
+    <string name="btn_auto_daily_report_stopby">立寄り(実車時)</string>
+    <!-- //ADD-E BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
+    <string name="btn_auto_daily_report_metercheck">メータ状態確認</string>
+    <string name="btn_auto_daily_report_errorclear">エラー解除</string>
+
+
+</resources>

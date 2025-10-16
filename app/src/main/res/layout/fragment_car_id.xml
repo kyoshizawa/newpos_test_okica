@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    android:id="@+id/fragment_car_number"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.car_id.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.car_id.CarIdViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.car_id.CarIdEventHandlers" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_primary"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:text="@{viewModel.carId}"
+            android:id="@+id/text_car_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_margin_large"
+            android:background="@drawable/stroke_gray"
+            android:textSize="@dimen/driver_code_text_size"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/text_car_number_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/car_id_message"
+            tools:ignore="HardcodedText" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_car_number_numbers_1"
+                android:text="@string/btn_common_num_1"
+                android:onClick='@{() -> handlers.onInputNumber("1")}'
+                style="@style/StyleBasicButtonNumber"
+                app:layout_constraintTop_toTopOf="@id/btn_car_number_numbers_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_car_number_numbers_2"
+                app:layout_constraintBottom_toBottomOf="@id/btn_car_number_numbers_2"/>
+
+            <Button
+                android:id="@+id/btn_car_number_numbers_2"
+                android:text="@string/btn_common_num_2"
+                android:onClick='@{() -> handlers.onInputNumber("2")}'
+                style="@style/StyleBasicButtonNumber"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_car_number_numbers_1"
+                app:layout_constraintEnd_toStartOf="@id/btn_car_number_numbers_3"
+                app:layout_constraintBottom_toTopOf="@id/btn_car_number_numbers_5"/>
+
+            <Button
+                android:id="@+id/btn_car_number_numbers_3"
+                android:text="@string/btn_common_num_3"
+                android:onClick='@{() -> handlers.onInputNumber("3")}'
+                style="@style/StyleBasicButtonNumber"
+                app:layout_constraintTop_toTopOf="@id/btn_car_number_numbers_2"
+                app:layout_constraintStart_toEndOf="@id/btn_car_number_numbers_2"
+                app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/btn_car_number_numbers_2"/>
+
+            <Button
+                android:id="@+id/btn_car_number_numbers_4"
+                android:text="@string/btn_common_num_4"
+                android:onClick='@{() -> handlers.onInputNumber("4")}'
+                style="@style/StyleBasicButtonNumber"
+                app:layout_constraintTop_toTopOf="@id/btn_car_number_numbers_5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_car_number_numbers_5"
+                app:layout_constraintBottom_toBottomOf="@id/btn_car_number_numbers_5"/>
+
+            <Button
+                android:id="@+id/btn_car_number_numbers_5"
+                android:text="@string/btn_common_num_5"
+                android:onClick='@{() -> handlers.onInputNumber("5")}'
+                style="@style/StyleBasicButtonNumber"
+                app:layout_constraintTop_toBottomOf="@id/btn_car_number_numbers_2"
+                app:layout_constraintStart_toEndOf="@id/btn_car_number_numbers_4"
+                app:layout_constraintEnd_toStartOf="@id/btn_car_number_numbers_6"
+                app:layout_constraintBottom_toTopOf="@id/btn_car_number_numbers_8"/>
+
+            <Button
+                android:id="@+id/btn_car_number_numbers_6"
+                android:text="@string/btn_common_num_6"
+                android:onClick='@{() -> handlers.onInputNumber("6")}'
+                style="@style/StyleBasicButtonNumber"
+                app:layout_constraintTop_toTopOf="@id/btn_car_number_numbers_5"
+                app:layout_constraintStart_toEndOf="@id/btn_car_number_numbers_5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/btn_car_number_numbers_5"/>
+
+            <Button
+                android:id="@+id/btn_car_number_numbers_7"
+                android:text="@string/btn_common_num_7"
+                android:onClick='@{() -> handlers.onInputNumber("7")}'
+                style="@style/StyleBasicButtonNumber"
+                app:layout_constraintTop_toTopOf="@id/btn_car_number_numbers_8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_car_number_numbers_8"
+                app:layout_constraintBottom_toBottomOf="@id/btn_car_number_numbers_8"/>
+
+            <Button
+                android:id="@+id/btn_car_number_numbers_8"
+                android:text="@string/btn_common_num_8"
+                android:onClick='@{() -> handlers.onInputNumber("8")}'
+                style="@style/StyleBasicButtonNumber"
+                app:layout_constraintTop_toBottomOf="@id/btn_car_number_numbers_5"
+                app:layout_constraintStart_toEndOf="@id/btn_car_number_numbers_7"
+                app:layout_constraintEnd_toStartOf="@id/btn_car_number_numbers_9"
+                app:layout_constraintBottom_toTopOf="@id/btn_car_number_numbers_0"/>
+
+            <Button
+                android:id="@+id/btn_car_number_numbers_9"
+                android:text="@string/btn_common_num_9"
+                android:onClick='@{() -> handlers.onInputNumber("9")}'
+                style="@style/StyleBasicButtonNumber"
+                app:layout_constraintTop_toTopOf="@id/btn_car_number_numbers_8"
+                app:layout_constraintStart_toEndOf="@id/btn_car_number_numbers_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/btn_car_number_numbers_8"/>
+
+            <Button
+                android:id="@+id/btn_car_number_clear"
+                android:onClick="@{handlers::onCorrection}"
+                android:tag="@string/btn_common_correction_horizontal"
+                style="@style/StyleBasicButtonOther"
+                android:backgroundTint="@color/btn_common_clear"
+                app:layout_constraintTop_toTopOf="@id/btn_car_number_numbers_0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_car_number_numbers_0"
+                app:layout_constraintBottom_toBottomOf="@id/btn_car_number_numbers_0"/>
+
+            <Button
+                android:id="@+id/btn_car_number_numbers_0"
+                android:text="@string/btn_common_num_0"
+                android:onClick='@{() -> handlers.onInputNumber("0")}'
+                style="@style/StyleBasicButtonNumber"
+                app:layout_constraintTop_toBottomOf="@id/btn_car_number_numbers_8"
+                app:layout_constraintStart_toEndOf="@id/btn_car_number_clear"
+                app:layout_constraintEnd_toStartOf="@id/btn_car_number_enter"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <Button
+                android:id="@+id/btn_car_number_enter"
+                android:onClick="@{handlers::onEnter}"
+                android:tag="@string/btn_common_enter_horizontal"
+                style="@style/StyleBasicButtonOther"
+                android:backgroundTint="@color/btn_common_enter"
+                app:layout_constraintTop_toTopOf="@id/btn_car_number_numbers_0"
+                app:layout_constraintStart_toEndOf="@id/btn_car_number_numbers_0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/btn_car_number_numbers_0"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_common_correction_horizontal"
+                android:textSize="@dimen/basic_other_btn_text_size_large"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="@id/btn_car_number_clear"
+                app:layout_constraintStart_toStartOf="@id/btn_car_number_clear"
+                app:layout_constraintEnd_toEndOf="@id/btn_car_number_clear"
+                app:layout_constraintBottom_toBottomOf="@id/btn_car_number_clear"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_common_enter_horizontal"
+                android:textSize="@dimen/basic_other_btn_text_size_large"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="@id/btn_car_number_enter"
+                app:layout_constraintStart_toStartOf="@id/btn_car_number_enter"
+                app:layout_constraintEnd_toEndOf="@id/btn_car_number_enter"
+                app:layout_constraintBottom_toBottomOf="@id/btn_car_number_enter"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout >
+
+</layout>

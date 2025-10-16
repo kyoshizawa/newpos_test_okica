@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    android:id="@+id/fragment_cash_input"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.AmountInputFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.pos.CashConfirmHandlers" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.pos.CashConfirmViewModel" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:visibility='@{!viewModel.isFinished ? View.VISIBLE : View.GONE}'
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/common_margin_large">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/common_margin_xlarge"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:text="合計金額"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/common_margin_xlarge"
+                        android:layout_gravity="end"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:text='@{"￥" + viewModel.totalPriceString }'/>
+                </FrameLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:visibility='@{!viewModel.isRepay ? View.VISIBLE : View.GONE}'
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/common_margin_large">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/common_margin_xlarge"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:text="お預り金額"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/common_margin_xlarge"
+                        android:layout_gravity="end"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:text='@{"￥" + viewModel.depositString }'/>
+                </FrameLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:visibility='@{!viewModel.isRepay ? View.VISIBLE : View.GONE}'
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="48dp"
+                android:paddingVertical="@dimen/common_margin_large">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/common_margin_xlarge"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:text="おつり" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/common_margin_xlarge"
+                        android:layout_gravity="end"
+                        android:textColor="@color/black"
+                        android:textSize="28sp"
+                        android:text='@{"￥" + viewModel.overString }'/>
+                </FrameLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="330dp"
+                android:layout_height="70dp"
+                android:backgroundTint="@color/green_500"
+                android:onClick="@{view -> handlers.onEnterBtn(view, viewModel)}"
+                android:textSize="28sp"
+                android:text='@{!viewModel.isRepay ? "決済" : "取消"}'
+                />
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="330dp"
+                android:layout_height="70dp"
+                android:backgroundTint="@color/btn_common_cancel"
+                android:onClick="@{view -> handlers.onCancelBtn(view)}"
+                android:textSize="28sp"
+                android:text="中止"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:visibility='@{viewModel.isFinished ? View.VISIBLE : View.GONE}'
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    layout="@layout/payment_finish"
+                    bind:result='@{viewModel.result}'
+                    bind:message='@{viewModel.finishedMessage}'
+                    bind:sharedViewModel='@{sharedViewModel}' />
+
+            </FrameLayout>
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="330dp"
+                android:layout_height="70dp"
+                android:backgroundTint="@color/green_500"
+                android:onClick="@{view -> handlers.onHomeBtn(view)}"
+                android:textSize="28sp"
+                android:text="確認"
+                />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "マルチ決済端末"

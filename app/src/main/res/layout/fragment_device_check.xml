@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.device_check.DeviceCheckViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.device_check.DeviceCheckEventHandlers" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_primary"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <Button
+                        android:id="@+id/btn_device_check_magnetic"
+                        android:text="@string/btn_device_check_magnetic"
+                        android:onClick='@{handlers::checkMs}'
+                        style="@style/StyleDeviceCheck"/>
+
+                    <Button
+                        android:id="@+id/btn_device_check_ic"
+                        android:text="@string/btn_device_check_ic"
+                        android:onClick='@{handlers::checkIc}'
+                        style="@style/StyleDeviceCheck"/>
+
+                    <Button
+                        android:id="@+id/btn_device_check_contactless"
+                        android:text="@string/btn_device_check_contactless"
+                        android:onClick='@{handlers::checkContactless}'
+                        style="@style/StyleDeviceCheck"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <Button
+                        android:id="@+id/btn_device_check_felica"
+                        android:text="@string/btn_device_check_felica"
+                        android:onClick='@{handlers::checkFelica}'
+                        style="@style/StyleDeviceCheck"/>
+
+                    <Button
+                        android:id="@+id/btn_device_check_camera"
+                        android:text="@string/btn_device_check_camera"
+                        android:onClick='@{handlers::checkCamera}'
+                        style="@style/StyleDeviceCheck"/>
+
+                    <Button
+                        android:id="@+id/btn_device_check_printer"
+                        android:text="@string/btn_device_check_printer"
+                        android:onClick='@{handlers::checkPrinter}'
+                        style="@style/StyleDeviceCheck"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <Button
+                        android:id="@+id/btn_device_check_gps"
+                        android:text="@string/btn_device_check_gps"
+                        android:onClick="@{handlers::checkGps}"
+                        style="@style/StyleDeviceCheck"/>
+
+                    <Button
+                        android:id="@+id/btn_device_check_sim"
+                        android:text="@string/btn_device_check_sim"
+                        android:onClick="@{handlers::checkSim}"
+                        style="@style/StyleDeviceCheck"/>
+
+                    <Button
+                        android:id="@+id/btn_device_check_sam"
+                        android:text="@string/btn_device_check_sam"
+                        android:onClick="@{handlers::checkSam}"
+                        style="@style/StyleDeviceCheck" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <Button
+                        android:id="@+id/btn_device_check_wifi"
+                        android:text="@string/btn_device_check_wifi"
+                        android:onClick="@{handlers::checkWifi}"
+                        style="@style/StyleDeviceCheck"/>
+
+                    <Button
+                        android:id="@+id/btn_device_check_terminal"
+                        android:text="@string/btn_device_check_terminal"
+                        android:onClick="@{handlers::checkTerminal}"
+                        style="@style/StyleDeviceCheck"/>
+
+                    <Button
+                        android:id="@+id/btn_device_check_meter"
+                        android:text="@string/btn_device_check_meter"
+                        android:onClick="@{handlers::checkMeter}"
+                        style="@style/StyleDeviceCheck" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/text_device_check_result"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/stroke_gray"
+                android:fadeScrollbars="false"
+                android:scrollbars="vertical"
+                android:textSize="22sp" />
+
+            <Button
+                android:text="@string/btn_device_check_clear"
+                android:layout_width="match_parent"
+                android:onClick="@{handlers::clearResult}"
+                android:layout_height="wrap_content"/>
+        </LinearLayout >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick='@{() -> null}'
+            android:visibility='@{viewModel.isRunning ? View.VISIBLE : View.GONE}'
+            android:soundEffectsEnabled="false" />
+    </FrameLayout>
+</layout>

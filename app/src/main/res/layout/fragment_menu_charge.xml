@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.AppPreference" />
+        <import type="jp.mcapps.android.multi_payment_terminal.data.BusinessType" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEventHandlers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- アイコン付きボタン -->
+        <Button
+            android:id="@+id/btn_menu_balance_suica"
+            android:tag="@string/money_brand_suica"
+            android:onClick='@{v -> handlers.navigateToEmoneySuica(v, BusinessType.CHARGE)}'
+            android:enabled="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_balance_id"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_balance_waon"
+            style="@style/StyleChargeIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_balance_id"
+            android:tag="@string/money_brand_id"
+            android:enabled="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_balance_suica"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_balance_nanaco"
+            style="@style/StyleChargeIconButton" />
+
+        <Button
+            android:id="@+id/btn_menu_balance_waon"
+            android:tag="@string/money_brand_waon"
+            android:onClick='@{v -> handlers.navigateToEmoneyWaon(v, BusinessType.CHARGE)}'
+            android:enabled="false"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_balance_suica"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_balance_nanaco"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_balance_quicpay"
+            style="@style/StyleChargeIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_balance_nanaco"
+            android:tag="@string/money_brand_nanaco"
+            android:onClick='@{v -> handlers.navigateToEmoneyNanaco(v, BusinessType.CHARGE)}'
+            android:enabled="false"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_balance_id"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_balance_waon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_balance_edy"
+            style="@style/StyleChargeIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_balance_edy"
+            android:tag="@string/money_brand_edy"
+            android:onClick='@{v -> handlers.navigateToEmoneyEdy(v, BusinessType.CHARGE)}'
+            android:enabled="false"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_balance_nanaco"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_balance_quicpay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_balance_empty"
+            style="@style/StyleChargeIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_balance_quicpay"
+            android:tag="@string/money_brand_qp"
+            android:onClick='@{v -> handlers.navigateToEmoneyQuicPay(v, BusinessType.CHARGE)}'
+            android:enabled="false"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_balance_waon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_balance_edy"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_balance_okica"
+            style="@style/StyleChargeIconButton" />
+
+        <Button
+            android:id="@+id/btn_menu_balance_okica"
+            android:tag="@string/money_brand_okica"
+            android:visibility='@{AppPreference.isMoneyOkica() ? View.VISIBLE : View.GONE}'
+            android:onClick='@{v -> handlers.navigateToInputChargeAmount(v, @string/money_brand_okica)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_balance_quicpay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_balance_empty"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_balance_empty1"
+            style="@style/StyleChargeIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_balance_empty"
+            android:enabled="false"
+            android:visibility='@{AppPreference.isMoneyOkica() ? View.VISIBLE : View.GONE}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_balance_edy"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_balance_okica"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_balance_empty1"
+            style="@style/StyleChargeIconButton"/>
+
+        <!-- アイコンなしボタン -->
+        <Button
+            android:id="@+id/btn_menu_balance_empty1"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_balance_empty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_balance_empty2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/StyleChargeButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_balance_empty2"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_balance_okica"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_balance_empty1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/StyleChargeButton"/>
+
+        <!-- Suicaボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_balance_suica"
+            android:text="@string/money_brand_suica"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_balance_suica"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_suica"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_suica"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_balance_suica"
+            style="@style/StyleChargeIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_balance_suica"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_balance_suica"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_suica"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_suica"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_balance_suica"
+            android:src="@drawable/ic_emoney_suica"
+            style="@style/StyleChargeIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- iDボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_balance_id"
+            android:text="@string/money_brand_id"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_balance_id"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_id"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_id"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_balance_id"
+            style="@style/StyleChargeIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_balance_id"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_balance_id"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_id"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_id"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_balance_id"
+            android:src="@drawable/ic_emoney_id"
+            style="@style/StyleChargeIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- WAONボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_balance_waon"
+            android:text="@string/money_brand_waon"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_balance_waon"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_waon"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_waon"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_balance_waon"
+            style="@style/StyleChargeIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_balance_waon"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_balance_waon"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_waon"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_waon"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_balance_waon"
+            android:src="@drawable/ic_emoney_waon"
+            style="@style/StyleChargeIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- nanacoボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_balance_nanaco"
+            android:text="@string/money_brand_nanaco"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_balance_nanaco"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_nanaco"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_nanaco"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_balance_nanaco"
+            style="@style/StyleChargeIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_balance_nanaco"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_balance_nanaco"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_nanaco"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_nanaco"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_balance_nanaco"
+            android:src="@drawable/ic_emoney_nanaco"
+            style="@style/StyleChargeIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- Edyボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_balance_edy"
+            android:text="@string/money_brand_edy"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_balance_edy"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_edy"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_edy"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_balance_edy"
+            style="@style/StyleChargeIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_balance_edy"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_balance_edy"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_edy"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_edy"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_balance_edy"
+            android:src="@drawable/ic_emoney_edy"
+            style="@style/StyleChargeIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- QUICPayボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_balance_quicpay"
+            android:text="@string/money_brand_qp"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_balance_quicpay"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_quicpay"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_quicpay"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_balance_quicpay"
+            style="@style/StyleChargeIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_balance_quicpay"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_balance_quicpay"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_quicpay"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_quicpay"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_balance_quicpay"
+            android:src="@drawable/ic_emoney_quicpay"
+            style="@style/StyleChargeIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- OKICAボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_balance_okica"
+            android:text="@string/money_brand_okica"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_balance_okica"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_okica"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_okica"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_balance_okica"
+            style="@style/StyleChargeIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_balance_okica"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_balance_okica"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_balance_okica"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_balance_okica"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_balance_okica"
+            android:src="@drawable/ic_emoney_okica"
+            style="@style/StyleChargeIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

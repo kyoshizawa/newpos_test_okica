@@ -1,0 +1,247 @@
+plugins {
+    id 'com.android.application'
+    id "com.google.protobuf" version "0.9.1"
+}
+
+apply from: 'signing.gradle'
+
+android {
+    compileSdkVersion 33
+    buildToolsVersion '30.0.3'
+
+    defaultConfig {
+        applicationId "jp.mcapps.android.multi_payment_terminal"
+        minSdkVersion 33
+        versionCode 52
+        versionName "1.13.1"
+
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //Roomのマイグレーションテスト用
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    // NEW9830 と NEW9310Pro で
+    flavorDimensions "device"
+    productFlavors {
+        type9830 {
+            dimension "device"
+            applicationIdSuffix ".t9830"
+        }
+        type9310Pro {
+            dimension "device"
+            applicationIdSuffix ".t9310"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "JREM_CLIENT_CERTIFICATE", "\"jrem.pfx\"")
+            buildConfigField("String", "JREM_ACTIVATION_BASE_URL", "\"https://act.remoteaccesssys.com:10442\"")
+            buildConfigField("String", "JREM_ACTIVATION_OTHERS_PATH", "\"/act/v1/op0619.do\"")
+            buildConfigField("String", "JREM_RAS_BASE_URL", "\"https://cl.remoteaccesssys.com\"")
+            buildConfigField("String", "JREM_RAS_OPENING_OTHERS_PATH", "\"/common/start.do\"")
+            //POS
+            buildConfigField("String", "POS_CENTER_BASE_URL", "\"https://poscenter.mcapps.jp\"")
+            buildConfigField("String", "POS_CENTER_BASE_URL_SUB", "\"/TerminalCC/v1\"")
+            //QR決済ゲートウェイURL
+            buildConfigField("String", "GMO_CENTER_BASE_URL", "\"https://pos-gw.gcp.gmopg.jp\"")
+            //IM-A820
+            buildConfigField("String", "IF_BOX_BASE_URL", "\"http://192.168.4.1\"")
+            //端末ログ送信先
+            buildConfigField("String", "LOGGINNG_STREAM_REGION", "\"ap-northeast-1\"")
+            buildConfigField("String", "LOGGING_STREAM_NAME", "\"logging-pt750\"")
+            //iD用PIN暗号化
+            buildConfigField("String", "ID_PIN_AES_KEY", "\"PinID001\"")
+            //内部DB暗号化用
+            buildConfigField("String", "ROOM_COLUMN_AES_KEY", "\"ColR0001\"")
+
+            // OKICA gRPC
+            // 本番環境
+            buildConfigField("String", "OKICA_ICT_GATE_ENDPOINT", "\"okica-payment.okica.jp:5026\"")
+
+            buildConfigField("String", "POS_ACTIVATE_BASE_URL", "\"https://terminal-api.mcapps.jp/v1\"")
+            buildConfigField("String", "MODEL_CODE", "\"PT-750\"")
+
+            buildConfigField("String", "PREPAID_APP_MODEL", "\"jp.mcapps.pt_prepaid\"")
+            buildConfigField("String", "PREPAID_APP_ACTIVITY", "\"jp.mcapps.pt_prepaid.MainActivity\"")
+            buildConfigField("String", "PREPAID_PROVIDER_NAME", "\"jp.mcapps.android.multi_payment_terminal.provider2\"")
+
+            // ビルド日時
+            buildConfigField("String", "BUILD_TIME", "\"${System.currentTimeMillis()}\"")
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            debuggable true
+            applicationIdSuffix '.debug'
+            buildConfigField("String", "JREM_CLIENT_CERTIFICATE", "\"jrem_debug.pfx\"")
+            buildConfigField("String", "JREM_ACTIVATION_BASE_URL", "\"https://act-dv1.remoteaccesssystest.com:10442\"")
+            buildConfigField("String", "JREM_ACTIVATION_OTHERS_PATH", "\"/dv1/act/v1/op0619.do\"")
+            buildConfigField("String", "JREM_RAS_BASE_URL", "\"https://develop-cl2.remoteaccesssystest.com\"")
+            buildConfigField("String", "JREM_RAS_OPENING_OTHERS_PATH", "\"/common2/start.do\"")
+            //POS
+            buildConfigField("String", "POS_CENTER_BASE_URL", "\"https://stg-poscenter.mcapps.jp\"")
+            //クレジットブランド試験用URL
+            //buildConfigField("String", "POS_CENTER_BASE_URL", "\"https://brand-poscenter.mcapps.jp\"")
+            buildConfigField("String", "POS_CENTER_BASE_URL_SUB", "\"/TerminalCC/v1\"")
+            //QR決済ゲートウェイURL
+            buildConfigField("String", "GMO_CENTER_BASE_URL", "\"https://dev-pos-gw.gcp.gmopg.jp\"")
+            //PAY事業者認証試験用URL
+            //buildConfigField("String", "GMO_CENTER_BASE_URL", "\"https://stg-pos-gw.gcp.gmopg.jp\"")
+            //IM-A820
+            buildConfigField("String", "IF_BOX_BASE_URL", "\"http://192.168.4.1\"")
+            //端末ログ送信先
+            buildConfigField("String", "LOGGINNG_STREAM_REGION", "\"us-west-1\"")
+            buildConfigField("String", "LOGGING_STREAM_NAME", "\"staging-logging-multi-payment-terminal\"")
+            //iD用PIN暗号化
+            buildConfigField("String", "ID_PIN_AES_KEY", "\"PinID000\"")
+            //内部DB暗号化用
+            buildConfigField("String", "ROOM_COLUMN_AES_KEY", "\"ColR0000\"")
+
+            // OKICA gRPC
+            buildConfigField("String", "OKICA_ICT_GATE_ENDPOINT", "\"dev-okica-payment.okica.jp:5022\"")
+
+            buildConfigField("String", "POS_ACTIVATE_BASE_URL", "\"https://dev2-terminal-api.mcapps.jp/v1\"")
+            buildConfigField("String", "MODEL_CODE", "\"PT-750\"")
+
+            buildConfigField("String", "PREPAID_APP_MODEL", "\"jp.mcapps.pt_prepaid.debug\"")
+            buildConfigField("String", "PREPAID_APP_ACTIVITY", "\"jp.mcapps.pt_prepaid.MainActivity\"")
+            buildConfigField("String", "PREPAID_PROVIDER_NAME", "\"jp.mcapps.android.multi_payment_terminal.provider2\"")
+
+            // ビルド日時
+            buildConfigField("String", "BUILD_TIME", "\"${System.currentTimeMillis()}\"")
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    sourceSets {
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+
+        main {
+            jniLibs.srcDirs = ['libs']//打包.so文件
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
+    implementation 'androidx.lifecycle:lifecycle-service:2.3.0'
+    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.navigation:navigation-fragment:2.3.3'
+    implementation 'androidx.navigation:navigation-ui:2.3.3'
+    implementation 'org.jetbrains:annotations:15.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // ログライブラリ
+    // https://github.com/JakeWharton/timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //グラフ生成ライブラリ
+    // https://github.com/PhilJay/MPAndroidChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.1'
+
+    //Room
+    def room_version = "2.2.6"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation "androidx.room:room-guava:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+    androidTestImplementation "androidx.room:room-testing:$room_version"
+
+    // HTTPライブラリ
+    implementation "com.squareup.okhttp3:okhttp:3.12.12"
+
+    // JSONライブラリ
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    // SDK(NEW9210 OS7)
+    compileOnly files('sdk/new9210/os7/sdk.jar')
+
+    compile files('libs/javaini.jar')
+    compile files('libs/emvl2.jar')
+    implementation "org.bouncycastle:bcprov-jdk16:1.46"
+
+    // QRコードライブラリ
+    implementation('com.journeyapps:zxing-android-embedded:4.2.0') { transitive = false }
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.zxing:core:3.3.0'
+
+    //Kinesis
+    implementation 'com.amazonaws:aws-android-sdk-kinesis:2.16.13'
+
+    //Amplify
+    def amplify_version = '1.6.9'
+    implementation "com.amplifyframework:aws-analytics-pinpoint:$amplify_version"
+    implementation "com.amplifyframework:aws-auth-cognito:$amplify_version"
+    implementation "com.amplifyframework:core:$amplify_version"
+    implementation "com.amplifyframework:aws-storage-s3:$amplify_version"
+    implementation "com.amplifyframework:aws-api:$amplify_version"
+
+    // RxJava
+    implementation "io.reactivex.rxjava3:rxjava:3.0.13"
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+
+    // WebSocket
+    implementation 'com.neovisionaries:nv-websocket-client:2.14'
+
+    // HTTPサーバーライブラリ
+    implementation 'org.nanohttpd:nanohttpd:2.2.0'
+
+    // gRPC
+    implementation "io.grpc:grpc-okhttp:1.51.0"
+    implementation "io.grpc:grpc-protobuf-lite:1.51.0"
+    implementation "io.grpc:grpc-stub:1.51.0"
+
+    implementation 'org.apache.tomcat:annotations-api:6.0.53'
+
+    implementation 'com.jakewharton:disklrucache:2.0.2'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+
+    // EPSON ePOS-SDK
+    implementation files('libs/ePOS2.jar')
+}
+
+protobuf {
+    protoc { artifact = 'com.google.protobuf:protoc:3.21.7' }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.51.0'
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java { option 'lite' }
+            }
+            task.plugins {
+                grpc { // Options added to --grpc_out
+                    option 'lite' }
+            }
+        }
+    }
+}

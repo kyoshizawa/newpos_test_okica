@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <import type="jp.mcapps.android.multi_payment_terminal.data.TransactionResults" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.qr.QRViewModel" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+        <variable
+            name="commonHeadViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.common_head.CommonHeadViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.qr.QREventHandlers" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_primary"
+        android:gravity="center_horizontal">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+<!--            <fragment-->
+<!--                android:id="@+id/common_head"-->
+<!--                android:name="jp.mcapps.android.multi_payment_terminal.ui.common_head.CommonHeadFragment"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content" />-->
+
+            <include
+                layout="@layout/fragment_common_head"
+                bind:viewModel='@{commonHeadViewModel}'
+                bind:sharedViewModel='@{sharedViewModel}' />
+
+            <FrameLayout
+                android:visibility='@{viewModel.isProcessing ? View.VISIBLE : View.GONE}'
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_gravity="center"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:visibility='@{viewModel.isFinished ? View.VISIBLE : View.GONE}'
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    layout="@layout/payment_finish"
+                    bind:result='@{viewModel.result}'
+                    bind:message='@{viewModel.finishedMessage}'
+                    bind:sharedViewModel='@{sharedViewModel}' />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/common_margin"
+                    android:visibility='@{viewModel.result == TransactionResults.UNKNOWN ? View.VISIBLE : View.GONE}'
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="@dimen/common_btn_width"
+                            android:layout_height="66dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/btn_common_cancel"
+                            android:onClick='@{handlers::onCancelClick}'
+                            android:text="@string/cancel_button_label_string" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="@dimen/common_btn_width"
+                            android:layout_height="66dp"
+                            android:layout_gravity="center"
+                            android:onClick='@{handlers::onCheckResultClick}'
+                            android:text="結果確認" />
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout >
+
+</layout>

@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.AppPreference" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.installation_and_removal.InstallationAndRemovalViewModel.DeviceInterLocking" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.installation_and_removal.InstallationAndRemovalViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.installation_and_removal.InstallationAndRemovalEventHandlers" />
+    </data>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <include
+            layout="@layout/fragment_pin_input"
+            android:visibility='@{!viewModel.isPinSuccess ? View.VISIBLE : View.GONE}'
+            bind:viewModel='@{viewModel}'
+            bind:handlers='@{handlers}'
+            bind:display='@{viewModel.display}' />
+
+        <LinearLayout
+            android:visibility='@{viewModel.isPinSuccess ? View.VISIBLE : View.GONE}'
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_primary"
+            android:orientation="vertical">
+
+            <!-- 未送信売り上げの件数表示 -->
+            <!-- 電子マネー設定が全て無効の場合は電子マネー認証/解除ボタンは押せないように -->
+            <TextView
+                android:text="誤った操作で解除等を行った場合、端末が利用できなくなる可能性があります。\n十分ご注意いただき、内容をご理解のうえ操作をお願い致します。"
+                android:textColor="@color/design_default_color_error"
+                android:textSize="24sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:text="号機番号"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:text="登録"
+                            android:onClick='@{handlers::onRegisterCarNumberClick}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/btn_common_cancel"
+                            android:layout_margin="@dimen/common_margin_large"
+                            android:visibility="invisible"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:text="電子マネー認証"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:text="認証"
+                            android:visibility="invisible"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                        <Button
+                            android:text="解除"
+                            android:onClick='@{handlers::onDeactivateClick}'
+                            android:enabled='@{viewModel.isJremActivateIdEnabled}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint='@{viewModel.isJremActivateIdEnabled ? @color/btn_common_cancel : @color/btn_common_disable}'
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:text="Edy業務"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:text="初回通信"
+                            android:onClick='@{handlers::onEdyActivation}'
+                            android:enabled='@{viewModel.isEdyOpeningFinished() &amp;&amp; !viewModel.isEdyInitCommunicated()}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                        <Button
+                            android:text="撤去"
+                            android:visibility="invisible"
+                            android:onClick='@{handlers::onEdyDeactivation}'
+                            android:enabled='@{viewModel.isEdyOpeningFinished() &amp;&amp; viewModel.isEdyInitCommunicated()}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/btn_common_cancel"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:visibility='@{AppPreference.isMoneyOkica ? View.VISIBLE : View.GONE}'>
+
+                        <TextView
+                            android:text="OKICA"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large"
+                            android:onClick='@{handlers::onOkicaActivation}'
+                            android:backgroundTint='@{!viewModel.isOkicaInstalled ? @color/primary : @color/btn_common_disable}'
+                            android:enabled='@{!viewModel.isOkicaInstalled}'
+                            android:text="設置" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large"
+                            android:backgroundTint='@{viewModel.isOkicaInstalled ? @color/btn_common_cancel : @color/btn_common_disable}'
+                            android:enabled='@{viewModel.isOkicaInstalled}'
+                            android:onClick='@{handlers::onOkicaDeactivation}'
+                            android:text="撤去" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:text="IM-A820"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:text="登録"
+                            android:onClick='@{handlers::onIFBoxSetupClick}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large"
+                            android:backgroundTint='@{viewModel.deviceInterlocking == DeviceInterLocking.IFBox? @color/btn_common_cancel : @color/btn_common_disable}'
+                            android:onClick='@{handlers::onDisconnectIFBox}'
+                            android:enabled='@{viewModel.deviceInterlocking == DeviceInterLocking.IFBox}'
+                            android:text="解除" />
+
+                    </LinearLayout>
+
+                    <!-- TODO:タブレット連動は次回リリースに持ち越すので一旦非表示 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:text="タブレット連動"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:text="登録"
+                            android:onClick="@{handlers::onTabletLinkSetupClick}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large"
+                            android:backgroundTint='@{viewModel.deviceInterlocking == DeviceInterLocking.Tablet? @color/btn_common_cancel : @color/btn_common_disable}'
+                            android:onClick='@{handlers::onTabletUnlinkClick}'
+                            android:enabled='@{viewModel.deviceInterlocking == DeviceInterLocking.Tablet}'
+                            android:text="解除" />
+
+                    </LinearLayout>
+
+                    <!-- 自動つり銭機連動設定 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:text="外部機器連動"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:text="登録"
+                            android:onClick='@{handlers::onCashChangerSetupClick}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large"
+                            android:backgroundTint='@{viewModel.isExternal() ? @color/btn_common_cancel : @color/btn_common_disable}'
+                            android:onClick='@{handlers::onDisconnectCashChanger}'
+                            android:enabled='@{viewModel.isExternal()}'
+                            android:text="解除" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                        android:text="係員番号履歴"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content" />
+
+                        <Button
+                        android:visibility="invisible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/common_margin_large" />
+
+                        <Button
+                        android:text="削除"
+                        android:onClick='@{handlers::onRemoveDriverCodeClick}'
+                        android:enabled='@{AppPreference.isDriverIdHistory() &amp;&amp; viewModel.getRemoveBtnEnabled()}'
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@{AppPreference.isDriverIdHistory() &amp;&amp; viewModel.getRemoveBtnEnabled() ? @color/btn_common_cancel : @color/btn_common_disable}"
+                        android:layout_margin="@dimen/common_margin_large" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:text="端末設定画面"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:text="開く"
+                            android:onClick='@{handlers::onSettingsClick}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                        <Button
+                            android:text=""
+                            android:visibility="invisible"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/btn_common_cancel"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:text="デモモード"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:text="設定"
+                            android:onClick='@{handlers::onEnableDemoClick}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint='@{!viewModel.isDemoEnabled ? @color/primary : @color/btn_common_disable}'
+                            android:enabled='@{!viewModel.isDemoEnabled}'
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                        <Button
+                            android:text="解除"
+                            android:onClick='@{handlers::onDisableDemoClick}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint='@{viewModel.isDemoEnabled ? @color/btn_common_cancel : @color/btn_common_disable}'
+                            android:enabled='@{viewModel.isDemoEnabled}'
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:text="センター設定"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:text="開く"
+                            android:onClick='@{handlers::onTerminalInfoClick}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                        <Button
+                            android:visibility="invisible"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:text="OKICA初期化"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:text="初期化"
+                            android:onClick='@{handlers::onOkicaInitializeClick}'
+                            android:backgroundTint='@{viewModel.isOkicaInstalled ? @color/primary : @color/btn_common_disable}'
+                            android:enabled='@{viewModel.isOkicaInstalled}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                        <Button
+                            android:visibility="invisible"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:text="POS機能設定"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large"
+                            android:backgroundTint='@{!viewModel.isPosActivate ? @color/primary : @color/btn_common_disable}'
+                            android:enabled='@{!viewModel.isPosActivate}'
+                            android:onClick='@{handlers::onPosAuthenticationClick}'
+                            android:text="認証" />
+
+                        <Button
+                            android:text="クリア"
+                            android:onClick='@{handlers::onPosClearClick}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint='@{viewModel.isPosActivate ? @color/btn_common_cancel : @color/btn_common_disable}'
+                            android:enabled='@{viewModel.isPosActivate}'
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:text="チケット販売機能設定"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/common_margin_large"
+                            android:backgroundTint='@{!viewModel.isTicketActivate ? @color/primary : @color/btn_common_disable}'
+                            android:enabled='@{!viewModel.isTicketActivate}'
+                            android:onClick='@{handlers::onTicketAuthenticationClick}'
+                            android:text="認証" />
+
+                        <Button
+                            android:text="クリア"
+                            android:onClick='@{handlers::onTicketClearClick}'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint='@{viewModel.isTicketActivate ? @color/btn_common_cancel : @color/btn_common_disable}'
+                            android:enabled='@{viewModel.isTicketActivate}'
+                            android:layout_margin="@dimen/common_margin_large" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout >
+
+    </FrameLayout>
+</layout>

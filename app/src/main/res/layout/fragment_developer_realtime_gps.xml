@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperRealtimeGpsViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperEventHandlers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/label_realtime_gps_current_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_margin_large"
+            android:text="@{@string/text_current_time + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/value_realtime_gps_current_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@{Converters.dateToString(viewModel.currentTime)}"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/label_realtime_gps_current_time"
+            app:layout_constraintTop_toTopOf="@id/label_realtime_gps_current_time"/>
+
+        <TextView
+            android:id="@+id/label_realtime_get_gps_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_large"
+            android:text="@{@string/text_update_time + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="@id/label_realtime_gps_current_time"
+            app:layout_constraintTop_toBottomOf="@id/label_realtime_gps_current_time"/>
+
+        <TextView
+            android:id="@+id/value_realtime_get_gps_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@{Converters.dateToString(viewModel.gpsData.date)}"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/label_realtime_get_gps_date"
+            app:layout_constraintTop_toTopOf="@id/label_realtime_get_gps_date"/>
+
+        <TextView
+            android:id="@+id/label_realtime_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_large"
+            android:text="@{@string/text_gps_latitude + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="@id/label_realtime_get_gps_date"
+            app:layout_constraintTop_toBottomOf="@id/label_realtime_get_gps_date"/>
+
+        <TextView
+            android:id="@+id/value_realtime_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@{Converters.doubleToString(viewModel.gpsData.latitude)}"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/label_realtime_latitude"
+            app:layout_constraintTop_toTopOf="@id/label_realtime_latitude"/>
+
+        <TextView
+            android:id="@+id/unit_realtime_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/unit_degree"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/value_realtime_latitude"
+            app:layout_constraintTop_toTopOf="@id/value_realtime_latitude"/>
+
+        <TextView
+            android:id="@+id/label_realtime_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_large"
+            android:text="@{@string/text_gps_longitude + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="@id/label_realtime_latitude"
+            app:layout_constraintTop_toBottomOf="@id/label_realtime_latitude"/>
+
+        <TextView
+            android:id="@+id/value_realtime_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@{Converters.doubleToString(viewModel.gpsData.longitude)}"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/label_realtime_longitude"
+            app:layout_constraintTop_toTopOf="@id/label_realtime_longitude"/>
+
+        <TextView
+            android:id="@+id/unit_realtime_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/unit_degree"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/value_realtime_longitude"
+            app:layout_constraintTop_toTopOf="@id/value_realtime_longitude"/>
+
+        <TextView
+            android:id="@+id/label_realtime_accuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_large"
+            android:text="@{@string/text_gps_horizontal_accuracy + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="@id/label_realtime_longitude"
+            app:layout_constraintTop_toBottomOf="@id/label_realtime_longitude"/>
+
+        <TextView
+            android:id="@+id/value_realtime_accuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.floatToString(viewModel.gpsData.accuracy)}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/label_realtime_accuracy"
+            app:layout_constraintTop_toTopOf="@id/label_realtime_accuracy"/>
+
+        <TextView
+            android:id="@+id/unit_realtime_accuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unit_meter"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/value_realtime_accuracy"
+            app:layout_constraintTop_toTopOf="@id/value_realtime_accuracy"/>
+
+        <TextView
+            android:id="@+id/label_realtime_altitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_large"
+            android:text="@{@string/text_gps_altitude + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="@id/label_realtime_accuracy"
+            app:layout_constraintTop_toBottomOf="@id/label_realtime_accuracy"/>
+
+        <TextView
+            android:id="@+id/value_realtime_altitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@{Converters.doubleToString(viewModel.gpsData.altitude, 1)}"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/label_realtime_altitude"
+            app:layout_constraintTop_toTopOf="@id/label_realtime_altitude"/>
+
+        <TextView
+            android:id="@+id/unit_realtime_altitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unit_meter"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/value_realtime_altitude"
+            app:layout_constraintTop_toTopOf="@id/value_realtime_altitude"/>
+
+        <TextView
+            android:id="@+id/label_realtime_bearing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_large"
+            android:text="@{@string/text_gps_bearing + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="@id/label_realtime_altitude"
+            app:layout_constraintTop_toBottomOf="@id/label_realtime_altitude"/>
+
+        <TextView
+            android:id="@+id/value_realtime_bearing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@{Converters.floatToString(viewModel.gpsData.bearing)}"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/label_realtime_bearing"
+            app:layout_constraintTop_toTopOf="@id/label_realtime_bearing"/>
+
+        <TextView
+            android:id="@+id/unit_realtime_bearing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unit_degree"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/value_realtime_bearing"
+            app:layout_constraintTop_toTopOf="@id/value_realtime_bearing"/>
+
+        <TextView
+            android:id="@+id/label_realtime_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_large"
+            android:text="@{@string/text_gps_speed + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="@id/label_realtime_bearing"
+            app:layout_constraintTop_toBottomOf="@id/label_realtime_bearing"/>
+
+        <TextView
+            android:id="@+id/value_realtime_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@{Converters.speedToString(viewModel.gpsData.speed)}"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/label_realtime_speed"
+            app:layout_constraintTop_toTopOf="@id/label_realtime_speed"/>
+
+        <TextView
+            android:id="@+id/unit_realtime_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unit_speed"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/value_realtime_speed"
+            app:layout_constraintTop_toTopOf="@id/value_realtime_speed"/>
+
+        <TextView
+            android:id="@+id/label_realtime_satellites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_large"
+            android:text="@{@string/text_gps_satellites + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="@id/label_realtime_speed"
+            app:layout_constraintTop_toBottomOf="@id/label_realtime_speed"/>
+
+        <TextView
+            android:id="@+id/value_realtime_satellites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@{Converters.integerToString(viewModel.gpsData.satellites)}"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/label_realtime_satellites"
+            app:layout_constraintTop_toTopOf="@id/label_realtime_satellites"/>
+
+        <TextView
+            android:id="@+id/unit_realtime_satellites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unit_sate"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/value_realtime_satellites"
+            app:layout_constraintTop_toTopOf="@id/value_realtime_satellites"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

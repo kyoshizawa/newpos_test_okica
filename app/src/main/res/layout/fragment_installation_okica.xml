@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.installation_and_removal.InstallationOkicaViewModel" />
+    </data>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:text="認証コード"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:text="@{viewModel.activationCode}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="32sp"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+
+            <!--
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="残り時間"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="#FF0000" />
+
+                    <TextView
+                        android:text="@{viewModel.timeLimit}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="16dp" />
+
+                    <TextView
+                        android:text="秒"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical" />
+
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:onClick='@{() -> viewModel.requestInstallation()}'
+                    app:icon="@drawable/ic_baseline_refresh_24" />
+
+            </FrameLayout>
+            -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="残り時間"
+                    android:textColor="#FF0000" />
+
+                <TextView
+                    android:text="@{viewModel.timeLimit}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp" />
+
+                <TextView
+                    android:text="秒"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/okica_installation_qr"
+                android:layout_width="@dimen/okica_installation_qr_width"
+                android:layout_height="@dimen/okica_installation_qr_height"
+                android:layout_marginTop="32dp"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+</layout>

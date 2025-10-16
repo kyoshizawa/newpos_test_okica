@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters"/>
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputLt27EventHandlers" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputLt27ViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_amount_input_lt27_emoney"
+            style="@style/StyleAmountInputText"
+            android:text='@{Converters.integerToNumberFormat(viewModel.paymentAmount) + @string/yen}'
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_amount_input_lt27_back"
+            app:layout_constraintBottom_toTopOf="@id/text_amount_input_lt27_cash"/>
+
+        <TextView
+            android:text="@string/text_amount_input_lt27_emoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_primary"
+            android:layout_marginTop="@dimen/common_margin_small"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/text_amount_input_lt27_cash"
+            style="@style/StyleAmountInputText"
+            android:text='@{Converters.integerToNumberFormat(viewModel.cashAmount) + @string/yen}'
+            app:layout_constraintTop_toBottomOf="@id/text_amount_input_lt27_emoney"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_amount_input_lt27_back"/>
+
+        <TextView
+            android:text="@string/text_amount_input_lt27_cash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_primary"
+            android:layout_marginTop="@dimen/common_margin_small"
+            app:layout_constraintTop_toBottomOf="@+id/text_amount_input_lt27_emoney"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/text_amount_input_lt27_change"
+            android:text='@{Converters.integerToNumberFormat(viewModel.changeAmount) + @string/yen}'
+            style="@style/StyleAmountInputText"
+            app:layout_constraintTop_toBottomOf="@id/text_amount_input_lt27_cash"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_amount_input_lt27_back"/>
+
+        <TextView
+            android:text="@string/text_amount_input_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_primary"
+            android:layout_marginTop="@dimen/common_margin_small"
+            app:layout_constraintTop_toBottomOf="@+id/text_amount_input_lt27_cash"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_amount_input_lt27_back"
+            android:text="@string/btn_amount_input_back"
+            android:textSize="@dimen/basic_number_btn_text_size"
+            android:textStyle="bold"
+            style="@style/StyleBasicButtonOther"
+            android:onClick='@{handlers::onChangeBack}'
+            android:enabled='@{!Converters.is0(viewModel.changeAmount)}'
+            android:backgroundTint='@{!Converters.is0(viewModel.changeAmount) ? @color/btn_common_clear : @color/btn_common_disable}'
+            app:layout_constraintTop_toTopOf="@id/text_amount_input_lt27_change"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_input_lt27_emoney"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_input_lt27_emoney"
+            app:layout_constraintBottom_toBottomOf="@id/text_amount_input_lt27_change"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_7"
+            android:text="@string/btn_common_num_7"
+            style="@style/StyleBasicButtonNumber"
+            android:onClick='@{view -> handlers.onInputNumber(view, "7")}'
+            app:layout_constraintTop_toBottomOf="@id/text_amount_input_lt27_change"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_amount_num_8"
+            app:layout_constraintBottom_toTopOf="@id/btn_amount_num_4"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_8"
+            android:text="@string/btn_common_num_8"
+            style="@style/StyleBasicButtonNumber"
+            android:onClick='@{view -> handlers.onInputNumber(view, "8")}'
+            app:layout_constraintTop_toTopOf="@id/btn_amount_num_7"
+            app:layout_constraintStart_toEndOf="@id/btn_amount_num_7"
+            app:layout_constraintEnd_toStartOf="@id/btn_amount_num_9"
+            app:layout_constraintBottom_toBottomOf="@id/btn_amount_num_7"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_9"
+            android:text="@string/btn_common_num_9"
+            style="@style/StyleBasicButtonNumber"
+            android:onClick='@{view -> handlers.onInputNumber(view, "9")}'
+            app:layout_constraintTop_toTopOf="@id/btn_amount_num_7"
+            app:layout_constraintStart_toEndOf="@id/btn_amount_num_8"
+            app:layout_constraintEnd_toStartOf="@id/btn_amount_input_lt27_emoney"
+            app:layout_constraintBottom_toBottomOf="@id/btn_amount_num_7"/>
+
+        <Button
+            android:id="@+id/btn_amount_input_lt27_emoney"
+            style="@style/StyleBasicButtonOther"
+            android:layout_height="0dp"
+            android:tag="@string/text_amount_input_lt27_emoney"
+            android:onClick="@{handlers::onPayment}"
+            android:enabled='@{!Converters.is0(viewModel.changeAmount) &amp;&amp; viewModel.changeAmount &lt;= viewModel.paymentAmount + viewModel.cashAmount}'
+            android:backgroundTint='@{!Converters.is0(viewModel.changeAmount) &amp;&amp; viewModel.changeAmount &lt;= viewModel.paymentAmount + viewModel.cashAmount ? @color/btn_common_enter : @color/btn_common_disable}'
+            app:layout_constraintTop_toTopOf="@id/btn_amount_num_7"
+            app:layout_constraintStart_toEndOf="@id/btn_amount_num_9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/btn_amount_num_4"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_4"
+            android:text="@string/btn_common_num_4"
+            style="@style/StyleBasicButtonNumber"
+            android:onClick='@{view -> handlers.onInputNumber(view, "4")}'
+            app:layout_constraintTop_toBottomOf="@id/btn_amount_num_7"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_num_7"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_num_7"
+            app:layout_constraintBottom_toTopOf="@id/btn_amount_num_1"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_5"
+            android:text="@string/btn_common_num_5"
+            style="@style/StyleBasicButtonNumber"
+            android:onClick='@{view -> handlers.onInputNumber(view, "5")}'
+            app:layout_constraintTop_toTopOf="@id/btn_amount_num_4"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_num_8"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_num_8"
+            app:layout_constraintBottom_toBottomOf="@id/btn_amount_num_4"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_6"
+            android:text="@string/btn_common_num_6"
+            style="@style/StyleBasicButtonNumber"
+            android:onClick='@{view -> handlers.onInputNumber(view, "6")}'
+            app:layout_constraintTop_toTopOf="@id/btn_amount_num_4"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_num_9"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_num_9"
+            app:layout_constraintBottom_toBottomOf="@id/btn_amount_num_4"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_1"
+            android:text="@string/btn_common_num_1"
+            style="@style/StyleBasicButtonNumber"
+            android:onClick='@{view -> handlers.onInputNumber(view, "1")}'
+            app:layout_constraintTop_toBottomOf="@id/btn_amount_num_4"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_num_7"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_num_7"
+            app:layout_constraintBottom_toTopOf="@+id/btn_amount_input_lt27_cancel"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_2"
+            android:text="@string/btn_common_num_2"
+            style="@style/StyleBasicButtonNumber"
+            android:onClick='@{view -> handlers.onInputNumber(view, "2")}'
+            app:layout_constraintTop_toTopOf="@id/btn_amount_num_1"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_num_8"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_num_8"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_num_1"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_3"
+            android:text="@string/btn_common_num_3"
+            style="@style/StyleBasicButtonNumber"
+            android:onClick='@{view -> handlers.onInputNumber(view, "3")}'
+            app:layout_constraintTop_toTopOf="@id/btn_amount_num_1"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_num_9"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_num_9"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_num_1"/>
+
+        <Button
+            android:id="@+id/btn_amount_input_lt27_cash"
+            style="@style/StyleBasicButtonOther"
+            android:layout_height="0dp"
+            android:tag="@string/text_amount_input_lt27_cash"
+            android:backgroundTint='@{!Converters.is0(viewModel.changeAmount) &amp;&amp; viewModel.changeAmount &lt; viewModel.paymentAmount + viewModel.cashAmount ? @color/btn_common_enter : @color/btn_common_disable}'
+            android:enabled='@{!Converters.is0(viewModel.changeAmount) &amp;&amp; viewModel.changeAmount &lt; viewModel.paymentAmount + viewModel.cashAmount}'
+            android:onClick="@{handlers::onCash}"
+            app:layout_constraintBottom_toBottomOf="@id/btn_amount_input_lt27_cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_amount_num_9"
+            app:layout_constraintTop_toTopOf="@id/btn_amount_num_1" />
+
+        <Button
+            android:id="@+id/btn_amount_input_lt27_cancel"
+            style="@style/StyleBasicButtonOther"
+            android:tag="@string/btn_amount_input_lt27_cancel"
+            android:onClick="@{handlers::onReset}"
+            android:enabled="@{!Converters.is0(viewModel.cashAmount)}"
+            android:backgroundTint="@{!Converters.is0(viewModel.cashAmount) ? @color/btn_common_cancel : @color/btn_common_disable}"
+            app:layout_constraintTop_toBottomOf="@id/btn_amount_num_1"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_num_7"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_num_7"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_0"
+            android:text="@string/btn_common_num_0"
+            style="@style/StyleBasicButtonNumber"
+            android:onClick='@{view -> handlers.onInputNumber(view, "0")}'
+            app:layout_constraintTop_toTopOf="@id/btn_amount_input_lt27_cancel"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_num_8"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_num_8"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_input_lt27_cancel"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_00"
+            android:text="@string/btn_common_num_00"
+            style="@style/StyleBasicButtonNumber"
+            android:onClick='@{view -> handlers.onInputNumber(view, "00")}'
+            app:layout_constraintTop_toTopOf="@id/btn_amount_input_lt27_cancel"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_num_9"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_num_9"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_input_lt27_cancel"/>
+
+        <!-- ボタン上のテキスト配置 -->
+        <TextView
+            android:id="@+id/text_amount_input_lt27_cancel_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_amount_input_lt27_cancel_1"
+            android:textSize="@dimen/basic_other_btn_text_size_small"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/btn_amount_input_lt27_cancel"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_input_lt27_cancel"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_input_lt27_cancel"
+            app:layout_constraintBottom_toTopOf="@+id/text_amount_input_lt27_cancel_2"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <TextView
+            android:id="@+id/text_amount_input_lt27_cancel_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_amount_input_lt27_cancel_2"
+            android:textSize="@dimen/basic_other_btn_text_size_small"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/text_amount_input_lt27_cancel_1"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_input_lt27_cancel"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_input_lt27_cancel"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_input_lt27_cancel"/>
+
+        <TextView
+            android:id="@+id/text_amount_input_lt27_emoney_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_amount_input_lt27_emoney_1"
+            android:textSize="@dimen/basic_other_btn_text_size_large"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/btn_amount_input_lt27_emoney"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_input_lt27_emoney"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_input_lt27_emoney"
+            app:layout_constraintBottom_toTopOf="@+id/text_amount_input_lt27_emoney_2"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <TextView
+            android:id="@+id/text_amount_input_lt27_emoney_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_amount_input_lt27_emoney_2"
+            android:textSize="@dimen/basic_other_btn_text_size_large"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/text_amount_input_lt27_emoney_1"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_input_lt27_emoney"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_input_lt27_emoney"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_input_lt27_emoney"/>
+
+        <TextView
+            android:id="@+id/text_amount_input_lt27_cash_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_amount_input_lt27_cash_1"
+            android:textSize="@dimen/basic_other_btn_text_size_large"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/btn_amount_input_lt27_cash"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_input_lt27_cash"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_input_lt27_cash"
+            app:layout_constraintBottom_toTopOf="@+id/text_amount_input_lt27_cash_2"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <TextView
+            android:id="@+id/text_amount_input_lt27_cash_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_amount_input_lt27_cash_2"
+            android:textSize="@dimen/basic_other_btn_text_size_large"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/text_amount_input_lt27_cash_1"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_input_lt27_cash"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_input_lt27_cash"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_input_lt27_cash"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

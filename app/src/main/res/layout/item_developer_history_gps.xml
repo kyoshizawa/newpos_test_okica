@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="gpsData"
+            type="jp.mcapps.android.multi_payment_terminal.database.history.gps.GpsData"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/grid_developer_history_gps"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/common_margin"
+            android:background="@color/black"
+            android:textAlignment="viewStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/developer_history_gps_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_margin"
+            android:text="@{Converters.dateToString(gpsData.date)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textAlignment="textStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/grid_developer_history_gps"/>
+
+        <TextView
+            android:id="@+id/label_history_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="@{@string/text_gps_latitude + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/developer_history_gps_date"
+            app:layout_constraintTop_toBottomOf="@id/developer_history_gps_date"/>
+
+        <TextView
+            android:id="@+id/value_history_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.doubleToString(gpsData.latitude)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/label_history_latitude"
+            app:layout_constraintTop_toTopOf="@id/label_history_latitude"/>
+
+        <TextView
+            android:id="@+id/unit_history_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/unit_degree"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/value_history_latitude"
+            app:layout_constraintTop_toTopOf="@id/value_history_latitude"/>
+
+        <TextView
+            android:id="@+id/label_history_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="@{@string/text_gps_longitude + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/label_history_latitude"
+            app:layout_constraintTop_toBottomOf="@id/label_history_latitude"/>
+
+        <TextView
+            android:id="@+id/value_history_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.doubleToString(gpsData.longitude)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/label_history_longitude"
+            app:layout_constraintTop_toTopOf="@id/label_history_longitude"/>
+
+        <TextView
+            android:id="@+id/unit_history_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/unit_degree"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/value_history_longitude"
+            app:layout_constraintTop_toTopOf="@id/value_history_longitude"/>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_developer_history_gps_lat_lng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="unit_history_latitude, unit_history_longitude" />
+
+        <TextView
+            android:id="@+id/label_history_accuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_margin_large"
+            android:text="@string/label_accuracy_head"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/barrier_developer_history_gps_lat_lng"
+            app:layout_constraintTop_toTopOf="@id/unit_history_latitude"
+            app:layout_constraintBottom_toBottomOf="@id/unit_history_longitude"/>
+
+        <TextView
+            android:id="@+id/value_history_accuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.floatToString(gpsData.accuracy, 2)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/label_history_accuracy"
+            app:layout_constraintTop_toTopOf="@id/label_history_accuracy"/>
+
+        <TextView
+            android:id="@+id/unit_history_accuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/label_accuracy_tail"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/value_history_accuracy"
+            app:layout_constraintTop_toTopOf="@id/value_history_accuracy"/>
+
+        <TextView
+            android:id="@+id/label_history_altitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="@{@string/text_gps_altitude + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/label_history_longitude"
+            app:layout_constraintTop_toBottomOf="@id/label_history_longitude"/>
+
+        <TextView
+            android:id="@+id/value_history_altitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.doubleToString(gpsData.altitude, 1)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/label_history_altitude"
+            app:layout_constraintTop_toTopOf="@id/label_history_altitude"/>
+
+        <TextView
+            android:id="@+id/unit_history_altitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/unit_meter"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/value_history_altitude"
+            app:layout_constraintTop_toTopOf="@id/value_history_altitude"/>
+
+        <TextView
+            android:id="@+id/label_history_bearing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="@{@string/text_gps_bearing + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/label_history_altitude"
+            app:layout_constraintTop_toBottomOf="@id/label_history_altitude"/>
+
+        <TextView
+            android:id="@+id/value_history_bearing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.floatToString(gpsData.bearing, 1)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/label_history_bearing"
+            app:layout_constraintTop_toTopOf="@id/label_history_bearing"/>
+
+        <TextView
+            android:id="@+id/unit_history_bearing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/unit_degree"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/value_history_bearing"
+            app:layout_constraintTop_toTopOf="@id/value_history_bearing"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_developer_history_gps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_developer_history_gps_speed_sate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="label_history_speed, label_history_satellites" />
+
+        <TextView
+            android:id="@+id/label_history_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/text_gps_speed + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/guideline_developer_history_gps"
+            app:layout_constraintTop_toTopOf="@id/unit_history_altitude" />
+
+        <TextView
+            android:id="@+id/value_history_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.speedToString(gpsData.speed)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/barrier_developer_history_gps_speed_sate"
+            app:layout_constraintTop_toTopOf="@id/label_history_speed"/>
+
+        <TextView
+            android:id="@+id/unit_history_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/unit_speed"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/value_history_speed"
+            app:layout_constraintTop_toTopOf="@id/value_history_speed"/>
+
+        <TextView
+            android:id="@+id/label_history_satellites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="@{@string/text_gps_satellites + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/label_history_speed"
+            app:layout_constraintTop_toBottomOf="@id/label_history_speed"/>
+
+        <TextView
+            android:id="@+id/value_history_satellites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.integerToString(gpsData.satellites)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/barrier_developer_history_gps_speed_sate"
+            app:layout_constraintTop_toTopOf="@id/label_history_satellites"/>
+
+        <TextView
+            android:id="@+id/unit_history_satellites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/unit_sate"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/value_history_satellites"
+            app:layout_constraintTop_toTopOf="@id/value_history_satellites"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

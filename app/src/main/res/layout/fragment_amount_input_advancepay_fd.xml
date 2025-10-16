@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ADD-S BMT S.Oyama 2024/08/27 フタバ双方向向け改修 -->
+
+<!--
+    android:id="@+id/fragment_driver_code"
+    tools:context=".ui.driver_code.AmountInputFragment"
+    xmlns:tools="http://schemas.android.com/tools"
+-->
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputAdvancePayFDViewModel.InputModes" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputAdvancePayFDViewModel.AmountInputConverters" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputAdvancePayFDViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputAdvancePayFDEventHandlers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 立替合計金額確定値エリア -->
+        <TextView
+            android:id="@+id/text_amount_input_total"
+            style="@style/StyleAmountInputText"
+            android:text='@{Converters.integerToNumberFormat(viewModel.fixAmount) + @string/yen}'
+            android:visibility='@{View.VISIBLE}'
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_input_back"
+            app:layout_constraintBottom_toTopOf="@+id/text_amount_input_change"/>
+
+        <!-- 定額入力エリア(未使用) -->
+        <!--
+            viewModel.flatRateAmount + viewModel.totalChangeAmount : 定額
+        -->
+        <TextView
+            android:id="@+id/text_amount_input_flat_rate"
+            style="@style/StyleAmountInputText"
+            android:text='@{Converters.integerToNumberFormat(viewModel.flatRateAmount ) + @string/yen}'
+            android:visibility='@{View.GONE}'
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_input_back"
+            app:layout_constraintBottom_toTopOf="@+id/text_amount_input_change"/>
+
+        <!-- 定額によって上記TextViewが変わるので、それに連動させないためのダミーTextView -->
+        <TextView
+            android:id="@+id/text_amount_input_dummy"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/basic_number_btn_height"
+            android:layout_margin="@dimen/common_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_input_back"
+            app:layout_constraintBottom_toTopOf="@+id/text_amount_input_change"
+            android:visibility="invisible"/>
+
+        <!-- 定額/立替金額 別表示ラベル -->
+        <TextView
+            android:id="@+id/text_amount_input_payment_total"
+            android:text='@{viewModel.getConfAmountAreaLabel}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_primary"
+            android:layout_marginTop="@dimen/common_margin_small"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <!-- 入力金額エリア -->
+        <TextView
+            android:id="@+id/text_amount_input_change"
+            android:text='@{Converters.integerToNumberFormat(viewModel.changeAmount) + @string/yen}'
+            style="@style/StyleAmountInputText"
+            app:layout_constraintTop_toBottomOf="@+id/text_amount_input_dummy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_input_back"
+            app:layout_constraintBottom_toTopOf="@+id/lo_amount_input_history"/>
+
+        <!-- 入力金額ラベル -->
+        <TextView
+            android:text="@string/text_amount_input_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_primary"
+            android:layout_marginTop="@dimen/common_margin_small"
+            app:layout_constraintTop_toBottomOf="@+id/text_amount_input_dummy"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <!-- 訂正ボタン -->
+        <Button
+            android:id="@+id/btn_amount_input_clear"
+            android:tag="@string/btn_common_correction_horizontal"
+            android:onClick='@{handlers::onCorrection}'
+            android:enabled='@{!Converters.is0(viewModel.changeAmount)}'
+            android:backgroundTint='@{!Converters.is0(viewModel.changeAmount) ? @color/btn_common_clear : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonOther"
+            app:layout_constraintTop_toTopOf="@+id/text_amount_input_change"
+            app:layout_constraintStart_toStartOf="@+id/btn_amount_input_back"
+            app:layout_constraintEnd_toEndOf="@+id/btn_amount_input_back"
+            app:layout_constraintBottom_toBottomOf="@+id/text_amount_input_change"/>
+
+        <!-- 履歴表示部 -->
+        <!--
+        @{Converters.integerToNumberFormat(!Converters.is0(viewModel.flatRateAmount) ? viewModel.flatRateAmount : viewModel.advancePayAmount)}
+        -->
+        <LinearLayout
+            android:id="@+id/lo_amount_input_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_margin"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/text_amount_input_change">
+            <TextView
+                android:text=" "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_marginEnd="@dimen/common_margin_large"
+                android:ellipsize="start"/>
+
+            <TextView
+                android:text=" "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="start"/>
+        </LinearLayout>
+
+        <!-- 履歴以下のボタン配置 -->
+        <Button
+            android:id="@+id/btn_amount_input_advancepay"
+            android:tag="立替定額"
+            android:onClick='@{handlers::onAdvancepayFlatRate}'
+            android:backgroundTint="@color/btn_common_enter"
+            style="@style/StyleBasicButtonOther"
+            android:layout_marginTop="@dimen/common_margin_large"
+            app:layout_constraintTop_toTopOf="@id/lo_amount_input_history"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_input_flat_rate"
+            app:layout_constraintBottom_toTopOf="@+id/btn_amount_num_7"/>
+
+        <Button
+            android:id="@+id/btn_amount_input_flat_rate"
+            android:tag="分別"
+            android:onClick='@{handlers::onSeparation}'
+            android:backgroundTint="@color/btn_common_enter"
+            style="@style/StyleBasicButtonOther"
+            app:layout_constraintTop_toTopOf="@+id/btn_amount_input_advancepay"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_input_advancepay"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_input_flat_clear"
+            app:layout_constraintBottom_toBottomOf="@id/btn_amount_input_advancepay"/>
+
+        <Button
+            android:id="@+id/btn_amount_input_flat_clear"
+            android:tag="取消"
+            android:onClick='@{handlers::onClear}'
+            android:backgroundTint='@color/btn_common_cancel'
+            style="@style/StyleBasicButtonOther"
+            app:layout_constraintTop_toTopOf="@+id/btn_amount_input_advancepay"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_input_flat_rate"
+            app:layout_constraintEnd_toStartOf="@id/btn_amount_input_back"
+            app:layout_constraintBottom_toBottomOf="@id/btn_amount_input_advancepay"/>
+
+        <Button
+            android:id="@+id/btn_amount_input_back"
+            android:text="@string/btn_amount_input_back"
+            android:textSize="@dimen/basic_number_btn_text_size"
+            android:textStyle="bold"
+            android:onClick='@{handlers::onChangeBack}'
+            android:enabled='@{!Converters.is0(viewModel.changeAmount)}'
+            android:backgroundTint='@{!Converters.is0(viewModel.changeAmount) ? @color/btn_common_clear : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonOther"
+            app:layout_constraintTop_toTopOf="@+id/btn_amount_input_advancepay"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_input_flat_clear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/btn_amount_input_advancepay"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_7"
+            android:text="@string/btn_common_num_7"
+            android:onClick='@{view -> handlers.onInputNumber(view, "7")}'
+            android:enabled='@{!AmountInputConverters.isNoSelected(viewModel.inputMode)}'
+            android:backgroundTint='@{!AmountInputConverters.isNoSelected(viewModel.inputMode) ? @color/bg_primary : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonNumber"
+            app:layout_constraintTop_toBottomOf="@+id/btn_amount_input_advancepay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_num_8"
+            app:layout_constraintBottom_toTopOf="@+id/btn_amount_num_4"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_8"
+            android:text="@string/btn_common_num_8"
+            android:onClick='@{view -> handlers.onInputNumber(view, "8")}'
+            android:enabled='@{!AmountInputConverters.isNoSelected(viewModel.inputMode)}'
+            android:backgroundTint='@{!AmountInputConverters.isNoSelected(viewModel.inputMode) ? @color/bg_primary : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonNumber"
+            app:layout_constraintTop_toBottomOf="@+id/btn_amount_input_advancepay"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_num_7"
+            app:layout_constraintEnd_toStartOf="@id/btn_amount_num_9"
+            app:layout_constraintBottom_toTopOf="@+id/btn_amount_num_4"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_9"
+            android:text="@string/btn_common_num_9"
+            android:onClick='@{view -> handlers.onInputNumber(view, "9")}'
+            android:enabled='@{!AmountInputConverters.isNoSelected(viewModel.inputMode)}'
+            android:backgroundTint='@{!AmountInputConverters.isNoSelected(viewModel.inputMode) ? @color/bg_primary : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonNumber"
+            app:layout_constraintTop_toBottomOf="@+id/btn_amount_input_advancepay"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_num_8"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_input_enter"
+            app:layout_constraintBottom_toTopOf="@+id/btn_amount_num_4"/>
+
+        <!-- 入力ボタン -->
+        <Button
+            android:id="@+id/btn_amount_input_enter"
+            android:tag="@string/btn_amount_input_enter"
+            android:onClick='@{handlers::onApply}'
+            android:enabled='@{!Converters.is0(viewModel.changeAmount)}'
+            style="@style/StyleBasicButtonOther"
+            android:layout_height="0dp"
+            android:backgroundTint='@{!Converters.is0(viewModel.changeAmount) ? @color/btn_common_enter : @color/btn_common_disable}'
+            app:layout_constraintTop_toTopOf="@+id/btn_amount_num_7"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_num_9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_num_4"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_4"
+            android:text="@string/btn_common_num_4"
+            android:onClick='@{view -> handlers.onInputNumber(view, "4")}'
+            android:enabled='@{!AmountInputConverters.isNoSelected(viewModel.inputMode)}'
+            android:backgroundTint='@{!AmountInputConverters.isNoSelected(viewModel.inputMode) ? @color/bg_primary : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonNumber"
+            app:layout_constraintTop_toBottomOf="@+id/btn_amount_num_7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_num_5"
+            app:layout_constraintBottom_toTopOf="@+id/btn_amount_num_1"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_5"
+            android:text="@string/btn_common_num_5"
+            android:onClick='@{view -> handlers.onInputNumber(view, "5")}'
+            android:enabled='@{!AmountInputConverters.isNoSelected(viewModel.inputMode)}'
+            android:backgroundTint='@{!AmountInputConverters.isNoSelected(viewModel.inputMode) ? @color/bg_primary : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonNumber"
+            app:layout_constraintTop_toBottomOf="@+id/btn_amount_num_7"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_num_4"
+            app:layout_constraintEnd_toStartOf="@id/btn_amount_num_6"
+            app:layout_constraintBottom_toTopOf="@+id/btn_amount_num_1"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_6"
+            android:text="@string/btn_common_num_6"
+            android:onClick='@{view -> handlers.onInputNumber(view, "6")}'
+            android:enabled='@{!AmountInputConverters.isNoSelected(viewModel.inputMode)}'
+            android:backgroundTint='@{!AmountInputConverters.isNoSelected(viewModel.inputMode) ? @color/bg_primary : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonNumber"
+            app:layout_constraintTop_toBottomOf="@+id/btn_amount_num_7"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_num_5"
+            app:layout_constraintEnd_toStartOf="@id/btn_amount_input_enter"
+            app:layout_constraintBottom_toTopOf="@+id/btn_amount_num_1"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_1"
+            android:text="@string/btn_common_num_1"
+            android:onClick='@{view -> handlers.onInputNumber(view, "1")}'
+            android:enabled='@{!AmountInputConverters.isNoSelected(viewModel.inputMode)}'
+            android:backgroundTint='@{!AmountInputConverters.isNoSelected(viewModel.inputMode) ? @color/bg_primary : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonNumber"
+            app:layout_constraintTop_toBottomOf="@+id/btn_amount_num_4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_num_2"
+            app:layout_constraintBottom_toTopOf="@id/btn_amount_input_cancel"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_2"
+            android:text="@string/btn_common_num_2"
+            android:onClick='@{view -> handlers.onInputNumber(view, "2")}'
+            android:enabled='@{!AmountInputConverters.isNoSelected(viewModel.inputMode)}'
+            android:backgroundTint='@{!AmountInputConverters.isNoSelected(viewModel.inputMode) ? @color/bg_primary : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonNumber"
+            app:layout_constraintTop_toBottomOf="@+id/btn_amount_num_4"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_num_1"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_num_3"
+            app:layout_constraintBottom_toTopOf="@id/btn_amount_input_cancel"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_3"
+            android:text="@string/btn_common_num_3"
+            android:onClick='@{view -> handlers.onInputNumber(view, "3")}'
+            android:enabled='@{!AmountInputConverters.isNoSelected(viewModel.inputMode)}'
+            android:backgroundTint='@{!AmountInputConverters.isNoSelected(viewModel.inputMode) ? @color/bg_primary : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonNumber"
+            app:layout_constraintTop_toBottomOf="@+id/btn_amount_num_4"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_num_2"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_input_fix"
+            app:layout_constraintBottom_toTopOf="@+id/btn_amount_input_cancel"/>
+
+        <!-- 金額確定ボタン -->
+        <Button
+            android:id="@+id/btn_amount_input_fix"
+            android:tag="@string/btn_amount_input_fix"
+            android:onClick='@{view -> handlers.onEnter(view)}'
+            android:enabled='@{Converters.is0(viewModel.changeAmount)}'
+            style="@style/StyleBasicButtonOther"
+            android:layout_height="0dp"
+            android:backgroundTint='@{Converters.is0(viewModel.changeAmount) ? @color/btn_common_enter : @color/btn_common_disable}'
+            app:layout_constraintTop_toTopOf="@+id/btn_amount_num_1"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_num_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/btn_amount_input_cancel"/>
+
+        <!--
+            android:enabled='@{!Converters.is0(viewModel.advancePayAmount) || !Converters.is0(viewModel.flatRateAmount)}'
+            android:backgroundTint='@{!Converters.is0(viewModel.advancePayAmount) || !Converters.is0(viewModel.flatRateAmount) ? @color/btn_common_cancel : @color/btn_common_disable}'
+        -->
+        <Button
+            android:id="@+id/btn_amount_input_cancel"
+            android:tag="@string/btn_amount_input_reset"
+            android:onClick='@{handlers::onReset}'
+            style="@style/StyleBasicButtonOther"
+            android:enabled='@{viewModel.getFixAmount > 0 ? true : false}'
+            android:backgroundTint='@{viewModel.getFixAmount > 0 ? @color/btn_common_cancel : @color/btn_common_disable}'
+            app:layout_constraintTop_toBottomOf="@+id/btn_amount_num_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_num_0"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_0"
+            android:text="@string/btn_common_num_0"
+            android:onClick='@{view -> handlers.onInputNumber(view, "0")}'
+            android:enabled='@{!AmountInputConverters.isNoSelected(viewModel.inputMode)}'
+            android:backgroundTint='@{!AmountInputConverters.isNoSelected(viewModel.inputMode) ? @color/bg_primary : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonNumber"
+            app:layout_constraintTop_toBottomOf="@+id/btn_amount_num_1"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_input_cancel"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_num_00"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_amount_num_00"
+            android:text="@string/btn_common_num_00"
+            android:onClick='@{view -> handlers.onInputNumber(view, "00")}'
+            android:enabled='@{!AmountInputConverters.isNoSelected(viewModel.inputMode)}'
+            android:backgroundTint='@{!AmountInputConverters.isNoSelected(viewModel.inputMode) ? @color/bg_primary : @color/btn_common_disable}'
+            style="@style/StyleBasicButtonNumber"
+            app:layout_constraintTop_toBottomOf="@+id/btn_amount_num_1"
+            app:layout_constraintStart_toEndOf="@+id/btn_amount_num_0"
+            app:layout_constraintEnd_toStartOf="@+id/btn_amount_input_fix"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <!-- ボタン上のテキスト配置 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_common_correction_horizontal"
+            android:textSize="@dimen/basic_other_btn_text_size_large"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toTopOf="@+id/btn_amount_input_clear"
+            app:layout_constraintStart_toStartOf="@+id/btn_amount_input_clear"
+            app:layout_constraintEnd_toEndOf="@+id/btn_amount_input_clear"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_input_clear"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_amount_input_advancepay_flatRate"
+            android:textSize="@dimen/basic_other_btn_text_size_small"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toTopOf="@+id/btn_amount_input_advancepay"
+            app:layout_constraintStart_toStartOf="@+id/btn_amount_input_advancepay"
+            app:layout_constraintEnd_toEndOf="@+id/btn_amount_input_advancepay"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_input_advancepay"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_amount_input_separation"
+            android:textSize="@dimen/basic_other_btn_text_size_large"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toTopOf="@+id/btn_amount_input_flat_rate"
+            app:layout_constraintStart_toStartOf="@+id/btn_amount_input_flat_rate"
+            app:layout_constraintEnd_toEndOf="@+id/btn_amount_input_flat_rate"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_input_flat_rate"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_amount_input_reset_2"
+            android:textSize="@dimen/basic_other_btn_text_size_large"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toTopOf="@id/btn_amount_input_flat_clear"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_input_flat_clear"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_input_flat_clear"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_input_flat_clear"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_amount_input_enter"
+            android:textSize="@dimen/basic_other_btn_text_size_large"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toTopOf="@+id/btn_amount_input_enter"
+            app:layout_constraintStart_toStartOf="@+id/btn_amount_input_enter"
+            app:layout_constraintEnd_toEndOf="@+id/btn_amount_input_enter"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_input_enter"/>
+
+        <TextView
+            android:id="@+id/text_amount_input_reset_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLEAR"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/btn_amount_input_cancel"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_input_cancel"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_input_cancel"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_input_cancel"/>
+
+        <TextView
+            android:id="@+id/text_amount_input_fix_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_amount_input_fix_1"
+            android:textSize="@dimen/basic_other_btn_text_size_large"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/btn_amount_input_fix"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_input_fix"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_input_fix"
+            app:layout_constraintBottom_toTopOf="@+id/text_amount_input_fix_2"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <TextView
+            android:id="@+id/text_amount_input_fix_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_amount_input_fix_2"
+            android:textSize="@dimen/basic_other_btn_text_size_large"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/text_amount_input_fix_1"
+            app:layout_constraintStart_toStartOf="@id/btn_amount_input_fix"
+            app:layout_constraintEnd_toEndOf="@id/btn_amount_input_fix"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_amount_input_fix"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+<!-- ADD-E BMT S.Oyama 2024/08/27 フタバ双方向向け改修 -->

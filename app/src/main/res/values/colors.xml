@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#FF1EB9EE</color>
+    <color name="bg_primary">#FFF4F8FB</color>
+
+    <color name="secondary">#FF31A173</color>
+
+    <color name="border_menu_head_amount">#FF9FC7D2</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="orange_500">#ff9800</color>
+    <color name="green_500">#4caf50</color>
+    <color name="brown_500">#795548</color>
+
+    <color name="text_black">#FF555555</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#FFE8E8E8</color>
+
+    <color name="radio_level_high">#32B502</color>
+    <color name="radio_level_middle">#EFC130</color>
+    <color name="radio_level_low">#F3304B</color>
+
+    <!-- 電子マネー決済時のアクションバーの色 -->
+    <color name="bar_emoney_none">@color/bg_primary</color>
+    <color name="bar_emoney_blue">#FF548ED4</color>
+    <color name="bar_emoney_red">#FFFF0000</color>
+    <color name="bar_emoney_green">#FF00FF00</color>
+
+    <color name="bar_yellow">#EFC130</color>
+
+    <color name="menu_balance">#56B554</color>
+    <color name="menu_charge">#FF9800</color>
+
+    <color name="btn_common_enter">#83C368</color>
+    <color name="btn_common_cancel">#DF6770</color>
+    <color name="btn_common_clear">#E4D96A</color>
+    <color name="btn_common_disable">#D6D8DC</color>
+
+    <color name="btn_common_cancel_disable">#FFE8E8E8</color>
+
+    <color name="pin_input_bg_color">#F1F1F1</color>
+    <color name="pin_input_border_color">#DDDDDD</color>
+
+    <!-- 確認ダイヤログの色 -->
+    <color name="title_color">#DF6770</color>
+    <color name="ok_btn_color">#DF6770</color>
+    <color name="cancel_btn_color">#FF1EB9EE</color>
+
+    <color name="bar_pos_bar_blue">#D4F2FC</color>
+
+    <color name="bar_manual_input_disabled_back">#7B7C7D</color>
+    <color name="bar_manual_input_disabled_font">#9B9D9E</color>
+
+    <color name="text_pos_custom_price">#DF6770</color>
+
+    <!-- チケット検索条件画面の色 -->
+    <color name="plus_minus_btn_color">#004D63</color>
+
+    <!-- チケット検索結果画面の色 -->
+    <color name="btn_post">#FF548ED4</color>
+    <color name="line">#FF548ED4</color>
+    <color name="dark_gray">#D6D3D3</color>
+    <color name="thin_blue">#D4F2FC</color>
+    <color name="red">#DF6770</color>
+
+    <!-- チケット改札設定画面の色 -->
+    <color name="dark_blue">#FF548ED4</color>
+    <color name="light_cyan">#E0FFFF</color>
+</resources>

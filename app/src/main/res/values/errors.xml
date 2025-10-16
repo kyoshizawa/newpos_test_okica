@@ -1,0 +1,1760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ボタン表示 -->
+    <string name="error_button_positive">はい</string>
+    <string name="error_button_negative">いいえ</string>
+    <string name="error_button_neutral">キャンセル</string>
+    <!-- エラー種別 -->
+    <string name="level_error">0</string>       <!-- エラー -->
+    <string name="level_warning">1</string>     <!-- 警告 -->
+    <!-- ダイアログ表示タイプ -->
+    <string name="error_dialog_invisible">0</string>    <!-- 非表示 -->
+    <string name="error_dialog_positive">1</string>     <!-- "はい"のみ -->
+    <string name="error_dialog_negative">2</string>     <!-- "はい"、"いいえ" -->
+    <string name="error_dialog_neutral">3</string>      <!-- "はい"、"いいえ"、"キャンセル" -->
+    <string name="error_dialog_fragment">4</string>     <!-- フラグメントによる表示（使用予定なし） -->
+    <!-- 履歴表示 -->
+    <string name="history_invisible">0</string>         <!-- 履歴に表示しない -->
+    <string name="history_visible">1</string>           <!-- 履歴に表示する -->
+    <string name="history_stacking">2</string>          <!-- 履歴にあとで表示する -->
+    <!-- タイトル -->
+    <string name="error_title">コード：</string>
+    <!-- 共通で使用する文言 -->
+    <string name="error_detail_common_error1">お取り扱いできません</string>
+    <!-- 通信エラー(10) -->
+    <string name="error_message_comm">通信エラー</string>
+    <string name="error_type_comm_reception">1001</string>
+    <string name="error_detail_comm_reception">電波状況が不良です\n電波の良い場所に移動して再度実行してください</string>
+    <!-- 起動時の通信エラー(10) -->
+    <string name="error_message_startup_comm">通信エラー</string>
+    <string name="error_type_startup_comm_reception">1002</string>
+    <string name="error_detail_startup_comm_reception">電波状況が不良です\n電波の良い場所に移動してから\n業務メニューより、再開局を実施してください</string>
+    <!-- 機内モードONの通信エラー(10) -->
+    <string name="error_message_airplane_mode">通信エラー</string>
+    <string name="error_type_airplane_mode">1003</string>
+    <string name="error_detail_airplane_mode">機内モードONの状態では、通信ができません。\n電源ボタンを1~2秒間長押しして、機内モードをOFFに変更してください。</string>
+
+    <!-- 決済システム関連(20) -->
+    <string name="error_type_authentication_mc_warning">2090</string>
+    <string name="error_message_authentication_mc_warning">決済システム認証警告</string>
+    <string name="error_detail_authentication_mc_warning">一旦業務終了を実施し、再度起動してください。</string>
+    <string name="error_type_authentication_mc_error">2091</string>
+    <string name="error_message_authentication_mc_error">決済システム認証エラー</string>
+    <string name="error_detail_authentication_mc_error">一旦業務終了を実施し、再度起動してください。</string>
+
+    <!-- クレジット(30) -->
+    <string name="error_type_credit_card_error">3001</string>
+    <string name="error_message_credit_card_error">カードエラー</string>
+    <!-- 銀聯(31) -->
+    <!-- プリペイド(32) -->
+    <!-- QR(33) -->
+    <!-- iCAS(40) -->
+    <!-- プリンターなどの機器(60) -->
+    <string name="error_message_printer_sts_busy">プリンタービジー</string>
+    <string name="error_type_printer_sts_busy">6001</string>
+    <string name="error_detail_printer_sts_busy">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_message_printer_sts_hight_temp">プリンター高温検知</string>
+    <string name="error_type_printer_sts_hight_temp">6002</string>
+    <string name="error_detail_printer_sts_hight_temp">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_message_printer_sts_paper_lack">プリンター用紙切れ</string>
+    <string name="error_type_printer_sts_paper_lack">6003</string>
+    <string name="error_detail_printer_sts_paper_lack">用紙を正しくセットしてください。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_message_printer_sts_no_battery">プリンター電源不足</string>
+    <string name="error_type_printer_sts_no_battery">6004</string>
+    <string name="error_detail_printer_sts_no_battery">充電してから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_message_printer_sts_feed">プリンター用紙送り中</string>
+    <string name="error_type_printer_sts_feed">6005</string>
+    <string name="error_detail_printer_sts_feed">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_message_printer_sts_print">プリンター印刷中</string>
+    <string name="error_type_printer_sts_print">6006</string>
+    <string name="error_detail_printer_sts_print">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_message_printer_sts_force_feed">プリンター強制用紙送り中</string>
+    <string name="error_type_printer_sts_force_feed">6007</string>
+    <string name="error_detail_printer_sts_force_feed">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_message_printer_sts_power_on">プリンター起動中</string>
+    <string name="error_type_printer_sts_power_on">6008</string>
+    <string name="error_detail_printer_sts_power_on">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_message_printer_tasks_full">プリンター処理中</string>
+    <string name="error_type_printer_tasks_full">6009</string>
+    <string name="error_detail_printer_tasks_full">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_message_printer_sts_undefined">プリンター異常状態</string>
+    <string name="error_type_printer_sts_undefined">6010</string>
+    <string name="error_detail_printer_sts_undefined">詳細コード：%s\nしばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_low_battery_warning">6020</string>
+    <string name="error_message_low_battery_warning">バッテリー残量低下</string>
+    <string name="error_detail_low_battery_warning">バッテリー残量の低下を検知しました。\n充電してからご利用ください。</string>
+    <string name="error_type_low_battery_error">6021</string>
+    <string name="error_message_low_battery_error">バッテリー残量低下</string>
+    <string name="error_detail_low_battery_error">バッテリー残量の低下を検知しました。\n充電してからご利用ください。</string>
+
+    <string name="error_type_ifbox_connection_error">6030</string>
+    <string name="error_message_ifbox_connection_error">IM-A820接続エラー</string>
+    <string name="error_detail_ifbox_connection_error">IM-A820と通信できません。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_ifbox_amount_difference">6031</string>
+    <string name="error_message_ifbox_amount_difference">料金変更検知</string>
+    <string name="error_detail_ifbox_amount_difference">決済金額とメーターの金額に差異があります。\nこのままの金額で決済してもよろしいでしょうか。</string>
+
+    <string name="error_type_ifbox_print_error">6032</string>
+    <string name="error_message_ifbox_print_error">伝票印刷失敗</string>
+    <string name="error_detail_ifbox_print_error">伝票印刷を再開しますか？</string>
+
+    <string name="error_type_ifbox_transmission_error">6033</string>
+    <string name="error_message_ifbox_transmission_error">伝票印刷失敗</string>
+    <string name="error_detail_ifbox_transmission_error">取引履歴詳細画面から再印刷を行ってください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_ifbox_transmission_timeout_error">6034</string>
+    <string name="error_message_ifbox_transmission_timeout_error">伝票印刷失敗</string>
+    <string name="error_detail_ifbox_transmission_timeout_error">取引履歴詳細画面から再印刷を行ってください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_printer_duplex_sts_paper_lack">6040</string>
+    <string name="error_message_printer_duplex_sts_paper_lack">プリンター用紙切れ</string>
+    <string name="error_detail_printer_duplex_sts_paper_lack">用紙を正しくセットしてください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_printer_duplex_sts_check">6041</string>
+    <string name="error_message_printer_duplex_sts_check">プリンター確認</string>
+    <string name="error_detail_printer_duplex_sts_check">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_printer_duplex_sts_busy">6042</string>
+    <string name="error_message_printer_duplex_sts_busy">プリンター処理中</string>
+    <string name="error_detail_printer_duplex_sts_busy">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_printer_duplex_sts_deny">6047</string>
+    <string name="error_message_printer_duplex_sts_deny">プリンター印字拒否</string>
+    <string name="error_detail_printer_duplex_sts_deny">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_printer_duplex_sts_error">6048</string>
+    <string name="error_message_printer_duplex_sts_error">プリンター印字不能</string>
+    <string name="error_detail_printer_duplex_sts_error">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_printer_duplex_sts_error_other">6049</string>
+    <string name="error_message_printer_duplex_sts_error_other">プリンター状態異常</string>
+    <string name="error_detail_printer_duplex_sts_error_other">詳細コード：%s\nしばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_printer_duplex_sts_cmdstop">6050</string>
+    <string name="error_message_printer_duplex_sts_cmdstop">データ送信不可</string>
+    <string name="error_detail_printer_duplex_sts_cmdstop">メーターとの通信に失敗しました。\n「はい」を押すと再度印刷を実行します。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_printer_duplex_sts_cmderr">6051</string>
+    <string name="error_message_printer_duplex_sts_cmderr">データ送信中止</string>
+    <string name="error_detail_printer_duplex_sts_cmderr">メーターとの通信に失敗しました。\n「はい」を押すと再度印刷を実行します。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_printer_duplex_sts_dataerr">6060</string>
+    <string name="error_message_printer_duplex_sts_dataerr">印刷データ異常</string>
+    <string name="error_detail_printer_duplex_sts_dataerr">異常なデータを検出したため印刷できません。\n管理者に連絡してください。</string>
+
+    <string name="error_type_printer_duplex_sts_discon">6070</string>
+    <string name="error_message_printer_duplex_sts_discon">メーター通信不可</string>
+    <string name="error_detail_printer_duplex_sts_discon">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_printer_duplex_sts_timeout">6071</string>
+    <string name="error_message_printer_duplex_sts_timeout">メーター通信タイムアウト</string>
+    <string name="error_detail_printer_duplex_sts_timeout">しばらくしてから操作をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_printer_duplex_sts_ng_status">6072</string>
+    <string name="error_message_printer_duplex_sts_ng_status">メーター状態不正</string>
+    <string name="error_detail_printer_duplex_sts_ng_status">メーターを空車にしてください。\n「はい」を押すと再度印刷を実行します。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_cashchanger_printer_connection_error">6101</string>
+    <string name="error_message_cashchanger_printer_connection_error">つり銭機用プリンター接続エラー</string>
+    <string name="error_detail_cashchanger_printer_connection_error">つり銭機用プリンターと通信できません。\n改善しない場合は管理者に連絡してください。\n</string>
+
+    <string name="error_type_cashchanger_connection_error">6102</string>
+    <string name="error_message_cashchanger_connection_error">つり銭機接続エラー</string>
+    <string name="error_detail_cashchanger_connection_error">係員をお呼びください。\nつり銭機と通信できません。\n返金が必要な場合は係員が返金を行ってください。\n</string>
+
+    <string name="error_type_cashchanger_balance_error">6103</string>
+    <string name="error_message_cashchanger_balance_error">つり銭不足エラー</string>
+    <string name="error_detail_cashchanger_balance_error">係員をお呼びください。\nつり銭機内のつり銭が不足しています。\nつり銭を補充後「はい」を押してください。</string>
+
+    <string name="error_type_cashchanger_enddeposit_error">6104</string>
+    <string name="error_message_cashchanger_enddeposit_error">つり銭機接続エラー</string>
+    <string name="error_detail_cashchanger_enddeposit_error">係員をお呼びください。\nつり銭機と通信できません。\n返金が必要な場合は係員が返金を行ってください。\n</string>
+
+    <string name="error_type_invoice_info_error">2055</string>
+    <string name="error_message_error_type_invoice_info_error">インボイス情報取得エラー</string>
+    <string name="error_detail_error_type_invoice_info_error">業務メニューより、再開局を実施してください。\n改善しない場合はお問い合わせください。</string>
+    
+    <!-- PayPF POS関連 (70) -->
+    <string name="error_type_paypf_pos_7001">7001</string>
+    <string name="error_message_paypf_pos_7001">POSサービスインスタンス無効</string>
+    <string name="error_detail_paypf_pos_7001">ご利用端末のご契約に、POSサービスが含まれておりません。\nPOSサービスの契約が有効であるかご確認ください。</string>
+    <string name="error_type_paypf_pos_7097">7097</string>
+    <string name="error_message_paypf_pos_7097">POSサービス通信エラー</string>
+    <string name="error_detail_paypf_pos_7097">詳細コード：%s\nPOSサービスの通信でエラーが発生しました。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_type_paypf_pos_7098">7098</string>
+    <string name="error_message_paypf_pos_7098">POSサービス通信エラー</string>
+    <string name="error_detail_paypf_pos_7098">POSサービス通信エラーが発生しました。\n業務メニューより、POSデータ更新を実施してください。</string>
+    <string name="error_type_paypf_pos_7099">7099</string>
+    <string name="error_message_paypf_pos_7099">POSサービス状態不正</string>
+    <string name="error_detail_paypf_pos_7099">POSサービス状態が不正です。\n改善しない場合は管理者に連絡してください。</string>
+
+    <!-- チケット販売(80) -->
+    <string name="error_type_ticket_8001">8001</string>
+    <string name="error_message_ticket_8001">チケット販売サービスインスタンス無効</string>
+    <string name="error_detail_ticket_8001">ご利用端末のご契約に、チケット販売サービスが含まれておりません。\nチケット販売サービスの契約が有効であるかご確認ください。</string>
+    <string name="error_type_ticket_8010">8010</string>
+    <string name="error_message_ticket_8010">チケット検索条件エラー</string>
+    <string name="error_detail_ticket_8010">チケットの検索条件が不正です。</string>
+    <string name="error_type_ticket_8011">8011</string>
+    <string name="error_message_ticket_8011">チケットが見つかりませんでした</string>
+    <string name="error_detail_ticket_8011">検索条件をご確認ください。</string>
+    <string name="error_type_ticket_8012">8012</string>
+    <string name="error_message_ticket_8012">チケットが見つかりませんでした</string>
+    <string name="error_detail_ticket_8012">検索条件をご確認ください。</string>
+    <string name="error_type_ticket_8013">8013</string>
+    <string name="error_message_ticket_8013">チケットが見つかりませんでした</string>
+    <string name="error_detail_ticket_8013">検索条件をご確認ください。</string>
+    <string name="error_type_ticket_8014">8014</string>
+    <string name="error_message_ticket_8014">チケットが見つかりませんでした</string>
+    <string name="error_detail_ticket_8014">検索条件をご確認ください。</string>
+    <string name="error_type_ticket_8015">8015</string>
+    <string name="error_message_ticket_8015">チケットが見つかりませんでした</string>
+    <string name="error_detail_ticket_8015">検索条件をご確認ください。</string>
+    <string name="error_type_ticket_8016">8016</string>
+    <string name="error_message_ticket_8016">チケットが見つかりませんでした</string>
+    <string name="error_detail_ticket_8016">検索条件をご確認ください。</string>
+    <string name="error_type_ticket_8017">8017</string>
+    <string name="error_message_ticket_8017">チケットが見つかりませんでした</string>
+    <string name="error_detail_ticket_8017">検索条件をご確認ください。</string>
+    <string name="error_type_ticket_8018">8018</string>
+    <string name="error_message_ticket_8018">チケットの残数が不足しています</string>
+    <string name="error_detail_ticket_8018">発の残数は%sです。</string>
+    <string name="error_type_ticket_8019">8019</string>
+    <string name="error_message_ticket_8019">チケット検索エラー</string>
+    <string name="error_detail_ticket_8019">アプリケーションエラーが発生しました。\n改善しない場合は端末を再起動してください。</string>
+    <string name="error_type_ticket_8030">8030</string>
+    <string name="error_message_ticket_8030">チケット発行エラー</string>
+    <string name="error_detail_ticket_8030">チケットが発行できませんでした。\n改善しない場合は端末を再起動してください。</string>
+    <string name="error_type_ticket_8039">8039</string>
+    <string name="error_message_ticket_8039">チケット発行エラー</string>
+    <string name="error_detail_ticket_8039">アプリケーションエラーが発生しました。\n改善しない場合は端末を再起動してください。</string>
+    <string name="error_type_ticket_8049">8049</string>
+    <string name="error_message_ticket_8049">改札設定エラー</string>
+    <string name="error_detail_ticket_8049">アプリケーションエラーが発生しました。\n改善しない場合は端末を再起動してください。</string>
+    <string name="error_type_ticket_8059">8059</string>
+    <string name="error_message_ticket_8059">QR読み込みエラー</string>
+    <string name="error_detail_ticket_8059">アプリケーションエラーが発生しました。\n改善しない場合は端末を再起動してください。</string>
+    <string name="error_type_ticket_8060">8060</string>
+    <string name="error_message_ticket_8060">チケット購入取消不可</string>
+    <string name="error_detail_ticket_8060">取消ができませんでした。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_type_ticket_8079">8079</string>
+    <string name="error_message_ticket_8079">チケット定期処理エラー</string>
+    <string name="error_detail_ticket_8079">アプリケーションエラーが発生しました。\n改善しない場合は端末を再起動してください。</string>
+    <string name="error_type_ticket_8097">8097</string>
+    <string name="error_message_ticket_8097">チケット販売サービス通信エラー</string>
+    <string name="error_detail_ticket_8097">チケット販売サービスの通信でエラーが発生しました。\nしばらくしてから操作をやり直してください。</string>
+    <string name="error_type_ticket_8098">8098</string>
+    <string name="error_message_ticket_8098">チケット販売サービス通信エラー</string>
+    <string name="error_detail_ticket_8098">チケット販売サービス通信エラーが発生しました。\n業務メニューより、チケットデータ更新を実施してください。</string>
+    <string name="error_type_ticket_8099">8099</string>
+    <string name="error_message_ticket_8099">チケット販売サービス状態不正</string>
+    <string name="error_detail_ticket_8099">チケット販売サービス状態が不正です。\n改善しない場合は管理者に連絡してください。</string>
+
+    <!-- チケット検索:(811X) 日時から運行便を取得する -->
+    <string name="error_type_ticket_8110">8110</string>
+    <string name="error_message_ticket_8110">システムエラー</string>
+    <string name="error_detail_ticket_8110">センターシステムからエラーが返却されました。\nステータスコード：%s</string>
+    <string name="error_type_ticket_8111">8111</string>
+    <string name="error_message_ticket_8111">便予約エラー</string>
+    <string name="error_detail_ticket_8111">便が見つかりませんでした。</string>
+
+    <!-- チケット検索:(812X) チケットIDからチケット販売パターンの候補を返す ・合計金額の安い順に応答する -->
+    <string name="error_type_ticket_8120">8120</string>
+    <string name="error_message_ticket_8120">システムエラー</string>
+    <string name="error_detail_ticket_8120">センターシステムからエラーが返却されました。\nステータスコード：%s</string>
+    <string name="error_type_ticket_8121">8121</string>
+    <string name="error_message_ticket_8121">チケットエラー</string>
+    <string name="error_detail_ticket_8121">チケットが見つかりませんでした。</string>
+
+    <!-- チケット検索:(813X) 便IDから予約枠のステータスを取得する -->
+    <string name="error_type_ticket_8130">8130</string>
+    <string name="error_message_ticket_8130">システムエラー</string>
+    <string name="error_detail_ticket_8130">センターシステムからエラーが返却されました。\nステータスコード：%s</string>
+    <string name="error_type_ticket_8131">8131</string>
+    <string name="error_message_ticket_8131"></string>
+    <string name="error_detail_ticket_8131">残数が不足しています。</string>
+
+    <!-- チケット購入:(814X) チケット購入履歴作成 -->
+    <string name="error_type_ticket_8140">8140</string>
+    <string name="error_message_ticket_8140">システムエラー</string>
+    <string name="error_detail_ticket_8140">センターシステムからエラーが返却されました。\nステータスコード：%s</string>
+    <string name="error_type_ticket_8141">8141</string>
+    <string name="error_message_ticket_8141">便予約エラー</string>
+    <string name="error_detail_ticket_8141">便が見つかりませんでした。</string>
+    <string name="error_type_ticket_8142">8142</string>
+    <string name="error_message_ticket_8142">便予約エラー</string>
+    <string name="error_detail_ticket_8142">座席が足りませんでした。</string>
+
+    <!-- チケット購入:(815X) 動的チケットを生成する(便予約) -->
+    <string name="error_type_ticket_8150">8150</string>
+    <string name="error_message_ticket_8150">システムエラー</string>
+    <string name="error_detail_ticket_8150">センターシステムからエラーが返却されました。\nステータスコード：%s</string>
+    <string name="error_type_ticket_8151">8151</string>
+    <string name="error_message_ticket_8151">チケットエラー</string>
+    <string name="error_detail_ticket_8151">ご利用できないチケットになります。\n（チケットは既に使用済み）</string>
+    <string name="error_type_ticket_8152">8152</string>
+    <string name="error_message_ticket_8152">チケットエラー</string>
+    <string name="error_detail_ticket_8152">ご利用できないチケットになります。\n（チケットは既に払戻済み）</string>
+    <string name="error_type_ticket_8153">8153</string>
+    <string name="error_message_ticket_8153">チケットエラー</string>
+    <string name="error_detail_ticket_8153">ご利用できないチケットになります。\n（チケットは既に有効期限切れ）</string>
+
+    <!-- チケット購入の取消:(816X) チケット購入の取消(可能かどうか確認する) -->
+    <string name="error_type_ticket_8160">8160</string>
+    <string name="error_message_ticket_8160">システムエラー</string>
+    <string name="error_detail_ticket_8160">センターシステムからエラーが返却されました。\nステータスコード：%s</string>
+    <string name="error_type_ticket_8161">8161</string>
+    <string name="error_message_ticket_8161">チケット購入取消不可</string>
+    <string name="error_detail_ticket_8161">取消ができません。\n（チケットは既に払戻済み）</string>
+    <string name="error_type_ticket_8162">8162</string>
+    <string name="error_message_ticket_8162">チケット購入取消不可</string>
+    <string name="error_detail_ticket_8162">取消ができません。\n（チケットは既に使用済み）</string>
+    <string name="error_type_ticket_8163">8163</string>
+    <string name="error_message_ticket_8163">チケット購入取消不可</string>
+    <string name="error_detail_ticket_8163">取消ができません。\n（チケットは既に譲渡済み）</string>
+
+    <!-- 改札設定:(821X) -->
+    <!-- 乗り場の一覧を取得する(※改札設定) -->
+    <!-- 選択した乗り場に対する、経路の一覧を取得する(※改札設定) -->
+    <!-- 指定した経路に対する、便の一覧を取得する(※改札設定) -->
+    <string name="error_type_ticket_8210">8210</string>
+    <string name="error_message_ticket_8210">システムエラー</string>
+    <string name="error_detail_ticket_8210">センターシステムからエラーが返却されました。\nステータスコード：%s</string>
+
+    <!-- 警告(89) ※使用していないようなので80から89へ変更 -->
+    <string name="error_type_uriage_warning">8901</string>
+    <string name="error_message_uriage_warning">売上件数警告</string>
+    <string name="error_detail_uriage_warning">売上が多数存在します\n業務終了時に日計印刷して下さい</string>
+    <!-- システムエラー(90) -->
+    <string name="error_type_abnormal_shutdown">9001</string>
+    <string name="error_message_abnormal_shutdown">異常終了検知</string>
+    <string name="error_detail_abnormal_shutdown">不正な電源断を検知しました\n業務終了から電源を落とさない場合、データが破損する可能性があります</string>
+    <string name="error_type_not_available">9002</string>
+    <string name="error_message_not_available">利用停止検知</string>
+    <string name="error_detail_not_available">利用停止状態になっています。\n管理者に連絡してください。</string>
+
+    <!-- フタバ双方向追加分 -->
+    <string name="error_type_FutabaD_820Timeout">9101</string>
+    <string name="error_message_FutabaD_820Timeout">メータタイムアウトエラー</string>
+    <string name="error_detail_FutabaD_820Timeout">メータと通信中にエラーが発生しました。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_type_FutabaD_SeparateAmount">9102</string>
+    <string name="error_message_FutabaD_SeparateAmount">分別金額入力エラー</string>
+    <string name="error_detail_FutabaD_SeparateAmount">分別の入力金額が元金よりも大きいです。</string>
+    <string name="error_type_FutabaD_SDCardNotFound">9103</string>
+    <string name="error_message_FutabaD_SDCardNotFound">SDカード挿入エラー</string>
+    <string name="error_detail_FutabaD_SDCardNotFound">SDカードを挿入してください。</string>
+    <string name="error_type_FutabaD_ValueError">9104</string>
+    <string name="error_message_FutabaD_ValueError">入力値エラー</string>
+    <string name="error_detail_FutabaD_ValueError">入力内容に問題があります</string>
+    <string name="error_type_FutabaD_ValueLengthError">9105</string>
+    <string name="error_message_FutabaD_ValueLengthError">入力桁エラー</string>
+    <string name="error_detail_FutabaD_ValueLengthError">入力桁が長すぎます</string>
+    <string name="error_type_FutabaD_ValueMaxError">9106</string>
+    <string name="error_message_FutabaD_ValueMaxError">入力最大値エラー</string>
+    <string name="error_detail_FutabaD_ValueMaxError">入力値が最大値を超えています</string>
+    <string name="error_type_FutabaD_DiscountReject">9107</string>
+    <string name="error_message_FutabaD_DiscountReject">割引実施エラー</string>
+    <string name="error_detail_FutabaD_DiscountReject">割引できません</string>
+    <string name="error_type_FutabaD_AutoDailyReport_NotJob">9108</string>
+    <string name="error_message_FutabaD_AutoDailyReport_NotJob">自動日報エラー</string>
+    <string name="error_detail_FutabaD_AutoDailyReport_NotJob">出庫していないか空車でないので使用できません</string>
+    <string name="error_type_FutabaD_MoneyTicketReceipt_NotJob">9109</string>
+    <string name="error_message_FutabaD_MoneyTicketReceipt_NotJob">レシートエラー</string>
+    <string name="error_detail_FutabaD_MoneyTicketReceipt_NotJob">取り扱い出来ません</string>
+    <string name="error_type_FutabaD_Outofpaper_Norestart">9110</string>
+    <string name="error_message_FutabaD_Outofpaper_Norestart">プリンター用紙切れ</string>
+    <string name="error_detail_FutabaD_Outofpaper_Norestart">用紙を正しくセットしてください。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_type_FutabaD_Amount_OperationError1">9111</string>
+    <string name="error_message_FutabaD_Amount_OperationError1">金額操作エラー</string>
+    <string name="error_detail_FutabaD_Amount_OperationError1">メーターを支払にしてください。</string>
+    <string name="error_type_FutabaD_Amount_OperationError2">9112</string>
+    <string name="error_message_FutabaD_Amount_OperationError2">金額操作エラー</string>
+    <string name="error_detail_FutabaD_Amount_OperationError2">メーターを実車または支払にしてください。</string>
+    <string name="error_type_FutabaD_Amount_OperationError3">9113</string>
+    <string name="error_message_FutabaD_Amount_OperationError3">金額操作エラー</string>
+    <string name="error_detail_FutabaD_Amount_OperationError3">決済後の金額操作はできません。</string>
+    <string name="error_type_FutabaD_Amount_OperationError4">9114</string>
+    <string name="error_message_FutabaD_Amount_OperationError4">金額操作エラー</string>
+    <string name="error_detail_FutabaD_Amount_OperationError4">分別金額入力後の金額操作はできません。</string>
+    <string name="error_type_FutabaD_EMoneyQR_KuusyaAbort">9115</string>
+    <string name="error_message_FutabaD_EMoneyQR_KuusyaAbort">取引中止</string>
+    <string name="error_detail_FutabaD_EMoneyQR_KuusyaAbort">お取引を中止します</string>
+    <string name="error_type_FutabaD_Outofpaper_Norestart_withSetkey">9116</string>
+    <string name="error_message_FutabaD_Outofpaper_Norestart_withSetkey">プリンター用紙切れ</string>
+    <string name="error_detail_FutabaD_Outofpaper_Norestart_withSetkey">用紙を正しくセットしてください。\n改善しない場合は管理者に連絡してください。</string>
+    <string name="error_type_FutabaD_MeterErrorMes_Cancel_T">9117</string>
+    <string name="error_message_FutabaD_MeterErrorMes_Cancel_T">メータエラー検知</string>
+    <string name="error_detail_FutabaD_MeterErrorMes_Cancel_T">エラーを検知しました\n「はい」を押下して解除してください(T)</string>
+    <string name="error_type_FutabaD_MeterErrorMes_Cancel_R">9118</string>
+    <string name="error_message_FutabaD_MeterErrorMes_Cancel_R">メータエラー検知</string>
+    <string name="error_detail_FutabaD_MeterErrorMes_Cancel_R">エラーを検知しました\n「はい」を押下して解除してください(R)</string>
+    <string name="error_type_FutabaD_FareUp_Warning">9119</string>
+    <string name="error_message_FutabaD_FareUp_Warning">跳ね上がり</string>
+    <string name="error_detail_FutabaD_FareUp_Warning">%s</string>
+
+    <!-- エラーメッセージ -->
+    <!-- 1行目；コード -->
+    <!-- 2行目；タイトル -->
+    <!-- 3行目；メッセージ -->
+    <!-- 4行目；詳細 -->
+    <!-- 5行目；レベル -->
+    <!-- 6行目；表示種別 -->
+    <!-- 7行目；履歴表示種別 -->
+    <array name="error_array">
+        <item>@array/error_1</item>
+        <item>@array/error_2</item>
+        <item>@array/error_4</item>
+        <item>@array/error_startup_comm_reception</item>
+        <item>@array/error_airplane_mode</item>
+        <item>@array/error_payment_system_2001</item>
+        <item>@array/error_payment_system_2002</item>
+        <item>@array/error_payment_system_2009</item>
+        <item>@array/error_payment_system_2010</item>
+        <item>@array/error_payment_system_2011</item>
+        <item>@array/error_payment_system_2012</item>
+        <item>@array/error_payment_system_2013</item>
+        <item>@array/error_payment_system_2015</item>
+        <item>@array/error_payment_system_2018</item>
+        <item>@array/error_payment_system_2019</item>
+        <item>@array/error_payment_system_2020</item>
+        <item>@array/error_payment_system_2021</item>
+        <item>@array/error_payment_system_2030</item>
+        <item>@array/error_payment_system_2031</item>
+        <item>@array/error_payment_system_2032</item>
+        <item>@array/error_payment_system_2033</item>
+        <item>@array/error_payment_system_2034</item>
+        <item>@array/error_payment_system_2035</item>
+        <item>@array/error_payment_system_2036</item>
+        <item>@array/error_payment_system_2037</item>
+        <item>@array/error_payment_system_2050</item>
+        <item>@array/error_payment_system_2051</item>
+        <item>@array/error_payment_system_2052</item>
+        <item>@array/error_payment_system_2053</item>
+        <item>@array/error_payment_system_2054</item>
+        <item>@array/error_payment_system_2094</item>
+        <item>@array/error_payment_system_2095</item>
+        <item>@array/error_payment_system_undefined_error</item>
+        <item>@array/error_payment_system_internal_error</item>
+        <item>@array/error_credit_3001</item>
+        <item>@array/error_credit_3002</item>
+        <item>@array/error_credit_3003</item>
+        <item>@array/error_credit_3004</item>
+        <item>@array/error_credit_3005</item>
+        <item>@array/error_credit_3006</item>
+        <item>@array/error_credit_3007</item>
+        <item>@array/error_credit_3008</item>
+        <item>@array/error_credit_3009</item>
+        <item>@array/error_credit_3010</item>
+        <item>@array/error_credit_3011</item>
+        <item>@array/error_credit_3012</item>
+        <item>@array/error_credit_3013</item>
+        <item>@array/error_credit_3014</item>
+        <item>@array/error_credit_3015</item>
+        <item>@array/error_credit_3016</item>
+        <item>@array/error_credit_3017</item>
+        <item>@array/error_credit_3018</item>
+        <item>@array/error_credit_3019</item>
+        <item>@array/error_credit_3020</item>
+        <item>@array/error_credit_3021</item>
+        <item>@array/error_credit_3022</item>
+        <item>@array/error_credit_3023</item>
+        <item>@array/error_credit_3024</item>
+        <item>@array/error_credit_3025</item>
+        <item>@array/error_credit_3026</item>
+        <item>@array/error_credit_3027</item>
+        <item>@array/error_credit_3028</item>
+        <item>@array/error_credit_3029</item>
+        <item>@array/error_credit_3030</item>
+        <item>@array/error_credit_3031</item>
+        <item>@array/error_credit_3032</item>
+        <item>@array/error_credit_3033</item>
+        <item>@array/error_credit_3034</item>
+        <item>@array/error_credit_3035</item>
+        <item>@array/error_credit_3036</item>
+        <item>@array/error_credit_3037</item>
+        <item>@array/error_credit_3038</item>
+        <item>@array/error_credit_3039</item>
+        <item>@array/error_credit_3040</item>
+        <item>@array/error_credit_3041</item>
+        <item>@array/error_credit_3042</item>
+        <item>@array/error_credit_3043</item>
+        <item>@array/error_credit_3044</item>
+        <item>@array/error_credit_3045</item>
+        <item>@array/error_credit_3046</item>
+        <item>@array/error_credit_3047</item>
+        <item>@array/error_credit_3060</item>
+        <item>@array/error_credit_3061</item>
+        <item>@array/error_credit_3062</item>
+        <item>@array/error_credit_3063</item>
+        <item>@array/error_credit_3064</item>
+        <item>@array/error_credit_3090</item>
+        <item>@array/error_credit_3091</item>
+        <item>@array/error_credit_3092</item>
+        <item>@array/error_credit_3093</item>
+        <item>@array/error_credit_3099</item>
+        <item>@array/error_qr_3301</item>
+        <item>@array/error_qr_3302</item>
+        <item>@array/error_qr_3303</item>
+        <item>@array/error_qr_3304</item>
+        <item>@array/error_qr_3305</item>
+        <item>@array/error_qr_3306</item>
+        <item>@array/error_qr_3307</item>
+        <item>@array/error_qr_3308</item>
+        <item>@array/error_qr_3309</item>
+        <item>@array/error_qr_3310</item>
+        <item>@array/error_qr_3311</item>
+        <item>@array/error_qr_3312</item>
+        <item>@array/error_qr_3313</item>
+        <item>@array/error_qr_3314</item>
+        <item>@array/error_qr_3315</item>
+        <item>@array/error_qr_3316</item>
+        <item>@array/error_qr_3319</item>
+        <item>@array/error_qr_3320</item>
+        <item>@array/error_qr_3321</item>
+        <item>@array/error_qr_3322</item>
+        <item>@array/error_qr_3323</item>
+        <item>@array/error_qr_3324</item>
+        <item>@array/error_qr_3325</item>
+        <item>@array/error_qr_3326</item>
+        <item>@array/error_qr_3327</item>
+        <item>@array/error_jrem_activation_4001</item>
+        <item>@array/error_jrem_activation_4002</item>
+        <item>@array/error_jrem_activation_4003</item>
+        <item>@array/error_jrem_activation_4004</item>
+        <item>@array/error_jrem_activation_4005</item>
+        <item>@array/error_jrem_activation_4006</item>
+        <item>@array/error_jrem_activation_4007</item>
+        <item>@array/error_jrem_activation_4008</item>
+        <item>@array/error_jrem_activation_4009</item>
+        <item>@array/error_jrem_ras_4010</item>
+        <item>@array/error_jrem_ras_4011</item>
+        <item>@array/error_jrem_ras_14011</item>
+        <item>@array/error_jrem_ras_4012</item>
+        <item>@array/error_jrem_ras_4013</item>
+        <item>@array/error_jrem_ras_4014</item>
+        <item>@array/error_jrem_ras_14014</item>
+        <item>@array/error_jrem_ras_4015</item>
+        <item>@array/error_jrem_ras_4016</item>
+        <item>@array/error_jrem_ras_4017</item>
+        <item>@array/error_jrem_ras_4018</item>
+        <item>@array/error_jrem_ras_14018</item>
+        <item>@array/error_jrem_ras_4019</item>
+        <item>@array/error_jrem_ras_4020</item>
+        <item>@array/error_jrem_ras_4021</item>
+        <item>@array/error_jrem_ras_14021</item>
+        <item>@array/error_jrem_ras_4022</item>
+        <item>@array/error_jrem_ras_14022</item>
+        <item>@array/error_jrem_ras_4023</item>
+        <item>@array/error_jrem_ras_4024</item>
+        <item>@array/error_jrem_ras_4025</item>
+        <item>@array/error_jrem_ras_4026</item>
+        <item>@array/error_jrem_ras_4027</item>
+        <item>@array/error_jrem_ras_4028</item>
+        <item>@array/error_jrem_ras_4029</item>
+        <item>@array/error_jrem_ras_4030</item>
+        <item>@array/error_jrem_ras_4031</item>
+        <item>@array/error_jrem_ras_4032</item>
+        <item>@array/error_jrem_ras_4033</item>
+        <item>@array/error_jrem_ras_4034</item>
+        <item>@array/error_jrem_ras_4035</item>
+        <item>@array/error_jrem_ras_4036</item>
+        <item>@array/error_jrem_ras_4037</item>
+        <item>@array/error_jrem_ras_4038</item>
+        <item>@array/error_jrem_ras_4039</item>
+        <item>@array/error_jrem_ras_4040</item>
+        <item>@array/error_jrem_ras_4041</item>
+        <item>@array/error_jrem_ras_4042</item>
+        <item>@array/error_jrem_ras_4043</item>
+        <item>@array/error_jrem_ras_4044</item>
+        <item>@array/error_jrem_ras_4045</item>
+        <item>@array/error_jrem_ras_4046</item>
+        <item>@array/error_jrem_ras_4048</item>
+        <item>@array/error_jrem_ras_14048</item>
+        <item>@array/error_jrem_ras_4049</item>
+        <item>@array/error_jrem_ras_4050</item>
+        <item>@array/error_jrem_ras_4051</item>
+        <item>@array/error_jrem_ras_4052</item>
+        <item>@array/error_jrem_ras_4053</item>
+        <item>@array/error_jrem_ras_4054</item>
+        <item>@array/error_jrem_ras_4055</item>
+        <item>@array/error_jrem_ras_4056</item>
+        <item>@array/error_jrem_ras_4057</item>
+        <item>@array/error_jrem_ras_4058</item>
+        <item>@array/error_jrem_ras_4059</item>
+        <item>@array/error_jrem_ras_4060</item>
+        <item>@array/error_jrem_ras_4061</item>
+        <item>@array/error_jrem_ras_4062</item>
+        <item>@array/error_jrem_ras_4063</item>
+        <item>@array/error_jrem_ras_4064</item>
+        <item>@array/error_jrem_ras_4065</item>
+        <item>@array/error_jrem_ras_4066</item>
+        <item>@array/error_jrem_ras_4067</item>
+        <item>@array/error_jrem_ras_4068</item>
+        <item>@array/error_jrem_ras_4069</item>
+        <item>@array/error_jrem_ras_4070</item>
+        <item>@array/error_jrem_ras_4071</item>
+        <item>@array/error_jrem_ras_4072</item>
+        <item>@array/error_jrem_ras_4073</item>
+        <item>@array/error_jrem_ras_4074</item>
+        <item>@array/error_jrem_ras_4075</item>
+        <item>@array/error_jrem_ras_4076</item>
+        <item>@array/error_jrem_ras_4077</item>
+        <item>@array/error_jrem_ras_4078</item>
+        <item>@array/error_jrem_ras_4079</item>
+        <item>@array/error_jrem_ras_4080</item>
+        <item>@array/error_jrem_ras_4081</item>
+        <item>@array/error_jrem_ras_4082</item>
+        <item>@array/error_jrem_ras_4083</item>
+        <item>@array/error_jrem_ras_4084</item>
+        <item>@array/error_jrem_ras_4085</item>
+        <item>@array/error_jrem_ras_4086</item>
+        <item>@array/error_jrem_ras_4087</item>
+        <item>@array/error_jrem_ras_4088</item>
+        <item>@array/error_jrem_ras_4089</item>
+        <item>@array/error_icas_4090</item>
+        <item>@array/error_icas_4091</item>
+        <item>@array/error_icas_4092</item>
+        <item>@array/error_icas_4093</item>
+        <item>@array/error_icas_4094</item>
+        <item>@array/error_icas_4095</item>
+        <item>@array/error_icas_4096</item>
+        <item>@array/error_icas_4097</item>
+        <item>@array/error_icas_4099</item>
+        <item>@array/error_option_service_5001</item>
+        <item>@array/error_option_service_5002</item>
+        <item>@array/error_option_service_5003</item>
+        <item>@array/error_option_service_5004</item>
+        <item>@array/error_option_service_5005</item>
+        <item>@array/error_option_service_5020</item>
+        <item>@array/error_option_service_5021</item>
+        <item>@array/error_option_service_5099</item>
+        <item>@array/error_option_service_5101</item>
+        <item>@array/error_option_service_5102</item>
+        <item>@array/error_option_service_5103</item>
+        <item>@array/error_option_service_5109</item>
+        <item>@array/error_option_service_5901</item>
+        <item>@array/error_option_service_5902</item>
+        <item>@array/error_option_service_5903</item>
+        <item>@array/error_option_service_5990</item>
+        <item>@array/error_option_service_5991</item>
+        <item>@array/error_option_service_5992</item>
+        <item>@array/error_option_service_5993</item>
+        <item>@array/error_suica_closed_error</item>
+        <item>@array/error_suica_power_off_error</item>
+        <item>@array/error_suica_upper_limit_error</item>
+        <item>@array/error_opening_suica_warning</item>
+        <item>@array/error_opening_suica_error</item>
+        <item>@array/error_id_closed_error</item>
+        <item>@array/error_id_power_off_error</item>
+        <item>@array/error_id_upper_limit_error</item>
+        <item>@array/error_id_pin_error</item>
+        <item>@array/error_opening_id_warning</item>
+        <item>@array/error_opening_id_error</item>
+        <item>@array/error_waon_closed_error</item>
+        <item>@array/error_waon_power_off_error</item>
+        <item>@array/error_waon_upper_limit_error</item>
+        <item>@array/error_opening_waon_warning</item>
+        <item>@array/error_opening_waon_error</item>
+        <item>@array/error_nanaco_closed_error</item>
+        <item>@array/error_nanaco_power_off_error</item>
+        <item>@array/error_nanaco_upper_limit_error</item>
+        <item>@array/error_nanaco_near_full_warning</item>
+        <item>@array/error_nanaco_journal_warning</item>
+        <item>@array/error_opening_nanaco_warning</item>
+        <item>@array/error_opening_nanaco_error</item>
+        <item>@array/error_edy_closed_error</item>
+        <item>@array/error_edy_power_off_error</item>
+        <item>@array/error_edy_upper_limit_error</item>
+        <item>@array/error_edy_before_init_communication_error</item>
+        <item>@array/error_edy_init_communication_error</item>
+        <item>@array/error_edy_near_full_warning</item>
+        <item>@array/error_edy_journal_warning</item>
+        <item>@array/error_opening_edy_warning</item>
+        <item>@array/error_opening_edy_error</item>
+        <item>@array/error_quicpay_closed_error</item>
+        <item>@array/error_quicpay_power_off_error</item>
+        <item>@array/error_quicpay_upper_limit_error</item>
+        <item>@array/error_quicpay_journal_error</item>
+        <item>@array/error_opening_quicpay_warning</item>
+        <item>@array/error_opening_quicpay_error</item>
+        <item>@array/error_jrem_activate_uninstall_error</item>
+
+        <!-- OKICA -->
+        <item>@array/error_okica_closed_error</item>
+        <item>@array/error_okica_power_off_error</item>
+        <item>@array/error_okica_upper_limit_error</item>
+        <item>@array/error_okica_charge_upper_limit_error</item>
+        <item>@array/error_opening_okica_warning</item>
+        <item>@array/error_opening_okica_error</item>
+        <item>@array/error_okica_sam_init_error</item>
+        <item>@array/error_okica_wait_timeout_error</item>
+        <item>@array/error_okica_common_judge_detect_num_error</item>
+        <item>@array/error_okica_common_judge_read_error</item>
+        <item>@array/error_okica_common_judge_idi_error</item>
+        <item>@array/error_okica_common_judge_version_error</item>
+        <item>@array/error_okica_common_judge_master_data_error</item>
+        <item>@array/error_okica_common_judge_ic_type_error</item>
+        <item>@array/error_okica_common_judge_data_item_error</item>
+        <item>@array/error_okica_common_judge_activation_error</item>
+        <item>@array/error_okica_common_judge_10_years_unused_error</item>
+        <item>@array/error_okica_common_judge_card_unavailable_error</item>
+        <item>@array/error_okica_common_judge_card_expired_error</item>
+        <item>@array/error_okica_common_judge_nega_check_error</item>
+        <item>@array/error_okica_insufficient_balance_error</item>
+        <item>@array/error_okica_another_card_touch_error</item>
+        <item>@array/error_okica_unprocessed_another_card_touch_error</item>
+        <item>@array/error_okica_unprocessed_timeout_error</item>
+        <item>@array/error_okica_unprocessed_unexpected_error</item>
+        <item>@array/error_okica_sam_sdk_error</item>
+        <item>@array/error_okica_card_sdk_error</item>
+        <item>@array/error_okica_transaction_error</item>
+        <item>@array/error_okica_sf_judge_cancel_error</item>
+        <item>@array/error_okica_data_error</item>
+        <item>@array/error_okica_not_installed_error</item>
+        <item>@array/error_okica_force_deactivation</item>
+        <item>@array/error_okica_force_deactivation_uri_exist_error</item>
+        <item>@array/error_okica_force_deactivation_aggregate_exist_error</item>
+        <item>@array/error_okica_not_available</item>
+
+        <item>@array/error_certificate_emoney_error</item>
+        <item>@array/error_opening_emoney_error</item>
+        <item>@array/error_activate_emoney_error</item>
+        <item>@array/error_authentication_mc_warning</item>
+        <item>@array/error_authentication_mc_error</item>
+        <item>@array/error_abnormal_shutdown</item>
+        <item>@array/error_printer_sts_busy</item>
+        <item>@array/error_printer_sts_hight_temp</item>
+        <item>@array/error_printer_sts_paper_lack</item>
+        <item>@array/error_printer_sts_no_battery</item>
+        <item>@array/error_printer_sts_feed</item>
+        <item>@array/error_printer_sts_print</item>
+        <item>@array/error_printer_sts_force_feed</item>
+        <item>@array/error_printer_sts_power_on</item>
+        <item>@array/error_printer_tasks_full</item>
+        <item>@array/error_printer_sts_undefined</item>
+        <item>@array/warning_low_battery</item>
+        <item>@array/error_low_battery</item>
+        <item>@array/error_ifbox_connection_error</item>
+        <item>@array/error_ifbox_amount_difference</item>
+        <item>@array/error_type_ifbox_print_error</item>
+        <item>@array/error_type_ifbox_transmission_error</item>
+        <item>@array/error_type_ifbox_transmission_timeout_error</item>
+        <item>@array/error_printer_duplex_sts_paper_lack</item>
+        <item>@array/error_printer_duplex_sts_check</item>
+        <item>@array/error_printer_duplex_sts_busy</item>
+        <item>@array/error_printer_duplex_sts_deny</item>
+        <item>@array/error_printer_duplex_sts_error</item>
+        <item>@array/error_printer_duplex_sts_error_other</item>
+        <item>@array/error_printer_duplex_sts_cmdstop</item>
+        <item>@array/error_printer_duplex_sts_cmderr</item>
+        <item>@array/error_printer_duplex_sts_dataerr</item>
+        <item>@array/error_printer_duplex_sts_discon</item>
+        <item>@array/error_printer_duplex_sts_timeout</item>
+        <item>@array/error_printer_duplex_sts_ng_status</item>
+        <item>@array/error_cashchanger_printer_connection_error</item>
+        <item>@array/error_cashchanger_connection_error</item>
+        <item>@array/error_cashchanger_balance_error</item>
+        <item>@array/error_cashchanger_enddeposit_error</item>
+        <item>@array/error_invoice_info</item>
+        <item>@array/error_type_paypf_pos_7001</item>
+        <item>@array/error_type_paypf_pos_7097</item>
+        <item>@array/error_type_paypf_pos_7098</item>
+        <item>@array/error_type_paypf_pos_7099</item>
+        <item>@array/error_type_ticket_8001</item>
+        <item>@array/error_type_ticket_8011</item>
+        <item>@array/error_type_ticket_8012</item>
+        <item>@array/error_type_ticket_8013</item>
+        <item>@array/error_type_ticket_8014</item>
+        <item>@array/error_type_ticket_8015</item>
+        <item>@array/error_type_ticket_8016</item>
+        <item>@array/error_type_ticket_8017</item>
+        <item>@array/error_type_ticket_8018</item>
+        <item>@array/error_type_ticket_8019</item>
+        <item>@array/error_type_ticket_8030</item>
+        <item>@array/error_type_ticket_8039</item>
+        <item>@array/error_type_ticket_8049</item>
+        <item>@array/error_type_ticket_8059</item>
+        <item>@array/error_type_ticket_8060</item>
+        <item>@array/error_type_ticket_8079</item>
+        <item>@array/error_type_ticket_8097</item>
+        <item>@array/error_type_ticket_8098</item>
+        <item>@array/error_type_ticket_8099</item>
+        <item>@array/error_type_ticket_8110</item>
+        <item>@array/error_type_ticket_8111</item>
+        <item>@array/error_type_ticket_8120</item>
+        <item>@array/error_type_ticket_8121</item>
+        <item>@array/error_type_ticket_8130</item>
+        <item>@array/error_type_ticket_8131</item>
+        <item>@array/error_type_ticket_8140</item>
+        <item>@array/error_type_ticket_8141</item>
+        <item>@array/error_type_ticket_8142</item>
+        <item>@array/error_type_ticket_8150</item>
+        <item>@array/error_type_ticket_8151</item>
+        <item>@array/error_type_ticket_8152</item>
+        <item>@array/error_type_ticket_8153</item>
+        <item>@array/error_type_ticket_8160</item>
+        <item>@array/error_type_ticket_8161</item>
+        <item>@array/error_type_ticket_8162</item>
+        <item>@array/error_type_ticket_8163</item>
+        <item>@array/error_type_ticket_8210</item>
+        <item>@array/error_not_available</item>
+        <item>@array/error_FutabaD_820Timeout_9101</item>
+        <item>@array/error_FutabaD_SeparateAmount_9102</item>
+        <item>@array/error_FutabaD_SDCardNotFound_9103</item>
+        <item>@array/error_FutabaD_ValueError_9104</item>
+        <item>@array/error_FutabaD_ValueLengthError_9105</item>
+        <item>@array/error_FutabaD_ValueMaxError_9106</item>
+        <item>@array/error_FutabaD_DiscountReject_9107</item>
+        <item>@array/error_FutabaD_AutoDailyReport_NotJob_9108</item>
+        <item>@array/error_type_FutabaD_MoneyTicketReceipt_NotJob_9109</item>
+        <item>@array/error_type_FutabaD_Outofpaper_Norestart_9110</item>
+        <item>@array/error_type_FutabaD_Amount_OperationError1_9111</item>
+        <item>@array/error_type_FutabaD_Amount_OperationError2_9112</item>
+        <item>@array/error_type_FutabaD_Amount_OperationError3_9113</item>
+        <item>@array/error_type_FutabaD_Amount_OperationError4_9114</item>
+        <item>@array/error_type_FutabaD_EMoneyQR_KuusyaAbort_9115</item>
+        <item>@array/error_type_FutabaD_Outofpaper_Norestart_withSetkey_9116</item>
+        <item>@array/error_type_FutabaD_MeterErrorMes_Cancel_T_9117</item>
+        <item>@array/error_type_FutabaD_MeterErrorMes_Cancel_R_9118</item>
+        <item>@array/error_type_FutabaD_FareUp_Warning_9119</item>
+    </array>
+    <string-array name="error_1">
+        <item>@string/error_type_comm_reception</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_comm</item>
+        <item>@string/error_detail_comm_reception</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_2">
+        <item>@string/error_type_credit_card_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_card_error</item>
+        <item>@string/error_detail_common_error1</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_4">
+        <item>@string/error_type_uriage_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_uriage_warning</item>
+        <item>@string/error_detail_uriage_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_invisible</item>
+        <item>@string/history_stacking</item>
+    </string-array>
+    <string-array name="error_startup_comm_reception">
+        <item>@string/error_type_startup_comm_reception</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_startup_comm</item>
+        <item>@string/error_detail_startup_comm_reception</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_airplane_mode">
+        <item>@string/error_type_airplane_mode</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_airplane_mode</item>
+        <item>@string/error_detail_airplane_mode</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_authentication_mc_warning">
+        <item>@string/error_type_authentication_mc_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_authentication_mc_warning</item>
+        <item>@string/error_detail_authentication_mc_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_stacking</item>
+    </string-array>
+    <string-array name="error_authentication_mc_error">
+        <item>@string/error_type_authentication_mc_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_authentication_mc_error</item>
+        <item>@string/error_detail_authentication_mc_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_stacking</item>
+    </string-array>
+    <string-array name="error_abnormal_shutdown">
+        <item>@string/error_type_abnormal_shutdown</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_abnormal_shutdown</item>
+        <item>@string/error_detail_abnormal_shutdown</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_sts_busy">
+        <item>@string/error_type_printer_sts_busy</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_sts_busy</item>
+        <item>@string/error_detail_printer_sts_busy</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_sts_hight_temp">
+        <item>@string/error_type_printer_sts_hight_temp</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_sts_hight_temp</item>
+        <item>@string/error_detail_printer_sts_hight_temp</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_sts_paper_lack">
+        <item>@string/error_type_printer_sts_paper_lack</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_sts_paper_lack</item>
+        <item>@string/error_detail_printer_sts_paper_lack</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_sts_no_battery">
+        <item>@string/error_type_printer_sts_no_battery</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_sts_no_battery</item>
+        <item>@string/error_detail_printer_sts_no_battery</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_sts_feed">
+        <item>@string/error_type_printer_sts_feed</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_sts_feed</item>
+        <item>@string/error_detail_printer_sts_feed</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_sts_print">
+        <item>@string/error_type_printer_sts_print</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_sts_print</item>
+        <item>@string/error_detail_printer_sts_print</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_sts_force_feed">
+        <item>@string/error_type_printer_sts_force_feed</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_sts_force_feed</item>
+        <item>@string/error_detail_printer_sts_force_feed</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_sts_power_on">
+        <item>@string/error_type_printer_sts_power_on</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_sts_power_on</item>
+        <item>@string/error_detail_printer_sts_power_on</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_tasks_full">
+        <item>@string/error_type_printer_tasks_full</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_tasks_full</item>
+        <item>@string/error_detail_printer_tasks_full</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_sts_undefined">
+        <item>@string/error_type_printer_sts_undefined</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_sts_undefined</item>
+        <item>@string/error_detail_printer_sts_undefined</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="warning_low_battery">
+        <item>@string/error_type_low_battery_warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_low_battery_warning</item>
+        <item>@string/error_detail_low_battery_warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_low_battery">
+        <item>@string/error_type_low_battery_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_low_battery_error</item>
+        <item>@string/error_detail_low_battery_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_ifbox_connection_error">
+        <item>@string/error_type_ifbox_connection_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ifbox_connection_error</item>
+        <item>@string/error_detail_ifbox_connection_error</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_ifbox_amount_difference">
+        <item>@string/error_type_ifbox_amount_difference</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ifbox_amount_difference</item>
+        <item>@string/error_detail_ifbox_amount_difference</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ifbox_print_error">
+        <item>@string/error_type_ifbox_print_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ifbox_print_error</item>
+        <item>@string/error_detail_ifbox_print_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ifbox_transmission_error">
+        <item>@string/error_type_ifbox_transmission_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ifbox_transmission_error</item>
+        <item>@string/error_detail_ifbox_transmission_error</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ifbox_transmission_timeout_error">
+        <item>@string/error_type_ifbox_transmission_timeout_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ifbox_transmission_timeout_error</item>
+        <item>@string/error_detail_ifbox_transmission_timeout_error</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_duplex_sts_paper_lack">
+        <item>@string/error_type_printer_duplex_sts_paper_lack</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_duplex_sts_paper_lack</item>
+        <item>@string/error_detail_printer_duplex_sts_paper_lack</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_duplex_sts_check">
+        <item>@string/error_type_printer_duplex_sts_check</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_duplex_sts_check</item>
+        <item>@string/error_detail_printer_duplex_sts_check</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_duplex_sts_busy">
+        <item>@string/error_type_printer_duplex_sts_busy</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_duplex_sts_busy</item>
+        <item>@string/error_detail_printer_duplex_sts_busy</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_duplex_sts_deny">
+        <item>@string/error_type_printer_duplex_sts_deny</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_duplex_sts_deny</item>
+        <item>@string/error_detail_printer_duplex_sts_deny</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_duplex_sts_error">
+        <item>@string/error_type_printer_duplex_sts_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_duplex_sts_error</item>
+        <item>@string/error_detail_printer_duplex_sts_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_duplex_sts_error_other">
+        <item>@string/error_type_printer_duplex_sts_error_other</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_duplex_sts_error_other</item>
+        <item>@string/error_detail_printer_duplex_sts_error_other</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_duplex_sts_cmdstop">
+        <item>@string/error_type_printer_duplex_sts_cmdstop</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_duplex_sts_cmdstop</item>
+        <item>@string/error_detail_printer_duplex_sts_cmdstop</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_duplex_sts_cmderr">
+        <item>@string/error_type_printer_duplex_sts_cmderr</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_duplex_sts_cmderr</item>
+        <item>@string/error_detail_printer_duplex_sts_cmderr</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_duplex_sts_dataerr">
+        <item>@string/error_type_printer_duplex_sts_dataerr</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_duplex_sts_dataerr</item>
+        <item>@string/error_detail_printer_duplex_sts_dataerr</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_duplex_sts_discon">
+        <item>@string/error_type_printer_duplex_sts_discon</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_duplex_sts_discon</item>
+        <item>@string/error_detail_printer_duplex_sts_discon</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_duplex_sts_timeout">
+        <item>@string/error_type_printer_duplex_sts_timeout</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_duplex_sts_timeout</item>
+        <item>@string/error_detail_printer_duplex_sts_timeout</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_printer_duplex_sts_ng_status">
+        <item>@string/error_type_printer_duplex_sts_ng_status</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_printer_duplex_sts_ng_status</item>
+        <item>@string/error_detail_printer_duplex_sts_ng_status</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_cashchanger_printer_connection_error">
+        <item>@string/error_type_cashchanger_printer_connection_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_cashchanger_printer_connection_error</item>
+        <item>@string/error_detail_cashchanger_printer_connection_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_cashchanger_connection_error">
+        <item>@string/error_type_cashchanger_connection_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_cashchanger_connection_error</item>
+        <item>@string/error_detail_cashchanger_connection_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_cashchanger_balance_error">
+        <item>@string/error_type_cashchanger_balance_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_cashchanger_balance_error</item>
+        <item>@string/error_detail_cashchanger_balance_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_negative</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_cashchanger_enddeposit_error">
+        <item>@string/error_type_cashchanger_enddeposit_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_cashchanger_enddeposit_error</item>
+        <item>@string/error_detail_cashchanger_enddeposit_error</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_invoice_info">
+        <item>@string/error_type_invoice_info_error</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_error_type_invoice_info_error</item>
+        <item>@string/error_detail_error_type_invoice_info_error</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_paypf_pos_7001">
+        <item>@string/error_type_paypf_pos_7001</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_paypf_pos_7001</item>
+        <item>@string/error_detail_paypf_pos_7001</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_paypf_pos_7097">
+        <item>@string/error_type_paypf_pos_7097</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_paypf_pos_7097</item>
+        <item>@string/error_detail_paypf_pos_7097</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_paypf_pos_7098">
+        <item>@string/error_type_paypf_pos_7098</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_paypf_pos_7098</item>
+        <item>@string/error_detail_paypf_pos_7098</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_paypf_pos_7099">
+        <item>@string/error_type_paypf_pos_7099</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_paypf_pos_7099</item>
+        <item>@string/error_detail_paypf_pos_7099</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8001">
+        <item>@string/error_type_ticket_8001</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8001</item>
+        <item>@string/error_detail_ticket_8001</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8010">
+        <item>@string/error_type_ticket_8010</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8010</item>
+        <item>@string/error_detail_ticket_8010</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8011">
+        <item>@string/error_type_ticket_8011</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8011</item>
+        <item>@string/error_detail_ticket_8011</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8012">
+        <item>@string/error_type_ticket_8012</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8012</item>
+        <item>@string/error_detail_ticket_8012</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8013">
+        <item>@string/error_type_ticket_8013</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8013</item>
+        <item>@string/error_detail_ticket_8013</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8014">
+        <item>@string/error_type_ticket_8014</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8014</item>
+        <item>@string/error_detail_ticket_8014</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8015">
+        <item>@string/error_type_ticket_8015</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8015</item>
+        <item>@string/error_detail_ticket_8015</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8016">
+        <item>@string/error_type_ticket_8016</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8016</item>
+        <item>@string/error_detail_ticket_8016</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8017">
+        <item>@string/error_type_ticket_8017</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8017</item>
+        <item>@string/error_detail_ticket_8017</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8018">
+        <item>@string/error_type_ticket_8018</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8018</item>
+        <item>@string/error_detail_ticket_8018</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8019">
+        <item>@string/error_type_ticket_8019</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8019</item>
+        <item>@string/error_detail_ticket_8019</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8030">
+        <item>@string/error_type_ticket_8030</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8030</item>
+        <item>@string/error_detail_ticket_8030</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8039">
+        <item>@string/error_type_ticket_8039</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8039</item>
+        <item>@string/error_detail_ticket_8039</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8049">
+        <item>@string/error_type_ticket_8049</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8049</item>
+        <item>@string/error_detail_ticket_8049</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8059">
+        <item>@string/error_type_ticket_8059</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8059</item>
+        <item>@string/error_detail_ticket_8059</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8060">
+        <item>@string/error_type_ticket_8060</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8060</item>
+        <item>@string/error_detail_ticket_8060</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8079">
+        <item>@string/error_type_ticket_8079</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8079</item>
+        <item>@string/error_detail_ticket_8079</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8097">
+        <item>@string/error_type_ticket_8097</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8097</item>
+        <item>@string/error_detail_ticket_8097</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8098">
+        <item>@string/error_type_ticket_8098</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8098</item>
+        <item>@string/error_detail_ticket_8098</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8099">
+        <item>@string/error_type_ticket_8099</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8099</item>
+        <item>@string/error_detail_ticket_8099</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8110">
+        <item>@string/error_type_ticket_8110</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8110</item>
+        <item>@string/error_detail_ticket_8110</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8111">
+        <item>@string/error_type_ticket_8111</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8111</item>
+        <item>@string/error_detail_ticket_8111</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8120">
+        <item>@string/error_type_ticket_8120</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8120</item>
+        <item>@string/error_detail_ticket_8120</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8121">
+        <item>@string/error_type_ticket_8121</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8121</item>
+        <item>@string/error_detail_ticket_8121</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8130">
+        <item>@string/error_type_ticket_8130</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8130</item>
+        <item>@string/error_detail_ticket_8130</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8131">
+        <item>@string/error_type_ticket_8131</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8131</item>
+        <item>@string/error_detail_ticket_8131</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8140">
+        <item>@string/error_type_ticket_8140</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8140</item>
+        <item>@string/error_detail_ticket_8140</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8141">
+        <item>@string/error_type_ticket_8141</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8141</item>
+        <item>@string/error_detail_ticket_8141</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8142">
+        <item>@string/error_type_ticket_8142</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8142</item>
+        <item>@string/error_detail_ticket_8142</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8150">
+        <item>@string/error_type_ticket_8150</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8150</item>
+        <item>@string/error_detail_ticket_8150</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8151">
+        <item>@string/error_type_ticket_8151</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8151</item>
+        <item>@string/error_detail_ticket_8151</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8152">
+        <item>@string/error_type_ticket_8152</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8152</item>
+        <item>@string/error_detail_ticket_8152</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8153">
+        <item>@string/error_type_ticket_8153</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8153</item>
+        <item>@string/error_detail_ticket_8153</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8160">
+        <item>@string/error_type_ticket_8160</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8160</item>
+        <item>@string/error_detail_ticket_8160</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8161">
+        <item>@string/error_type_ticket_8161</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8161</item>
+        <item>@string/error_detail_ticket_8161</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8162">
+        <item>@string/error_type_ticket_8162</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8162</item>
+        <item>@string/error_detail_ticket_8162</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8163">
+        <item>@string/error_type_ticket_8163</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8163</item>
+        <item>@string/error_detail_ticket_8163</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_ticket_8210">
+        <item>@string/error_type_ticket_8210</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_ticket_8210</item>
+        <item>@string/error_detail_ticket_8210</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_not_available">
+        <item>@string/error_type_not_available</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_not_available</item>
+        <item>@string/error_detail_not_available</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_FutabaD_820Timeout_9101">
+        <item>@string/error_type_FutabaD_820Timeout</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_820Timeout</item>
+        <item>@string/error_detail_FutabaD_820Timeout</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_FutabaD_SeparateAmount_9102">
+        <item>@string/error_type_FutabaD_SeparateAmount</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_SeparateAmount</item>
+        <item>@string/error_detail_FutabaD_SeparateAmount</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_FutabaD_SDCardNotFound_9103">
+        <item>@string/error_type_FutabaD_SDCardNotFound</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_SDCardNotFound</item>
+        <item>@string/error_detail_FutabaD_SDCardNotFound</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_FutabaD_ValueError_9104">
+        <item>@string/error_type_FutabaD_ValueError</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_ValueError</item>
+        <item>@string/error_detail_FutabaD_ValueError</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_FutabaD_ValueLengthError_9105">
+        <item>@string/error_type_FutabaD_ValueLengthError</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_ValueLengthError</item>
+        <item>@string/error_detail_FutabaD_ValueLengthError</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_FutabaD_ValueMaxError_9106">
+        <item>@string/error_type_FutabaD_ValueMaxError</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_ValueMaxError</item>
+        <item>@string/error_detail_FutabaD_ValueMaxError</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_FutabaD_DiscountReject_9107">
+        <item>@string/error_type_FutabaD_DiscountReject</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_DiscountReject</item>
+        <item>@string/error_detail_FutabaD_DiscountReject</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_FutabaD_AutoDailyReport_NotJob_9108">
+        <item>@string/error_type_FutabaD_AutoDailyReport_NotJob</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_AutoDailyReport_NotJob</item>
+        <item>@string/error_detail_FutabaD_AutoDailyReport_NotJob</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_FutabaD_MoneyTicketReceipt_NotJob_9109">
+        <item>@string/error_type_FutabaD_MoneyTicketReceipt_NotJob</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_MoneyTicketReceipt_NotJob</item>
+        <item>@string/error_detail_FutabaD_MoneyTicketReceipt_NotJob</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_FutabaD_Outofpaper_Norestart_9110">
+        <item>@string/error_type_FutabaD_Outofpaper_Norestart</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_Outofpaper_Norestart</item>
+        <item>@string/error_detail_FutabaD_Outofpaper_Norestart</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_FutabaD_Amount_OperationError1_9111">
+        <item>@string/error_type_FutabaD_Amount_OperationError1</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_Amount_OperationError1</item>
+        <item>@string/error_detail_FutabaD_Amount_OperationError1</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_FutabaD_Amount_OperationError2_9112">
+        <item>@string/error_type_FutabaD_Amount_OperationError2</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_Amount_OperationError2</item>
+        <item>@string/error_detail_FutabaD_Amount_OperationError2</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_FutabaD_Amount_OperationError3_9113">
+        <item>@string/error_type_FutabaD_Amount_OperationError3</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_Amount_OperationError3</item>
+        <item>@string/error_detail_FutabaD_Amount_OperationError3</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_FutabaD_Amount_OperationError4_9114">
+        <item>@string/error_type_FutabaD_Amount_OperationError4</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_Amount_OperationError4</item>
+        <item>@string/error_detail_FutabaD_Amount_OperationError4</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_FutabaD_EMoneyQR_KuusyaAbort_9115">
+        <item>@string/error_type_FutabaD_EMoneyQR_KuusyaAbort</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_EMoneyQR_KuusyaAbort</item>
+        <item>@string/error_detail_FutabaD_EMoneyQR_KuusyaAbort</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_FutabaD_Outofpaper_Norestart_withSetkey_9116">
+        <item>@string/error_type_FutabaD_Outofpaper_Norestart_withSetkey</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_Outofpaper_Norestart_withSetkey</item>
+        <item>@string/error_detail_FutabaD_Outofpaper_Norestart_withSetkey</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_FutabaD_MeterErrorMes_Cancel_T_9117">
+        <item>@string/error_type_FutabaD_MeterErrorMes_Cancel_T</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_MeterErrorMes_Cancel_T</item>
+        <item>@string/error_detail_FutabaD_MeterErrorMes_Cancel_T</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_FutabaD_MeterErrorMes_Cancel_R_9118">
+        <item>@string/error_type_FutabaD_MeterErrorMes_Cancel_R</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_MeterErrorMes_Cancel_R</item>
+        <item>@string/error_detail_FutabaD_MeterErrorMes_Cancel_R</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+    <string-array name="error_type_FutabaD_FareUp_Warning_9119">
+        <item>@string/error_type_FutabaD_FareUp_Warning</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_FutabaD_FareUp_Warning</item>
+        <item>@string/error_detail_FutabaD_FareUp_Warning</item>
+        <item>@string/level_warning</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+</resources>

@@ -1,0 +1,122 @@
+{
+  "JCB":{
+    "//":"リスク管理パラメータ、アクワイヤラJCBより",
+    "TerminalAidInfo":{
+      "AID":"A0000000651010",
+      "Terminal Floor Limit":0,
+      "Application Version":"0200",
+      "Support Partial AID Select":1,
+      "TAC Default":"FC6024A800",
+      "TAC Online":"FC60ACF800",
+      "TAC Denial":"0010000000",
+      "Threshold Value":0,
+      "Maximum Target Percentage":99,
+      "Target Percentage":99,
+      "Default DDOL":"9F3704",
+      "Default TDOL":"9F0206"
+    }
+  },
+
+  "AMEX":{
+    "//":"リスク管理パラメータ、アクワイヤラJCBより",
+    "TerminalAidInfo":{
+      "AID":"A00000002501",
+      "Terminal Floor Limit":0,
+      "Application Version":"0001",
+      "Support Partial AID Select":1,
+      "TAC Default":"CC00FC8000",
+      "TAC Online":"CC00FC8000",
+      "TAC Denial":"0000000000",
+      "Threshold Value":0,
+      "Maximum Target Percentage":99,
+      "Target Percentage":99,
+      "Default DDOL":"9F3704",
+      "Default TDOL":"9F0206"
+    }
+  },
+
+  "DINERS":{
+    "//":"リスク管理パラメータ、アクワイヤラJCBより",
+    "TerminalAidInfo":{
+      "AID":"A0000001523010",
+      "Terminal Floor Limit":0,
+      "Application Version":"0001",
+      "Support Partial AID Select":1,
+      "TAC Default":"1000002000",
+      "TAC Online":"30E09CF800",
+      "TAC Denial":"0010000000",
+      "Threshold Value":0,
+      "Maximum Target Percentage":99,
+      "Target Percentage":99,
+      "Default DDOL":"9F3704",
+      "Default TDOL":"9F0206"
+    }
+  },
+
+  "VISA":{
+    "//":"リスク管理パラメータ、アクワイヤラ三井住友より",
+    "TerminalAidInfo":{
+      "AID":"A0000000031010",
+      "Terminal Floor Limit":0,
+      "Application Version":"008D",
+      "Support Partial AID Select":1,
+      "TAC Default":"DC4000A800",
+      "TAC Online":"DC4004F800",
+      "TAC Denial":"0010000000",
+      "Threshold Value":0,
+      "Maximum Target Percentage":99,
+      "Target Percentage":99,
+      "Default DDOL":"9F3704",
+      "Default TDOL":"9F0206"
+    }
+  },
+
+  "MASTER":{
+    "//":"リスク管理パラメータ、アクワイヤラ三井住友より",
+    "TerminalAidInfo":{
+      "AID":"A0000000041010",
+      "Terminal Floor Limit":0,
+      "Application Version":"0002",
+      "Support Partial AID Select":1,
+      "TAC Default":"FC50B8A000",
+      "TAC Online":"FC50B8F800",
+      "TAC Denial":"0000000000",
+      "Threshold Value":0,
+      "Maximum Target Percentage":99,
+      "Target Percentage":99,
+      "Default DDOL":"9F3704",
+      "Default TDOL":"9F0206"
+    }
+  },
+
+  "CoreParam" : {
+    "TerminalCountryCode":"0392",
+    "TransactionCurrencyCode":"0392",
+    "ReferCurrencyCode":"0392",
+    "TransactionCurrencyExponent":0,
+    "ReferCurrencyExponent":0,
+    "ReferCurrencyCoefficient":0,
+    "TransactionType":"SERVICE",
+    "TerminalMckConfigure":{
+      "Terminal Type":21,
+      "Terminal Capabilities":"E0B8C8",
+      "Terminal Capabilities Pinless":"E008C8",
+      "Additional Terminal Capabilities":"6000F0A001",
+      "Support CardInitiated VoiceReferrals":0,
+      "Support Forced Acceptance Capability":0,
+      "Support Forced Online Capability":0,
+      "Pos Entry Mode":5,
+      "Support Exception File":0,
+      "Support Get Pin Try Counter":1,
+      "Support PSE Selection Method":1,
+      "Support Cardholder Confirmation":1,
+      "Support Floor Limit Checking":1,
+      "Support Advices":0,
+      "Support Batch Data Capture":0,
+      "Support ByPass Pin Entry":1,
+      "Support Default DDOL":1,
+      "Support Default TDOL":1,
+      "Support Multi Language":0
+    }
+  }
+}

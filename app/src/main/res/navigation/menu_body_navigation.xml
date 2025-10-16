@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_navigation"
+    app:startDestination="@+id/navigation_menu_home">
+
+    <fragment
+        android:id="@+id/navigation_menu_home"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuHomeFragment"
+        tools:layout="@layout/fragment_menu_home" >
+        <action
+            android:id="@+id/action_navigation_menu_home_to_navigation_menu_history"
+            app:destination="@id/navigation_menu_history"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_menu_home_to_navigation_menu_emoney"
+            app:destination="@id/navigation_menu_emoney"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_menu_home_to_navigation_menu_business"
+            app:destination="@id/navigation_menu_business"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_menu_home_to_navigation_menu_others"
+            app:destination="@id/navigation_menu_others"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_menu_emoney"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEMoneyFragment"
+        tools:layout="@layout/fragment_menu_emoney" >
+        <action
+            android:id="@+id/action_navigation_menu_emoney_to_navigation_menu_balance"
+            app:destination="@id/navigation_menu_balance"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigation_menu_emoney_to_navigation_menu_charge"
+            app:destination="@id/navigation_menu_charge"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_menu_others"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuOthersFragment"
+        tools:layout="@layout/fragment_menu_others">
+
+        <!-- //ADD-S BMT S.Oyama 2024/09/05 フタバ双方向向け改修-->
+        <action
+            android:id="@+id/action_navigation_menu_others_to_navigation_menu_separation"
+            app:destination="@id/navigation_menu_separation"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <!-- //ADD-E BMT S.Oyama 2024/09/05 フタバ双方向向け改修-->
+
+        <!-- //DEL-S BMT S.Oyama 2025/01/09 フタバ双方向向け改修-->
+        <!--
+        <action
+            android:id="@+id/action_navigation_menu_others_to_navigation_menu_paymentprocessing"
+            app:destination="@id/navigation_menu_paymentprocessing"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+           -->
+        <!-- //DEL-E BMT S.Oyama 2025/01/09 フタバ双方向向け改修-->
+
+        <!-- //ADD-S BMT S.Oyama 2025/01/09 フタバ双方向向け改修-->
+        <action
+            android:id="@+id/action_navigation_menu_others_to_navigation_menu_discount"
+            app:destination="@id/navigation_menu_discount"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <!-- //ADD-E BMT S.Oyama 2025/01/09 フタバ双方向向け改修-->
+
+
+        <!-- //ADD-S BMT S.Oyama 2024/11/20 フタバ双方向向け改修-->
+        <action
+            android:id="@+id/action_navigation_menu_others_to_navigation_menu_prepaid"
+            app:destination="@id/navigation_menu_prepaid"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <!-- //ADD-E BMT S.Oyama 2024/11/20 フタバ双方向向け改修-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_menu_history"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuHistoryFragment"
+        tools:layout="@layout/fragment_menu_history" />
+
+    <fragment
+        android:id="@+id/navigation_menu_business"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuBusinessFragment"
+        tools:layout="@layout/fragment_menu_business" >
+        <action
+            android:id="@+id/action_navigation_menu_business_to_navigation_menu_balance"
+            app:destination="@id/navigation_menu_balance" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_menu_balance"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuBalanceFragment"
+        tools:layout="@layout/fragment_menu_balance" />
+
+
+    <fragment
+        android:id="@+id/navigation_menu_charge"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuChargeFragment"
+        tools:layout="@layout/fragment_menu_charge" />
+
+    <!-- //ADD-S BMT S.Oyama 2024/09/05 フタバ双方向向け改修-->
+    <fragment
+        android:id="@+id/navigation_menu_separation"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuSeparationFragment"
+        tools:layout="@layout/fragment_menu_separation" >
+
+        <action
+            android:id="@+id/action_navigation_menu_separation_to_navigation_menu_emoney"
+            app:destination="@id/navigation_menu_emoney"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigation_menu_separation_to_navigation_home"
+            app:destination="@id/navigation_menu_home"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_menu_paymentprocessing"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuPaymentProcessingFragment"
+        tools:layout="@layout/fragment_menu_paymentprocessing" >
+
+        <action
+            android:id="@+id/action_navigation_menu_paymentprocessing_to_navigation_menu_discount"
+            app:destination="@id/navigation_menu_discount"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigation_menu_paymentprocessing_to_navigation_home"
+            app:destination="@id/navigation_menu_home"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_menu_discount"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuDiscountFragment"
+        tools:layout="@layout/fragment_menu_discount" />
+
+    <fragment
+        android:id="@+id/navigation_menu_prepaid"
+        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuPrepaidFragment"
+        tools:layout="@layout/fragment_menu_prepaid" />
+
+    <!-- //ADD-E BMT S.Oyama 2024/09/05 フタバ双方向向け改修-->
+
+</navigation>

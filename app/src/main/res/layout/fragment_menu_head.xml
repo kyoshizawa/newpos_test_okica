@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.menu.MenuHeadFragment"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.AppPreference" />
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEventHandlers" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/image_menu_head_radio_level"
+                android:layout_width="@dimen/menu_head_icon_size_large"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:layout_marginEnd="@dimen/common_margin_small"
+                app:imageResource="@{viewModel.radioImageResource}"
+                tools:ignore="ContentDescription" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility='@{!viewModel.isBalanceMenu &amp;&amp; !viewModel.isChargeMenu ? View.VISIBLE : View.GONE}'>
+
+                    <!--
+                        android:onClick='@{view -> AppPreference.isAmountInput() ? handlers.navigateMain(view, viewModel.isMeterDuplex() ? @id/action_navigation_menu_to_navigation_amount_input_lt27 : @id/action_navigation_menu_to_navigation_amount_input) : void}'
+                    -->
+                    <TextView
+                        android:id="@+id/text_menu_head_amount"
+                        android:tag="料金入力"
+                        android:text='@{Converters.integerToNumberFormat(viewModel.totalAmount) + @string/yen}'
+                        android:onClick='@{view -> AppPreference.isAmountInput() ? handlers.navigateMain(view, viewModel.isMeterDuplex() ? (viewModel.isAmountAdvancePayMode() ? @id/action_navigation_menu_to_navigation_amount_input_advancepay_fd: @id/action_navigation_menu_to_navigation_amount_input_lt27) : @id/action_navigation_menu_to_navigation_amount_input) : void}'
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:textSize="@{String.valueOf(viewModel.totalAmount).length() >= 7 ? @dimen/menu_head_amount_text_size_2 : @dimen/menu_head_amount_text_size}"
+                        android:visibility='@{ (AppPreference.isServiceTaxi() &amp;&amp; sharedViewModel.screenMode == sharedViewModel.ScreenMode.MAIN) || sharedViewModel.cashMenu ? View.VISIBLE : View.INVISIBLE}'
+                        />
+
+                    <TextView
+                        android:id="@+id/text_menu_head_cash"
+                        android:text='@{"現金：" + Converters.integerToNumberFormat(viewModel.cashAmount) + @string/yen}'
+                        android:visibility="@{Converters.is0(viewModel.cashAmount) ? View.GONE : View.VISIBLE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:textSize="@dimen/menue_head_amount_text_size_small"/>
+
+                    <TextView
+                        android:id="@+id/text_menue_head_ticket"
+                        android:text='@{"チケット：" + Converters.integerToNumberFormat(viewModel.ticketAmount) + @string/yen}'
+                        android:visibility="@{Converters.is0(viewModel.ticketAmount) ? View.GONE : View.VISIBLE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:textSize="@dimen/menue_head_amount_text_size_small"/>
+
+                    <TextView
+                        android:id="@+id/text_menue_head_Paid"
+                        android:text='@{"支払済：" + Converters.integerToNumberFormat(viewModel.paidAmount) + @string/yen}'
+                        android:visibility="@{Converters.is0(viewModel.paidAmount) ? View.GONE : View.VISIBLE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:textSize="@dimen/menue_head_amount_text_size_small"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@drawable/border_menu_head_amount"
+                        android:visibility='@{(AppPreference.isServiceTaxi() &amp;&amp; sharedViewModel.screenMode == sharedViewModel.ScreenMode.MAIN )|| sharedViewModel.cashMenu ? View.VISIBLE : View.INVISIBLE}'
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility='@{viewModel.isBalanceMenu ? View.VISIBLE : View.GONE}'>
+                    <TextView
+                        android:text="@string/balance_inquiry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="@dimen/menu_head_amount_text_size" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@drawable/border_menu_head_amount"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility='@{viewModel.isChargeMenu ? View.VISIBLE : View.GONE}'>
+                    <TextView
+                        android:text="@string/charge_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="@dimen/menu_head_amount_text_size" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@drawable/border_menu_head_amount"/>
+                </LinearLayout>
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/image_menu_head_warning"
+                android:layout_width="@dimen/menu_head_icon_size_large"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:src="@{viewModel.warningImage}"
+                android:layout_marginStart="@dimen/common_margin_small"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/common_margin_small"
+            android:layout_marginRight="@dimen/common_margin_small"
+            android:layout_marginTop="@dimen/common_margin_large"
+            android:layout_marginBottom="@dimen/common_margin_large">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:tag="@string/menu_head_driver_code"
+                android:visibility='@{viewModel.driverInfoVisibility ? android.view.View.VISIBLE : android.view.View.INVISIBLE}'
+                android:orientation="horizontal">
+                <!-- android:onClick='@{view -> handlers.navigateMain(view, @id/action_navigation_menu_to_navigation_driver_code)}' -->
+
+                <ImageView
+                    android:layout_width="@dimen/menu_head_icon_size_small"
+                    android:layout_height="@dimen/menu_head_icon_size_small"
+                    android:src="@drawable/ic_baseline_account_circle_24"
+                    android:scaleType="fitCenter"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/text_menu_head_driver_name"
+                    android:text='@{viewModel.driverName}'
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/menu_head_driver_name_text_size"
+                    android:gravity="center_vertical"
+                    android:lines="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:tag="@string/menu_head_car_id"
+                android:layout_weight="4"
+                android:visibility='@{viewModel.carIdVisibility ? android.view.View.VISIBLE : android.view.View.INVISIBLE}'
+                android:orientation="horizontal">
+                <!-- android:onClick='@{handlers::navigateToInputCarId}' -->
+
+                <ImageView
+                    android:layout_width="@dimen/menu_head_icon_size_small"
+                    android:layout_height="@dimen/menu_head_icon_size_small"
+                    android:src="@drawable/ic_circle_number"
+                    android:scaleType="fitCenter"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/text_head_car_no"
+                    android:text='@{String.valueOf(AppPreference.getMcCarId())}'
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/menu_head_driver_name_text_size"
+                    android:gravity="center_vertical"
+                    android:lines="1"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

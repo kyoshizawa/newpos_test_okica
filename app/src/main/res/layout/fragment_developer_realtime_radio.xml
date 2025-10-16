@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperRealtimeRadioViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.developer.DeveloperEventHandlers" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/fragment_developer_realtime_radio" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/common_margin">
+
+            <TextView
+                android:id="@+id/label_realtime_current_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="現在時刻:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/value_realtime_current_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:textColor="@color/black"
+                android:text="@{Converters.dateToString(viewModel.currentTime)}"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/common_margin">
+
+            <TextView
+                android:id="@+id/label_realtime_get_radio_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="更新時刻:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/value_realtime_get_radio_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:textColor="@color/black"
+                android:text="@{Converters.dateToString(viewModel.radioData.date)}"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/common_margin_small">
+
+            <TextView
+                android:id="@+id/label_realtime_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="種別："
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/value_realtime_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:textColor="@color/black"
+                android:text="@{viewModel.radioData.networkType}"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/common_margin_small">
+
+            <TextView
+                android:id="@+id/label_realtime_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="レベル："
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/value_realtime_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:textColor="@color/black"
+                android:text="@{Converters.integerToString(viewModel.radioData.level)}"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/common_margin_small">
+
+            <TextView
+                android:id="@+id/label_realtime_asu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="ASU："
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/value_realtime_asu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:textColor="@color/black"
+                android:text="@{Converters.integerToRadioParam(viewModel.radioData.asu)}"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/unit_realtime_asu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:textColor="@color/black"
+                android:text="[dBm]"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/common_margin_small">
+
+            <TextView
+                android:id="@+id/label_realtime_rsrp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="RSRP："
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/value_realtime_rsrp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="@{Converters.integerToRadioParam(viewModel.radioData.rsrp)}"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/unit_realtime_rsrp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="[dBm]"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/common_margin_small">
+
+            <TextView
+                android:id="@+id/label_realtime_rsrq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="RSRQ："
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/value_realtime_rsrq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:textColor="@color/black"
+                android:text="@{Converters.integerToRadioParam(viewModel.radioData.rsrq)}"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/unit_realtime_rsrq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="[dB]"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/common_margin_small">
+
+            <TextView
+                android:id="@+id/label_realtime_rssnr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="RSSNR："
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/value_realtime_rssnr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:textColor="@color/black"
+                android:text="@{Converters.integerToDbmFormat(viewModel.radioData.rssnr)}"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/unit_realtime_rssnr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="[dB]"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+<!--
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/common_margin_small">
+
+            <TextView
+                android:id="@+id/label_realtime_cqi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="CQI："
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/value_realtime_cqi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:textColor="@color/black"
+                android:text="@{Converters.integerToRadioParam(viewModel.radioData.cqi)}"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/common_margin_small">
+
+            <TextView
+                android:id="@+id/label_realtime_timing_advance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="Timing Advance："
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/value_realtime_timing_advance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:textColor="@color/black"
+                android:text="@{Converters.integerToRadioParam(viewModel.radioData.timingAdvance)}"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/common_margin_small">
+
+            <TextView
+                android:id="@+id/label_realtime_signal_strength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="Signal Strength："
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/value_realtime_signal_strength"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:textColor="@color/black"
+                android:text="@{Converters.integerToRadioParam(viewModel.radioData.signalStrength)}"
+                android:textSize="18sp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

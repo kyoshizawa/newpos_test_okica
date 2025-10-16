@@ -1,0 +1,90 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="@string/setting_header_sound"
+        app:iconSpaceReserved="false">
+
+        <SeekBarPreference
+            app:key="@string/confirm_key_sound_payment"
+            app:title="@string/setting_title_sound_payment"
+            app:defaultValue="@integer/confirm_default_sound_payment"
+            app:iconSpaceReserved="false"
+            android:max="10"
+            app:min="1"
+            app:showSeekBarValue="true"/>
+
+        <SeekBarPreference
+            app:key="@string/confirm_key_sound_guidance"
+            app:title="@string/setting_title_sound_guidance"
+            app:defaultValue="@integer/confirm_default_sound_guidance"
+            app:iconSpaceReserved="false"
+            android:max="10"
+            app:min="1"
+            app:showSeekBarValue="true"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/setting_header_screen"
+        app:iconSpaceReserved="false">
+        <SeekBarPreference
+            app:key="@string/confirm_key_brightness"
+            app:title="@string/setting_title_brightness"
+            app:defaultValue="@integer/confirm_default_brightness"
+            app:iconSpaceReserved="false"
+            android:max="10"
+            app:min="1"
+            app:showSeekBarValue="true"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="デモモード設定"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            app:key="@string/setting_key_driverid_input"
+            app:title="係員番号の入力"
+            app:defaultValue="@bool/setting_default_driverid_input"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            app:key="@string/setting_key_input_1yen"
+            app:title="入力金額の1円単位設定"
+            app:defaultValue="@bool/setting_default_input_1yen"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            app:key="@string/setting_key_withcash_1yen"
+            app:title="現金併用時の1円単位設定"
+            app:defaultValue="@bool/setting_default_withcash_1yen"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            app:key="@string/setting_key_screenlock_enabled"
+            app:title="画面ロックの利用"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
+            app:key="@string/setting_key_demo_screen_timeout"
+            app:title="画面オフまでの時間"
+            android:entries="@array/demo_timeout_list"
+            android:entryValues="@array/demo_timeout_values"
+            app:defaultValue="180"
+            app:iconSpaceReserved="false"/>
+
+        <ListPreference
+            app:key="@string/setting_key_demo_screen_lock"
+            app:title="画面オフからロックまでの時間"
+            android:entries="@array/demo_lock_list"
+            android:entryValues="@array/demo_lock_values"
+            app:defaultValue="300"
+            app:iconSpaceReserved="false"/>
+
+        <SwitchPreferenceCompat
+            app:key="@string/setting_aggregate_detail"
+            app:title="集計票の詳細印刷"
+            app:defaultValue="@bool/setting_default_aggregate_detail"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
+
+    <!-- margin/paddingの入れ方が分からなかったので空のtitleでカテゴリを作成。境界線が出る -->
+    <PreferenceCategory app:title=""
+        app:iconSpaceReserved="false"/>
+</PreferenceScreen>

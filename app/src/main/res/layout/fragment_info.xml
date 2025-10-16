@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.info.InfoViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.info.InfoEventHandlers" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_primary">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/common_margin_large">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_launcher"
+                        android:scaleType="fitCenter"
+                        tools:ignore="ContentDescription" />
+
+                    <LinearLayout
+                        android:id="@+id/version_app_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/common_margin_large"
+                        android:paddingLeft="@dimen/common_padding_large"
+                        android:background="@drawable/ripple_to_developer_screen"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:text="@string/app_name" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text='@{viewModel.apkVersionName}' />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="端末認証"
+                        style="@style/StyleInfoTitleText"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/text_info_terminal_auth"
+                        android:text='@{Converters.booleanToEnabledText(viewModel.terminalAuth)}'
+                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.terminalAuth)}'
+                        style="@style/StyleInfoSettingText" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="登録情報"
+                        style="@style/StyleInfoTitleText"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="会社名"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_merchant_name"
+                        android:text='@{viewModel.merchantName}'
+                        style="@style/StyleInfoSettingText"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="営業所名"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_merchant_office"
+                        android:text='@{viewModel.merchantOffice}'
+                        style="@style/StyleInfoSettingText"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="電話番号"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_merchant_telnumber"
+                        android:text='@{viewModel.merchantTelNumber}'
+                        style="@style/StyleInfoSettingText"/>
+                </LinearLayout>
+
+                <!-- クレジット関連設定 -->
+                <TextView
+                    android:text="@string/btn_home_credit"
+                    style="@style/StyleInfoTitleText"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="磁気/接触IC"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_credit"
+                        android:text='@{Converters.booleanToEnabledText(viewModel.useCredit)}'
+                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.useCredit)}'
+                        style="@style/StyleInfoSettingText"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="非接触IC"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_contactless"
+                        android:text='@{Converters.booleanToEnabledText(viewModel.useContactLess)}'
+                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.useContactLess)}'
+                        style="@style/StyleInfoSettingText"/>
+
+                </LinearLayout>
+
+                <!-- 電子マネー関連設定 -->
+                <TextView
+                    android:text="@string/btn_home_emoney"
+                    style="@style/StyleInfoTitleText"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="@string/money_brand_suica"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_suica"
+                        android:text='@{Converters.booleanToEnabledText(viewModel.useSuica)}'
+                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.useSuica)}'
+                        style="@style/StyleInfoSettingText"/>
+
+                    <TextView
+                        android:text="@string/money_brand_id"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_id"
+                        android:text='@{Converters.booleanToEnabledText(viewModel.useId)}'
+                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.useId)}'
+                        style="@style/StyleInfoSettingText"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="@string/money_brand_waon"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_waon"
+                        android:text='@{Converters.booleanToEnabledText(viewModel.useWaon)}'
+                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.useWaon)}'
+                        style="@style/StyleInfoSettingText"
+                        android:layout_margin="@dimen/common_margin_small"/>
+
+                    <TextView
+                        android:text="@string/money_brand_nanaco"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_nanaco"
+                        android:text='@{Converters.booleanToEnabledText(viewModel.useNanaco)}'
+                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.useNanaco)}'
+                        style="@style/StyleInfoSettingText"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="@string/money_brand_edy"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_edy"
+                        android:text='@{Converters.booleanToEnabledText(viewModel.useEdy)}'
+                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.useEdy)}'
+                        style="@style/StyleInfoSettingText"/>
+
+                    <TextView
+                        android:text="@string/money_brand_qp"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_quicpay"
+                        android:text='@{Converters.booleanToEnabledText(viewModel.useQuicpay)}'
+                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.useQuicpay)}'
+                        style="@style/StyleInfoSettingText"/>
+
+                </LinearLayout>
+                <!-- OKICA決済関連設定 -->
+                <LinearLayout
+                    android:visibility='@{Converters.isMoneyOkicaEnabled() ? android.view.View.VISIBLE : android.view.View.GONE }'
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="@string/money_brand_okica"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_okica"
+                        android:text='@{Converters.booleanToEnabledText(viewModel.useOkica)}'
+                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.useOkica)}'
+                        style="@style/StyleInfoSettingText"/>
+
+                </LinearLayout>
+
+                <!-- コード決済関連設定 -->
+                <TextView
+                    android:text="@string/btn_home_qr"
+                    style="@style/StyleInfoTitleText"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="QR"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_qr"
+                        android:text='@{Converters.booleanToEnabledText(viewModel.useQr)}'
+                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.useQr)}'
+                        style="@style/StyleInfoSettingText"/>
+                </LinearLayout>
+
+                <!-- POS機能 -->
+                <TextView
+                    android:text="機能"
+                    style="@style/StyleInfoTitleText"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="POS機能"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_pos"
+                        android:text='@{Converters.booleanToEnabledText(viewModel.useServicePos())}'
+                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.useServicePos())}'
+                        style="@style/StyleInfoSettingText"/>
+                </LinearLayout>
+
+                <!-- チャージ関連設定 -->
+                <TextView
+                    android:visibility='@{Converters.isMoneyOkicaEnabled() ? Converters.isOkicaTerminalInfoNull() ? android.view.View.GONE : android.view.View.VISIBLE : android.view.View.GONE }'
+                    android:text="@string/charge_card"
+                    style="@style/StyleInfoTitleText"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:visibility='@{Converters.isMoneyOkicaEnabled() ? Converters.isOkicaTerminalInfoNull() ? android.view.View.GONE : android.view.View.VISIBLE : android.view.View.GONE }'
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="@string/money_brand_okica"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_okica_charge"
+                        android:text='@{Converters.isOkicaTerminalInfoNull() ? "" : Converters.booleanToEnabledText(viewModel.useOkicaCharge)}'
+                        android:textColor='@{Converters.isOkicaTerminalInfoNull() ? Converters.booleanToEnabledColor(false) : Converters.booleanToEnabledColor(viewModel.useOkicaCharge)}'
+                        style="@style/StyleInfoSettingText"/>
+                </LinearLayout>
+
+                <!-- 接続関連設定 -->
+                <TextView
+                    android:text="@string/connection_info"
+                    style="@style/StyleInfoTitleText"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="@string/connection_ima820"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_ima820"
+                        android:text='@{Converters.isIFBoxSetupFinished() ? Converters.getIfboxInfo() : Converters.booleanToEnabledText(false)}'
+                        android:textColor='@{Converters.isIFBoxSetupFinished() ? Converters.booleanToEnabledColor(true) : Converters.booleanToEnabledColor(false)}'
+                        style="@style/StyleInfoSettingText"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="@string/connection_tablet"
+                        style="@style/StyleInfoTitleText"
+                        android:layout_marginStart="@dimen/common_margin_large"/>
+
+                    <TextView
+                        android:id="@+id/text_info_tablet"
+                        android:text='@{Converters.isTabletSetupFinished() ? viewModel.getTabletVersion() + "(" + viewModel.getTabletVersionCode() + ")" : Converters.booleanToEnabledText(false)}'
+                        android:textColor='@{Converters.isTabletSetupFinished() ? Converters.booleanToEnabledColor(true) : Converters.booleanToEnabledColor(false)}'
+                        style="@style/StyleInfoSettingText"/>
+
+                </LinearLayout>
+
+                <!-- その他関連設定 -->
+<!-- TODO:初回リリースでは銀聯未対応なので非表示 -->
+<!--                <TextView-->
+<!--                    android:text="@string/btn_home_other"-->
+<!--                    style="@style/StyleInfoTitleText"-->
+<!--                    android:textStyle="bold"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:gravity="center_vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:text="@string/btn_other_unionpay"-->
+<!--                        style="@style/StyleInfoTitleText"-->
+<!--                        android:layout_marginStart="@dimen/common_margin_large"/>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/text_info_unionpay"-->
+<!--                        android:text='@{Converters.booleanToEnabledText(viewModel.useUnionpay)}'-->
+<!--                        android:textColor='@{Converters.booleanToEnabledColor(viewModel.useUnionpay)}'-->
+<!--                        style="@style/StyleInfoSettingText"/>-->
+<!--                </LinearLayout>-->
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

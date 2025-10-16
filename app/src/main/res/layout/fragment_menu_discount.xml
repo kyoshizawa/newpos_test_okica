@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    android:id="@+id/fragment_menu_discount"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.data.BusinessType" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuViewModel" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEventHandlers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- アイコン付きボタン -->
+        <!--
+
+        -->
+
+        <Button
+            android:id="@+id/btn_menu_discount_confirmation"
+            android:tag="割引確認"
+            android:text="割引確認"
+            android:textSize="24sp"
+            style="@style/StyleOtherIconButton"
+            android:onClick='@{view -> handlers.navigateToDiscount(view)}'
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_discount_job2"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_discount_job1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <Button
+            android:id="@+id/btn_menu_discount_job1"
+            android:tag="割引1"
+            android:text="割引１"
+            android:textSize="24sp"
+            style="@style/StyleOtherIconButton"
+            android:onClick='@{view -> handlers.navigateToDiscountJob(view, sharedViewModel, 1)}'
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_discount_confirmation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_discount_job3" />
+
+        <Button
+            android:id="@+id/btn_menu_discount_job2"
+            android:tag="割引2"
+            android:text="割引２"
+            android:textSize="24sp"
+            android:onClick='@{view -> handlers.navigateToDiscountJob(view, sharedViewModel, 2)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_discount_confirmation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_discount_job3"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_discount_job4"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_discount_job3"
+            android:tag="割引3"
+            android:text="割引３"
+            android:textSize="24sp"
+            android:onClick='@{view -> handlers.navigateToDiscountJob(view, sharedViewModel, 3)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_discount_job1"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_discount_job2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_discount_job5"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_discount_job4"
+            android:tag="割引4"
+            android:text="割引４"
+            android:textSize="24sp"
+            android:onClick='@{view -> handlers.navigateToDiscountJob(view, sharedViewModel, 4)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_discount_job2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_discount_job5"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_discount_next"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_discount_job5"
+            android:tag="割引5"
+            android:text="割引５"
+            android:textSize="24sp"
+            android:onClick='@{view -> handlers.navigateToDiscountJob(view, sharedViewModel, 5)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_discount_job2"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_discount_job4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_discount_next"
+            style="@style/StyleOtherIconButton"/>
+
+        <!-- アイコンなしボタン（6機能以上に増えたとき用のボタン） -->
+
+        <!-- 割引確認用 -->
+        <Button
+            android:id="@+id/btn_menu_discount_next"
+            style="@style/StyleOtherButton"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.555"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_discount_job5" />
+
+        <TextView
+            android:id="@+id/text_menu_discount_confirmation"
+            android:text=""
+            app:layout_constraintTop_toTopOf="@id/btn_menu_discount_confirmation"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_discount_confirmation"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_discount_confirmation"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_discount_confirmation"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_discount_confirmation"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_discount_confirmation"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_discount_confirmation"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_discount_confirmation"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_discount_confirmation"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription"
+            android:visibility="invisible"
+            />
+
+        <!-- 割引１用 -->
+        <TextView
+            android:id="@+id/text_menu_discount_job1"
+            android:text=""
+            app:layout_constraintTop_toTopOf="@id/btn_menu_discount_job1"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_discount_job1"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_discount_job1"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_discount_job1"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_discount_job1"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_discount_job1"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_discount_job1"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_discount_job1"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_discount_job1"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription"
+            android:visibility="invisible"
+            />
+
+        <!-- 割引２用 -->
+        <TextView
+            android:id="@+id/text_menu_discount_job2"
+            android:text=""
+            app:layout_constraintTop_toTopOf="@id/btn_menu_discount_job2"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_discount_job2"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_discount_job2"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_discount_job2"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_discount_job2"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_discount_job2"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_discount_job2"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_discount_job2"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_discount_job2"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription"
+            android:visibility="invisible"
+            />
+
+        <!-- 割引３用 -->
+        <TextView
+            android:id="@+id/text_menu_discount_job3"
+            android:text=""
+            app:layout_constraintTop_toTopOf="@id/btn_menu_discount_job3"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_discount_job3"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_discount_job3"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_discount_job3"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_discount_job3"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_discount_job3"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_discount_job3"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_discount_job3"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_discount_job3"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription"
+            android:visibility="invisible"
+            />
+
+        <!-- 割引４用 -->
+        <TextView
+            android:id="@+id/text_menu_discount_job4"
+            android:text=""
+            app:layout_constraintTop_toTopOf="@id/btn_menu_discount_job4"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_discount_job4"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_discount_job4"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_discount_job4"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_discount_job4"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_discount_job4"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_discount_job4"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_discount_job4"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_discount_job4"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription"
+            android:visibility="invisible"
+            />
+
+        <!-- 割引５用 -->
+        <TextView
+            android:id="@+id/text_menu_discount_job5"
+            android:text=""
+            app:layout_constraintTop_toTopOf="@id/btn_menu_discount_job5"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_discount_job5"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_discount_job5"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_discount_job5"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_discount_job5"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_discount_job5"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_discount_job5"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_discount_job5"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_discount_job5"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription"
+            android:visibility="invisible"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

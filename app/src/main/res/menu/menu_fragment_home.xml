@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_fragment_battery"
+        android:orderInCategory="100"
+        android:title=""
+        app:actionLayout="@layout/fragment_action_bar_menu_item"
+        app:showAsAction="always">
+    </item>
+
+    <item
+        android:id="@+id/menu_fragment_home"
+        android:orderInCategory="100"
+        android:title=""
+        android:icon="@drawable/ic_menu_white_36"
+        app:showAsAction="always" >
+
+        <menu>
+            <item android:id="@+id/action_home_fragment_info"
+                android:title="@string/menu_home_fragment_info" />
+            <item android:id="@+id/action_home_fragment_device_check"
+                android:title="@string/menu_home_fragment_device_check" />
+            <item android:id="@+id/action_home_fragment_settings"
+                android:title="@string/menu_home_fragment_settings" />
+            <item android:id="@+id/action_home_fragment_installation_and_removal"
+                android:title="@string/menu_home_fragment_installation_and_removal" />
+            <item android:id="@+id/action_home_fragment_update_check"
+                android:title="@string/menu_home_fragment_update_check" />
+            <item android:id="@+id/action_home_fragment_menu_close"
+                android:title="@string/menu_home_fragment_menu_close" />
+        </menu>
+    </item>
+</menu>

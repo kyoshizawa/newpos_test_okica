@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <import type="android.view.View" />
+        <variable
+            name="radioData"
+            type="jp.mcapps.android.multi_payment_terminal.database.history.radio.RadioData"/>
+        <variable
+            name="isLTE"
+            type="boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/grid_developer_history_radio"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/common_margin"
+            android:background="@color/black"
+            android:textAlignment="viewStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/developer_history_radio_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_margin"
+            android:text="@{Converters.dateToString(radioData.date)}"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/grid_developer_history_radio" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_developer_history_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+
+        <TextView
+            android:id="@+id/label_history_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="種別："
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/developer_history_radio_date"
+            app:layout_constraintTop_toBottomOf="@id/developer_history_radio_date" />
+
+        <TextView
+            android:id="@+id/value_history_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{radioData.networkType}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/barrier_developer_history_radio_common_params"
+            app:layout_constraintTop_toTopOf="@id/label_history_type" />
+
+        <TextView
+            android:id="@+id/label_history_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="レベル："
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/label_history_type"
+            app:layout_constraintTop_toBottomOf="@id/label_history_type" />
+
+        <TextView
+            android:id="@+id/value_history_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.integerToString(radioData.level)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/barrier_developer_history_radio_common_params"
+            app:layout_constraintTop_toTopOf="@id/label_history_level" />
+
+        <TextView
+            android:id="@+id/label_history_signal_strength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="信号強度："
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/label_history_level"
+            app:layout_constraintTop_toBottomOf="@id/label_history_level" />
+
+        <TextView
+            android:id="@+id/value_history_signal_strength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.integerToRadioParam(radioData.signalStrength)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/barrier_developer_history_radio_common_params"
+            app:layout_constraintTop_toTopOf="@id/label_history_signal_strength" />
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{isLTE ? View.VISIBLE : View.GONE}"
+            app:constraint_referenced_ids="label_history_rsrp, value_history_rsrp, label_history_rsrq, value_history_rsrq, label_history_rssnr, value_history_rssnr, label_history_asu, value_history_asu" />
+
+        <TextView
+            android:id="@+id/label_history_rsrp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RSRP："
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/guideline_developer_history_radio"
+            app:layout_constraintTop_toTopOf="@id/value_history_type" />
+
+        <TextView
+            android:id="@+id/value_history_rsrp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.integerToRadioParam(radioData.rsrp)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/barrier_developer_history_radio_specific_params"
+            app:layout_constraintTop_toTopOf="@id/label_history_rsrp" />
+
+        <TextView
+            android:id="@+id/unit_history_rsrp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[dBm]"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="@{radioData.rsrp == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toEndOf="@id/value_history_rsrp"
+            app:layout_constraintTop_toTopOf="@id/value_history_rsrp" />
+
+        <TextView
+            android:id="@+id/label_history_rsrq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="RSRQ："
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/label_history_rsrp"
+            app:layout_constraintTop_toBottomOf="@id/label_history_rsrp" />
+
+        <TextView
+            android:id="@+id/value_history_rsrq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.integerToRadioParam(radioData.rsrq)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/barrier_developer_history_radio_specific_params"
+            app:layout_constraintTop_toTopOf="@id/label_history_rsrq" />
+
+        <TextView
+            android:id="@+id/unit_history_rsrq"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="[dB]"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="@{radioData.rsrq == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toEndOf="@id/value_history_rsrq"
+            app:layout_constraintTop_toTopOf="@id/value_history_rsrq" />
+
+        <TextView
+            android:id="@+id/label_history_rssnr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="RSSNR："
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/label_history_rsrq"
+            app:layout_constraintTop_toBottomOf="@id/label_history_rsrq" />
+
+        <TextView
+            android:id="@+id/value_history_rssnr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.integerToDbmFormat(radioData.rssnr)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/barrier_developer_history_radio_specific_params"
+            app:layout_constraintTop_toTopOf="@id/label_history_rssnr" />
+
+        <TextView
+            android:id="@+id/unit_history_rssnr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[dB]"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="@{radioData.rssnr == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toEndOf="@id/value_history_rssnr"
+            app:layout_constraintTop_toTopOf="@id/value_history_rssnr" />
+
+        <TextView
+            android:id="@+id/label_history_asu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="ASU："
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/label_history_rssnr"
+            app:layout_constraintTop_toBottomOf="@id/label_history_rssnr" />
+
+        <TextView
+            android:id="@+id/value_history_asu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Converters.integerToRadioParam(radioData.asu)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/barrier_developer_history_radio_specific_params"
+            app:layout_constraintTop_toTopOf="@id/label_history_asu" />
+
+        <TextView
+            android:id="@+id/unit_history_asu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="[dBm]"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="@{radioData.asu == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toEndOf="@id/value_history_asu"
+            app:layout_constraintTop_toTopOf="@id/value_history_asu" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_developer_history_radio_common_params"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="label_history_type, label_history_level, label_history_signal_strength" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_developer_history_radio_specific_params"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="label_history_rsrp, label_history_rsrq, label_history_rssnr, label_history_asu" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

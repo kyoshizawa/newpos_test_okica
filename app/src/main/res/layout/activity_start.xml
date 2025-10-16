@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    android:id="@+id/container_main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.model.Updater.Products" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.StartViewModel" />
+        <variable
+            name="activity"
+            type="jp.mcapps.android.multi_payment_terminal.StartActivity" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isUpdateChecking || viewModel.isInstalling ? View.VISIBLE : View.GONE}"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_gravity="center"
+                android:layout_width="180dp"
+                android:layout_height="180dp" />
+
+            <TextView
+                android:text="アップデートを\nチェックしています"
+                android:visibility='@{viewModel.isUpdateChecking ? View.VISIBLE : View.GONE}'
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_large"
+                android:padding="@dimen/common_margin_large"
+                android:background="@drawable/stroke_gray"
+                android:gravity="center"
+                android:textSize="24sp"/>
+
+            <TextView
+                android:text='@{"インストール中"}'
+                android:visibility="@{viewModel.isInstalling ? View.VISIBLE : View.GONE}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_large"
+                android:padding="@dimen/common_margin_large"
+                android:background="@drawable/stroke_gray"
+                android:gravity="center"
+                android:textSize="24sp"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility='@{viewModel.showUpdateConfirm ? View.VISIBLE : View.GONE}'>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/common_margin_large"
+                android:gravity="center"
+                android:padding="@dimen/common_margin_large"
+                android:background="@drawable/stroke_gray"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="アップデートがあります\nアップデートしますか？"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"/>
+
+                <TextView
+                    android:text='※更新後アプリは再起動します'
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.needReboot ? View.VISIBLE : View.GONE}"
+                    android:textColor="@color/design_default_color_error"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="@dimen/common_btn_height"
+                android:layout_gravity="bottom|left"
+                android:onClick='@{activity::onCancelClick}'
+                android:backgroundTint="@color/btn_common_cancel"
+                android:layout_margin="@dimen/common_margin_large"
+                android:text="キャンセル" />
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="@dimen/common_btn_height"
+                android:layout_gravity="bottom|right"
+                android:onClick='@{activity::onUpdateClick}'
+                android:layout_margin="@dimen/common_margin_large"
+                android:text="アップデート" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility='@{viewModel.isDownloading ? View.VISIBLE : View.GONE}'
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text='@{"[" + viewModel.downloadFileNo + "/" + viewModel.downloadTotalNum + "]"}'
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text='@{"ダウンロードしています"}'
+                android:textSize="24sp" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:min="0"
+                android:max="100"
+                android:progress='@{viewModel.progress}'
+                android:indeterminate="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility='@{viewModel.isBooting ? View.VISIBLE : View.GONE}'
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="起動中"
+                android:textSize="24sp" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_gravity="center"
+                android:layout_width="36sp"
+                android:layout_height="36sp"
+                android:layout_marginLeft="@dimen/common_margin"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>

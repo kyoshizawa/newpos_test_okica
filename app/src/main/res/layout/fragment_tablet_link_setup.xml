@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    android:id="@+id/fragment_ifbox_setup"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.setup.TabletLinkSetupViewModel.Status" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.setup.TabletLinkSetupViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.setup.TabletLinkSetupEventHandlers" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.status.ordinal() &gt;= Status.STARTED.ordinal() ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                android:text="接続状態"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_large"
+                android:textSize="24sp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray">
+
+                <TextView
+                    android:text="デバイス検出"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="20sp" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:visibility="@{!viewModel.isExecuteFailure &amp;&amp; viewModel.status.ordinal() &lt; Status.PEER_DETECTED.ordinal() ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_check_48"
+                    android:visibility="@{viewModel.status.ordinal() &gt;= Status.PEER_DETECTED.ordinal() ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_close_48"
+                    android:visibility="@{viewModel.isExecuteFailure &amp;&amp; viewModel.status.ordinal() &lt; Status.PEER_DETECTED.ordinal() ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray_bottom">
+
+                <TextView
+                    android:text="デバイス接続"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="20sp" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:visibility="@{!viewModel.isExecuteFailure &amp;&amp; viewModel.status.ordinal() &lt; Status.CONNECTED.ordinal() ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_check_48"
+                    android:visibility="@{viewModel.status.ordinal() &gt;= Status.CONNECTED.ordinal() ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_close_48"
+                    android:visibility="@{viewModel.isExecuteFailure &amp;&amp; viewModel.status.ordinal() &lt; Status.CONNECTED.ordinal() ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray_bottom">
+
+                <TextView
+                    android:text="通信確認"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="20sp" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:visibility="@{!viewModel.isExecuteFailure &amp;&amp; viewModel.status.ordinal() &lt; Status.COMPLETED.ordinal() ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_check_48"
+                    android:visibility="@{viewModel.status.ordinal() &gt;= Status.COMPLETED.ordinal() ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_close_48"
+                    android:visibility="@{viewModel.isExecuteFailure &amp;&amp; viewModel.status.ordinal() &lt; Status.COMPLETED.ordinal() ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>

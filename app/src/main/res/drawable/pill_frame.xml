@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    <solid android:color="@color/purple_700"/> &lt;!&ndash; 枠の色を設定 &ndash;&gt;-->
+    <corners android:radius="100dp"/> <!-- ピル型の角の半径を設定 -->
+</shape>

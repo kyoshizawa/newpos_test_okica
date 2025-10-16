@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    android:id="@+id/fragment_ifbox_setup"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.setup.IFBoxSetupViewModel.DisplayTypes" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.setup.IFBoxSetupViewModel.ConnectionStatus" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.setup.IFBoxSetupViewModel.UploadStatus" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.setup.IFBoxSetupViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.setup.IFBoxSetupEventHandlers" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility='@{viewModel.displayType == DisplayTypes.TOP_MENU ? View.VISIBLE : View.GONE}'
+            android:orientation="vertical">
+
+            <TextView
+                android:text="IM-A820設定"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_large"
+                android:textSize="24sp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/stroke_gray_bottom" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray_bottom">
+
+                <TextView
+                    android:text="デバイス設定"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="18sp" />
+                <Button
+                    android:text="詳細"
+                    android:layout_width="@dimen/common_btn_width"
+                    android:layout_height="@dimen/common_btn_height"
+                    android:onClick='@{() -> viewModel.setDisplay_DEVICE_MENU()}'
+                    android:layout_gravity="right|center_vertical"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray_bottom">
+
+                <TextView
+                    android:text="ファームウェア設定"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="18sp" />
+                <Button
+                    android:text="詳細"
+                    android:layout_width="@dimen/common_btn_width"
+                    android:layout_height="@dimen/common_btn_height"
+                    android:onClick='@{() -> handlers.onFirmwareClick()}'
+                    android:layout_gravity="right|center_vertical"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray_bottom">
+
+                <TextView
+                    android:text="パラメータ設定"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="18sp" />
+                <Button
+                    android:text="詳細"
+                    android:layout_width="@dimen/common_btn_width"
+                    android:layout_height="@dimen/common_btn_height"
+                    android:onClick='@{() -> handlers.onConfigurationClick()}'
+                    android:layout_gravity="right|center_vertical"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility='@{viewModel.displayType == DisplayTypes.DEVICE_MENU ? View.VISIBLE : View.GONE}'
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="デバイス設定"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/common_margin_large"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:layout_width="@dimen/common_btn_width"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="@dimen/common_margin_large"
+                    android:enabled='@{viewModel.isWifiScanCompleted}'
+                    android:onClick="@{handlers::onWifiScanClick}"
+                    android:text="検索" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_access_point"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility='@{viewModel.isWifiScanCompleted ? View.VISIBLE : View.GONE}'
+                    android:scrollbars="vertical"
+                    android:fadeScrollbars="false"
+                    android:paddingBottom="74dp"
+                    android:background="@drawable/stroke_gray"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility='@{!viewModel.isWifiScanCompleted ? View.VISIBLE : View.GONE}'
+                    android:layout_marginBottom="36dp"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:text="デバイス検索中"
+                        android:textSize="24sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ProgressBar
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/common_margin"
+                    android:layout_gravity="center|bottom"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="@dimen/common_btn_width"
+                            android:layout_height="66dp"
+                            android:layout_gravity="center"
+                            android:onClick='@{handlers::onQRClick}'
+                            android:backgroundTint="@color/btn_common_cancel"
+                            android:text="QR読取" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="@dimen/common_btn_width"
+                            android:layout_height="66dp"
+                            android:layout_gravity="center"
+                            android:enabled='@{viewModel.isWifiScanCompleted}'
+                            android:onClick="@{handlers::onConnectionClick}"
+                            android:text="接続" />
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility='@{viewModel.displayType == DisplayTypes.DEVICE_CONNECTING ? View.VISIBLE : View.GONE}'
+            android:orientation="vertical">
+
+
+            <TextView
+                android:text="接続状態"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_large"
+                android:textSize="24sp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray">
+
+                <TextView
+                    android:text="ファームウェア情報取得"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="20sp" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:visibility="@{!viewModel.isExecuteFailure &amp;&amp; viewModel.connectionStatus &lt; ConnectionStatus.FIEMWARE_INFO_CHECKED ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_check_48"
+                    android:visibility="@{viewModel.connectionStatus &gt;= ConnectionStatus.FIEMWARE_INFO_CHECKED ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_close_48"
+                    android:visibility="@{viewModel.isExecuteFailure &amp;&amp; viewModel.connectionStatus &lt; ConnectionStatus.FIEMWARE_INFO_CHECKED ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray_bottom">
+
+                <TextView
+                    android:text="接続確認"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="20sp" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:visibility='@{!viewModel.isExecuteFailure &amp;&amp; viewModel.connectionStatus &lt; ConnectionStatus.WIFI_CONNECTED ? View.VISIBLE : View.GONE}'
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_check_48"
+                    android:visibility='@{viewModel.connectionStatus &gt;= ConnectionStatus.WIFI_CONNECTED ? View.VISIBLE : View.GONE}'
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_close_48"
+                    android:visibility='@{viewModel.isExecuteFailure &amp;&amp; viewModel.connectionStatus &lt; ConnectionStatus.WIFI_CONNECTED ? View.VISIBLE : View.GONE}'
+                    android:layout_gravity="center_vertical|right"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray_bottom">
+
+                <TextView
+                    android:text="設定書き込み"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="20sp" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:visibility='@{!viewModel.isExecuteFailure &amp;&amp; viewModel.connectionStatus &lt; ConnectionStatus.CONFIG_UPLOADED ? View.VISIBLE : View.GONE}'
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_check_48"
+                    android:visibility='@{viewModel.connectionStatus &gt;= ConnectionStatus.CONFIG_UPLOADED ? View.VISIBLE : View.GONE}'
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_close_48"
+                    android:visibility='@{viewModel.isExecuteFailure &amp;&amp; viewModel.connectionStatus &lt; ConnectionStatus.CONFIG_UPLOADED ? View.VISIBLE : View.GONE}'
+                    android:layout_gravity="center_vertical|right"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray_bottom">
+
+                <TextView
+                    android:text="設定完了確認"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="20sp" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:visibility='@{!viewModel.isExecuteFailure &amp;&amp; viewModel.connectionStatus &lt; ConnectionStatus.WIFI_P2P_CONNECTED ? View.VISIBLE : View.GONE}'
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_check_48"
+                    android:visibility='@{viewModel.connectionStatus &gt;= ConnectionStatus.WIFI_P2P_CONNECTED ? View.VISIBLE : View.GONE}'
+                    android:layout_gravity="center_vertical|right"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_close_48"
+                    android:visibility='@{viewModel.isExecuteFailure &amp;&amp; viewModel.connectionStatus &lt; ConnectionStatus.WIFI_P2P_CONNECTED ? View.VISIBLE : View.GONE}'
+                    android:layout_gravity="center_vertical|right"/>
+            </FrameLayout>
+            
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_large"
+                android:onClick='@{() -> viewModel.setDisplay_FIRMWARE_SELECT()}'
+                android:visibility='@{viewModel.connectionStatus &gt;= ConnectionStatus.WIFI_P2P_CONNECTED ? View.VISIBLE : View.GONE}'
+                android:background="@drawable/stroke_gray">
+
+                <TextView
+                    android:text="接続完了しました。\nタップするとファームウェア設定に進みます。"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:padding="@dimen/common_padding"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <!-- ファーム選択画面 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility='@{viewModel.displayType == DisplayTypes.FIRMWARE_SELECT ? View.VISIBLE : View.GONE}'
+            android:orientation="vertical">
+
+            <TextView
+                android:text="ファームウェア一覧"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_large"
+                android:textSize="24sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_firmwares"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:fadeScrollbars="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        </LinearLayout>
+
+        <!-- ファームインストール -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.displayType == DisplayTypes.FIRMWARE_UPLOADING ? View.VISIBLE : View.GONE}">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray">
+
+                <TextView
+                    android:text="ファイルダウンロード"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="20sp" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:visibility="@{!viewModel.isExecuteFailure &amp;&amp; viewModel.uploadStatus &lt; UploadStatus.DOWNLOADED ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_check_48"
+                    android:visibility="@{viewModel.uploadStatus &gt;= UploadStatus.DOWNLOADED ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_close_48"
+                    android:visibility="@{viewModel.isExecuteFailure &amp;&amp; viewModel.uploadStatus &lt; UploadStatus.DOWNLOADED ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray_bottom">
+
+                <TextView
+                    android:text="書き込み中"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="20sp" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:visibility="@{!viewModel.isExecuteFailure &amp;&amp; viewModel.uploadStatus &lt; UploadStatus.UPLOADED ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_check_48"
+                    android:visibility="@{viewModel.uploadStatus &gt;= UploadStatus.UPLOADED ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_close_48"
+                    android:visibility="@{viewModel.isExecuteFailure &amp;&amp; viewModel.uploadStatus &lt; UploadStatus.UPLOADED ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_large"
+                android:background="@drawable/stroke_gray_bottom">
+
+                <TextView
+                    android:text="バージョン確認"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:textSize="20sp" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:visibility="@{!viewModel.isExecuteFailure &amp;&amp; viewModel.uploadStatus &lt; UploadStatus.VERSION_CHECKED ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_check_48"
+                    android:visibility="@{viewModel.uploadStatus &gt;= UploadStatus.VERSION_CHECKED ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_close_48"
+                    android:visibility="@{viewModel.isExecuteFailure &amp;&amp; viewModel.uploadStatus &lt; UploadStatus.VERSION_CHECKED ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="center_vertical|right"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <!-- IF-BOX設定画面 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility='@{viewModel.displayType == DisplayTypes.PARAMETER_MENU ? View.VISIBLE : View.GONE}'
+            android:orientation="vertical">
+
+            <TextView
+                android:text="パラメータ設定"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_large"
+                android:textSize="24sp" />
+
+            <WebView
+                android:id="@+id/web_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

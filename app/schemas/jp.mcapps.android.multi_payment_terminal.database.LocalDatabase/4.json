@@ -1,0 +1,2866 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 4,
+<<<<<<< HEAD
+    "identityHash": "a6ed6bb789c2acb60c3d5a513c6cd4dc",
+=======
+    "identityHash": "7d410bf95a41158672e602191f79dca4",
+>>>>>>> master
+    "entities": [
+      {
+        "tableName": "history_radio",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `level` INTEGER NOT NULL, `asu` INTEGER, `rsrp` INTEGER, `rsrq` INTEGER, `rssnr` INTEGER, `signal_strength` INTEGER NOT NULL, `date` INTEGER, `network_type` TEXT, `network_type_code` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "level",
+            "columnName": "level",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "asu",
+            "columnName": "asu",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rsrp",
+            "columnName": "rsrp",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rsrq",
+            "columnName": "rsrq",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rssnr",
+            "columnName": "rssnr",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "signalStrength",
+            "columnName": "signal_strength",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "networkType",
+            "columnName": "network_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "networkTypeCode",
+            "columnName": "network_type_code",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_history_radio_date",
+            "unique": false,
+            "columnNames": [
+              "date"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_history_radio_date` ON `${TABLE_NAME}` (`date`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "history_gps",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `accuracy` REAL, `altitude` REAL NOT NULL, `bearing` REAL, `speed` REAL, `satellites` INTEGER NOT NULL, `date` INTEGER, `gps_date` INTEGER, `elapsed_real_time` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "accuracy",
+            "columnName": "accuracy",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "altitude",
+            "columnName": "altitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bearing",
+            "columnName": "bearing",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "speed",
+            "columnName": "speed",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "satellites",
+            "columnName": "satellites",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gpsDate",
+            "columnName": "gps_date",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "elapsedRealTime",
+            "columnName": "elapsed_real_time",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_history_gps_date",
+            "unique": false,
+            "columnNames": [
+              "date"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_history_gps_date` ON `${TABLE_NAME}` (`date`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "history_operation",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `operation_type` INTEGER NOT NULL, `screen_name` TEXT NOT NULL, `dialog_name` TEXT, `operation_name` TEXT NOT NULL, `input_data` TEXT, `input_digit_number` INTEGER, `operation_date` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "operationType",
+            "columnName": "operation_type",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "screenName",
+            "columnName": "screen_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dialogName",
+            "columnName": "dialog_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "operationName",
+            "columnName": "operation_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "inputData",
+            "columnName": "input_data",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "inputDigitNumber",
+            "columnName": "input_digit_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "operationDate",
+            "columnName": "operation_date",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_history_operation_operation_date",
+            "unique": false,
+            "columnNames": [
+              "operation_date"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_history_operation_operation_date` ON `${TABLE_NAME}` (`operation_date`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "driver_history",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `driver_code` TEXT, `driver_name` TEXT, `created_at` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "driverCode",
+            "columnName": "driver_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "driverName",
+            "columnName": "driver_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "history_error",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `error_code` TEXT, `title` TEXT, `message` TEXT, `detail` TEXT, `level` INTEGER NOT NULL, `date` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "errorCode",
+            "columnName": "error_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "message",
+            "columnName": "message",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "detail",
+            "columnName": "detail",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "level",
+            "columnName": "level",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_history_error_date",
+            "unique": false,
+            "columnNames": [
+              "date"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_history_error_date` ON `${TABLE_NAME}` (`date`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "history_error_stacking",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `error_code` TEXT, `title` TEXT, `message` TEXT, `detail` TEXT, `level` INTEGER NOT NULL, `date` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "errorCode",
+            "columnName": "error_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "message",
+            "columnName": "message",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "detail",
+            "columnName": "detail",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "level",
+            "columnName": "level",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "history_slip",
+<<<<<<< HEAD
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `trans_brand` TEXT, `trans_type` INTEGER, `trans_type_code` TEXT, `trans_result` INTEGER, `trans_result_detail` INTEGER, `print_cnt` INTEGER, `old_aggregate_order` INTEGER, `encrypt_type` INTEGER, `cancel_flg` INTEGER, `trans_id` TEXT, `merchant_name` TEXT, `merchant_office` TEXT, `merchant_telnumber` TEXT, `car_id` INTEGER, `driver_id` INTEGER, `term_id` TEXT, `term_sequence` INTEGER, `trans_date` TEXT, `card_company` TEXT, `card_id_merchant` TEXT, `card_id_customer` TEXT, `card_exp_date` TEXT, `card_trans_number` INTEGER, `edy_trans_number` INTEGER, `nanaco_slip_number` INTEGER, `slip_number` INTEGER, `old_slip_number` INTEGER, `auth_id` INTEGER, `auth_sequence_number` INTEGER, `commodity_code` TEXT, `installment` TEXT, `point` INTEGER, `point_grant_type` INTEGER, `point_grant_msg_one` TEXT, `point_grant_msg_two` TEXT, `unique_id` TEXT, `term_ident_id` TEXT, `trans_amount` INTEGER, `trans_specified_amount` INTEGER, `trans_meter_amount` INTEGER, `trans_adj_amount` INTEGER, `trans_cash_together_amount` INTEGER, `trans_other_amount_one_type` INTEGER, `trans_other_amount_one` INTEGER, `trans_other_amount_two_type` INTEGER, `trans_other_amount_two` INTEGER, `trans_before_balance` INTEGER, `trans_after_balance` INTEGER, `common_name` TEXT, `credit_type` TEXT, `credit_arc` TEXT, `credit_aid` TEXT, `credit_apl` TEXT, `credit_signature_flg` INTEGER, `codetrans_order_id` TEXT, `codetrans_pay_type_name` TEXT, `free_count_one` INTEGER, `free_count_two` INTEGER, `credit_kid` TEXT)",
+=======
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `trans_brand` TEXT, `trans_type` INTEGER, `trans_type_code` TEXT, `trans_result` INTEGER, `trans_result_detail` INTEGER, `print_cnt` INTEGER, `old_aggregate_order` INTEGER, `encrypt_type` INTEGER, `cancel_flg` INTEGER, `trans_id` TEXT, `merchant_name` TEXT, `merchant_office` TEXT, `merchant_telnumber` TEXT, `car_id` INTEGER, `driver_id` INTEGER, `term_id` TEXT, `term_sequence` INTEGER, `trans_date` TEXT, `card_company` TEXT, `card_id_merchant` TEXT, `card_id_customer` TEXT, `card_exp_date` TEXT, `card_trans_number` INTEGER, `edy_trans_number` INTEGER, `nanaco_slip_number` INTEGER, `slip_number` INTEGER, `old_slip_number` INTEGER, `auth_id` INTEGER, `auth_sequence_number` INTEGER, `commodity_code` TEXT, `installment` TEXT, `point` INTEGER, `point_grant_type` INTEGER, `point_grant_msg_one` TEXT, `point_grant_msg_two` TEXT, `unique_id` TEXT, `term_ident_id` TEXT, `trans_amount` INTEGER, `trans_specified_amount` INTEGER, `trans_meter_amount` INTEGER, `trans_adj_amount` INTEGER, `trans_cash_together_amount` INTEGER, `trans_other_amount_one_type` INTEGER, `trans_other_amount_one` INTEGER, `trans_other_amount_two_type` INTEGER, `trans_other_amount_two` INTEGER, `trans_before_balance` INTEGER, `trans_after_balance` INTEGER, `common_name` TEXT, `credit_type` TEXT, `credit_arc` TEXT, `credit_aid` TEXT, `credit_apl` TEXT, `credit_signature_flg` INTEGER, `codetrans_order_id` TEXT, `codetrans_pay_type_name` TEXT, `free_count_one` INTEGER, `free_count_two` INTEGER)",
+>>>>>>> master
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transBrand",
+            "columnName": "trans_brand",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transType",
+            "columnName": "trans_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transTypeCode",
+            "columnName": "trans_type_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transResult",
+            "columnName": "trans_result",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transResultDetail",
+            "columnName": "trans_result_detail",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "printCnt",
+            "columnName": "print_cnt",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "oldAggregateOrder",
+            "columnName": "old_aggregate_order",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "encryptType",
+            "columnName": "encrypt_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cancelFlg",
+            "columnName": "cancel_flg",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transId",
+            "columnName": "trans_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "merchantName",
+            "columnName": "merchant_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "merchantOffice",
+            "columnName": "merchant_office",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "merchantTelnumber",
+            "columnName": "merchant_telnumber",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "carId",
+            "columnName": "car_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "driverId",
+            "columnName": "driver_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termId",
+            "columnName": "term_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termSequence",
+            "columnName": "term_sequence",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transDate",
+            "columnName": "trans_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cardCompany",
+            "columnName": "card_company",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cardIdMerchant",
+            "columnName": "card_id_merchant",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cardIdCustomer",
+            "columnName": "card_id_customer",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cardExpDate",
+            "columnName": "card_exp_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cardTransNumber",
+            "columnName": "card_trans_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "edyTransNumber",
+            "columnName": "edy_trans_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nanacoSlipNumber",
+            "columnName": "nanaco_slip_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "slipNumber",
+            "columnName": "slip_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "oldSlipNumber",
+            "columnName": "old_slip_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "authId",
+            "columnName": "auth_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "authSequenceNumber",
+            "columnName": "auth_sequence_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "commodityCode",
+            "columnName": "commodity_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "installment",
+            "columnName": "installment",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "point",
+            "columnName": "point",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pointGrantType",
+            "columnName": "point_grant_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pointGrantMsgOne",
+            "columnName": "point_grant_msg_one",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pointGrantMsgTwo",
+            "columnName": "point_grant_msg_two",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "uniqueId",
+            "columnName": "unique_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termIdentId",
+            "columnName": "term_ident_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transAmount",
+            "columnName": "trans_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transSpecifiedAmount",
+            "columnName": "trans_specified_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transMeterAmount",
+            "columnName": "trans_meter_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transAdjAmount",
+            "columnName": "trans_adj_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transCashTogetherAmount",
+            "columnName": "trans_cash_together_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transOtherAmountOneType",
+            "columnName": "trans_other_amount_one_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transOtherAmountOne",
+            "columnName": "trans_other_amount_one",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transOtherAmountTwoType",
+            "columnName": "trans_other_amount_two_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transOtherAmountTwo",
+            "columnName": "trans_other_amount_two",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transBeforeBalance",
+            "columnName": "trans_before_balance",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transAfterBalance",
+            "columnName": "trans_after_balance",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "commonName",
+            "columnName": "common_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditType",
+            "columnName": "credit_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditArc",
+            "columnName": "credit_arc",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditAid",
+            "columnName": "credit_aid",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditApl",
+            "columnName": "credit_apl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditSignatureFlg",
+            "columnName": "credit_signature_flg",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "codetransOrderId",
+            "columnName": "codetrans_order_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "codetransPayTypeName",
+            "columnName": "codetrans_pay_type_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "freeCountOne",
+            "columnName": "free_count_one",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "freeCountTwo",
+            "columnName": "free_count_two",
+            "affinity": "INTEGER",
+            "notNull": false
+<<<<<<< HEAD
+          },
+          {
+            "fieldPath": "creditKid",
+            "columnName": "credit_kid",
+            "affinity": "TEXT",
+            "notNull": false
+=======
+>>>>>>> master
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_history_slip_trans_date",
+            "unique": false,
+            "columnNames": [
+              "trans_date"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_history_slip_trans_date` ON `${TABLE_NAME}` (`trans_date`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "history_uri",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pos_send` INTEGER, `car_id` INTEGER, `driver_id` INTEGER, `term_id` TEXT, `common_name` TEXT, `trans_brand` TEXT, `trans_date` TEXT, `old_trans_date` TEXT, `trans_type` INTEGER, `trans_result` INTEGER, `trans_result_detail` INTEGER, `term_sequence` INTEGER, `old_term_sequence` INTEGER, `trans_id` TEXT, `old_trans_id` TEXT, `card_id` TEXT, `installment` TEXT, `trans_amount` INTEGER, `trans_specified_amount` INTEGER, `trans_meter_amount` INTEGER, `trans_adj_amount` INTEGER, `trans_cash_together_amount` INTEGER, `trans_other_amount_one_type` INTEGER, `trans_other_amount_one` INTEGER, `trans_other_amount_two_type` INTEGER, `trans_other_amount_two` INTEGER, `trans_before_balance` INTEGER, `trans_after_balance` INTEGER, `trans_time` INTEGER, `trans_input_pin_time` INTEGER, `term_latitude` TEXT, `term_longitude` TEXT, `term_network_type` TEXT, `term_radio_level` INTEGER, `encrypt_type` INTEGER, `unionpay_send_date` TEXT, `unionpay_proc_number` INTEGER, `old_unionpay_send_date` TEXT, `old_unionpay_proc_number` INTEGER, `credit_acq_id` INTEGER, `credit_ms_ic` INTEGER, `credit_on_off` INTEGER, `credit_chip_cc` TEXT, `credit_forced_online` INTEGER, `credit_forced_approval` INTEGER, `credit_commodity_code` TEXT, `credit_aid` TEXT, `credit_entry_mode` TEXT, `credit_pan_sequence_number` INTEGER, `credit_icterm_flag` INTEGER, `credit_brand_id` TEXT, `credit_key_type` INTEGER, `credit_key_ver` INTEGER, `credit_encryption_data` TEXT, `ic_err_code` INTEGER, `ic_idm` TEXT, `ic_sprwid` TEXT, `ic_statement_id` INTEGER, `ic_sequence` INTEGER, `ic_sflog_id` INTEGER, `ic_old_statement_id` INTEGER, `ic_old_sflog_id` INTEGER, `id_slip_number` INTEGER, `id_old_slip_number` INTEGER, `id_error_code` INTEGER, `id_term_ident_id` TEXT, `id_sequence_number` INTEGER, `id_recognition_number` TEXT, `waon_slip_number` INTEGER, `waon_old_slip_number` INTEGER, `waon_err_code` INTEGER, `waon_idm` TEXT, `waon_term_ident_id` TEXT, `waon_card_through_num` INTEGER, `waon_point_trade_value` INTEGER, `waon_point_grant_type` INTEGER, `waon_add_point_total` INTEGER, `waon_total_point` INTEGER, `nanaco_slip_number` INTEGER, `nanaco_err_code` INTEGER, `nanaco_card_trans_number` INTEGER, `nanaco_term_ident_id` TEXT, `rakuten_edy_err_code` INTEGER, `rakuten_edy_trans_number` INTEGER, `rakuten_edy_card_trans_number` INTEGER, `rakuten_edy_term_ident_id` TEXT, `quicpay_slip_number` INTEGER, `quicpay_old_slip_number` INTEGER, `quicpay_err_code` INTEGER, `quicpay_term_ident_id` TEXT, `quicpay_dealings_through_number` INTEGER, `codetrans_order_id` TEXT, `codetrans_old_order_id` TEXT, `codetrans_pay_type_code` TEXT, `wallet` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "posSend",
+            "columnName": "pos_send",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "carId",
+            "columnName": "car_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "driverId",
+            "columnName": "driver_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termId",
+            "columnName": "term_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "commonName",
+            "columnName": "common_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transBrand",
+            "columnName": "trans_brand",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transDate",
+            "columnName": "trans_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "oldTransDate",
+            "columnName": "old_trans_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transType",
+            "columnName": "trans_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transResult",
+            "columnName": "trans_result",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transResultDetail",
+            "columnName": "trans_result_detail",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termSequence",
+            "columnName": "term_sequence",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "oldTermSequence",
+            "columnName": "old_term_sequence",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transId",
+            "columnName": "trans_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "oldTransId",
+            "columnName": "old_trans_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cardId",
+            "columnName": "card_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "installment",
+            "columnName": "installment",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transAmount",
+            "columnName": "trans_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transSpecifiedAmount",
+            "columnName": "trans_specified_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transMeterAmount",
+            "columnName": "trans_meter_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transAdjAmount",
+            "columnName": "trans_adj_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transCashTogetherAmount",
+            "columnName": "trans_cash_together_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transOtherAmountOneType",
+            "columnName": "trans_other_amount_one_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transOtherAmountOne",
+            "columnName": "trans_other_amount_one",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transOtherAmountTwoType",
+            "columnName": "trans_other_amount_two_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transOtherAmountTwo",
+            "columnName": "trans_other_amount_two",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transBeforeBalance",
+            "columnName": "trans_before_balance",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transAfterBalance",
+            "columnName": "trans_after_balance",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transTime",
+            "columnName": "trans_time",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transInputPinTime",
+            "columnName": "trans_input_pin_time",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termLatitude",
+            "columnName": "term_latitude",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termLongitude",
+            "columnName": "term_longitude",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termNetworkType",
+            "columnName": "term_network_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termRadioLevel",
+            "columnName": "term_radio_level",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "encryptType",
+            "columnName": "encrypt_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "unionpaySendDate",
+            "columnName": "unionpay_send_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "unionpayProcNumber",
+            "columnName": "unionpay_proc_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "oldUnionpaySendDate",
+            "columnName": "old_unionpay_send_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "oldUnionpayProcNumber",
+            "columnName": "old_unionpay_proc_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditAcqId",
+            "columnName": "credit_acq_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditMsIc",
+            "columnName": "credit_ms_ic",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditOnOff",
+            "columnName": "credit_on_off",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditChipCc",
+            "columnName": "credit_chip_cc",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditForcedOnline",
+            "columnName": "credit_forced_online",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditForcedApproval",
+            "columnName": "credit_forced_approval",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditCommodityCode",
+            "columnName": "credit_commodity_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditAid",
+            "columnName": "credit_aid",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditEntryMode",
+            "columnName": "credit_entry_mode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditPanSequenceNumber",
+            "columnName": "credit_pan_sequence_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditIctermFlag",
+            "columnName": "credit_icterm_flag",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditBrandId",
+            "columnName": "credit_brand_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditKeyType",
+            "columnName": "credit_key_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditKeyVer",
+            "columnName": "credit_key_ver",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditEncryptionData",
+            "columnName": "credit_encryption_data",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "icErrCode",
+            "columnName": "ic_err_code",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "icIdm",
+            "columnName": "ic_idm",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "icSprwid",
+            "columnName": "ic_sprwid",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "icStatementId",
+            "columnName": "ic_statement_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "icSequence",
+            "columnName": "ic_sequence",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "icSflogId",
+            "columnName": "ic_sflog_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "icOldStatementId",
+            "columnName": "ic_old_statement_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "icOldSflogId",
+            "columnName": "ic_old_sflog_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idSlipNumber",
+            "columnName": "id_slip_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idOldSlipNumber",
+            "columnName": "id_old_slip_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idErrorCode",
+            "columnName": "id_error_code",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idTermIdentId",
+            "columnName": "id_term_ident_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idSequenceNumber",
+            "columnName": "id_sequence_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idRecognitionNumber",
+            "columnName": "id_recognition_number",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "waonSlipNumber",
+            "columnName": "waon_slip_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "waonOldSlipNumber",
+            "columnName": "waon_old_slip_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "waonErrCode",
+            "columnName": "waon_err_code",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "waonIdm",
+            "columnName": "waon_idm",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "waonTermIdentId",
+            "columnName": "waon_term_ident_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "waonCardThroughNum",
+            "columnName": "waon_card_through_num",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "waonPointTradeValue",
+            "columnName": "waon_point_trade_value",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "waonPointGrantType",
+            "columnName": "waon_point_grant_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "waonAddPointTotal",
+            "columnName": "waon_add_point_total",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "waonTotalPoint",
+            "columnName": "waon_total_point",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nanacoSlipNumber",
+            "columnName": "nanaco_slip_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nanacoErrCode",
+            "columnName": "nanaco_err_code",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nanacoCardTransNumber",
+            "columnName": "nanaco_card_trans_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nanacoTermIdentId",
+            "columnName": "nanaco_term_ident_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rakutenEdyErrCode",
+            "columnName": "rakuten_edy_err_code",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rakutenEdyTransNumber",
+            "columnName": "rakuten_edy_trans_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rakutenEdyCardTransNumber",
+            "columnName": "rakuten_edy_card_trans_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rakutenEdyTermIdentId",
+            "columnName": "rakuten_edy_term_ident_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "quicpaySlipNumber",
+            "columnName": "quicpay_slip_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "quicpayOldSlipNumber",
+            "columnName": "quicpay_old_slip_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "quicpayErrCode",
+            "columnName": "quicpay_err_code",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "quicpayTermIdentId",
+            "columnName": "quicpay_term_ident_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "quicpayDealingsThroughNumber",
+            "columnName": "quicpay_dealings_through_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "codetransOrderId",
+            "columnName": "codetrans_order_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "codetransOldOrderId",
+            "columnName": "codetrans_old_order_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "codetransPayTypeCode",
+            "columnName": "codetrans_pay_type_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "wallet",
+            "columnName": "wallet",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_history_uri_trans_date",
+            "unique": false,
+            "columnNames": [
+              "trans_date"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_history_uri_trans_date` ON `${TABLE_NAME}` (`trans_date`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "history_aggregate",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `aggregate_history_order` INTEGER NOT NULL, `aggregate_start_datetime` TEXT, `aggregate_end_datetime` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aggregateHistoryOrder",
+            "columnName": "aggregate_history_order",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aggregateStartDatetime",
+            "columnName": "aggregate_start_datetime",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "aggregateEndDatetime",
+            "columnName": "aggregate_end_datetime",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "history_uri_okica",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `okica_send` INTEGER, `okica_card_idi` BLOB, `okica_detail_id` INTEGER, `okica_process_code` INTEGER, `okica_trans_date` TEXT, `okica_functiion_type` INTEGER, `okica_control_code` INTEGER, `okica_unfinished_flg` INTEGER, `okica_business_code` INTEGER, `okica_model_code` TEXT, `okica_machine_id` TEXT, `okica_sequence` INTEGER, `okica_process_type` INTEGER, `okica_sf_log_id` INTEGER, `okica_sf1_business_id` INTEGER, `okica_sf1_amount` INTEGER, `okica_sf1_balance` INTEGER, `okica_sf1_category` INTEGER, `trans_amount` INTEGER, `trans_specified_amount` INTEGER, `trans_meter_amount` INTEGER, `trans_adj_amount` INTEGER, `trans_cash_together_amount` INTEGER, `trans_other_amount_one_type` INTEGER, `trans_other_amount_one` INTEGER, `trans_other_amount_two_type` INTEGER, `trans_other_amount_two` INTEGER, `trans_time` INTEGER, `term_latitude` TEXT, `term_longitude` TEXT, `term_network_type` TEXT, `term_radio_level` INTEGER, `encrypt_type` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "okicaSend",
+            "columnName": "okica_send",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaCardIdi",
+            "columnName": "okica_card_idi",
+            "affinity": "BLOB",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaDetailId",
+            "columnName": "okica_detail_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaProcessCode",
+            "columnName": "okica_process_code",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaTransDate",
+            "columnName": "okica_trans_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaFunctionType",
+            "columnName": "okica_functiion_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaControlCode",
+            "columnName": "okica_control_code",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaUnfinishedFlg",
+            "columnName": "okica_unfinished_flg",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaBusinessCode",
+            "columnName": "okica_business_code",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaModelCode",
+            "columnName": "okica_model_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaMachineId",
+            "columnName": "okica_machine_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaSequence",
+            "columnName": "okica_sequence",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaProcessType",
+            "columnName": "okica_process_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaSfLogId",
+            "columnName": "okica_sf_log_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaSf1BusinessId",
+            "columnName": "okica_sf1_business_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaSf1Amount",
+            "columnName": "okica_sf1_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaSf1Balance",
+            "columnName": "okica_sf1_balance",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "okicaSf1Category",
+            "columnName": "okica_sf1_category",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transAmount",
+            "columnName": "trans_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transSpecifiedAmount",
+            "columnName": "trans_specified_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transMeterAmount",
+            "columnName": "trans_meter_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transAdjAmount",
+            "columnName": "trans_adj_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transCashTogetherAmount",
+            "columnName": "trans_cash_together_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transOtherAmountOneType",
+            "columnName": "trans_other_amount_one_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transOtherAmountOne",
+            "columnName": "trans_other_amount_one",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transOtherAmountTwoType",
+            "columnName": "trans_other_amount_two_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transOtherAmountTwo",
+            "columnName": "trans_other_amount_two",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transTime",
+            "columnName": "trans_time",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termLatitude",
+            "columnName": "term_latitude",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termLongitude",
+            "columnName": "term_longitude",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termNetworkType",
+            "columnName": "term_network_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "termRadioLevel",
+            "columnName": "term_radio_level",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "encryptType",
+            "columnName": "encrypt_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+<<<<<<< HEAD
+=======
+      },
+      {
+        "tableName": "pos_products",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `product_id` INTEGER NOT NULL, `service_instance_id` TEXT NOT NULL, `product_code` TEXT NOT NULL, `name` TEXT, `name_kana` TEXT, `name_short` TEXT, `standard_unit_price` INTEGER, `tax_type` INTEGER, `reduce_tax_type` INTEGER, `included_tax_type` INTEGER, `sale_start_at` INTEGER, `sale_end_at` INTEGER, `status` INTEGER, `remarks` TEXT, `product_category_id` INTEGER, `generation_id` INTEGER NOT NULL DEFAULT 0, `created_at` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "product_id",
+            "columnName": "product_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "service_instance_id",
+            "columnName": "service_instance_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "product_code",
+            "columnName": "product_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name_kana",
+            "columnName": "name_kana",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name_short",
+            "columnName": "name_short",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "standard_unit_price",
+            "columnName": "standard_unit_price",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tax_type",
+            "columnName": "tax_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "reduce_tax_type",
+            "columnName": "reduce_tax_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "included_tax_type",
+            "columnName": "included_tax_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sale_start_at",
+            "columnName": "sale_start_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sale_end_at",
+            "columnName": "sale_end_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "remarks",
+            "columnName": "remarks",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "product_category_id",
+            "columnName": "product_category_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "generation_id",
+            "columnName": "generation_id",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "created_at",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_pos_products_product_id_generation_id",
+            "unique": true,
+            "columnNames": [
+              "product_id",
+              "generation_id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_pos_products_product_id_generation_id` ON `${TABLE_NAME}` (`product_id`, `generation_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pos_categories",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `category_id` INTEGER NOT NULL, `service_instance_id` TEXT NOT NULL, `name` TEXT NOT NULL, `name_kana` TEXT, `name_short` TEXT, `status` INTEGER, `parent_id` INTEGER, `generation_id` INTEGER NOT NULL DEFAULT 0, `created_at` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "category_id",
+            "columnName": "category_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "service_instance_id",
+            "columnName": "service_instance_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name_kana",
+            "columnName": "name_kana",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name_short",
+            "columnName": "name_short",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "parent_id",
+            "columnName": "parent_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "generation_id",
+            "columnName": "generation_id",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "created_at",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_pos_categories_category_id_generation_id",
+            "unique": true,
+            "columnNames": [
+              "category_id",
+              "generation_id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_pos_categories_category_id_generation_id` ON `${TABLE_NAME}` (`category_id`, `generation_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pos_carts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `product_id` INTEGER, `product_category_id` INTEGER, `count` INTEGER, `product_name` TEXT, `product_name_short` TEXT, `product_code` TEXT, `standard_unit_price` INTEGER, `custom_unit_price` INTEGER, `tax_type` INTEGER, `reduce_tax_type` INTEGER, `included_tax_type` INTEGER, `is_manual` INTEGER, `is_custom_price` INTEGER, `created_at` INTEGER, `update_at` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "product_id",
+            "columnName": "product_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "product_category_id",
+            "columnName": "product_category_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "count",
+            "columnName": "count",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "product_name",
+            "columnName": "product_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "product_name_short",
+            "columnName": "product_name_short",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "product_code",
+            "columnName": "product_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "standard_unit_price",
+            "columnName": "standard_unit_price",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "custom_unit_price",
+            "columnName": "custom_unit_price",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tax_type",
+            "columnName": "tax_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "reduce_tax_type",
+            "columnName": "reduce_tax_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "included_tax_type",
+            "columnName": "included_tax_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "is_manual",
+            "columnName": "is_manual",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "is_custom_price",
+            "columnName": "is_custom_price",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "created_at",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "update_at",
+            "columnName": "update_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pos_tenants",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tenant_id` INTEGER NOT NULL, `service_instance_id` TEXT NOT NULL, `tenant_code` TEXT NOT NULL, `merchant_id` INTEGER NOT NULL, `customer_code` TEXT NOT NULL, `name` TEXT, `name_kana` TEXT, `zipcode` TEXT, `pref_cd` INTEGER, `city` TEXT, `address_line1` TEXT, `address_line2` TEXT, `address_line3` TEXT, `kana_city` TEXT, `address_kana_line1` TEXT, `address_kana_line2` TEXT, `address_kana_line3` TEXT, `phone_number` TEXT, `fax` TEXT, `houjin_bangou` TEXT, `alphabet_name` TEXT, `parent_name` TEXT, `generation_id` INTEGER NOT NULL DEFAULT 0, `created_at` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tenant_id",
+            "columnName": "tenant_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "service_instance_id",
+            "columnName": "service_instance_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tenant_code",
+            "columnName": "tenant_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "merchant_id",
+            "columnName": "merchant_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customer_code",
+            "columnName": "customer_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name_kana",
+            "columnName": "name_kana",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "zipcode",
+            "columnName": "zipcode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pref_cd",
+            "columnName": "pref_cd",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "address_line1",
+            "columnName": "address_line1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "address_line2",
+            "columnName": "address_line2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "address_line3",
+            "columnName": "address_line3",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "kana_city",
+            "columnName": "kana_city",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "address_kana_line1",
+            "columnName": "address_kana_line1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "address_kana_line2",
+            "columnName": "address_kana_line2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "address_kana_line3",
+            "columnName": "address_kana_line3",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "phone_number",
+            "columnName": "phone_number",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fax",
+            "columnName": "fax",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "houjin_bangou",
+            "columnName": "houjin_bangou",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "alphabet_name",
+            "columnName": "alphabet_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "parent_name",
+            "columnName": "parent_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "generation_id",
+            "columnName": "generation_id",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "created_at",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_pos_tenants_tenant_id_generation_id",
+            "unique": true,
+            "columnNames": [
+              "tenant_id",
+              "generation_id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_pos_tenants_tenant_id_generation_id` ON `${TABLE_NAME}` (`tenant_id`, `generation_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pos_service_functions",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `customer_code` TEXT NOT NULL, `is_product_category` INTEGER NOT NULL, `is_pos_receipt` INTEGER NOT NULL, `is_manual_amount` INTEGER NOT NULL, `slip_title` TEXT NOT NULL DEFAULT '', `tax_rounding` INTEGER NOT NULL DEFAULT 0, `standard_tax_rate` TEXT, `reduced_tax_rate` TEXT, `receipt_count` INTEGER NOT NULL, `generation_id` INTEGER NOT NULL DEFAULT 0, `created_at` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customer_code",
+            "columnName": "customer_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "is_product_category",
+            "columnName": "is_product_category",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "is_pos_receipt",
+            "columnName": "is_pos_receipt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "is_manual_amount",
+            "columnName": "is_manual_amount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slip_title",
+            "columnName": "slip_title",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "''"
+          },
+          {
+            "fieldPath": "tax_rounding",
+            "columnName": "tax_rounding",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "standard_tax_rate",
+            "columnName": "standard_tax_rate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "reduced_tax_rate",
+            "columnName": "reduced_tax_rate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "receipt_count",
+            "columnName": "receipt_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "generation_id",
+            "columnName": "generation_id",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "created_at",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_pos_service_functions_generation_id",
+            "unique": true,
+            "columnNames": [
+              "generation_id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_pos_service_functions_generation_id` ON `${TABLE_NAME}` (`generation_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pos_tax_calc",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `standard_tax_rate` INTEGER, `reduced_tax_rate` INTEGER, `total_amount` INTEGER, `total_count` INTEGER, `amount_tax_free` INTEGER, `amount_tax_reduced` INTEGER, `amount_tax_standard` INTEGER, `amount_tax_reduced_only_tax` INTEGER, `amount_tax_standard_only_tax` INTEGER, `amount_tax_exclusive_reduced` INTEGER, `amount_tax_exclusive_standard` INTEGER, `amount_tax_exclusive_reduced_without_tax` INTEGER, `amount_tax_exclusive_standard_without_tax` INTEGER, `amount_tax_exclusive_reduced_only_tax` INTEGER, `amount_tax_exclusive_standard_only_tax` INTEGER, `amount_tax_inclusive_reduced` INTEGER, `amount_tax_inclusive_standard` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "standard_tax_rate",
+            "columnName": "standard_tax_rate",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "reduced_tax_rate",
+            "columnName": "reduced_tax_rate",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "total_amount",
+            "columnName": "total_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "total_count",
+            "columnName": "total_count",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_free",
+            "columnName": "amount_tax_free",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_reduced",
+            "columnName": "amount_tax_reduced",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_standard",
+            "columnName": "amount_tax_standard",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_reduced_only_tax",
+            "columnName": "amount_tax_reduced_only_tax",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_standard_only_tax",
+            "columnName": "amount_tax_standard_only_tax",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_exclusive_reduced",
+            "columnName": "amount_tax_exclusive_reduced",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_exclusive_standard",
+            "columnName": "amount_tax_exclusive_standard",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_exclusive_reduced_without_tax",
+            "columnName": "amount_tax_exclusive_reduced_without_tax",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_exclusive_standard_without_tax",
+            "columnName": "amount_tax_exclusive_standard_without_tax",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_exclusive_reduced_only_tax",
+            "columnName": "amount_tax_exclusive_reduced_only_tax",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_exclusive_standard_only_tax",
+            "columnName": "amount_tax_exclusive_standard_only_tax",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_inclusive_reduced",
+            "columnName": "amount_tax_inclusive_reduced",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount_tax_inclusive_standard",
+            "columnName": "amount_tax_inclusive_standard",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pos_transactions",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `service_instance_id` TEXT, `transaction_type` INTEGER, `transaction_at` INTEGER, `tid` TEXT, `terminal_id` INTEGER, `terminal_name` TEXT, `merchant_id` INTEGER, `tenant_id` INTEGER, `tenant_code` TEXT, `tenant_name` TEXT, `transaction_no` TEXT, `card_category` TEXT, `card_brand` TEXT, `amount` INTEGER, `cash_amount` INTEGER, `staff_code` TEXT, `staff_name` TEXT, `org_transaction_at` INTEGER, `org_transaction_id` TEXT, `is_unexecuted` INTEGER NOT NULL, `uploaded` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "service_instance_id",
+            "columnName": "service_instance_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transaction_type",
+            "columnName": "transaction_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transaction_at",
+            "columnName": "transaction_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tid",
+            "columnName": "tid",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "terminal_id",
+            "columnName": "terminal_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "terminal_name",
+            "columnName": "terminal_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "merchant_id",
+            "columnName": "merchant_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tenant_id",
+            "columnName": "tenant_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tenant_code",
+            "columnName": "tenant_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tenant_name",
+            "columnName": "tenant_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transaction_no",
+            "columnName": "transaction_no",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "card_category",
+            "columnName": "card_category",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "card_brand",
+            "columnName": "card_brand",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cash_amount",
+            "columnName": "cash_amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "staff_code",
+            "columnName": "staff_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "staff_name",
+            "columnName": "staff_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "org_transaction_at",
+            "columnName": "org_transaction_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "org_transaction_id",
+            "columnName": "org_transaction_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "is_unexecuted",
+            "columnName": "is_unexecuted",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uploaded",
+            "columnName": "uploaded",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pos_transactions_detail",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `payment_transaction_id` INTEGER NOT NULL, `transaction_at` INTEGER, `product_id` INTEGER NOT NULL, `product_code` TEXT, `product_name` TEXT, `unit_price` INTEGER, `count` INTEGER, `product_tax_type` INTEGER, `reduced_tax_type` INTEGER, `included_tax_type` INTEGER, `is_manual` INTEGER, `org_unit_price` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "payment_transaction_id",
+            "columnName": "payment_transaction_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transaction_at",
+            "columnName": "transaction_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "product_id",
+            "columnName": "product_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "product_code",
+            "columnName": "product_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "product_name",
+            "columnName": "product_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "unit_price",
+            "columnName": "unit_price",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "count",
+            "columnName": "count",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "product_tax_type",
+            "columnName": "product_tax_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "reduced_tax_type",
+            "columnName": "reduced_tax_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "included_tax_type",
+            "columnName": "included_tax_type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "is_manual",
+            "columnName": "is_manual",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "org_unit_price",
+            "columnName": "org_unit_price",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pos_terminals",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `terminal_id` TEXT NOT NULL, `customer_id` TEXT NOT NULL, `terminal_no` TEXT NOT NULL, `service_instance_abt` TEXT NOT NULL, `service_instance_pos` TEXT NOT NULL, `generation_id` INTEGER NOT NULL DEFAULT 0, `created_at` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "terminal_id",
+            "columnName": "terminal_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customer_id",
+            "columnName": "customer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "terminal_no",
+            "columnName": "terminal_no",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "service_instance_abt",
+            "columnName": "service_instance_abt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "service_instance_pos",
+            "columnName": "service_instance_pos",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "generation_id",
+            "columnName": "generation_id",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "created_at",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_pos_terminals_generation_id",
+            "unique": true,
+            "columnNames": [
+              "generation_id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_pos_terminals_generation_id` ON `${TABLE_NAME}` (`generation_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pos_receipts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `slip_id` INTEGER NOT NULL, `merchant_name` TEXT NOT NULL, `organization_name` TEXT NOT NULL, `car_no` TEXT NOT NULL, `phone_number` TEXT NOT NULL, `address` TEXT NOT NULL, `staff_code` TEXT NOT NULL, `term_sequence` TEXT NOT NULL, `trans_date` TEXT NOT NULL, `old_term_sequence` TEXT NOT NULL, `old_trans_date` TEXT NOT NULL, `terminal_number` TEXT NOT NULL, `total_amount` INTEGER NOT NULL, `money_type` TEXT NOT NULL, `trans_type_amount` INTEGER NOT NULL, `trans_cash_amount` INTEGER NOT NULL, `change_amount` INTEGER NOT NULL, `invoice_no` TEXT NOT NULL, `print_cnt` INTEGER NOT NULL, `canceled_trans` INTEGER, `product_detail` TEXT NOT NULL, `subtotal_detail` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slip_id",
+            "columnName": "slip_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "merchant_name",
+            "columnName": "merchant_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "organization_name",
+            "columnName": "organization_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "car_no",
+            "columnName": "car_no",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phone_number",
+            "columnName": "phone_number",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "address",
+            "columnName": "address",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "staff_code",
+            "columnName": "staff_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "term_sequence",
+            "columnName": "term_sequence",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trans_date",
+            "columnName": "trans_date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "old_term_sequence",
+            "columnName": "old_term_sequence",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "old_trans_date",
+            "columnName": "old_trans_date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "terminal_number",
+            "columnName": "terminal_number",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "total_amount",
+            "columnName": "total_amount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "money_type",
+            "columnName": "money_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trans_type_amount",
+            "columnName": "trans_type_amount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trans_cash_amount",
+            "columnName": "trans_cash_amount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "change_amount",
+            "columnName": "change_amount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "invoice_no",
+            "columnName": "invoice_no",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "print_cnt",
+            "columnName": "print_cnt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "canceled_trans",
+            "columnName": "canceled_trans",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "product_detail",
+            "columnName": "product_detail",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subtotal_detail",
+            "columnName": "subtotal_detail",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_pos_receipts_slip_id",
+            "unique": true,
+            "columnNames": [
+              "slip_id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_pos_receipts_slip_id` ON `${TABLE_NAME}` (`slip_id`)"
+          }
+        ],
+        "foreignKeys": []
+>>>>>>> master
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+<<<<<<< HEAD
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a6ed6bb789c2acb60c3d5a513c6cd4dc')"
+=======
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7d410bf95a41158672e602191f79dca4')"
+>>>>>>> master
+    ]
+  }
+}

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    android:id="@+id/fragment_driver_code"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.BaseEMoneyOkicaViewModel.States" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.BaseEMoneyOkicaViewModel" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.EMoneyOkicaEventHandlers" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <fragment
+            android:id="@+id/emoney_head"
+            android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.EmoneyHeadFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="460dp">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:tag="反転"
+                android:background="@null"
+                android:src="@drawable/ic_baseline_crop_rotate_36"
+                android:onClick="@{handlers::onInversion}"
+                android:layout_margin="@dimen/common_margin" />
+
+
+            <!-- カードタッチ待ち -->
+            <ImageView
+                android:visibility='@{viewModel.state == States.Waiting || viewModel.state == States.Unprocessed || viewModel.state == States.Canceling || viewModel.state == States.Canceled ? View.VISIBLE : View.GONE}'
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/img_felica" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:visibility='@{viewModel.state == States.Processing ? View.VISIBLE : View.GONE}'
+                android:layout_gravity="center"
+                android:layout_width="180dp"
+                android:layout_height="180dp" />
+
+            <!-- 取引成功時 -->
+            <ImageView
+                android:visibility='@{viewModel.state == States.Success || viewModel.state == States.SuccessBalance || viewModel.state == States.HistoryInquiry || viewModel.state == States.HistoryInquiryCancel ? View.VISIBLE : View.GONE}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_check_circle_outline_180"
+                android:rotation='@{sharedViewModel.isScreenInversion ? 180 : 0}' />
+
+            <!-- 取引エラー時 -->
+            <ImageView
+                android:visibility='@{viewModel.state == States.Error || viewModel.state == States.InsufficientBalance || viewModel.state == States.WithCashOrCancel || viewModel.state == States.InsufficientBalanceCancel ? View.VISIBLE : View.GONE}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_error_outline_180"
+                android:rotation='@{sharedViewModel.isScreenInversion ? 180 : 0}' />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rotation='@{sharedViewModel.isScreenInversion ? 180 : 0}'
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_margin"
+                android:layout_marginRight="@dimen/common_margin"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin"
+                android:background="@drawable/stroke_gray"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text='@{viewModel.message}'
+                    android:minLines="3"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_margin"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <!-- カードタッチ待ち or 残高不足時 -->
+                <Button
+                    android:layout_width="@dimen/common_btn_width"
+                    android:layout_height="@dimen/common_btn_height"
+                    android:onClick='@{handlers::onCancelClick}'
+                    android:visibility='@{viewModel.state == States.Waiting || viewModel.state == States.SuccessBalance || viewModel.state == States.Canceling || viewModel.state == States.Canceled || viewModel.state == States.WithCashOrCancel || viewModel.state == States.InsufficientBalanceCancel || viewModel.state == States.HistoryInquiry || viewModel.state == States.HistoryInquiryCancel ? View.VISIBLE : View.INVISIBLE}'
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/btn_common_cancel"
+                    android:text="@string/cancel_button_label_string" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            <!-- 残高不足時 -->
+            <Button
+                android:layout_width="@dimen/common_btn_width"
+                android:layout_height="@dimen/common_btn_height"
+                android:onClick='@{handlers::onWithCashClick}'
+                android:visibility='@{viewModel.state == States.WithCashOrCancel || viewModel.state == States.InsufficientBalanceCancel ? View.VISIBLE : View.GONE}'
+                android:layout_gravity="center"
+                android:text="現金併用" />
+
+                <!-- 履歴印字 -->
+                <Button
+                    android:layout_width="@dimen/common_btn_width"
+                    android:layout_height="@dimen/common_btn_height"
+                    android:onClick='@{handlers::onHistoryPrintClick}'
+                    android:visibility='@{viewModel.state == States.SuccessBalance || viewModel.state == States.HistoryInquiry? View.VISIBLE : View.GONE}'
+                    android:layout_gravity="center"
+                    android:text="履歴印刷" />
+            </FrameLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

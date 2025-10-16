@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.data.BusinessType" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuViewModel" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEventHandlers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- アイコン付きボタン -->
+
+        <Button
+            android:id="@+id/btn_menu_paymentprocessing_receipt"
+            android:tag="領収書"
+            style="@style/StyleOtherIconButton"
+            android:onClick='@{view -> handlers.navigateToReceipt(view)}'
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_paymentprocessing_discount"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_paymentprocessing_ticket"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_menu_paymentprocessing_ticket"
+            android:tag="チケット伝票"
+            style="@style/StyleOtherIconButton"
+            android:onClick='@{view -> handlers.navigateToTicketPrint(view)}'
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_paymentprocessing_receipt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_paymentprocessing_empty4" />
+
+        <Button
+            android:id="@+id/btn_menu_paymentprocessing_discount"
+            android:tag="割引"
+            android:onClick='@{view -> handlers.navigateToDiscountMenu(view)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_paymentprocessing_receipt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_paymentprocessing_empty4"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_paymentprocessing_empty5"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_paymentprocessing_empty4"
+            android:tag="空4"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_paymentprocessing_ticket"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_paymentprocessing_discount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_paymentprocessing_empty6"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_paymentprocessing_empty5"
+            android:tag="空5"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_paymentprocessing_discount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_paymentprocessing_empty6"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_separation_next"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_paymentprocessing_empty6"
+            android:tag="空6"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_paymentprocessing_discount"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_paymentprocessing_empty5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_separation_next"
+            style="@style/StyleOtherIconButton"/>
+
+        <!-- アイコンなしボタン（6機能以上に増えたとき用のボタン） -->
+        <Button
+            android:id="@+id/btn_menu_separation_next"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_paymentprocessing_empty6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/StyleOtherButton"
+            android:visibility="invisible"/>
+
+        <!-- 有効性確認ボタン用 -->
+
+        <!-- 領収書用 -->
+        <TextView
+            android:id="@+id/text_menu_paymentprocessing_receipt"
+            android:text="領収書"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_paymentprocessing_receipt"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_paymentprocessing_receipt"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_paymentprocessing_receipt"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_paymentprocessing_receipt"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_paymentprocessing_receipt"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_paymentprocessing_receipt"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_paymentprocessing_receipt"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_paymentprocessing_receipt"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_paymentprocessing_receipt"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- チケット伝票用 -->
+        <TextView
+            android:id="@+id/text_menu_paymentprocessing_ticket"
+            android:text="チケット伝票"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_paymentprocessing_ticket"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_paymentprocessing_ticket"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_paymentprocessing_ticket"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_paymentprocessing_ticket"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_paymentprocessing_ticket"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_paymentprocessing_ticket"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_paymentprocessing_ticket"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_paymentprocessing_ticket"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_paymentprocessing_ticket"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- 割引用 -->
+        <TextView
+            android:id="@+id/text_menu_paymentprocessing_discount"
+            android:text="割引"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_paymentprocessing_discount"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_paymentprocessing_discount"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_paymentprocessing_discount"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_paymentprocessing_discount"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_paymentprocessing_discount"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_paymentprocessing_discount"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_paymentprocessing_discount"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_paymentprocessing_discount"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_paymentprocessing_discount"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!--
+        <TextView
+            android:id="@+id/text_menu_paymentprocessing_empty4"
+            android:text=" "
+            app:layout_constraintTop_toTopOf="@id/btn_menu_paymentprocessing_empty4"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_paymentprocessing_empty4"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_paymentprocessing_empty4"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_paymentprocessing_empty4"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_paymentprocessing_empty4"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_paymentprocessing_empty4"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_paymentprocessing_empty4"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_paymentprocessing_empty4"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_paymentprocessing_empty4"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription" />
+        -->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

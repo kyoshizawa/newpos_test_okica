@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.data.BusinessType" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuViewModel" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEventHandlers" />
+        <variable
+            name="separationViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel" />
+    </data>
+
+    <!-- 分別メニュー：チケット＆（現金，クレカ，電子マネー，QR．．．） -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- アイコン付きボタン -->
+
+        <Button
+            android:id="@+id/btn_menu_separationwithticket_money"
+            android:tag="現金"
+            style="@style/StyleOtherIconButton"
+            android:onClick='@{view -> handlers.navigateToReceipt(view)}'
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_separationwithticket_emoney"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_separationwithticket_credit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:enabled="true"
+            />
+
+        <Button
+            android:id="@+id/btn_menu_separationwithticket_credit"
+            android:tag="クレジット"
+            style="@style/StyleOtherIconButton"
+            android:onClick='@{view -> handlers.navigateToSeparationPayWithTicket(view, sharedViewModel,separationViewModel.AMOUNTINPUT_SEPARATIONMODE_CREDIT)}'
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_separationwithticket_money"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_separationwithticket_qr"
+            android:enabled='@{viewModel.isSeparateCreditButtonEnabled()}'
+            />
+
+        <!--
+            android:onClick='@{view -> handlers.navigateToSeparationPay(view, sharedViewModel,3)}'
+            view -> handlers.navigateToSeparationPayMenuToEMoneyMenu(view, sharedViewModel)
+            view -> handlers.navigateMenu(view, @id/action_navigation_menu_separation_to_navigation_menu_emoney)
+        -->
+        <Button
+            android:id="@+id/btn_menu_separationwithticket_emoney"
+            android:tag="電子マネー"
+            android:onClick='@{view -> handlers.navigateToSeparationPayWithTicket(view, sharedViewModel,separationViewModel.AMOUNTINPUT_SEPARATIONMODE_EMONEY)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_separationwithticket_money"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_separationwithticket_qr"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_separationwithticket_prepaid"
+            style="@style/StyleOtherIconButton"
+            android:enabled='@{viewModel.isSeparateEMoneyButtonEnabled()}'
+            />
+
+        <Button
+            android:id="@+id/btn_menu_separationwithticket_qr"
+            android:tag="QR"
+            android:onClick='@{view -> handlers.navigateToSeparationPayWithTicket(view, sharedViewModel,separationViewModel.AMOUNTINPUT_SEPARATIONMODE_QR)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_separationwithticket_credit"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_separationwithticket_emoney"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_separationwithticket_cancel"
+            style="@style/StyleOtherIconButton"
+            android:enabled='@{viewModel.isSeparateQRButtonEnabled()}'
+            />
+
+        <Button
+            android:id="@+id/btn_menu_separationwithticket_prepaid"
+            android:tag="プリペイド"
+            android:onClick='@{view -> handlers.navigateToSeparationPayWithTicket(view, sharedViewModel,separationViewModel.AMOUNTINPUT_SEPARATIONMODE_PREPAID)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_separationwithticket_emoney"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_separationwithticket_cancel"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_separationwithticket_next"
+            style="@style/StyleOtherIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_separationwithticket_cancel"
+            android:tag="チケット取消"
+            android:onClick='@{view -> handlers.navigateToSeparationPayCancel(view)}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_separationwithticket_emoney"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_separationwithticket_prepaid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_separationwithticket_next"
+            style="@style/StyleOtherIconButton"
+            android:enabled="true"
+            />
+
+        <!-- アイコンなしボタン（6機能以上に増えたとき用のボタン） -->
+        <Button
+            android:id="@+id/btn_menu_separationwithticket_next"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_separationwithticket_cancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/StyleOtherButton"
+            android:visibility="invisible"/>
+
+        <!-- チケット用 -->
+        <TextView
+            android:id="@+id/text_menu_separationwithticket_ticket"
+            android:text="現金"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_separationwithticket_money"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_separationwithticket_money"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_separationwithticket_money"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_separationwithticket_ticket"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_separationwithticket_ticket"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_separationwithticket_ticket"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_separationwithticket_money"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_separationwithticket_money"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_separationwithticket_money"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+
+        <!-- クレジット用 -->
+        <TextView
+            android:id="@+id/text_menu_separationwithticket_credit"
+            android:text="クレジット"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_separationwithticket_credit"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_separationwithticket_credit"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_separationwithticket_credit"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_separationwithticket_credit"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_separationwithticket_credit"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_separationwithticket_credit"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_separationwithticket_credit"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_separationwithticket_credit"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_separationwithticket_credit"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- 電子マネー用 -->
+        <TextView
+            android:id="@+id/text_menu_separationwithticket_emoney"
+            android:text="電子マネー"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_separationwithticket_emoney"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_separationwithticket_emoney"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_separationwithticket_emoney"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_separationwithticket_emoney"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_separationwithticket_emoney"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_separationwithticket_emoney"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_separationwithticket_emoney"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_separationwithticket_emoney"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_separationwithticket_emoney"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- QR用 -->
+        <TextView
+            android:id="@+id/text_menu_separationwithticket_qr"
+            android:text="QR"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_separationwithticket_qr"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_separationwithticket_qr"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_separationwithticket_qr"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_separationwithticket_qr"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_separationwithticket_qr"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_separationwithticket_qr"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_separationwithticket_qr"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_separationwithticket_qr"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_separationwithticket_qr"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- プリペイド用 -->
+        <TextView
+            android:id="@+id/text_menu_separationwithticket_prepaid"
+            android:text="プリペイド"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_separationwithticket_prepaid"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_separationwithticket_prepaid"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_separationwithticket_prepaid"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_separationwithticket_prepaid"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_separationwithticket_prepaid"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_separationwithticket_prepaid"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_separationwithticket_prepaid"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_separationwithticket_prepaid"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_separationwithticket_prepaid"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- 分別取消用 -->
+        <TextView
+            android:id="@+id/text_menu_separationwithticket_cancel"
+            android:text="チケット取消"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_separationwithticket_cancel"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_separationwithticket_cancel"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_separationwithticket_cancel"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_separationwithticket_cancel"
+            style="@style/StyleOtherIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_separationwithticket_cancel"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_separationwithticket_cancel"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_separationwithticket_cancel"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_separationwithticket_cancel"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_separationwithticket_cancel"
+            android:src="@drawable/ic_other_watari"
+            style="@style/StyleOtherIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

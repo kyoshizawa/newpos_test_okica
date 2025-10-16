@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.driver_code.DriverCodeFragment">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.AppPreference" />
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuViewModel" />
+
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEventHandlers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_menu_upper"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/cl_menu_lower"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- ホーム用レイアウト※POS機能のみ（商品カート） -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_menu_pos"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="@{!AppPreference.isServiceTicket() &amp;&amp; AppPreference.isServicePos() &amp;&amp; !sharedViewModel.cashMenu  ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <!-- TODO:POSの設定に応じてvisibilityを変更する -->
+
+                <!-- アイコン付きボタン -->
+                <Button
+                    android:id="@+id/btn_menu_pos_cart"
+                    style="@style/StylePosIconButton"
+                    android:onClick='@{handlers::navigateToProductSelect}'
+                    android:tag="@string/btn_pos_cart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- クレジットボタン用 -->
+                <TextView
+                    android:id="@+id/text_menu_pos_cart"
+                    style="@style/StylePosIconButtonText"
+                    android:text="@string/btn_pos_cart"
+                    app:layout_constraintBottom_toTopOf="@id/img_menu_pos_cart"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_pos_cart"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_pos_cart"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_pos_cart" />
+
+                <ImageView
+                    android:id="@+id/img_menu_pos_cart"
+                    style="@style/StylePosIconButtonImage"
+                    android:src="@drawable/ic_pos_cart"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_pos_cart"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_pos_cart"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_pos_cart"
+                    app:layout_constraintTop_toBottomOf="@id/text_menu_pos_cart"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- ホーム用レイアウト※POS機能+チケット機能（商品選択、チケット販売、改札） -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_menu_pos_ticket"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="@{AppPreference.isServiceTicket() &amp;&amp; AppPreference.isServicePos() &amp;&amp; !sharedViewModel.cashMenu ? View.VISIBLE : View.GONE}"
+                
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+                <!-- アイコン付きボタン -->
+                <Button
+                    android:id="@+id/btn_menu_pt_product_selection"
+                    android:enabled="true"
+                    style="@style/StyleTicketIconButton"
+                    android:onClick='@{handlers::navigateToProductSelect}'
+                    android:tag="@string/btn_product_selection"
+                    app:layout_constraintBottom_toTopOf="@id/btn_menu_pt_ticket_sales"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btn_menu_pt_ticket_sales"
+                    android:enabled="true"
+                    style="@style/StyleTicketIconButton"
+                    android:onClick='@{handlers::navigateToTicketSearch}'
+                    android:tag="@string/btn_ticket_sales"
+                    app:layout_constraintBottom_toTopOf="@id/btn_menu_pt_ticket_gate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_menu_pt_product_selection"/>
+
+                <Button
+                    android:id="@+id/btn_menu_pt_ticket_gate"
+                    android:enabled="true"
+                    style="@style/StyleTicketIconButton"
+                    android:onClick='@{handlers::navigateToTicketGateSettings}'
+                    android:tag="@string/btn_ticket_gate"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_menu_pt_ticket_sales" />
+
+                <!-- 商品選択ボタン用 -->
+                <TextView
+                    android:id="@+id/text_menu_pt_product_selection"
+                    style="@style/StyleTicketIconButtonText"
+                    android:text="@string/btn_product_selection"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_pt_product_selection"
+                    app:layout_constraintStart_toEndOf="@id/img_menu_pt_product_selection"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_pt_product_selection"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_pt_product_selection" />
+
+                <ImageView
+                    android:id="@+id/img_menu_pt_product_selection"
+                    style="@style/StyleTicketIconButtonImage"
+                    android:src="@drawable/ic_pos_cart_white"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_pt_product_selection"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_pt_product_selection"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_pt_product_selection"
+                    app:layout_constraintEnd_toStartOf="@id/text_menu_pt_product_selection"
+                    tools:ignore="ContentDescription" />
+
+                <!-- チケット販売ボタン用 -->
+                <TextView
+                    android:id="@+id/text_menu_pt_ticket_sale"
+                    style="@style/StyleTicketIconButtonText"
+                    android:text="@string/btn_ticket_sales"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_pt_ticket_sales"
+                    app:layout_constraintStart_toEndOf="@id/img_menu_pt_ticket_sale"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_pt_ticket_sales"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_pt_ticket_sales" />
+
+                <ImageView
+                    android:id="@+id/img_menu_pt_ticket_sale"
+                    style="@style/StyleTicketIconButtonImage"
+                    android:src="@drawable/ic_ticket_sales"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_pt_ticket_sales"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_pt_ticket_sales"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_pt_ticket_sales"
+                    app:layout_constraintEnd_toStartOf="@id/text_menu_pt_ticket_sale"
+                    tools:ignore="ContentDescription" />
+
+                <!-- 改札ボタン用 -->
+                <TextView
+                    android:id="@+id/text_menu_pt_ticket_gate"
+                    style="@style/StyleTicketIconButtonText"
+                    android:text="@string/btn_ticket_gate"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_pt_ticket_gate"
+                    app:layout_constraintStart_toEndOf="@id/img_menu_pt_ticket_gate"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_pt_ticket_gate"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_pt_ticket_gate" />
+
+                <ImageView
+                    android:id="@+id/img_menu_pt_ticket_gate"
+                    style="@style/StyleTicketIconButtonImage"
+                    android:src="@drawable/ic_ticket_gate"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_pt_ticket_gate"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_pt_ticket_gate"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_pt_ticket_gate"
+                    app:layout_constraintEnd_toStartOf="@id/text_menu_pt_ticket_gate"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- ホーム用レイアウト※チケット機能のみ（商品選択、チケット販売、改札） -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_menu_ticket"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="@{AppPreference.isServiceTicket() &amp;&amp; !AppPreference.isServicePos() &amp;&amp; !sharedViewModel.cashMenu ? View.VISIBLE : View.GONE}"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+                <!-- アイコン付きボタン -->
+                <Button
+                    android:id="@+id/btn_menu_t_ticket_sales"
+                    android:enabled="true"
+                    style="@style/StyleTicketIconButton"
+                    android:onClick='@{handlers::navigateToTicketSearch}'
+                    android:tag="@string/btn_ticket_sales"
+                    app:layout_constraintBottom_toTopOf="@id/btn_menu_t_ticket_gate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btn_menu_t_ticket_gate"
+                    android:enabled="true"
+                    style="@style/StyleTicketIconButton"
+                    android:onClick='@{handlers::navigateToTicketGateSettings}'
+                    android:tag="@string/btn_ticket_gate"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_t_other"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_menu_t_ticket_sales" />
+
+                <Button
+                    android:id="@+id/btn_menu_t_other"
+                    android:enabled="false"
+                    style="@style/StyleTicketIconButton"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_menu_t_ticket_gate" />
+
+                <!-- チケット販売ボタン用 -->
+                <TextView
+                    android:id="@+id/text_menu_t_ticket_sale"
+                    style="@style/StyleTicketIconButtonText"
+                    android:text="@string/btn_ticket_sales"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_t_ticket_sales"
+                    app:layout_constraintStart_toEndOf="@id/img_menu_t_ticket_sale"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_t_ticket_sales"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_t_ticket_sales" />
+
+                <ImageView
+                    android:id="@+id/img_menu_t_ticket_sale"
+                    style="@style/StyleTicketIconButtonImage"
+                    android:src="@drawable/ic_ticket_sales"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_t_ticket_sales"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_t_ticket_sales"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_t_ticket_sales"
+                    app:layout_constraintEnd_toStartOf="@id/text_menu_t_ticket_sale"
+                    tools:ignore="ContentDescription" />
+
+                <!-- 改札ボタン用 -->
+                <TextView
+                    android:id="@+id/text_menu_t_ticket_gate"
+                    style="@style/StyleTicketIconButtonText"
+                    android:text="@string/btn_ticket_gate"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_t_ticket_gate"
+                    app:layout_constraintStart_toEndOf="@id/img_menu_t_ticket_gate"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_t_ticket_gate"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_t_ticket_gate" />
+
+                <ImageView
+                    android:id="@+id/img_menu_t_ticket_gate"
+                    style="@style/StyleTicketIconButtonImage"
+                    android:src="@drawable/ic_ticket_gate"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_t_ticket_gate"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_t_ticket_gate"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_t_ticket_gate"
+                    app:layout_constraintEnd_toStartOf="@id/text_menu_t_ticket_gate"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- ホーム用レイアウト※各マネー選択 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_menu_home"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="@{ (!AppPreference.isServiceTicket() &amp;&amp; !AppPreference.isServicePos()) || sharedViewModel.cashMenu ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <!-- TODO:POSの設定に応じてvisibilityを変更する -->
+
+                <!-- アイコン付きボタン -->
+                <Button
+                    android:id="@+id/btn_menu_home_credit"
+                    style="@style/StyleHomeIconButton"
+                    android:onClick='@{view -> handlers.navigateToCreditCardScan(view, sharedViewModel)}'
+                    android:tag="@string/btn_home_credit"
+                    app:layout_constraintBottom_toTopOf="@id/btn_menu_home_qr"
+                    app:layout_constraintEnd_toStartOf="@id/btn_menu_home_emoney"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btn_menu_home_emoney"
+                    style="@style/StyleHomeIconButton"
+                    android:onClick="@{view -> handlers.navigateMenu(view, @id/action_navigation_menu_home_to_navigation_menu_emoney)}"
+                    android:tag="@string/btn_home_emoney"
+                    app:layout_constraintBottom_toTopOf="@id/btn_menu_home_other"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_menu_home_credit"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btn_menu_home_qr"
+                    style="@style/StyleHomeIconButton"
+                    android:onClick="@{view -> handlers.navigateToQR(view, sharedViewModel)}"
+                    android:tag="@string/btn_home_qr"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btn_menu_home_other"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_menu_home_credit" />
+
+                <Button
+                    android:id="@+id/btn_menu_home_other"
+                    style="@style/StyleHomeIconButton"
+                    android:onClick='@{view -> handlers.navigateMenu(view, @id/action_navigation_menu_home_to_navigation_menu_others)}'
+                    android:tag="@string/btn_home_other"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_menu_home_qr"
+                    app:layout_constraintTop_toBottomOf="@id/btn_menu_home_emoney" />
+
+                <!-- クレジットボタン用 -->
+                <TextView
+                    android:id="@+id/text_menu_home_credit"
+                    style="@style/StyleHomeIconButtonText"
+                    android:text="@string/btn_home_credit"
+                    app:layout_constraintBottom_toTopOf="@id/img_menu_home_credit"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_home_credit"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_home_credit"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_home_credit" />
+
+                <ImageView
+                    android:id="@+id/img_menu_home_credit"
+                    style="@style/StyleHomeIconButtonImage"
+                    android:src="@drawable/ic_home_credit"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_home_credit"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_home_credit"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_home_credit"
+                    app:layout_constraintTop_toBottomOf="@id/text_menu_home_credit"
+                    tools:ignore="ContentDescription" />
+
+                <!-- 電子マネーボタン用 -->
+                <TextView
+                    android:id="@+id/text_menu_home_emoney"
+                    style="@style/StyleHomeIconButtonText"
+                    android:text="@string/btn_home_emoney"
+                    app:layout_constraintBottom_toTopOf="@id/img_menu_home_emoney"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_home_emoney"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_home_emoney"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_home_emoney" />
+
+                <ImageView
+                    android:id="@+id/img_menu_home_emoney"
+                    style="@style/StyleHomeIconButtonImage"
+                    android:src="@drawable/ic_home_emoney"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_home_emoney"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_home_emoney"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_home_emoney"
+                    app:layout_constraintTop_toBottomOf="@id/text_menu_home_emoney"
+                    tools:ignore="ContentDescription" />
+
+                <!-- コード決済ボタン用 -->
+                <TextView
+                    android:id="@+id/text_menu_home_qr"
+                    style="@style/StyleHomeIconButtonText"
+                    android:text="@string/btn_home_qr"
+                    app:layout_constraintBottom_toTopOf="@id/img_menu_home_qr"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_home_qr"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_home_qr"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_home_qr" />
+
+                <ImageView
+                    android:id="@+id/img_menu_home_qr"
+                    style="@style/StyleHomeIconButtonImage"
+                    android:src="@drawable/ic_home_qr"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_home_qr"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_home_qr"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_home_qr"
+                    app:layout_constraintTop_toBottomOf="@id/text_menu_home_qr"
+                    tools:ignore="ContentDescription" />
+
+                <!-- その他決済ボタン用 -->
+                <TextView
+                    android:id="@+id/text_menu_home_other"
+                    style="@style/StyleHomeIconButtonText"
+                    android:text="@string/btn_home_other"
+                    app:layout_constraintBottom_toTopOf="@id/img_menu_home_other"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_home_other"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_home_other"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_home_other" />
+
+                <ImageView
+                    android:id="@+id/img_menu_home_other"
+                    style="@style/StyleHomeIconButtonImage"
+                    android:src="@drawable/ic_home_other"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_home_other"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_home_other"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_home_other"
+                    app:layout_constraintTop_toBottomOf="@id/text_menu_home_other"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_menu_lower"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <!-- アイコンなしボタン -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_menu_icon_none"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{ (!AppPreference.isServiceTicket() &amp;&amp; !AppPreference.isServicePos()) || !sharedViewModel.cashMenu ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/btn_menu_home_business_end"
+                    style="@style/StyleHomeButton"
+                    android:onClick="@{view -> handlers.businessEndConfirm(view, sharedViewModel)}"
+                    android:text="@string/btn_home_business_end"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_menu_home_operation"
+                    app:layout_constraintTop_toBottomOf="@id/btn_menu_home_business" />
+
+                <Button
+                    android:id="@+id/btn_menu_home_operation"
+                    style="@style/StyleHomeButton"
+                    android:onClick='@{handlers::navigateHomeOperation}'
+                    android:text="@string/btn_home_operation"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btn_menu_home_business_end"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_menu_home_history" />
+
+                <Button
+                    android:id="@+id/btn_menu_home_history"
+                    style="@style/StyleHomeButton"
+                    android:onClick='@{view -> handlers.navigateMenu(view, @id/action_navigation_menu_home_to_navigation_menu_history)}'
+                    android:text="@string/btn_home_history"
+                    app:layout_constraintBottom_toTopOf="@id/btn_menu_home_operation"
+                    app:layout_constraintEnd_toStartOf="@id/btn_menu_home_business"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_menu_home_history" />
+
+                <Button
+                    android:id="@+id/btn_menu_home_business"
+                    style="@style/StyleHomeButton"
+                    android:onClick='@{view -> handlers.navigateMenu(view, @id/action_navigation_menu_home_to_navigation_menu_business)}'
+                    android:text="@string/btn_home_business"
+                    app:layout_constraintBottom_toTopOf="@id/btn_menu_home_business_end"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_menu_home_history"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_home_history" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--現金ボタン-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_menu_cash"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{ (AppPreference.isServiceTicket() || AppPreference.isServicePos()) &amp;&amp; sharedViewModel.cashMenu ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/btn_menu_home_cash"
+                    style="@style/StyleHomeIconButton"
+                    android:layout_height="150dp"
+                    android:visibility="@{!AppPreference.getIsCashChanger() ? View.VISIBLE : View.GONE}"
+                    android:onClick='@{view -> handlers.navigateToCashInput(view, sharedViewModel, @id/action_navigation_menu_to_fragment_cash_input)}'
+                    android:tag="@string/btn_home_cash"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_menu_home_cash"
+                    style="@style/StyleHomeIconButtonText"
+                    android:text="@string/btn_home_cash"
+                    android:visibility="@{!AppPreference.getIsCashChanger() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_home_cash"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_home_cash"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_home_cash"/>
+
+                <ImageView
+                    android:id="@+id/img_menu_home_cash"
+                    style="@style/StyleHomeIconButtonImage"
+                    android:src="@drawable/ic_home_cash"
+                    android:visibility="@{!AppPreference.getIsCashChanger() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_home_cash"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_home_cash"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_home_cash"
+                    app:layout_constraintTop_toBottomOf="@id/text_menu_home_cash"
+                    tools:ignore="ContentDescription" />
+
+                <!--現金ボタン（つり銭機用）-->
+                <Button
+                    android:id="@+id/btn_menu_home_cash_for_cashchanger"
+                    style="@style/StyleHomeIconButton"
+                    android:layout_height="150dp"
+                    android:visibility="@{AppPreference.getIsCashChanger() ? View.VISIBLE : View.GONE}"
+                    android:onClick='@{view -> handlers.navigateToCashInput(view, sharedViewModel, @id/action_navigation_menu_to_fragment_cash_changer_payment)}'
+                    android:tag="@string/btn_home_cash"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_menu_home_cash_for_cashchanger"
+                    style="@style/StyleHomeIconButtonText"
+                    android:text="@string/btn_home_cash"
+                    android:visibility="@{AppPreference.getIsCashChanger() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_home_cash_for_cashchanger"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_home_cash_for_cashchanger"
+                    app:layout_constraintTop_toTopOf="@id/btn_menu_home_cash_for_cashchanger" />
+
+                <ImageView
+                    android:id="@+id/img_menu_home_cash_for_cashchanger"
+                    style="@style/StyleHomeIconButtonImage"
+                    android:src="@drawable/ic_home_cash"
+                    android:visibility="@{AppPreference.getIsCashChanger() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_menu_home_cash_for_cashchanger"
+                    app:layout_constraintEnd_toEndOf="@id/btn_menu_home_cash_for_cashchanger"
+                    app:layout_constraintStart_toStartOf="@id/btn_menu_home_cash_for_cashchanger"
+                    app:layout_constraintTop_toBottomOf="@id/text_menu_home_cash_for_cashchanger"
+                    tools:ignore="ContentDescription" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

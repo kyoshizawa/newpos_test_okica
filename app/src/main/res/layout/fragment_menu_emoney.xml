@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.DriverCodeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.AppPreference" />
+        <import type="jp.mcapps.android.multi_payment_terminal.data.BusinessType" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEventHandlers" />
+        <variable
+            name="sharedViewModel"
+            type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- アイコン付きボタン -->
+        <Button
+            android:id="@+id/btn_menu_emoney_suica"
+            android:tag="@string/money_brand_suica"
+            android:onClick="@{v -> handlers.navigateToEmoneySuicaPrestageProcess(v, BusinessType.PAYMENT, sharedViewModel)}"
+            android:enabled='@{AppPreference.isMoneySuica()}'
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_emoney_id"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_emoney_waon"
+            style="@style/StyleEmoneyIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_emoney_id"
+            android:tag="@string/money_brand_id"
+            android:onClick="@{v -> handlers.navigateToEmoneyIdPrestageProcess(v, BusinessType.PAYMENT, sharedViewModel)}"
+            android:enabled='@{AppPreference.isMoneyId()}'
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_emoney_suica"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_emoney_nanaco"
+            style="@style/StyleEmoneyIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_emoney_waon"
+            android:tag="@string/money_brand_waon"
+            android:onClick="@{v -> handlers.navigateToEmoneyWaonPrestageProcess(v, BusinessType.PAYMENT, sharedViewModel)}"
+            android:enabled='@{AppPreference.isMoneyWaon()}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_emoney_suica"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_emoney_nanaco"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_emoney_quicpay"
+            style="@style/StyleEmoneyIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_emoney_nanaco"
+            android:tag="@string/money_brand_nanaco"
+            android:onClick="@{v -> handlers.navigateToEmoneyNanacoPrestageProcess(v, BusinessType.PAYMENT, sharedViewModel)}"
+            android:enabled='@{AppPreference.isMoneyNanaco()}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_emoney_id"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_emoney_waon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_emoney_edy"
+            style="@style/StyleEmoneyIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_emoney_edy"
+            android:tag="@string/money_brand_edy"
+            android:onClick="@{v -> handlers.navigateToEmoneyEdyPrestageProcess(v, BusinessType.PAYMENT, sharedViewModel)}"
+            android:enabled='@{AppPreference.isMoneyEdy()}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_emoney_nanaco"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_emoney_quicpay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_emoney_empty"
+            style="@style/StyleEmoneyIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_emoney_quicpay"
+            android:tag="@string/money_brand_qp"
+            android:onClick="@{v -> handlers.navigateToEmoneyQuicPayPrestageProcess(v, BusinessType.PAYMENT, sharedViewModel)}"
+            android:enabled='@{AppPreference.isMoneyQuicpay()}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_emoney_waon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_emoney_edy"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_emoney_okica"
+            style="@style/StyleEmoneyIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_emoney_okica"
+            android:tag="@string/money_brand_okica"
+            android:visibility='@{AppPreference.isMoneyOkica() ? View.VISIBLE : View.GONE}'
+            android:onClick="@{v -> handlers.navigateToEmoneyOkicaPrestageProcess(v, BusinessType.PAYMENT, sharedViewModel)}"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_emoney_quicpay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_menu_emoney_empty"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_emoney_balance"
+            style="@style/StyleEmoneyIconButton"/>
+
+        <Button
+            android:id="@+id/btn_menu_emoney_empty"
+            android:enabled="false"
+            android:visibility='@{AppPreference.isMoneyOkica() ? View.VISIBLE : View.GONE}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_emoney_edy"
+            app:layout_constraintStart_toEndOf="@id/btn_menu_emoney_okica"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_menu_emoney_balance"
+            style="@style/StyleEmoneyIconButton"/>
+
+        <!-- アイコンなしボタン -->
+        <Button
+            android:id="@+id/btn_menu_emoney_balance"
+            android:text="@string/balance_inquiry"
+            android:onClick="@{view -> handlers.navigateMenu(view, @id/action_navigation_menu_emoney_to_navigation_menu_balance)}"
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_emoney_okica"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_menu_emoney_charge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/StyleBalanceButton"/>
+
+        <!-- アイコンなしボタン -->
+        <Button
+            android:id="@+id/btn_menu_emoney_charge"
+            android:text="@string/charge_card"
+            android:onClick="@{view -> handlers.navigateMenu(view, @id/action_navigation_menu_emoney_to_navigation_menu_charge)}"
+            android:visibility='@{viewModel.useCharge ? View.VISIBLE : View.GONE}'
+            app:layout_constraintTop_toBottomOf="@id/btn_menu_emoney_empty"
+            app:layout_constraintStart_toEndOf="@+id/btn_menu_emoney_balance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/StyleChargeButton"/>
+
+        <!-- Suicaボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_emoney_suica"
+            android:text="@string/money_brand_suica"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_emoney_suica"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_suica"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_suica"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_emoney_suica"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_emoney_suica"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_emoney_suica"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_suica"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_suica"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_emoney_suica"
+            android:src="@drawable/ic_emoney_suica"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- iDボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_emoney_id"
+            android:text="@string/money_brand_id"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_emoney_id"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_id"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_id"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_emoney_id"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_emoney_id"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_emoney_id"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_id"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_id"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_emoney_id"
+            android:src="@drawable/ic_emoney_id"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- WAONボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_emoney_waon"
+            android:text="@string/money_brand_waon"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_emoney_waon"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_waon"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_waon"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_emoney_waon"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_emoney_waon"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_emoney_waon"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_waon"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_waon"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_emoney_waon"
+            android:src="@drawable/ic_emoney_waon"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- nanacoボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_emoney_nanaco"
+            android:text="@string/money_brand_nanaco"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_emoney_nanaco"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_nanaco"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_nanaco"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_emoney_nanaco"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_emoney_nanaco"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_emoney_nanaco"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_nanaco"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_nanaco"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_emoney_nanaco"
+            android:src="@drawable/ic_emoney_nanaco"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- Edyボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_emoney_edy"
+            android:text="@string/money_brand_edy"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_emoney_edy"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_edy"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_edy"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_emoney_edy"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_emoney_edy"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_emoney_edy"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_edy"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_edy"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_emoney_edy"
+            android:src="@drawable/ic_emoney_edy"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- QUICPayボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_emoney_quicpay"
+            android:text="@string/money_brand_qp"
+            app:layout_constraintTop_toTopOf="@id/btn_menu_emoney_quicpay"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_quicpay"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_quicpay"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_emoney_quicpay"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+        <ImageView
+            android:id="@+id/img_menu_emoney_quicpay"
+            app:layout_constraintTop_toBottomOf="@id/text_menu_emoney_quicpay"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_quicpay"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_quicpay"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_emoney_quicpay"
+            android:src="@drawable/ic_emoney_quicpay"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+
+        <!-- OKICAボタン用 -->
+        <TextView
+            android:id="@+id/text_menu_emoney_okica"
+            android:text="@string/money_brand_okica"
+            android:visibility='@{AppPreference.isMoneyOkica() ? View.VISIBLE : View.GONE}'
+            app:layout_constraintTop_toTopOf="@id/btn_menu_emoney_okica"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_okica"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_okica"
+            app:layout_constraintBottom_toTopOf="@id/img_menu_emoney_okica"
+            style="@style/StyleEmoneyIconButtonText"/>
+
+
+        <ImageView
+            android:id="@+id/img_menu_emoney_okica"
+            android:visibility='@{AppPreference.isMoneyOkica() ? View.VISIBLE : View.GONE}'
+            app:layout_constraintTop_toBottomOf="@id/text_menu_emoney_okica"
+            app:layout_constraintStart_toStartOf="@id/btn_menu_emoney_okica"
+            app:layout_constraintEnd_toEndOf="@id/btn_menu_emoney_okica"
+            app:layout_constraintBottom_toBottomOf="@id/btn_menu_emoney_okica"
+            android:src="@drawable/ic_emoney_okica"
+            style="@style/StyleEmoneyIconButtonImage"
+            tools:ignore="ContentDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

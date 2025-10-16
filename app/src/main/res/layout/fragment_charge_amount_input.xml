@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    android:id="@+id/fragment_driver_code"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.driver_code.AmountInputFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.ui.amount_input.ChargeAmountInputViewModel" />
+        <variable
+            name="handlers"
+            type="jp.mcapps.android.multi_payment_terminal.ui.amount_input.ChargeAmountInputEventHandlers" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:orientation="vertical">
+
+            <TextView
+                android:text='@{Converters.is0(viewModel.amount) ? Converters.integerToNumberFormat(1000).replace("1","_") + @string/yen : Converters.integerToNumberFormat(viewModel.amount) + @string/yen}'
+                style="@style/StyleAmountInputText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/charge_message"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text='@{Converters.chargeMessage()}'
+                android:textColor="#FFFF0000"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:text="@string/btn_common_num_7"
+                        android:onClick='@{view -> handlers.onInputNumber(view, "7000")}'
+                        android:backgroundTint='@{Converters.isButtonEnabled(viewModel.amount, 7000) ? @color/bg_primary : @color/btn_common_disable}'
+                        style="@style/StyleBasicButtonNumber"
+                        android:enabled='@{Converters.isButtonEnabled(viewModel.amount, 7000)}'/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:text="@string/btn_common_num_8"
+                        android:onClick='@{view -> handlers.onInputNumber(view, "8000")}'
+                        android:backgroundTint='@{Converters.isButtonEnabled(viewModel.amount, 8000) ? @color/bg_primary : @color/btn_common_disable}'
+                        style="@style/StyleBasicButtonNumber"
+                        android:enabled='@{Converters.isButtonEnabled(viewModel.amount, 8000)}'/>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:text="@string/btn_common_num_9"
+                        android:onClick='@{view -> handlers.onInputNumber(view, "9000")}'
+                        android:backgroundTint='@{Converters.isButtonEnabled(viewModel.amount, 9000) ? @color/bg_primary : @color/btn_common_disable}'
+                        style="@style/StyleBasicButtonNumber"
+                        android:enabled='@{Converters.isButtonEnabled(viewModel.amount, 9000)}'/>
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:text="@string/btn_common_num_4"
+                        android:onClick='@{view -> handlers.onInputNumber(view, "4000")}'
+                        android:backgroundTint='@{Converters.isButtonEnabled(viewModel.amount, 4000) ? @color/bg_primary : @color/btn_common_disable}'
+                        style="@style/StyleBasicButtonNumber"
+                        android:enabled='@{Converters.isButtonEnabled(viewModel.amount, 4000)}'/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:text="@string/btn_common_num_5"
+                        android:onClick='@{view -> handlers.onInputNumber(view, "5000")}'
+                        android:backgroundTint='@{Converters.isButtonEnabled(viewModel.amount, 5000) ? @color/bg_primary : @color/btn_common_disable}'
+                        style="@style/StyleBasicButtonNumber"
+                        android:enabled='@{Converters.isButtonEnabled(viewModel.amount, 5000)}'/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:text="@string/btn_common_num_6"
+                        android:onClick='@{view -> handlers.onInputNumber(view, "6000")}'
+                        android:backgroundTint='@{Converters.isButtonEnabled(viewModel.amount, 6000) ? @color/bg_primary : @color/btn_common_disable}'
+                        style="@style/StyleBasicButtonNumber"
+                        android:enabled='@{Converters.isButtonEnabled(viewModel.amount, 6000)}'/>
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:text="@string/btn_common_num_1"
+                        android:onClick='@{view -> handlers.onInputNumber(view, "1000")}'
+                        android:backgroundTint='@{Converters.isButtonEnabled(viewModel.amount, 1000) ? @color/bg_primary : @color/btn_common_disable}'
+                        style="@style/StyleBasicButtonNumber"
+                        android:enabled='@{Converters.isButtonEnabled(viewModel.amount, 1000)}'/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:text="@string/btn_common_num_2"
+                        android:onClick='@{view -> handlers.onInputNumber(view, "2000")}'
+                        android:backgroundTint='@{Converters.isButtonEnabled(viewModel.amount, 2000) ? @color/bg_primary : @color/btn_common_disable}'
+                        style="@style/StyleBasicButtonNumber"
+                        android:enabled='@{Converters.isButtonEnabled(viewModel.amount, 2000)}'/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:text="@string/btn_common_num_3"
+                        android:onClick='@{view -> handlers.onInputNumber(view, "3000")}'
+                        android:backgroundTint='@{Converters.isButtonEnabled(viewModel.amount, 3000) ? @color/bg_primary : @color/btn_common_disable}'
+                        style="@style/StyleBasicButtonNumber"
+                        android:enabled='@{Converters.isButtonEnabled(viewModel.amount, 3000)}'/>
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:tag="@string/btn_common_correction_horizontal"
+                        android:text="@string/btn_common_correction_horizontal"
+                        style="@style/StyleBasicButtonOther"
+                        android:backgroundTint='@{!Converters.is0(viewModel.amount) ? @color/menu_charge : @color/btn_common_disable}'
+                        android:onClick="@{handlers::onCorrection}"
+                        android:enabled='@{!Converters.is0(viewModel.amount)}' />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:text="@string/btn_common_num_0"
+                        android:onClick='@{view -> handlers.onInputNumber(view, "0")}'
+                        android:backgroundTint='@{Converters.isButtonEnabled(viewModel.amount, 0) ? @color/bg_primary : @color/btn_common_disable}'
+                        style="@style/StyleBasicButtonNumber"
+                        android:enabled='@{Converters.isButtonEnabled(viewModel.amount, 0)}'/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:tag="@string/btn_common_confirmed"
+                        android:text="@string/btn_common_confirmed"
+                        style="@style/StyleBasicButtonOther"
+                        android:backgroundTint='@{!Converters.is0(viewModel.amount) ? @color/menu_charge : @color/btn_common_disable}'
+                        android:onClick='@{handlers::onEnter}'
+                        android:enabled='@{!Converters.is0(viewModel.amount)}'/>
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+</layout>

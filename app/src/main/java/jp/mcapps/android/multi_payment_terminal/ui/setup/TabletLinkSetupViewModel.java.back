@@ -1,0 +1,316 @@
+package jp.mcapps.android.multi_payment_terminal.ui.setup;
+
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.net.wifi.WifiManager;
+import android.net.wifi.WpsInfo;
+import android.net.wifi.p2p.WifiP2pConfig;
+import android.net.wifi.p2p.WifiP2pDevice;
+import android.net.wifi.p2p.WifiP2pManager;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.ViewModel;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import jp.mcapps.android.multi_payment_terminal.AppPreference;
+import jp.mcapps.android.multi_payment_terminal.MainApplication;
+import jp.mcapps.android.multi_payment_terminal.data.TabletLinkInfo;
+import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
+import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
+import jp.mcapps.android.multi_payment_terminal.model.TabletLinker;
+import jp.mcapps.android.multi_payment_terminal.model.Updater;
+import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.IFBoxApi;
+import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.IFBoxApiImpl;
+import timber.log.Timber;
+
+@RequiresApi(api = Build.VERSION_CODES.N)
+public class TabletLinkSetupViewModel extends ViewModel implements LifecycleObserver {
+    private final DeviceNetworkManager _deviceNetworkManager;
+    private final IFBoxManager _ifBoxManager;
+    private final TabletLinker _tabletLinker;
+    private final Context _appContext = MainApplication.getInstance();
+    private final WifiManager _wifiManager = (WifiManager) _appContext.getSystemService(Context.WIFI_SERVICE);
+    private Handler _handler = new Handler(Looper.getMainLooper());
+    private boolean _isRunning = false;
+    private final List<Disposable> _disposables = new ArrayList<>();
+    private void disposeAll() {
+        Observable.fromIterable(_disposables).doFinally(_disposables::clear).forEach(Disposable::dispose).dispose();
+    }
+
+    public enum Status {
+        NONE,
+        STARTED,
+        PEER_DETECTED,
+        CONNECTED,
+    }
+
+    private final IntentFilter intentFilter = new IntentFilter() {
+        {
+            addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+            // 必要無かったら消す
+            addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+            addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+            addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+        }
+    };
+
+    private BroadcastReceiver receiver = null;
+    private WifiP2pManager.Channel channel;
+    private WifiP2pManager manager;
+    private List<WifiP2pDevice> peers = new ArrayList<>();
+
+    private MutableLiveData<Status> _status = new MutableLiveData<>(Status.NONE);
+    public MutableLiveData<Status> getStatus() {
+        return _status;
+    }
+    public void setStatus(Status status) {
+        _handler.post(() -> {
+            _status.setValue(status);
+        });
+    }
+
+    private MutableLiveData<Boolean> _isExecuteFailure = new MutableLiveData<>(false);
+    public MutableLiveData<Boolean> isExecuteFailure() {
+        return _isExecuteFailure;
+    }
+    public void isExecuteFailure(boolean b) {
+        _handler.post(() -> {
+            _isExecuteFailure.setValue(b);
+        });
+    }
+
+    public TabletLinkSetupViewModel(DeviceNetworkManager deviceNetworkManager, IFBoxManager ifBoxManager, TabletLinker tabletLinker) {
+        _deviceNetworkManager = deviceNetworkManager;
+        _ifBoxManager = ifBoxManager;
+        _tabletLinker = tabletLinker;
+
+        manager = (WifiP2pManager) _appContext.getSystemService(Context.WIFI_P2P_SERVICE);
+        channel = manager.initialize(_appContext, _appContext.getMainLooper(), null);
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    public void onResume() {
+        Timber.d("onResume");
+        if (receiver != null) {
+            _appContext.registerReceiver(receiver, intentFilter);
+        }
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    public void onPause() {
+        Timber.d("onPause");
+        if (receiver != null) {
+            try {
+                _appContext.unregisterReceiver(receiver);
+//                manager.stopPeerDiscovery(channel, new WifiP2pManager.ActionListener() {
+//                    @Override
+//                    public void onSuccess() {
+//                        Timber.d("stop discover peers success");
+//                    }
+//
+//                    @Override
+//                    public void onFailure(int reason) {
+//                        Timber.d("stop discover peers failure");
+//                    }
+//                });
+            } catch(Exception ignore) { }
+        }
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    public void onDestroy() {
+        Timber.d("onDestroy");
+        disposeAll();
+    }
+
+    public Completable connectP2p(String deviceAddress) {
+        return Completable.create(emitter -> {
+            _deviceNetworkManager.deletePersistentGroup()
+                    .doFinally(() -> {
+                        // 処理がぶつかってうまく動かなくなるのでstopしておく
+                        _deviceNetworkManager.stop();
+
+                        connectP2pPrivate(deviceAddress)
+                                .observeOn(Schedulers.io())
+                                .doOnSubscribe(_disposables::add)
+                                .subscribe(() -> {
+                                    _deviceNetworkManager.restart();
+                                    _ifBoxManager.restart();
+                                    _tabletLinker.restart();
+                                    if (!emitter.isDisposed()) {
+                                        emitter.onComplete();
+                                    }
+                                }, e -> {
+                                    if (!emitter.isDisposed()) {
+                                        emitter.onError(e);
+                                    }
+                                });
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .doOnSubscribe(_disposables::add)
+                    .subscribe(() -> { }, Timber::e);
+        });
+    }
+
+    private Completable connectP2pPrivate(String deviceAddress) {
+        setStatus(Status.STARTED);
+        _isRunning = false;
+        _wifiManager.setWifiEnabled(true);
+
+        return Completable.create(emitter -> {
+            final WifiP2pManager.PeerListListener peerListListener = peerList -> {
+                Timber.d("peers num: %s", peerList.getDeviceList().size());
+
+                List<WifiP2pDevice> refreshedPeers = new ArrayList<>(peerList.getDeviceList());
+
+                for (WifiP2pDevice d : refreshedPeers) {
+                    if (d.deviceAddress.equals(deviceAddress)) {
+                        synchronized (this) {
+                            if (_isRunning) return;
+
+                            _isRunning = true;
+
+                            manager.stopPeerDiscovery(channel, new WifiP2pManager.ActionListener() {
+                                @Override
+                                public void onSuccess() {
+                                    Timber.d("stop discover peers success");
+                                }
+
+                                @Override
+                                public void onFailure(int reason) {
+                                    Timber.d("stop discover peers failure");
+                                }
+                            });
+
+                            setStatus(Status.PEER_DETECTED);
+                            final WifiP2pConfig config = new WifiP2pConfig();
+                            config.deviceAddress = deviceAddress;
+                            config.wps.setup = WpsInfo.PBC;
+                            config.groupOwnerIntent = 0;
+
+                            manager.connect(channel, config, new WifiP2pManager.ActionListener() {
+
+                                @SuppressLint("CheckResult")
+                                @Override
+                                public void onSuccess() {
+                                    Timber.d("Start connect success");
+//                                    final TabletLinkInfo info = new TabletLinkInfo();
+//                                    final AtomicReference<Disposable> disposable = new AtomicReference<>(null);
+//
+//                                    Observable.interval(1, TimeUnit.SECONDS)
+//                                            .doOnSubscribe(_disposables::add)
+//                                            .doOnSubscribe(disposable::set)
+//                                            .subscribe(l -> {
+//                                                manager.requestConnectionInfo(channel, connectionInfo -> {
+//                                                    Timber.d("connectionInfo: %s", connectionInfo);
+//                                                    if (!emitter.isDisposed()) {
+//                                                        if (connectionInfo.groupOwnerAddress != null) {
+//                                                            setStatus(Status.CONNECTED);
+//                                                            Timber.d("groupOwnerAddress :%s", connectionInfo.groupOwnerAddress);
+//                                                            info.deviceAddress = d.deviceAddress;
+//                                                            AppPreference.setTabletLinkInfo(info);
+//
+//                                                            disposable.get().dispose();
+//                                                            emitter.onComplete();
+//                                                        }
+//                                                    } else {
+//                                                        disposable.get().dispose();
+//                                                    }
+//                                                });
+//                                            }, Timber::e, () -> {});
+                                }
+
+                                @Override
+                                public void onFailure(int i) {
+                                    _isRunning = false;
+                                    Timber.d("Connect to tablet failure");
+                                }
+                            });
+                        }
+
+                        break;
+                    }
+                }
+
+                if (refreshedPeers.size() == 0) {
+                    Timber.d("peers not found");
+                }
+            };
+
+            receiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    String action = intent.getAction();
+                    if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
+                        if (!_isRunning) {
+                            Timber.d("WIFI_P2P_PEERS_CHANGED_ACTION");
+
+                            if (manager != null) {
+                                if (ActivityCompat.checkSelfPermission(_appContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                                    emitter.onError(new Throwable("Not permitted"));
+                                    return;
+                                }
+                                manager.requestPeers(channel, peerListListener);
+                            }
+                        }
+                    }
+
+                    if (WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION.equals(action)) {
+                        Timber.d("WIFI_P2P_STATE_CHANGED_ACTION");
+                    } else if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
+                        Timber.d("WIFI_P2P_CONNECTION_CHANGED_ACTION");
+                    } else if (WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action)) {
+                        final WifiP2pDevice device =
+                                (WifiP2pDevice) intent.getParcelableExtra(WifiP2pManager.EXTRA_WIFI_P2P_DEVICE);
+                        if (_status.getValue() == Status.PEER_DETECTED && device.status == WifiP2pDevice.CONNECTED) {
+                            setStatus(Status.CONNECTED);
+                        }
+                        Timber.d("WIFI_P2P_THIS_DEVICE_CHANGED_ACTION: %s", device);
+//                        Timber.d("WIFI_P2P_THIS_DEVICE_CHANGED_ACTION");
+                    }
+                }
+            };
+
+            manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
+                @Override
+                public void onSuccess() {
+                    Timber.d("Start discover peers success.");
+                }
+
+                @Override
+                public void onFailure(int reason) {
+                    emitter.onError(new Throwable("Can't start discover peers"));
+                    Timber.d("Start discover peers failure reason: %s", reason);
+                }
+            });
+
+            _appContext.registerReceiver(receiver, intentFilter);
+        });
+    }
+
+    private void sleep(long millis) {
+        try { Thread.sleep(millis); } catch (InterruptedException ignore) { }
+    }
+}

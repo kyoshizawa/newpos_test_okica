@@ -1,0 +1,38 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="@string/setting_header_sound"
+        app:iconSpaceReserved="false">
+
+        <SeekBarPreference
+            app:key="@string/confirm_key_sound_payment"
+            app:title="@string/setting_title_sound_payment"
+            app:defaultValue="@integer/confirm_default_sound_payment"
+            app:iconSpaceReserved="false"
+            android:max="10"
+            app:min="1"
+            app:showSeekBarValue="true"/>
+
+        <SeekBarPreference
+            app:key="@string/confirm_key_sound_guidance"
+            app:title="@string/setting_title_sound_guidance"
+            app:defaultValue="@integer/confirm_default_sound_guidance"
+            app:iconSpaceReserved="false"
+            android:max="10"
+            app:min="1"
+            app:showSeekBarValue="true"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/setting_header_screen"
+        app:iconSpaceReserved="false">
+        <SeekBarPreference
+            app:key="@string/confirm_key_brightness"
+            app:title="@string/setting_title_brightness"
+            app:defaultValue="@integer/confirm_default_brightness"
+            app:iconSpaceReserved="false"
+            android:max="10"
+            app:min="1"
+            app:showSeekBarValue="true"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

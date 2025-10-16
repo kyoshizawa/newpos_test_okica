@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="errorData"
+            type="jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/grid_history_error"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:background="@color/black"
+            android:textAlignment="viewStart"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/value_history_error_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_margin_small"
+            android:text="@{Converters.dateToString(errorData.date)}"
+            android:textSize="@dimen/driver_code_history_text_size"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/btn_error_history_detail"
+            app:layout_constraintBottom_toBottomOf="@id/btn_error_history_detail"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_error_history_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/common_margin"
+            android:text="詳細"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintTop_toBottomOf="@id/grid_history_error"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/value1_history_error_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@{errorData.errorCode}"
+            android:textSize="@dimen/driver_code_history_text_size"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/btn_error_history_detail"
+            app:layout_constraintStart_toStartOf="@id/value_history_error_date"/>
+
+        <TextView
+            android:id="@+id/mark_error_colon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_margin_small"
+            android:text="："
+            android:textSize="@dimen/driver_code_history_text_size"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/value1_history_error_detail"
+            app:layout_constraintStart_toEndOf="@id/value1_history_error_detail"/>
+
+        <TextView
+            android:id="@+id/value2_history_error_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_margin_small"
+            android:layout_gravity="center"
+            android:text="@{errorData.message}"
+            android:textSize="@dimen/driver_code_history_text_size"
+            android:textColor="@color/black"
+            android:breakStrategy="high_quality"
+            app:layout_constraintTop_toTopOf="@id/mark_error_colon"
+            app:layout_constraintStart_toEndOf="@id/mark_error_colon"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

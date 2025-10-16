@@ -1,0 +1,1153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- クレジット -->
+    <string name="error_type_credit_3001">3001</string>
+    <string name="error_message_credit_3001">読み込み待ちタイムアウト</string>
+    <string name="error_detail_credit_3001">詳細コード：%s\nタイムアウトする前にカードを読み込ませてください。</string>
+
+    <string name="error_type_credit_3002">3002</string>
+    <string name="error_message_credit_3002">読み取り失敗</string>
+    <string name="error_detail_credit_3002">詳細コード：%s\nカード読み取り失敗しました。\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_credit_3003">3003</string>
+    <string name="error_message_credit_3003">磁気カード利用不可</string>
+    <string name="error_detail_credit_3003">詳細コード：%s\nカード読み取り失敗しました。\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_credit_3004">3004</string>
+    <string name="error_message_credit_3004">磁気カード利用不可</string>
+    <string name="error_detail_credit_3004">詳細コード：%s\nICチップ付きのカードです。\nICカードリーダーに読み込ませてください。</string>
+
+    <string name="error_type_credit_3005">3005</string>
+    <string name="error_message_credit_3005">通信エラー</string>
+    <string name="error_detail_credit_3005">詳細コード：%s\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_credit_3006">3006</string>
+    <string name="error_message_credit_3006">通信エラー</string>
+    <string name="error_detail_credit_3006">詳細コード：%s\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_credit_3007">3007</string>
+    <string name="error_message_credit_3007">通信エラー</string>
+    <string name="error_detail_credit_3007">詳細コード：%s\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_credit_3008">3008</string>
+    <string name="error_message_credit_3008">通信エラー</string>
+    <string name="error_detail_credit_3008">詳細コード：%s\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_credit_3009">3009</string>
+    <string name="error_message_credit_3009">通信エラー</string>
+    <string name="error_detail_credit_3009">詳細コード：%s\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_credit_3010">3010</string>
+    <string name="error_message_credit_3010">通信エラー</string>
+    <string name="error_detail_credit_3010">詳細コード：%s\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_credit_3011">3011</string>
+    <string name="error_message_credit_3011">通信エラー</string>
+    <string name="error_detail_credit_3011">詳細コード：%s\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_credit_3012">3012</string>
+    <string name="error_message_credit_3012">利用不可検知</string>
+    <string name="error_detail_credit_3012">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_credit_3013">3013</string>
+    <string name="error_message_credit_3013">利用不可検知</string>
+    <string name="error_detail_credit_3013">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_credit_3014">3014</string>
+    <string name="error_message_credit_3014">クレジット取引失敗</string>
+    <string name="error_detail_credit_3014">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_credit_3015">3015</string>
+    <string name="error_message_credit_3015">クレジット取引失敗</string>
+    <string name="error_detail_credit_3015">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_credit_3016">3016</string>
+    <string name="error_message_credit_3016">クレジット取引失敗</string>
+    <string name="error_detail_credit_3016">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_credit_3017">3017</string>
+    <string name="error_message_credit_3017">クレジット取引失敗</string>
+    <string name="error_detail_credit_3017">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_credit_3018">3018</string>
+    <string name="error_message_credit_3018">クレジット取引失敗</string>
+    <string name="error_detail_credit_3018">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_credit_3019">3019</string>
+    <string name="error_message_credit_3019">クレジット取引失敗</string>
+    <string name="error_detail_credit_3019">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_credit_3020">3020</string>
+    <string name="error_message_credit_3020">クレジット取引失敗</string>
+    <string name="error_detail_credit_3020">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_credit_3021">3021</string>
+    <string name="error_message_credit_3021">クレジット取引失敗</string>
+    <string name="error_detail_credit_3021">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_credit_3022">3022</string>
+    <string name="error_message_credit_3022">クレジット取引失敗</string>
+    <string name="error_detail_credit_3022">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_credit_3023">3023</string>
+    <string name="error_message_credit_3023">クレジット取引失敗</string>
+    <string name="error_detail_credit_3023">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_credit_3024">3024</string>
+    <string name="error_message_credit_3024">クレジット取引失敗</string>
+    <string name="error_detail_credit_3024">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_credit_3025">3025</string>
+    <string name="error_message_credit_3025">暗証番号入力エラー</string>
+    <string name="error_detail_credit_3025">詳細コード：%s\n【エラー】再入力してください</string>
+
+    <string name="error_type_credit_3026">3026</string>
+    <string name="error_message_credit_3026">暗証番号入力エラー</string>
+    <string name="error_detail_credit_3026">詳細コード：%s\n【残り１回】再入力してください</string>
+
+    <string name="error_type_credit_3027">3027</string>
+    <string name="error_message_credit_3027">暗証番号入力エラー</string>
+    <string name="error_detail_credit_3027">詳細コード：%s\n暗証番号の入力回数が超過しました。\n別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_credit_3028">3028</string>
+    <string name="error_message_credit_3028">暗証番号入力エラー</string>
+    <string name="error_detail_credit_3028">詳細コード：%s\n暗証番号が誤っています。\nもう一度最初からお取引をやり直してください。</string>
+
+    <string name="error_type_credit_3029">3029</string>
+    <string name="error_message_credit_3029">限度額オーバー</string>
+    <string name="error_detail_credit_3029">詳細コード：%s\n利用限度を超えています。\n別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_credit_3030">3030</string>
+    <string name="error_message_credit_3030">有効期限切れ</string>
+    <string name="error_detail_credit_3030">詳細コード：%s\nカードの有効期限が切れています。\n別のカードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_credit_3031">3031</string>
+    <string name="error_message_credit_3031">応答異常</string>
+    <string name="error_detail_credit_3031">詳細コード：%s\nお取り扱いできません。\n上記のエラーコードでカード会社へ\n直接お問い合わせください。</string>
+
+    <string name="error_type_credit_3032">3032</string>
+    <string name="error_message_credit_3032">クレジット取引失敗</string>
+    <string name="error_detail_credit_3032">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3033">3033</string>
+    <string name="error_message_credit_3033">クレジット取引失敗</string>
+    <string name="error_detail_credit_3033">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3034">3034</string>
+    <string name="error_message_credit_3034">クレジット取引失敗</string>
+    <string name="error_detail_credit_3034">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3035">3035</string>
+    <string name="error_message_credit_3035">クレジット取引失敗</string>
+    <string name="error_detail_credit_3035">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3036">3036</string>
+    <string name="error_message_credit_3036">クレジット取引失敗</string>
+    <string name="error_detail_credit_3036">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3037">3037</string>
+    <string name="error_message_credit_3037">クレジット取引失敗</string>
+    <string name="error_detail_credit_3037">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3038">3038</string>
+    <string name="error_message_credit_3038">クレジット取引失敗</string>
+    <string name="error_detail_credit_3038">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3039">3039</string>
+    <string name="error_message_credit_3039">クレジット取引失敗</string>
+    <string name="error_detail_credit_3039">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3040">3040</string>
+    <string name="error_message_credit_3040">クレジット取引失敗</string>
+    <string name="error_detail_credit_3040">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3041">3041</string>
+    <string name="error_message_credit_3041">クレジット取引失敗</string>
+    <string name="error_detail_credit_3041">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3042">3042</string>
+    <string name="error_message_credit_3042">クレジット取引失敗</string>
+    <string name="error_detail_credit_3042">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3043">3043</string>
+    <string name="error_message_credit_3043">クレジット取引失敗</string>
+    <string name="error_detail_credit_3043">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3044">3044</string>
+    <string name="error_message_credit_3044">クレジット取引失敗</string>
+    <string name="error_detail_credit_3044">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3045">3045</string>
+    <string name="error_message_credit_3045">クレジット取引失敗</string>
+    <string name="error_detail_credit_3045">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3046">3046</string>
+    <string name="error_message_credit_3046">クレジット取引失敗</string>
+    <string name="error_detail_credit_3046">詳細コード：%s\nカード発行会社にお問い合わせください。</string>
+
+    <string name="error_type_credit_3047">3047</string>
+    <string name="error_message_credit_3047">ICチップ未検出</string>
+    <string name="error_detail_credit_3047">詳細コード：%s\nICチップを検出できません。\nカードの向きを確認してください。</string>
+
+    <string name="error_type_credit_3060">3060</string>
+    <string name="error_message_credit_3060">タッチ決済利用不可</string>
+    <string name="error_detail_credit_3060">詳細コード：T31\nタッチ決済をご利用いただけません。\nICカードリーダーに読み込ませてください。</string>
+
+    <string name="error_type_credit_3061">3061</string>
+    <string name="error_message_credit_3061">タッチ決済利用不可</string>
+    <string name="error_detail_credit_3061">"詳細コード：T32\nサポートされていないカードです"</string>
+
+    <string name="error_type_credit_3062">3062</string>
+    <string name="error_message_credit_3062">クレジット取引失敗</string>
+    <string name="error_detail_credit_3062">"詳細コード：T33\n携帯電話の指示に従ってください｡"</string>
+
+    <string name="error_type_credit_3063">3063</string>
+    <string name="error_message_credit_3063">タッチ決済利用不可</string>
+    <string name="error_detail_credit_3063">"詳細コード：T34\nサポートされていないカードです"</string>
+
+    <string name="error_type_credit_3064">3064</string>
+    <string name="error_message_credit_3064">暗証番号入力エラー</string>
+    <string name="error_detail_credit_3064">"詳細コード：T35\n暗証番号入力の省略（PINバイパス）が許可されていません。\n別のカードで決済するか、他の決済手段を選択してください。"</string>
+
+    <string name="error_type_credit_3090">3090</string>
+    <string name="error_message_credit_3090">クレジット金額エラー</string>
+    <string name="error_detail_credit_3090">999,999円以下で決済してください。</string>
+    <string name="error_detail_credit_3090_2">9,999,999円以下で決済してください。</string>
+
+    <string name="error_type_credit_3091">3091</string>
+    <string name="error_message_credit_3091">クレジット取引失敗</string>
+    <string name="error_detail_credit_3091">もう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_credit_3092">3092</string>
+    <string name="error_message_credit_3092">入力タイムアウト</string>
+    <string name="error_detail_credit_3092">詳細コード：%s\nもう一度最初からお取引をやり直してください。\nタイムアウトする前に、暗証番号を入力してください。</string>
+
+    <string name="error_type_credit_3093">3093</string>
+    <string name="error_message_credit_3093">利用不可検知</string>
+    <string name="error_detail_credit_3093">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_credit_3099">3099</string>
+    <string name="error_message_credit_3099">クレジット取引失敗</string>
+    <string name="error_detail_credit_3099">詳細コード：%s\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <!-- QR -->
+    <string name="error_type_qr_3301">3301</string>
+    <string name="error_message_qr_3301">限度額オーバー</string>
+    <string name="error_detail_qr_3301">詳細コード：S0011\n限度額エラーです。\n別のコードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_qr_3302">3302</string>
+    <string name="error_message_qr_3302">残高不足</string>
+    <string name="error_detail_qr_3302">詳細コード：S0012\n残高不足エラーです。\n別のコードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_qr_3303">3303</string>
+    <string name="error_message_qr_3303">無効コード検出</string>
+    <string name="error_detail_qr_3303">詳細コード：S0013\nこのコードはご利用できません。\n別のコードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_qr_3304">3304</string>
+    <string name="error_message_qr_3304">無効コード検出</string>
+    <string name="error_detail_qr_3304">詳細コード：S0018\nこのコードはご利用できません。\n別のコードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_qr_3305">3305</string>
+    <string name="error_message_qr_3305">未対応コード検出</string>
+    <string name="error_detail_qr_3305">詳細コード：S0053\n対応できないコードです。\n別のコードで決済するか、他の決済手段を選択してください。</string>
+
+    <string name="error_type_qr_3306">3306</string>
+    <string name="error_message_qr_3306">取消エラー</string>
+    <string name="error_detail_qr_3306">詳細コード：S0015\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3307">3307</string>
+    <string name="error_message_qr_3307">取引エラー</string>
+    <string name="error_detail_qr_3307">詳細コード：S0016\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3308">3308</string>
+    <string name="error_message_qr_3308">利用不可検知</string>
+    <string name="error_detail_qr_3308">詳細コード：S0055\n現在コード決済はご利用できません。\n他の決済手段を選択してください。</string>
+
+    <string name="error_type_qr_3309">3309</string>
+    <string name="error_message_qr_3309">利用不可検知</string>
+    <string name="error_detail_qr_3309">詳細コード：S0099\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3310">3310</string>
+    <string name="error_message_qr_3310">コード決済エラー</string>
+    <string name="error_detail_qr_3310">詳細コード：S0019\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3311">3311</string>
+    <string name="error_message_qr_3311">コード決済エラー</string>
+    <string name="error_detail_qr_3311">詳細コード：S0020\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3312">3312</string>
+    <string name="error_message_qr_3312">コード決済エラー</string>
+    <string name="error_detail_qr_3312">詳細コード：S0052\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3313">3313</string>
+    <string name="error_message_qr_3313">コード決済エラー</string>
+    <string name="error_detail_qr_3313">詳細コード：S0059\nもう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3314">3314</string>
+    <string name="error_message_qr_3314">コード決済エラー</string>
+    <string name="error_detail_qr_3314">詳細コード：S0098\n業務メニューより、再開局を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3315">3315</string>
+    <string name="error_message_qr_3315">支払エラー</string>
+    <string name="error_detail_qr_3315">もう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3316">3316</string>
+    <string name="error_message_qr_3316">取消エラー</string>
+    <string name="error_detail_qr_3316">もう一度最初からお取引をやり直してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3319">3319</string>
+    <string name="error_message_qr_3319">コード決済エラー</string>
+    <string name="error_detail_qr_3319">詳細コード：%s\n業務メニューより、再開局を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3320">3320</string>
+    <string name="error_message_qr_3320">コード決済エラー</string>
+    <string name="error_detail_qr_3320">決済結果が確認できませんでした。\n印字されたレシートをご確認ください。</string>
+
+    <string name="error_type_qr_3321">3321</string>
+    <string name="error_message_qr_3321">コード決済エラー</string>
+    <string name="error_detail_qr_3321">詳細コード：%s\n認証の通信でエラーが発生しました。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3322">3322</string>
+    <string name="error_message_qr_3322">コード決済エラー</string>
+    <string name="error_detail_qr_3322">詳細コード：%s\n決済の通信でエラーが発生しました。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3323">3323</string>
+    <string name="error_message_qr_3323">コード決済エラー</string>
+    <string name="error_detail_qr_3323">詳細コード：%s\n取消の通信でエラーが発生しました。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3324">3324</string>
+    <string name="error_message_qr_3324">コード決済エラー</string>
+    <string name="error_detail_qr_3324">詳細コード：%s\n結果確認の通信でエラーが発生しました。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3325">3325</string>
+    <string name="error_message_qr_3325">コード決済通信エラー</string>
+    <string name="error_detail_qr_3325">業務メニューより、再開局を実施してください。\n改善しない場合は管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3326">3326</string>
+    <string name="error_message_qr_3326">コード決済認証エラー</string>
+    <string name="error_detail_qr_3326">認証に失敗しました。\n管理者に連絡してください。</string>
+
+    <string name="error_type_qr_3327">3327</string>
+    <string name="error_message_qr_3327">コード決済エラー</string>
+    <string name="error_detail_qr_3327">決済結果が確認できませんでした。\nお客様の決済アプリから取引履歴の確認を行ってください。</string>
+
+    <string-array name="error_credit_3001">
+        <item>@string/error_type_credit_3001</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3001</item>
+        <item>@string/error_detail_credit_3001</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3002">
+        <item>@string/error_type_credit_3002</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3002</item>
+        <item>@string/error_detail_credit_3002</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_invisible</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3003">
+        <item>@string/error_type_credit_3003</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3003</item>
+        <item>@string/error_detail_credit_3003</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3004">
+        <item>@string/error_type_credit_3004</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3004</item>
+        <item>@string/error_detail_credit_3004</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3005">
+        <item>@string/error_type_credit_3005</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3005</item>
+        <item>@string/error_detail_credit_3005</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3006">
+        <item>@string/error_type_credit_3006</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3006</item>
+        <item>@string/error_detail_credit_3006</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3007">
+        <item>@string/error_type_credit_3007</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3007</item>
+        <item>@string/error_detail_credit_3007</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3008">
+        <item>@string/error_type_credit_3008</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3008</item>
+        <item>@string/error_detail_credit_3008</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3009">
+        <item>@string/error_type_credit_3009</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3009</item>
+        <item>@string/error_detail_credit_3009</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3010">
+        <item>@string/error_type_credit_3010</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3010</item>
+        <item>@string/error_detail_credit_3010</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3011">
+        <item>@string/error_type_credit_3011</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3011</item>
+        <item>@string/error_detail_credit_3011</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3012">
+        <item>@string/error_type_credit_3012</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3012</item>
+        <item>@string/error_detail_credit_3012</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3013">
+        <item>@string/error_type_credit_3013</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3013</item>
+        <item>@string/error_detail_credit_3013</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3014">
+        <item>@string/error_type_credit_3014</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3014</item>
+        <item>@string/error_detail_credit_3014</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3015">
+        <item>@string/error_type_credit_3015</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3015</item>
+        <item>@string/error_detail_credit_3015</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3016">
+        <item>@string/error_type_credit_3016</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3016</item>
+        <item>@string/error_detail_credit_3016</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3017">
+        <item>@string/error_type_credit_3017</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3017</item>
+        <item>@string/error_detail_credit_3017</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3018">
+        <item>@string/error_type_credit_3018</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3018</item>
+        <item>@string/error_detail_credit_3018</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3019">
+        <item>@string/error_type_credit_3019</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3019</item>
+        <item>@string/error_detail_credit_3019</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3020">
+        <item>@string/error_type_credit_3020</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3020</item>
+        <item>@string/error_detail_credit_3020</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3021">
+        <item>@string/error_type_credit_3021</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3021</item>
+        <item>@string/error_detail_credit_3021</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3022">
+        <item>@string/error_type_credit_3022</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3022</item>
+        <item>@string/error_detail_credit_3022</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3023">
+        <item>@string/error_type_credit_3023</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3023</item>
+        <item>@string/error_detail_credit_3023</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3024">
+        <item>@string/error_type_credit_3024</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3024</item>
+        <item>@string/error_detail_credit_3024</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3025">
+        <item>@string/error_type_credit_3025</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3025</item>
+        <item>@string/error_detail_credit_3025</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_invisible</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3026">
+        <item>@string/error_type_credit_3026</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3026</item>
+        <item>@string/error_detail_credit_3026</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_invisible</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3027">
+        <item>@string/error_type_credit_3027</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3027</item>
+        <item>@string/error_detail_credit_3027</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3028">
+        <item>@string/error_type_credit_3028</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3028</item>
+        <item>@string/error_detail_credit_3028</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3029">
+        <item>@string/error_type_credit_3029</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3029</item>
+        <item>@string/error_detail_credit_3029</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3030">
+        <item>@string/error_type_credit_3030</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3030</item>
+        <item>@string/error_detail_credit_3030</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3031">
+        <item>@string/error_type_credit_3031</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3031</item>
+        <item>@string/error_detail_credit_3031</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3032">
+        <item>@string/error_type_credit_3032</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3032</item>
+        <item>@string/error_detail_credit_3032</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3033">
+        <item>@string/error_type_credit_3033</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3033</item>
+        <item>@string/error_detail_credit_3033</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3034">
+        <item>@string/error_type_credit_3034</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3034</item>
+        <item>@string/error_detail_credit_3034</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3035">
+        <item>@string/error_type_credit_3035</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3035</item>
+        <item>@string/error_detail_credit_3035</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3036">
+        <item>@string/error_type_credit_3036</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3036</item>
+        <item>@string/error_detail_credit_3036</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3037">
+        <item>@string/error_type_credit_3037</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3037</item>
+        <item>@string/error_detail_credit_3037</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3038">
+        <item>@string/error_type_credit_3038</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3038</item>
+        <item>@string/error_detail_credit_3038</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3039">
+        <item>@string/error_type_credit_3039</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3039</item>
+        <item>@string/error_detail_credit_3039</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3040">
+        <item>@string/error_type_credit_3040</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3040</item>
+        <item>@string/error_detail_credit_3040</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3041">
+        <item>@string/error_type_credit_3041</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3041</item>
+        <item>@string/error_detail_credit_3041</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3042">
+        <item>@string/error_type_credit_3042</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3042</item>
+        <item>@string/error_detail_credit_3042</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3043">
+        <item>@string/error_type_credit_3043</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3043</item>
+        <item>@string/error_detail_credit_3043</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3044">
+        <item>@string/error_type_credit_3044</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3044</item>
+        <item>@string/error_detail_credit_3044</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3045">
+        <item>@string/error_type_credit_3045</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3045</item>
+        <item>@string/error_detail_credit_3045</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3046">
+        <item>@string/error_type_credit_3046</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3046</item>
+        <item>@string/error_detail_credit_3046</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3047">
+        <item>@string/error_type_credit_3047</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3047</item>
+        <item>@string/error_detail_credit_3047</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3060">
+        <item>@string/error_type_credit_3060</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3060</item>
+        <item>@string/error_detail_credit_3060</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3061">
+        <item>@string/error_type_credit_3061</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3061</item>
+        <item>@string/error_detail_credit_3061</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3062">
+        <item>@string/error_type_credit_3062</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3062</item>
+        <item>@string/error_detail_credit_3062</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3063">
+        <item>@string/error_type_credit_3063</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3063</item>
+        <item>@string/error_detail_credit_3063</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3064">
+        <item>@string/error_type_credit_3064</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3064</item>
+        <item>@string/error_detail_credit_3064</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3090">
+        <item>@string/error_type_credit_3090</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3090</item>
+        <item>@string/error_detail_credit_3090</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3091">
+        <item>@string/error_type_credit_3091</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3091</item>
+        <item>@string/error_detail_credit_3091</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3092">
+        <item>@string/error_type_credit_3092</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3092</item>
+        <item>@string/error_detail_credit_3092</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3093">
+        <item>@string/error_type_credit_3093</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3093</item>
+        <item>@string/error_detail_credit_3093</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_credit_3099">
+        <item>@string/error_type_credit_3099</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_credit_3099</item>
+        <item>@string/error_detail_credit_3099</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3301">
+        <item>@string/error_type_qr_3301</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3301</item>
+        <item>@string/error_detail_qr_3301</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3302">
+        <item>@string/error_type_qr_3302</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3302</item>
+        <item>@string/error_detail_qr_3302</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3303">
+        <item>@string/error_type_qr_3303</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3303</item>
+        <item>@string/error_detail_qr_3303</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3304">
+        <item>@string/error_type_qr_3304</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3304</item>
+        <item>@string/error_detail_qr_3304</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3305">
+        <item>@string/error_type_qr_3305</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3305</item>
+        <item>@string/error_detail_qr_3305</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3306">
+        <item>@string/error_type_qr_3306</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3306</item>
+        <item>@string/error_detail_qr_3306</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3307">
+        <item>@string/error_type_qr_3307</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3307</item>
+        <item>@string/error_detail_qr_3307</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3308">
+        <item>@string/error_type_qr_3308</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3308</item>
+        <item>@string/error_detail_qr_3308</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3309">
+        <item>@string/error_type_qr_3309</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3309</item>
+        <item>@string/error_detail_qr_3309</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3310">
+        <item>@string/error_type_qr_3310</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3310</item>
+        <item>@string/error_detail_qr_3310</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3311">
+        <item>@string/error_type_qr_3311</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3311</item>
+        <item>@string/error_detail_qr_3311</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3312">
+        <item>@string/error_type_qr_3312</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3312</item>
+        <item>@string/error_detail_qr_3312</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3313">
+        <item>@string/error_type_qr_3313</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3313</item>
+        <item>@string/error_detail_qr_3313</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3314">
+        <item>@string/error_type_qr_3314</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3314</item>
+        <item>@string/error_detail_qr_3314</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3315">
+        <item>@string/error_type_qr_3315</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3315</item>
+        <item>@string/error_detail_qr_3315</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3316">
+        <item>@string/error_type_qr_3316</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3316</item>
+        <item>@string/error_detail_qr_3316</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3319">
+        <item>@string/error_type_qr_3319</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3319</item>
+        <item>@string/error_detail_qr_3319</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3320">
+        <item>@string/error_type_qr_3320</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3320</item>
+        <item>@string/error_detail_qr_3320</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3321">
+        <item>@string/error_type_qr_3321</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3321</item>
+        <item>@string/error_detail_qr_3321</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3322">
+        <item>@string/error_type_qr_3322</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3322</item>
+        <item>@string/error_detail_qr_3322</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3323">
+        <item>@string/error_type_qr_3323</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3323</item>
+        <item>@string/error_detail_qr_3323</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3324">
+        <item>@string/error_type_qr_3324</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3324</item>
+        <item>@string/error_detail_qr_3324</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3325">
+        <item>@string/error_type_qr_3325</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3325</item>
+        <item>@string/error_detail_qr_3325</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3326">
+        <item>@string/error_type_qr_3326</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3326</item>
+        <item>@string/error_detail_qr_3326</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+
+    <string-array name="error_qr_3327">
+        <item>@string/error_type_qr_3327</item>
+        <item>@string/error_title</item>
+        <item>@string/error_message_qr_3327</item>
+        <item>@string/error_detail_qr_3327</item>
+        <item>@string/level_error</item>
+        <item>@string/error_dialog_positive</item>
+        <item>@string/history_visible</item>
+    </string-array>
+</resources>

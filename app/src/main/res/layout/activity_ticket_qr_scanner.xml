@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="jp.mcapps.android.multi_payment_terminal.TicketScannerViewModel" />
+        <variable
+            name="activity"
+            type="jp.mcapps.android.multi_payment_terminal.TicketScannerActivity" />
+    </data>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black">
+        <com.journeyapps.barcodescanner.DecoratedBarcodeView
+            android:id="@+id/zxing_barcode_scanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="25dp"
+            app:zxing_scanner_layout="@layout/ticket_barcode_scanner" />
+
+    <LinearLayout
+        android:id="@+id/ticket_gate_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:orientation="vertical">
+
+            <jp.mcapps.android.multi_payment_terminal.ui.MagicTextView
+                android:id="@+id/textView_embark"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:onClick='@{activity::popBackStackToTicketGateSettings}'
+                android:text='@{viewModel.getLocationName}'
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                bind:strokeColor="@color/red"
+                bind:strokeWidth="1dp" />
+
+            <ImageView
+                android:id="@+id/ic_light_on"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:onClick='@{activity::onSwitchLight}'
+                android:visibility='@{viewModel.useLight ? View.VISIBLE : View.GONE}'
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                bind:srcCompat="@drawable/ic_baseline_flashlight_on_36" />
+
+            <ImageView
+                android:id="@+id/ic_light_off"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:onClick='@{activity::onSwitchLight}'
+                android:visibility='@{!viewModel.useLight ? View.VISIBLE : View.GONE}'
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                bind:srcCompat="@drawable/ic_baseline_flashlight_off_36" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:orientation="vertical">
+
+            <jp.mcapps.android.multi_payment_terminal.ui.MagicTextView
+                android:id="@+id/textView_embark_name"
+                android:layout_width="160dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:text='@{viewModel.getTicketEmbarkName}'
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/red"
+                app:strokeWidth="1dp" />
+
+            <jp.mcapps.android.multi_payment_terminal.ui.MagicTextView
+                android:id="@+id/textView_disembark_name"
+                android:layout_width="160dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="75dp"
+                android:gravity="center_vertical"
+                android:text='@{viewModel.getTicketDisembarkName}'
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/red"
+                app:strokeWidth="1dp" />
+
+            <ImageView
+                android:id="@+id/imageView_autoplay"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:visibility="@{viewModel.isAutoUpdate() ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:srcCompat="@drawable/ic_autoplay" />
+
+            <ImageView
+                android:id="@+id/imageView_autostop"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:visibility="@{!viewModel.isAutoUpdate() ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:srcCompat="@drawable/ic_autostop" />
+
+            <jp.mcapps.android.multi_payment_terminal.ui.MagicTextView
+                android:id="@+id/textView_aototime"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:text='@{viewModel.getLastAutoTime}'
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:visibility="@{viewModel.isAutoUpdate() ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/red"
+                app:strokeWidth="1dp" />
+
+            <jp.mcapps.android.multi_payment_terminal.ui.MagicTextView
+                android:id="@+id/textView_embark_time"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="45dp"
+                android:gravity="center_vertical"
+                android:text='@{viewModel.getTicketEmbarkTime}'
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:strokeColor="@color/red"
+                app:strokeWidth="1dp"
+                tools:layout_editor_absoluteX="170dp" />
+
+            <jp.mcapps.android.multi_payment_terminal.ui.MagicTextView
+                android:id="@+id/textView_disembark_time"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="75dp"
+                android:layout_marginEnd="45dp"
+                android:gravity="center_vertical"
+                android:text='@{viewModel.getTicketDisembarkTime}'
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:strokeColor="@color/red"
+                app:strokeWidth="1dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <jp.mcapps.android.multi_payment_terminal.ui.MagicTextView
+                android:id="@+id/textView_Information"
+                android:layout_width="360dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text='@{viewModel.getMessage}'
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/red"
+                app:strokeWidth="1dp" />
+
+            <jp.mcapps.android.multi_payment_terminal.ui.MagicTextView
+                android:id="@+id/textView_Information_en"
+                android:layout_width="360dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text='@{viewModel.getMessageEnglish}'
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_Information"
+                app:strokeColor="@color/red"
+                app:strokeWidth="1dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+    </RelativeLayout>
+</layout>

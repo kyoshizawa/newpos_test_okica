@@ -1,0 +1,484 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.ictgate.ictgate_terminal";
+option java_outer_classname = "IctgateTerminalProto";
+option objc_class_prefix = "HLW";
+
+//import "ictgate.proto";
+
+package okica;
+
+/**
+ * 端末間API
+ */
+service TerminalService {
+  // ルート証明書を取得します.
+  rpc GetRootCert(GetRootCertRequest) returns (GetRootCertResult);
+  // 端末設置要求
+  rpc InstallTerminal (TerminalInstallationRequest) returns (TerminalInstallationResult);
+  // アクセストークンを取得します。事前にCreateTerminalAuthで端末認証要求を作成し、認証された端末の場合は値を返却します。
+  rpc GetAccessToken (GetAccessTokenRequest) returns (GetAccessTokenResult);
+  // 端末情報の取得. 認証: 端末のアクセストークン
+  rpc GetTerminalInfo (GetTerminalInfoRequest) returns (GetTerminalInfoResult);
+  // 端末設置解除要求. 認証: 端末のアクセストークン
+  rpc UninstallTerminal (TerminalUninstallationRequest) returns (TerminalUninstallationResult);
+  // OKICAポイント情報取得. 認証: 端末のアクセストークン
+  rpc GetOkicaPointInfo (GetOkicaPointInfoRequest) returns (GetOkicaPointInfoResult);
+  // QRコード内容取得. 認証: 端末のアクセストークン
+  rpc GetQrCode (GetQrCodeRequest) returns (GetQrCodeResult);
+  // 決済情報を取得. 認証: 端末のアクセストークン
+  rpc GetPayment (GetPaymentRequest) returns (GetPaymentResult);
+  // 一件明細送信. 認証: 端末のアクセストークン
+  rpc SendDtl (SendDtlRequest) returns (SendDtlResult);
+  // マスターファイルバージョン取得. 認証: 端末のアクセストークン
+  rpc GetMasterFileVerion (GetMasterFileVersionRequest) returns (GetMasterFileVersionResult);
+  // マスターファイル取得. 認証: 端末のアクセストークン
+  rpc GetMasterFile (GetMasterFileRequest) returns (GetMasterFileResult);
+  // ネガバージョン取得. 認証: 端末のアクセストークン
+  rpc GetNegaVerion (GetNegaVersionRequest) returns (GetNegaVersionResult);
+  // ネガリスト取得. 認証: 端末のアクセストークン
+  rpc GetNegaList (GetNegaListRequest) returns (GetNegaListResult);
+  // 決済の取消を行います. 認証: 端末のアクセストークン
+  rpc CancelPayment (CancelPaymentRequest) returns (CancelPaymentResult);
+  // 決済の取消情報を取得. 認証: 端末のアクセストークン
+  rpc GetCanceledPayment (GetCanceledPaymentRequest) returns (GetCanceledPaymentResult);
+}
+
+/**
+ * ルート証明書
+ */
+message GetRootCertResult {
+  // ルート証明書
+  string data = 1;
+}
+
+/**
+ * ルート証明書要求
+ */
+message GetRootCertRequest {}
+
+/**
+ * 端末設置要求
+ *
+ * [ERRORS]
+ * - NOT_FOUND:  
+ * 　指定された端末機識別番号が未登録の場合
+ * - FAILED_PRECONDITION
+ * 　指定された端末機識別番号が既に設置済み、もしくは無効化されている場合
+ */
+message TerminalInstallationRequest {
+  // 機器設置時識別番号
+  string terminal_install_id = 1 [json_name = "terminal_install_id"];
+}
+
+/**
+ * 端末設置要求結果
+ */
+message TerminalInstallationResult {
+  // 端末機識別番号
+  string terminal_id = 1 [json_name = "terminal_id"];
+  // 機器設置時識別番号
+  string terminal_install_id = 2 [json_name = "terminal_install_id"];
+  // 認証用URL
+  string url = 3 [json_name = "url"];
+  // 認証コード
+  string code = 4 [json_name = "code"];
+  // 認証コードの有効期限 UTC UnixTime(秒)
+  int64 expired_time = 5 [json_name = "expired_time"];
+}
+
+/**
+ * 端末設置解除要求
+ *
+ * [ERRORS]
+ * - NOT_FOUND:  
+ * 　指定された端末機識別番号が未登録の場合
+ */
+message TerminalUninstallationRequest {
+}
+
+/**
+ * 端末設置解除要求結果
+ */
+message TerminalUninstallationResult {
+}
+
+/**
+ * アクセストークン取得要求。
+ *
+ * [ERRORS]
+ * - NOT_FOUND:
+ * 　指定された機器設置時識別番号が未登録の場合
+ * - PERMISSION_DENIED 
+ * 　端末は認証されていない、もしくは、指定された認証コードが不正
+ */
+message GetAccessTokenRequest {
+  // 機器設置時識別番号
+  string terminal_install_id = 1 [json_name = "terminal_install_id"];
+  // 認証コード
+  string code = 2 [json_name = "code"];
+}
+
+/**
+ * アクセストークン取得結果
+ */
+message GetAccessTokenResult {
+  // 端末機識別番号
+  string terminal_id = 1 [json_name = "terminal_id"];
+  // 端末のアクセストークン
+  string access_token = 2 [json_name = "access_token"];
+}
+
+
+/**
+ * 端末情報取得要求
+ */
+message GetTerminalInfoRequest {}
+
+/**
+ * 端末情報
+ */
+message GetTerminalInfoResult {
+  // 端末機識別番号
+  string terminal_id = 1 [json_name = "terminal_id"];
+  // 店舗識別コード。SmartOKICAで利用
+  string shop_cd = 2 [json_name = "shop_cd"];
+  // 機種コード。OKICAカードで利用
+  string machine_model_cd = 3 [json_name = "machine_model_cd"];
+  // 機器ID(= 物販端末ID)。OKICAカードで利用
+  string machine_id = 4 [json_name = "machine_id"];
+  // チャージ利用フラグ
+  bool is_charge = 5 [json_name = "is_charge"];
+  // 端末設置フラグ
+  bool is_installed = 6 [json_name = "is_installed"];
+}
+
+/**
+ * OKICAポイント情報取得要求
+ *
+ * [ERRORS]
+ * - NOT_FOUND:
+ * 　指定されたIDiが見つからない場合
+ */
+message GetOkicaPointInfoRequest {
+  // OKICAポイント情報を取得したいOKICAカードのIDi
+  bytes idi = 1 [json_name = "idi"];
+}
+
+/**
+ * OKICAポイント情報
+ */
+message GetOkicaPointInfoResult {
+  // OKICAカードで付与された交通系ポイント残高
+  uint32 okica_card_points = 1 [json_name = "okica_card_points"];
+
+  // OKICAカードで付与された物販ポイント残高
+  uint32 okica_card_sale_points = 2 [json_name = "okica_card_sale_points"];
+
+  // SmartOKICAで付与されたポイント残高
+  uint32 smart_okica_points = 3 [json_name = "smart_okica_points"];
+}
+
+/**
+ * QRコード内容取得要求
+ *
+ * [ERRORS]
+ * - NOT_FOUND:
+ * 　指定されたアクセストークンの端末情報が見つからない場合
+ */
+message GetQrCodeRequest {
+  // 端末が生成した請求書番号(レシート番号など)。使用できる文字は、ISO-8859-1。25文字以内。
+  string bill_number = 1;
+  // 金額
+  int32 amount = 2;
+  // 有効期限(秒). オプショナル。QRコードに有効期限を付けたい場合に設定します。
+  int32 expiration = 3;
+}
+
+/**
+ * QRコード内容
+ */
+message GetQrCodeResult {
+  // QRコード内容
+  string qr_code = 1;
+  // 有効期限 yyyyMMddHHmmss。QRコード要求で有効期限が設定された場合のみ返却されます。それ以外の場合は0です。
+  int64 expired_time = 2;
+  // 有効期限のタイムゾーン(Asia/Tokyo, ・・・)。QRコード要求で有効期限が設定された場合のみ返却されます。それ以外の場合は空です。
+  string timezone = 3;
+  // 決済番号。最大20桁。QRコード要求で有効期限が設定された場合のみ返却されます。それ以外の場合は空です。
+  string payment_no = 4;
+}
+
+/**
+ * 決済情報取得要求
+ *
+ * [ERRORS]
+ * - NOT_FOUND:
+ * 　	該当する決済情報が見つからない場合。※ 注意. 決済が未完了の間もこの結果を返します。
+*/
+message GetPaymentRequest {
+  // 端末が生成した請求書番号(レシート番号など)。使用できる文字は、ISO-8859-1。25文字以内。決済番号が指定された場合は決済番号での検索が優先されこの項目は無視されます。
+  string bill_number = 1;
+  // 決済番号。
+  string payment_no = 2;
+}
+
+/**
+ * 決済情報
+ */
+message GetPaymentResult {
+  // 取引ID
+  string transaction_id = 1;
+  // 取引日時 yyyyMMddHHmmss
+  int64 timestamp = 2;
+  // 取引日時のタイムゾーン(Asia/Tokyo, ・・・)
+  string timezone = 3;
+  // 端末が生成した請求書番号(レシート番号など)。使用できる文字は、ISO-8859-1。25文字以内。
+  string bill_number = 4;
+  // 決済番号。最大20桁。
+  string payment_no = 5;
+  // 金額
+  int32 amount = 6;
+  // ステータス。-1: 失敗, 2: 成功
+  int32 status = 7;
+  // エラーコード. ステータスが「-1:失敗」の場合に、詳細なエラーコードが設定されます。<br/>
+  // 40002: 残高不足<br/>
+  // 40006: クレジットカード残高不足またはカード限度額を超えています<br/>
+  // 40007: 取り扱いできないクレジットカード<br/>
+  // 40010: 1回あたりの支払い上限額オーバー<br/>
+  // 40011: 当日あたりの支払い上限額オーバー<br/>
+  // 40012: 当月あたりの支払い上限額オーバー<br/>
+  // 40801: 有効期限切れ<br/>
+  // 50000: 予期しないエラー<br/> 
+  // 50301: CAFISエラー
+  string err_code = 8;
+}
+
+/**
+ * 一件明細送信要求
+ *
+ * [ERRORS]
+ * - INVALID_PARAMS:
+ * 　パラメータ不正
+ */
+message SendDtlRequest {
+  // ID管理ヘッダ
+  IDHeader id_header = 1 [json_name = "id_header"];
+  // 一件明細リスト(1明細192Byte、OKIC-BD-3101-A_一件明細仕様書を参照)
+  repeated bytes dtls = 2 [json_name = "dtls"];
+}
+
+/**
+ * ID管理ヘッダ
+ */
+message IDHeader {
+  // 通信時間(年) 一件明細集信バイナリIDで利用
+  uint32 communication_year = 1 [json_name = "communication_year"];
+  // 通信時間(月) 一件明細集信バイナリIDで利用
+  uint32 communication_month = 2 [json_name = "communication_month"];
+  // 通信時間(日) 一件明細集信バイナリIDで利用
+  uint32 communication_day = 3 [json_name = "communication_day"];
+  // 通信時間(時) 一件明細集信バイナリIDで利用
+  uint32 communication_hour = 4 [json_name = "communication_hour"];
+  // 通信時間(分) 一件明細集信バイナリIDで利用
+  uint32 communication_minute = 5 [json_name = "communication_minute"];
+  // 通信時間(秒) 一件明細集信バイナリIDで利用
+  uint32 communication_second = 6 [json_name = "communication_second"];
+  // 機器通番(0～65535) 一件明細集信バイナリIDで利用
+  uint32 machine_seq = 7 [json_name = "machine_seq"];
+  // 運用年月日(年)
+  uint32 operation_year = 8 [json_name = "operation_year"];
+  // 運用年月日(月)
+  uint32 operation_month = 9 [json_name = "operation_month"];
+  // 運用年月日(日)
+  uint32 operation_day = 10 [json_name = "operation_day"];
+  // 理由コード(3Byte) (0x000000:OK、0x050010:未送信一件明細あり)
+  bytes reason_cd = 11 [json_name = "reason_cd"];
+  // 試験モード(0:通常データ、1:試験データ)
+  bytes test_mode = 12 [json_name = "test_mode"];
+}
+
+/**
+ * 一件明細送信結果
+ */
+message SendDtlResult {
+}
+
+/**
+ * マスターファイルバージョン取得要求
+ *
+ * [ERRORS]
+ * - INVALID_PARAMS:
+ * 　パラメータ不正
+ * - NOT_FOUND:
+ * 　該当する機器情報が見つからない、もしくは該当するファイルが見つからない場合
+ * - OUT_OF_RANGE:
+ * 　該当する機器が有効期間範囲外
+ * - PERMISSION_DENIED:
+ *   マスターファイルを取得する権限がない場合
+ * - FAILED_PRECONDITION
+ * 　指定された端末機識別番号が設置済みでない、もしくは無効化されている場合
+ */
+message GetMasterFileVersionRequest {
+  // ファイルID(11:IC運用マスタ、46:アクセスキーファイル(物販端末(支払・チャージ用))、47:アクセスキーファイル(物販端末(支払のみ)))
+  repeated string file_ids = 1;
+}
+
+/**
+ * マスターファイルバージョン取得結果
+ */
+message GetMasterFileVersionResult {
+  // ファイルバージョン
+  repeated FileVersion file_versions = 1;
+}
+
+/**
+ * ファイルバージョン
+ */
+message FileVersion {
+  // ファイルID(11:IC運用マスタ、46:アクセスキーファイル(物販端末(支払・チャージ用))、47:アクセスキーファイル(物販端末(支払のみ)))
+  string file_id = 1;
+  // バージョン
+  uint32 version = 2;
+}
+
+/**
+ * マスターファイル取得要求
+ *
+ * [ERRORS]
+ * - INVALID_PARAMS:
+ * 　パラメータ不正
+ * - NOT_FOUND:
+ * 　該当する機器情報が見つからない、もしくは該当するファイルが見つからない場合
+ * - OUT_OF_RANGE:
+ * 　該当する機器が有効期間範囲外
+ * - PERMISSION_DENIED:
+ *   マスターファイルを取得する権限がない場合
+ * - FAILED_PRECONDITION
+ * 　指定された端末機識別番号が設置済みでない、もしくは無効化されている場合
+ */
+message GetMasterFileRequest {
+  // ファイルID(11:IC運用マスタ、46:アクセスキーファイル(物販端末(支払・チャージ用))、47:アクセスキーファイル(物販端末(支払のみ)))
+  string file_id = 1 [json_name = "file_id"];
+}
+
+/**
+ * マスターファイル取得結果
+ */
+message GetMasterFileResult {
+  // バージョン
+  uint32 version = 1 [json_name = "version"];
+  // ファイル名
+  string file_name = 2 [json_name = "file_name"];
+  // ファイル(バイナリ形式) ※集配信ファイル仕様書を参照
+  bytes file = 3 [json_name = "file"];
+}
+
+/**
+ * ネガバージョン取得要求
+ */
+message GetNegaVersionRequest {
+}
+
+/**
+ * ネガバージョン取得結果
+ */
+message GetNegaVersionResult {
+  // ネガ年月日(yyyymmdd)
+  string nega_date = 1;
+}
+
+/**
+ * ネガリスト取得要求
+ */
+message GetNegaListRequest {
+}
+
+/**
+ * ネガリスト取得結果
+ */
+message GetNegaListResult {
+  // ネガ年月日(yyyymmdd)
+  string nega_date = 1 [json_name = "nega_date"];
+  // ネガ(IDi) (バイナリ形式)
+  repeated bytes negas = 2 [json_name = "negas"];
+}
+
+/**
+ * 決済取消要求
+ *
+ * [ERRORS]
+ * - INVALID_PARAMS:
+ * 　パラメータ不正. 次のいずれかの値がmetadataの"err_code"キーに設定します。
+ *   40013
+ *      取消可能期間を過ぎたため取消できない場合のエラーコード 
+ *   40014
+ *      取消できない口座種別の場合のエラーコード。QR残高およびクレジットカードのみ取消可能です。
+ * - NOT_FOUND:
+ * 　指定された取引IDが見つからない場合
+ */
+message CancelPaymentRequest {
+   // 取り消したい決済の取引ID
+   string transaction_id = 1;
+}
+
+/**
+ * 決済取消結果
+ */
+message CancelPaymentResult {
+  // 取消日時 yyyyMMddHHmmss
+  int64 timestamp = 1;
+  // 取引日時のタイムゾーン(Asia/Tokyo, ・・・)
+  string timezone = 2;
+  // 取消の取引ID
+  string transaction_id = 3;
+  // 取消の決済番号
+  string payment_no = 4;
+  // 取消された金額
+  int32 canceled_amount = 5;
+}
+
+
+/**
+ * 決済取消情報取得要求
+ *
+ * [ERRORS]
+ * - NOT_FOUND:
+ * 　	該当する決済取消情報が見つからない場合。※ 注意. 決済取消が未完了の間もこの結果を返します。
+ */
+message GetCanceledPaymentRequest {
+  // 取消対象の決済の決済番号。
+  string payment_no = 1;
+}
+
+
+/**
+ * 決済取消情報
+ */
+message GetCanceledPaymentResult {
+  // 取引ID
+  string transaction_id = 1;
+  // 取引日時 yyyyMMddHHmmss
+  int64 timestamp = 2;
+  // 取引日時のタイムゾーン(Asia/Tokyo, ・・・)
+  string timezone = 3;
+  // 取消の決済番号。最大20桁。
+  string payment_no = 4;
+  // 取消された決済金額
+  int32 canceled_amount = 5;  
+  // 取消された決済の取引ID
+  string canceled_transaction_id = 6;  
+  // 取消された決済の決済番号
+  string canceled_payment_no = 7;
+  // 取り消された決済の請求書番号(レシート番号など)。使用できる文字は、ISO-8859-1。25文字以内。
+  string canceled_bill_number = 8;
+  // ステータス。-1: 失敗, 2: 成功
+  int32 status = 9;
+  // エラーコード. ステータスが「-1:失敗」の場合に、詳細なエラーコードが設定されます。<br/>
+  /// 40013: 取消可能期間を過ぎたため取消できません<br/>
+  /// 40014: サポートされない口座種別。クレジットカードおよびQR残高決済以外の取消はできません。<br/>
+  /// 50301: CAFISエラー<br/>
+  /// 50000: 予期しないエラー<br/> 
+  string err_code = 10;
+}

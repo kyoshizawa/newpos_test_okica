@@ -1,0 +1,35 @@
+package jp.mcapps.android.multi_payment_terminal.database.ticket;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.io.Serializable;
+import java.util.Date;
+
+@Entity(tableName = "ticket_class_name_lang")
+public class TicketClassNameLangData implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    public int id;
+
+    @ColumnInfo
+    public Long ticket_class_id;
+
+    @ColumnInfo
+    public String lang;
+
+    @ColumnInfo
+    public String name;
+
+    @ColumnInfo(defaultValue = "0")
+    public int generation_id; // 0:downloading 1:currently active
+
+    // 追加された時刻
+    public Date created_at;
+
+    // 更新された時刻
+    public Date updated_at;
+
+    public TicketClassNameLangData() {
+    }
+}

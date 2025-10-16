@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
+        <variable
+            name="colorResource"
+            type="int" />
+        <variable
+            name="history"
+            type="jp.mcapps.android.multi_payment_terminal.database.validation_check.ValidationCheckHistoryData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/grid_history_validation_check"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:background="@color/black"
+            android:textAlignment="viewStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_history_validation_check_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_margin"
+            android:text="@{history.termSequence + @string/colon_mark}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="@id/grid_history_validation_check"
+            app:layout_constraintTop_toBottomOf="@id/grid_history_validation_check" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_validation_check_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <TextView
+            android:id="@+id/text_history_validation_check_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"確認結果：" + Converters.validationCheckResultToString(history.termResult)}'
+            android:textColor="@{colorResource}"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="@id/guideline_validation_check_result"
+            app:layout_constraintTop_toTopOf="@+id/text_history_validation_check_id" />
+
+        <TextView
+            android:id="@+id/text_history_validation_check_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_margin_large"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="@{history.operationDate}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="@id/text_history_validation_check_id"
+            app:layout_constraintTop_toBottomOf="@id/text_history_validation_check_id" />
+
+        <TextView
+            android:id="@+id/validation_check_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/common_margin"
+            android:text="@{Converters.integerToNumberFormat(history.transAmount) + @string/yen}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_history_validation_check_date" />
+
+        <TextView
+            android:id="@+id/label_history_validation_check_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin_small"
+            android:text="カード番号："
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toStartOf="@id/text_history_validation_check_date"
+            app:layout_constraintTop_toBottomOf="@id/text_history_validation_check_date"/>
+
+        <TextView
+            android:id="@+id/value_history_validation_check_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text='@{history.cardId}'
+            android:textColor="@color/black"
+            android:textSize="@dimen/driver_code_history_text_size"
+            app:layout_constraintStart_toEndOf="@id/label_history_validation_check_card"
+            app:layout_constraintTop_toTopOf="@id/label_history_validation_check_card"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
