@@ -52,12 +52,12 @@ public abstract class PinInputViewModel extends ViewModel {
     public void inputNumber(String number) {
         Timber.d("input number");
         if (_pin.length() >= _pinDigits) {
-            beep(2500, 100);    //エラー音
+            //beep(2500, 100);    //エラー音
             return;
         }
 
         _pin += number;
-        beep(2700, 40); //アクセス音
+        //beep(2700, 40); //アクセス音
 
         _displayedPin.setValue(_displayedPin.getValue() + MainApplication.getInstance().getString(
                 R.string.text_credit_card_pin_input_value));
