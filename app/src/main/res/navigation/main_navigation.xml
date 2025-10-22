@@ -50,27 +50,7 @@
         <action
             android:id="@+id/action_navigation_menu_to_navigation_amount_input"
             app:destination="@id/navigation_amount_input" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_credit_card_scan"
-            app:destination="@id/navigation_credit_card_scan" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_emoney_suica"
-            app:destination="@id/navigation_emoney_suica" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_emoney_id"
-            app:destination="@id/navigation_emoney_id" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_emoney_waon"
-            app:destination="@id/navigation_emoney_waon" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_emoney_edy"
-            app:destination="@id/navigation_emoney_edy" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_emoney_quicpay"
-            app:destination="@id/navigation_emoney_quicpay" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_emoney_nanaco"
-            app:destination="@id/navigation_emoney_nanaco" />
+
         <action
             android:id="@+id/action_navigation_menu_to_navigation_emoney_okica"
             app:destination="@id/navigation_emoney_okica" />
@@ -95,27 +75,27 @@
         <action
             android:id="@+id/action_navigation_menu_to_navigation_validation_check"
             app:destination="@id/navigation_validation_check" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_watari"
-            app:destination="@id/navigation_watari" />
-        <action
-            android:id="@+id/action_navigation_others_to_fragment_cash_input"
-            app:destination="@id/fragment_cash_input" />
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_navigation_watari"-->
+<!--            app:destination="@id/navigation_watari" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_others_to_fragment_cash_input"-->
+<!--            app:destination="@id/fragment_cash_input" />-->
         <action
             android:id="@+id/action_navigation_menu_to_navigation_amount_input_lt27"
             app:destination="@id/navigation_amount_input_lt27" />
         <action
             android:id="@+id/action_navigation_menu_to_navigation_charge_amount_input"
             app:destination="@id/navigation_charge_amount_input" />
-        <action
-            android:id="@+id/action_navigation_menu_to_fragment_cart_confirm"
-            app:destination="@id/cartConfirmFragment" />
-        <!--<action
-            android:id="@+id/action_navigation_menu_to_navigation_product_select"
-            app:destination="@id/navigation_product_select" />-->
-        <action
-            android:id="@+id/action_navigation_menu_to_fragment_cash_input"
-            app:destination="@id/fragment_cash_input" />
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_fragment_cart_confirm"-->
+<!--            app:destination="@id/cartConfirmFragment" />-->
+<!--        &lt;!&ndash;<action-->
+<!--            android:id="@+id/action_navigation_menu_to_navigation_product_select"-->
+<!--            app:destination="@id/navigation_product_select" />&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_fragment_cash_input"-->
+<!--            app:destination="@id/fragment_cash_input" />-->
 <!--        <action-->
 <!--            android:id="@+id/action_navigation_menu_to_fragment_ticket_search"-->
 <!--            app:destination="@id/ticketSearchFragment" />-->
@@ -126,12 +106,12 @@
 <!--            android:id="@+id/action_navigation_menu_to_fragment_ticket_issue"-->
 <!--            app:destination="@id/ticketIssueFragment"-->
 <!--            app:popUpTo="@id/navigation_menu" />-->
-        <action
-            android:id="@+id/action_navigation_menu_to_fragment_cash_changer_payment"
-            app:destination="@id/fragment_cash_changer_payment" />
-        <action
-            android:id="@+id/action_navigation_menu_to_external_device"
-            app:destination="@id/external_device" />
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_fragment_cash_changer_payment"-->
+<!--            app:destination="@id/fragment_cash_changer_payment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_external_device"-->
+<!--            app:destination="@id/external_device" />-->
 
         <!-- //ADD-S BMT S.Oyama 2024/09/03 フタバ双方向向け改修-->
         <action
@@ -147,24 +127,24 @@
             android:id="@+id/action_navigation_menu_to_navigation_discountjob_fd"
             app:destination="@id/navigation_discountjob_fd" />
 
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_suica"
-            app:destination="@id/navigation_emoney_suica_separationpay" />
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_id"
-            app:destination="@id/navigation_emoney_id_separationpay" />
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_waon"
-            app:destination="@id/navigation_emoney_waon_separationpay" />
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_edy"
-            app:destination="@id/navigation_emoney_edy_separationpay" />
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_quicpay"
-            app:destination="@id/navigation_emoney_quicpay_separationpay" />
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_nanaco"
-            app:destination="@id/navigation_emoney_nanaco_separationpay" />
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_suica"-->
+<!--            app:destination="@id/navigation_emoney_suica_separationpay" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_id"-->
+<!--            app:destination="@id/navigation_emoney_id_separationpay" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_waon"-->
+<!--            app:destination="@id/navigation_emoney_waon_separationpay" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_edy"-->
+<!--            app:destination="@id/navigation_emoney_edy_separationpay" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_quicpay"-->
+<!--            app:destination="@id/navigation_emoney_quicpay_separationpay" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_nanaco"-->
+<!--            app:destination="@id/navigation_emoney_nanaco_separationpay" />-->
         <action
             android:id="@+id/action_navigation_separationpay_to_navigation_emoney_okica"
             app:destination="@id/navigation_emoney_okica_separationpay" />
@@ -291,22 +271,22 @@
             app:destination="@id/navigation_history_transaction_detail" />
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_product_select"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.ProductSelectFragment"
-        tools:layout="@layout/fragment_pos_product_select" >
-        <action
-            android:id="@+id/action_navigation_product_select_to_fragment_cart_manual_input"
-            app:destination="@id/fragment_cart_manual_input" />
-        <!--<action
-            android:id="@+id/action_navigation_product_select_to_posQRFragment"
-            app:destination="@id/navigation_pos_qr" />-->
-        <action
-            android:id="@+id/action_navigation_product_select_to_cartConfirmFragment"
-            app:destination="@id/cartConfirmFragment"
-            app:popUpTo="@id/cartConfirmFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_product_select"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.ProductSelectFragment"-->
+<!--        tools:layout="@layout/fragment_pos_product_select" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_product_select_to_fragment_cart_manual_input"-->
+<!--            app:destination="@id/fragment_cart_manual_input" />-->
+<!--        &lt;!&ndash;<action-->
+<!--            android:id="@+id/action_navigation_product_select_to_posQRFragment"-->
+<!--            app:destination="@id/navigation_pos_qr" />&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_product_select_to_cartConfirmFragment"-->
+<!--            app:destination="@id/cartConfirmFragment"-->
+<!--            app:popUpTo="@id/cartConfirmFragment"-->
+<!--            app:popUpToInclusive="true" />-->
+<!--    </fragment>-->
 
     <fragment
         android:id="@+id/navigation_history_transaction_detail"
@@ -316,27 +296,6 @@
             android:name="SLIP_ID"
             app:argType="integer" />
         <action
-            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_suica"
-            app:destination="@id/navigation_emoney_suica" />
-        <action
-            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_id"
-            app:destination="@id/navigation_emoney_id" />
-        <action
-            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_waon"
-            app:destination="@id/navigation_emoney_waon" />
-        <action
-            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_edy"
-            app:destination="@id/navigation_emoney_edy" />
-        <action
-            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_credit"
-            app:destination="@id/navigation_credit_card_scan" />
-        <action
-            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_quicpay"
-            app:destination="@id/navigation_emoney_quicpay" />
-        <action
-            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_nanaco"
-            app:destination="@id/navigation_emoney_nanaco" />
-        <action
             android:id="@+id/action_navigation_history_transaction_detail_to_navigation_emoney_okica"
             app:destination="@id/navigation_emoney_okica" />
         <action
@@ -345,15 +304,15 @@
         <action
             android:id="@+id/action_navigation_history_transaction_detail_to_navigation_history_receipt_issue"
             app:destination="@id/navigation_history_receipt_issue" />
-        <action
-            android:id="@+id/action_navigation_history_transaction_detail_to_fragment_cash_confirm"
-            app:destination="@id/fragment_cash_confirm" />
-        <action
-            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_watari"
-            app:destination="@id/navigation_watari"/>
-        <action
-            android:id="@+id/action_navigation_history_transaction_detail_to_fragment_cash_changer_payment"
-            app:destination="@id/fragment_cash_changer_payment" />
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_history_transaction_detail_to_fragment_cash_confirm"-->
+<!--            app:destination="@id/fragment_cash_confirm" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_history_transaction_detail_to_navigation_watari"-->
+<!--            app:destination="@id/navigation_watari"/>-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_history_transaction_detail_to_fragment_cash_changer_payment"-->
+<!--            app:destination="@id/fragment_cash_changer_payment" />-->
     </fragment>
 
     <fragment
@@ -409,18 +368,18 @@
         <action
             android:id="@+id/action_navigation_installation_and_removal_to_navigation_installation_okica"
             app:destination="@id/navigation_installation_okica" />
-        <action
-            android:id="@+id/action_navigation_installation_and_removal_to_navigation_pos_activation"
-            app:destination="@id/navigation_pos_activation" />
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_installation_and_removal_to_navigation_pos_activation"-->
+<!--            app:destination="@id/navigation_pos_activation" />-->
 <!--        <action-->
 <!--            android:id="@+id/action_navigation_installation_and_removal_to_navigation_ticket_activation"-->
 <!--            app:destination="@id/navigation_ticket_activation" />-->
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_pos_activation"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos_activation.PosActivationFragment"
-        tools:layout="@layout/fragment_pos_activation"/>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_pos_activation"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos_activation.PosActivationFragment"-->
+<!--        tools:layout="@layout/fragment_pos_activation"/>-->
 
 <!--    <fragment-->
 <!--        android:id="@+id/navigation_ticket_activation"-->
@@ -448,103 +407,103 @@
             app:popUpToInclusive="true"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_credit_card_scan"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.credit_card.CreditCardScanFragment"
-        tools:layout="@layout/fragment_credit_card_scan" >
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_credit_card_scan_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_credit_card_scan"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.credit_card.CreditCardScanFragment"-->
+<!--        tools:layout="@layout/fragment_credit_card_scan" >-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_credit_card_scan_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
-    <fragment
-        android:id="@+id/navigation_emoney_suica"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.suica.EMoneySuicaFragment"
-        tools:layout="@layout/fragment_emoney_suica">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_emoney_suica_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_emoney_suica"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.suica.EMoneySuicaFragment"-->
+<!--        tools:layout="@layout/fragment_emoney_suica">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_suica_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
-    <fragment
-        android:id="@+id/navigation_emoney_id"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.id.EMoneyIdFragment"
-        tools:layout="@layout/fragment_emoney_id">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_emoney_id_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_emoney_id"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.id.EMoneyIdFragment"-->
+<!--        tools:layout="@layout/fragment_emoney_id">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_id_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
-    <fragment
-        android:id="@+id/navigation_emoney_waon"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.waon.EMoneyWaonFragment"
-        tools:layout="@layout/fragment_emoney_waon">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_emoney_waon_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_emoney_waon"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.waon.EMoneyWaonFragment"-->
+<!--        tools:layout="@layout/fragment_emoney_waon">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_waon_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
-    <fragment
-        android:id="@+id/navigation_emoney_edy"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.edy.EMoneyEdyFragment"
-        tools:layout="@layout/fragment_emoney_edy">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_emoney_edy_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_emoney_edy"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.edy.EMoneyEdyFragment"-->
+<!--        tools:layout="@layout/fragment_emoney_edy">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_edy_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
-    <fragment
-        android:id="@+id/navigation_emoney_quicpay"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.quicpay.EMoneyQuicPayFragment"
-        tools:layout="@layout/fragment_emoney_quicpay">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_emoney_quicpay_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_emoney_quicpay"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.quicpay.EMoneyQuicPayFragment"-->
+<!--        tools:layout="@layout/fragment_emoney_quicpay">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_quicpay_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
-    <fragment
-        android:id="@+id/navigation_emoney_nanaco"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.nanaco.EMoneyNanacoFragment"
-        tools:layout="@layout/fragment_emoney_nanaco">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_emoney_nanaco_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_emoney_nanaco"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.nanaco.EMoneyNanacoFragment"-->
+<!--        tools:layout="@layout/fragment_emoney_nanaco">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_nanaco_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
     <fragment
         android:id="@+id/navigation_qr_payment"
@@ -635,15 +594,15 @@
             app:popUpToInclusive="true"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_watari"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.others.WatariFragment"
-        tools:layout="@layout/fragment_watari">
-        <action
-            android:id="@+id/action_navigation_watari_to_navigation_menu"
-            app:destination="@id/navigation_menu"
-            app:popUpTo="@+id/navigation_menu" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_watari"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.others.WatariFragment"-->
+<!--        tools:layout="@layout/fragment_watari">-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_watari_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_menu"-->
+<!--            app:popUpTo="@+id/navigation_menu" />-->
+<!--    </fragment>-->
 
 <!--    <fragment-->
 <!--        android:id="@+id/navigation_tablet_link_setup"-->
@@ -671,93 +630,93 @@
             app:popUpTo="@+id/navigation_charge_amount_input"
             app:popUpToInclusive="true"/>
     </fragment>
-    <fragment
-        android:id="@+id/navigation_pos_qr"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.PosQRFragment"
-        tools:layout="@layout/fragment_pos_qr">
-        <action
-            android:id="@+id/action_navigation_pos_qr_to_cart_confirm_fragment"
-            app:destination="@id/cartConfirmFragment"
-            app:popUpTo="@id/cartConfirmFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/cartConfirmFragment"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CartConfirmFragment"
-        android:label="CartConfirmFragment"
-        tools:layout="@layout/fragment_pos_cart_confirm">
-        <action
-            android:id="@+id/action_cartConfirmFragment_to_navigation_product_select"
-            app:destination="@id/navigation_product_select" />
-        <!--<action
-            android:id="@+id/action_cartConfirmFragment_to_navigation_pos_qr"
-            app:destination="@id/navigation_pos_qr" />-->
-        <action
-            android:id="@+id/action_cartConfirmFragment_to_inputCartFragment"
-            app:destination="@id/inputCartFragment" />
-        <action
-            android:id="@+id/action_cartConfirmFragment_to_navigation_menu"
-            app:destination="@id/navigation_menu" />
-        <action
-            android:id="@+id/action_cartConfirmFragment_to_fragment_cart_manual_input"
-            app:destination="@id/fragment_cart_manual_input" />
-        <action
-            android:id="@+id/action_cartConfirmFragment_to_selectInputFragment"
-            app:destination="@id/selectInputFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/inputCartFragment"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.InputCartFragment"
-        android:label="InputCartFragment"
-        tools:layout="@layout/fragment_pos_cart_input">
-        <argument
-            android:name="product_id"
-            app:argType="integer" />
-        <argument
-            android:name="count"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_inputCartFragment_to_cartConfirmFragment"
-            app:destination="@id/cartConfirmFragment"
-            app:popUpTo="@id/cartConfirmFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/selectInputFragment"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.PosSelectInputFragment"
-        android:label="SelectInputFragment">
-        <action
-            android:id="@+id/action_selectInputFragment_to_inputCartFragment"
-            app:destination="@id/inputCartFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragment_cart_manual_input"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CartManualInputFragment"
-        android:label="cart_manual_input"
-        >
-        <action
-            android:id="@+id/action_fragment_cart_manual_input_to_cartConfirmFragment"
-            app:destination="@id/cartConfirmFragment"
-            app:popUpTo="@id/cartConfirmFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragment_cash_input"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CashInputFragment"
-        tools:layout="@layout/fragment_cash_input">
-        <action
-            android:id="@+id/action_fragment_cash_input_to_fragment_cash_confirm"
-            app:destination="@id/fragment_cash_confirm" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragment_cash_confirm"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CashConfirmFragment"
-        tools:layout="@layout/fragment_cash_confirm">
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_pos_qr"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.PosQRFragment"-->
+<!--        tools:layout="@layout/fragment_pos_qr">-->
 <!--        <action-->
-<!--            android:id="@+id/action_navigation_menu_to_fragment_ticket_issue"-->
-<!--            app:destination="@id/ticketIssueFragment"-->
-<!--            app:popUpTo="@id/navigation_menu" />-->
-    </fragment>
+<!--            android:id="@+id/action_navigation_pos_qr_to_cart_confirm_fragment"-->
+<!--            app:destination="@id/cartConfirmFragment"-->
+<!--            app:popUpTo="@id/cartConfirmFragment"-->
+<!--            app:popUpToInclusive="true" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/cartConfirmFragment"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CartConfirmFragment"-->
+<!--        android:label="CartConfirmFragment"-->
+<!--        tools:layout="@layout/fragment_pos_cart_confirm">-->
+<!--        <action-->
+<!--            android:id="@+id/action_cartConfirmFragment_to_navigation_product_select"-->
+<!--            app:destination="@id/navigation_product_select" />-->
+<!--        &lt;!&ndash;<action-->
+<!--            android:id="@+id/action_cartConfirmFragment_to_navigation_pos_qr"-->
+<!--            app:destination="@id/navigation_pos_qr" />&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/action_cartConfirmFragment_to_inputCartFragment"-->
+<!--            app:destination="@id/inputCartFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_cartConfirmFragment_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_menu" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_cartConfirmFragment_to_fragment_cart_manual_input"-->
+<!--            app:destination="@id/fragment_cart_manual_input" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_cartConfirmFragment_to_selectInputFragment"-->
+<!--            app:destination="@id/selectInputFragment" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/inputCartFragment"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.InputCartFragment"-->
+<!--        android:label="InputCartFragment"-->
+<!--        tools:layout="@layout/fragment_pos_cart_input">-->
+<!--        <argument-->
+<!--            android:name="product_id"-->
+<!--            app:argType="integer" />-->
+<!--        <argument-->
+<!--            android:name="count"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_inputCartFragment_to_cartConfirmFragment"-->
+<!--            app:destination="@id/cartConfirmFragment"-->
+<!--            app:popUpTo="@id/cartConfirmFragment"-->
+<!--            app:popUpToInclusive="true" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/selectInputFragment"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.PosSelectInputFragment"-->
+<!--        android:label="SelectInputFragment">-->
+<!--        <action-->
+<!--            android:id="@+id/action_selectInputFragment_to_inputCartFragment"-->
+<!--            app:destination="@id/inputCartFragment" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragment_cart_manual_input"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CartManualInputFragment"-->
+<!--        android:label="cart_manual_input"-->
+<!--        >-->
+<!--        <action-->
+<!--            android:id="@+id/action_fragment_cart_manual_input_to_cartConfirmFragment"-->
+<!--            app:destination="@id/cartConfirmFragment"-->
+<!--            app:popUpTo="@id/cartConfirmFragment"-->
+<!--            app:popUpToInclusive="true" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragment_cash_input"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CashInputFragment"-->
+<!--        tools:layout="@layout/fragment_cash_input">-->
+<!--        <action-->
+<!--            android:id="@+id/action_fragment_cash_input_to_fragment_cash_confirm"-->
+<!--            app:destination="@id/fragment_cash_confirm" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragment_cash_confirm"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CashConfirmFragment"-->
+<!--        tools:layout="@layout/fragment_cash_confirm">-->
+<!--&lt;!&ndash;        <action&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/action_navigation_menu_to_fragment_ticket_issue"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:destination="@id/ticketIssueFragment"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:popUpTo="@id/navigation_menu" />&ndash;&gt;-->
+<!--    </fragment>-->
 
     <fragment
         android:id="@+id/navigation_redirect_to_menu"
@@ -767,30 +726,25 @@
             app:destination="@id/navigation_menu" />
     </fragment>
 
-    <fragment
-        android:id="@+id/fragment_cash_changer_payment"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.pos.CashChangerPaymentFragment"
-        tools:layout="@layout/fragment_cash_changer_payment">
-    </fragment>
 
     <!-- 自動つり銭機連動用 -->
-    <fragment
-        android:id="@+id/external_device"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuExternalDeviceFragment"
-        tools:layout="@layout/fragment_menu_external_device">
-        <action
-            android:id="@+id/action_navigation_menu_to_external_device_cash_changer"
-            app:destination="@id/external_device_cash_changer" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/external_device"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuExternalDeviceFragment"-->
+<!--        tools:layout="@layout/fragment_menu_external_device">-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_external_device_cash_changer"-->
+<!--            app:destination="@id/external_device_cash_changer" />-->
+<!--    </fragment>-->
 
-    <fragment
-        android:id="@+id/external_device_cash_changer"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuCashChangerFragment"
-        tools:layout="@layout/fragment_menu_cash_changer">
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/external_device_cash_changer"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuCashChangerFragment"-->
+<!--        tools:layout="@layout/fragment_menu_cash_changer">-->
+<!--    </fragment>-->
 
     <action android:id="@+id/action_global_navigation_menu" app:destination="@id/navigation_redirect_to_menu" app:popUpTo="@id/navigation_redirect_to_menu" app:popUpToInclusive="true"/>
-    <action android:id="@+id/action_global_navigation_pos_qr" app:destination="@id/navigation_pos_qr"/>
+<!--    <action android:id="@+id/action_global_navigation_pos_qr" app:destination="@id/navigation_pos_qr"/>-->
 <!--    <fragment-->
 <!--        android:id="@+id/ticketSearchFragment"-->
 <!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketSearchFragment"-->
@@ -916,30 +870,30 @@
             app:destination="@id/navigation_redirect_to_menu"
             app:popUpTo="@+id/navigation_redirect_to_menu"
             app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_suica"
-            app:destination="@id/navigation_emoney_suica_separationpay" />
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_id"
-            app:destination="@id/navigation_emoney_id_separationpay" />
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_waon"
-            app:destination="@id/navigation_emoney_waon_separationpay" />
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_edy"
-            app:destination="@id/navigation_emoney_edy_separationpay" />
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_quicpay"
-            app:destination="@id/navigation_emoney_quicpay_separationpay" />
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_nanaco"
-            app:destination="@id/navigation_emoney_nanaco_separationpay" />
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_suica"-->
+<!--            app:destination="@id/navigation_emoney_suica_separationpay" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_id"-->
+<!--            app:destination="@id/navigation_emoney_id_separationpay" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_waon"-->
+<!--            app:destination="@id/navigation_emoney_waon_separationpay" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_edy"-->
+<!--            app:destination="@id/navigation_emoney_edy_separationpay" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_quicpay"-->
+<!--            app:destination="@id/navigation_emoney_quicpay_separationpay" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_emoney_nanaco"-->
+<!--            app:destination="@id/navigation_emoney_nanaco_separationpay" />-->
         <action
             android:id="@+id/action_navigation_separationpay_to_navigation_emoney_okica"
             app:destination="@id/navigation_emoney_okica_separationpay" />
-        <action
-            android:id="@+id/action_navigation_separationpay_to_navigation_credit_card_scan"
-            app:destination="@id/navigation_credit_card_scan_separationpay" />
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_to_navigation_credit_card_scan"-->
+<!--            app:destination="@id/navigation_credit_card_scan_separationpay" />-->
         <action
             android:id="@+id/action_navigation_separationpay_to_navigation_qr"
             app:destination="@id/navigation_qr_payment" />
@@ -972,111 +926,111 @@
     </fragment>
 
 
-    <fragment
-        android:id="@+id/navigation_credit_card_scan_separationpay"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.credit_card.CreditCardScanFragment"
-        tools:layout="@layout/fragment_credit_card_scan">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_credit_card_scan_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_credit_card_scan_separationpay"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.credit_card.CreditCardScanFragment"-->
+<!--        tools:layout="@layout/fragment_credit_card_scan">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_credit_card_scan_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
 
-    <fragment
-        android:id="@+id/navigation_emoney_suica_separationpay"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.suica.EMoneySuicaFragment"
-        tools:layout="@layout/fragment_emoney_suica">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_emoney_suica_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-        <!--
-        <action
-            android:id="@+id/action_navigation_emoney_suica_to_navigation_menu_separation"
-            app:destination="@id/navigation_menu_separation"
-            app:popUpTo="@+id/navigation_menu_separation"
-            app:popUpToInclusive="true"/>
-        -->
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_emoney_suica_separationpay"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.suica.EMoneySuicaFragment"-->
+<!--        tools:layout="@layout/fragment_emoney_suica">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_suica_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--        &lt;!&ndash;-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_suica_to_navigation_menu_separation"-->
+<!--            app:destination="@id/navigation_menu_separation"-->
+<!--            app:popUpTo="@+id/navigation_menu_separation"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--        &ndash;&gt;-->
+<!--    </fragment>-->
 
-    <fragment
-        android:id="@+id/navigation_emoney_id_separationpay"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.id.EMoneyIdFragment"
-        tools:layout="@layout/fragment_emoney_id">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_emoney_id_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_emoney_id_separationpay"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.id.EMoneyIdFragment"-->
+<!--        tools:layout="@layout/fragment_emoney_id">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_id_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
-    <fragment
-        android:id="@+id/navigation_emoney_waon_separationpay"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.waon.EMoneyWaonFragment"
-        tools:layout="@layout/fragment_emoney_waon">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_emoney_waon_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_emoney_waon_separationpay"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.waon.EMoneyWaonFragment"-->
+<!--        tools:layout="@layout/fragment_emoney_waon">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_waon_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
-    <fragment
-        android:id="@+id/navigation_emoney_edy_separationpay"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.edy.EMoneyEdyFragment"
-        tools:layout="@layout/fragment_emoney_edy">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_emoney_edy_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_emoney_edy_separationpay"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.edy.EMoneyEdyFragment"-->
+<!--        tools:layout="@layout/fragment_emoney_edy">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_edy_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
-    <fragment
-        android:id="@+id/navigation_emoney_quicpay_separationpay"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.quicpay.EMoneyQuicPayFragment"
-        tools:layout="@layout/fragment_emoney_quicpay">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_emoney_quicpay_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_emoney_quicpay_separationpay"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.quicpay.EMoneyQuicPayFragment"-->
+<!--        tools:layout="@layout/fragment_emoney_quicpay">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_quicpay_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
-    <fragment
-        android:id="@+id/navigation_emoney_nanaco_separationpay"
-        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.nanaco.EMoneyNanacoFragment"
-        tools:layout="@layout/fragment_emoney_nanaco">
-        <argument
-            android:name="slipId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_emoney_nanaco_to_navigation_menu"
-            app:destination="@id/navigation_redirect_to_menu"
-            app:popUpTo="@+id/navigation_redirect_to_menu"
-            app:popUpToInclusive="true"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_emoney_nanaco_separationpay"-->
+<!--        android:name="jp.mcapps.android.multi_payment_terminal.ui.emoney.nanaco.EMoneyNanacoFragment"-->
+<!--        tools:layout="@layout/fragment_emoney_nanaco">-->
+<!--        <argument-->
+<!--            android:name="slipId"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_emoney_nanaco_to_navigation_menu"-->
+<!--            app:destination="@id/navigation_redirect_to_menu"-->
+<!--            app:popUpTo="@+id/navigation_redirect_to_menu"-->
+<!--            app:popUpToInclusive="true"/>-->
+<!--    </fragment>-->
 
     <fragment
         android:id="@+id/navigation_emoney_okica_separationpay"
@@ -1146,9 +1100,9 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
-        <action
-            android:id="@+id/action_navigation_separationpay_with_ticket_to_navigation_credit_card_scan"
-            app:destination="@id/navigation_credit_card_scan_separationpay" />
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_separationpay_with_ticket_to_navigation_credit_card_scan"-->
+<!--            app:destination="@id/navigation_credit_card_scan_separationpay" />-->
 
         <action
             android:id="@+id/action_navigation_separationpay_with_ticket_to_navigation_qr"
@@ -1178,24 +1132,24 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_emoney_suica"
-            app:destination="@id/navigation_emoney_suica" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_emoney_id"
-            app:destination="@id/navigation_emoney_id" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_emoney_waon"
-            app:destination="@id/navigation_emoney_waon" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_emoney_edy"
-            app:destination="@id/navigation_emoney_edy" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_emoney_quicpay"
-            app:destination="@id/navigation_emoney_quicpay" />
-        <action
-            android:id="@+id/action_navigation_menu_to_navigation_emoney_nanaco"
-            app:destination="@id/navigation_emoney_nanaco" />
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_navigation_emoney_suica"-->
+<!--            app:destination="@id/navigation_emoney_suica" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_navigation_emoney_id"-->
+<!--            app:destination="@id/navigation_emoney_id" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_navigation_emoney_waon"-->
+<!--            app:destination="@id/navigation_emoney_waon" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_navigation_emoney_edy"-->
+<!--            app:destination="@id/navigation_emoney_edy" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_navigation_emoney_quicpay"-->
+<!--            app:destination="@id/navigation_emoney_quicpay" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_menu_to_navigation_emoney_nanaco"-->
+<!--            app:destination="@id/navigation_emoney_nanaco" />-->
 
     </fragment>
     <fragment

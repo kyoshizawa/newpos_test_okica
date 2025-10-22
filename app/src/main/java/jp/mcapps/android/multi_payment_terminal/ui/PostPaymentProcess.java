@@ -14,8 +14,8 @@ import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlementAdapter;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlementAdapter;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;
 
@@ -45,7 +45,7 @@ public class PostPaymentProcess {
 
     private final MainApplication _app = MainApplication.getInstance();
 
-    private final CreditSettlementAdapter creditListener = new CreditSettlementAdapter() {};
+//    private final CreditSettlementAdapter creditListener = new CreditSettlementAdapter() {};
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void execute(Activity activity, Integer slipId) {
@@ -119,7 +119,7 @@ public class PostPaymentProcess {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void printTrans(View view, int slipId) {
         //伝票印刷
-        CreditSettlement.getInstance().setListener(creditListener);
+        //CreditSettlement.getInstance().setListener(creditListener);
         final PrinterManager printerManager = PrinterManager.getInstance();
         printerManager.print_trans(view, slipId);
 

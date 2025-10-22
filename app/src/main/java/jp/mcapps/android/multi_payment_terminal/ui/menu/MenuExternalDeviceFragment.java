@@ -47,6 +47,6 @@ public class MenuExternalDeviceFragment extends BaseFragment implements External
     @Override
     public void onClickCashChanger(View view){
         CommonClickEvent.RecordButtonClickOperation(view, false);
-        NavigationWrapper.navigate(this, R.id.action_navigation_menu_to_external_device_cash_changer);
+        // NavigationWrapper.navigate(this, R.id.action_navigation_menu_to_external_device_cash_changer);
     }
 }

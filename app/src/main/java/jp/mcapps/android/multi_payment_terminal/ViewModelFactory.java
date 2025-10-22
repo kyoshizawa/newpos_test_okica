@@ -8,11 +8,11 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import jp.mcapps.android.multi_payment_terminal.logger.EventLogger;
-import jp.mcapps.android.multi_payment_terminal.model.CreditChecker;
-import jp.mcapps.android.multi_payment_terminal.model.EmoneyChecker;
-import jp.mcapps.android.multi_payment_terminal.model.OkicaChecker;
-import jp.mcapps.android.multi_payment_terminal.model.QRChecker;
-import jp.mcapps.android.multi_payment_terminal.model.WatariChecker;
+//import jp.mcapps.android.multi_payment_terminal.model.CreditChecker;
+//import jp.mcapps.android.multi_payment_terminal.model.EmoneyChecker;
+//import jp.mcapps.android.multi_payment_terminal.model.OkicaChecker;
+//import jp.mcapps.android.multi_payment_terminal.model.QRChecker;
+//import jp.mcapps.android.multi_payment_terminal.model.WatariChecker;
 //import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.Updater;

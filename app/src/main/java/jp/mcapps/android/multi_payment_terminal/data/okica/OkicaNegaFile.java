@@ -17,7 +17,8 @@ import java.util.List;
 import java.util.Objects;
 
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
-import jp.mcapps.android.multi_payment_terminal.thread.emv.utils.ISOUtil;
+//import jp.mcapps.android.multi_payment_terminal.thread.emv.utils.ISOUtil;
+import jp.mcapps.android.multi_payment_terminal.database.history.uriOkica.ISOUtil;
 import jp.mcapps.android.multi_payment_terminal.util.Crypto;
 import timber.log.Timber;
 

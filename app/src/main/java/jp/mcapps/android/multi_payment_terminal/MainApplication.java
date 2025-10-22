@@ -28,9 +28,9 @@ import jp.mcapps.android.multi_payment_terminal.data.OptionService;
 import jp.mcapps.android.multi_payment_terminal.data.okica.ICMaster;
 import jp.mcapps.android.multi_payment_terminal.data.okica.OkicaExceptions;
 import jp.mcapps.android.multi_payment_terminal.logger.EventLogTree;
-import jp.mcapps.android.multi_payment_terminal.thread.emv.CAPK;
-import jp.mcapps.android.multi_payment_terminal.thread.emv.RiskManagementParameter;
-import jp.mcapps.android.multi_payment_terminal.thread.emv.utils.AssetsUtil;
+//import jp.mcapps.android.multi_payment_terminal.thread.emv.CAPK;
+//import jp.mcapps.android.multi_payment_terminal.thread.emv.RiskManagementParameter;
+//import jp.mcapps.android.multi_payment_terminal.thread.emv.utils.AssetsUtil;
 import jp.mcapps.android.multi_payment_terminal.util.DeviceUtils;
 import jp.mcapps.android.multi_payment_terminal.util.McUtils;
 import jp.mcapps.android.multi_payment_terminal.util.SimUtils;
@@ -128,21 +128,21 @@ public class MainApplication extends Application {
         _okicaICMaster = master;
     }
 
-    private CAPK[] _capk = null;
-    public CAPK[] getCAPK() {
-        return _capk;
-    }
-    public void setCAPK(CAPK[] capk) {
-        _capk = capk;
-    }
-
-    private RiskManagementParameter[] _riskManagementParameter = null;
-    public RiskManagementParameter[] getRiskManagementParameter() {
-        return _riskManagementParameter;
-    }
-    public void setRiskManagementParameter(RiskManagementParameter[] p) {
-        _riskManagementParameter = p;
-    }
+//    private CAPK[] _capk = null;
+//    public CAPK[] getCAPK() {
+//        return _capk;
+//    }
+//    public void setCAPK(CAPK[] capk) {
+//        _capk = capk;
+//    }
+//
+//    private RiskManagementParameter[] _riskManagementParameter = null;
+//    public RiskManagementParameter[] getRiskManagementParameter() {
+//        return _riskManagementParameter;
+//    }
+//    public void setRiskManagementParameter(RiskManagementParameter[] p) {
+//        _riskManagementParameter = p;
+//    }
 
     @Override
     public void onCreate() {
@@ -299,12 +299,12 @@ public class MainApplication extends Application {
     }
 
     private void copyAssetsToFileDir() {
-        AssetsUtil.init(this);
-        AssetsUtil.copyAssetsToData("libEMVL2.so");
-        AssetsUtil.copyAssetsToData("libPaypass.so");
-        AssetsUtil.copyAssetsToData("libPaywave.so");
-        AssetsUtil.copyAssetsToData("libJCB.so");
-        AssetsUtil.copyAssetsToData("libAMEX.so");
-        AssetsUtil.copyAssetsToData("libDiscover.so");
+//        AssetsUtil.init(this);
+//        AssetsUtil.copyAssetsToData("libEMVL2.so");
+//        AssetsUtil.copyAssetsToData("libPaypass.so");
+//        AssetsUtil.copyAssetsToData("libPaywave.so");
+//        AssetsUtil.copyAssetsToData("libJCB.so");
+//        AssetsUtil.copyAssetsToData("libAMEX.so");
+//        AssetsUtil.copyAssetsToData("libDiscover.so");
     }
 }

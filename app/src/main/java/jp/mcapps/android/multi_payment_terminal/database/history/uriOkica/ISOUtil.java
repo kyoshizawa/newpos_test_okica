@@ -1,3 +1,5 @@
+package jp.mcapps.android.multi_payment_terminal.database.history.uriOkica;
+
 /*
  * jPOS Project [http://jpos.org]
  * Copyright (C) 2000-2015 Alejandro P. Revilla
@@ -15,8 +17,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-package jp.mcapps.android.multi_payment_terminal.thread.emv.utils;
 
 import org.dtools.ini.BasicIniFile;
 import org.dtools.ini.IniFile;

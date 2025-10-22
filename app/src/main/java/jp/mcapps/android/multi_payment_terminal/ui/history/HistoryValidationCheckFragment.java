@@ -41,11 +41,11 @@ public class HistoryValidationCheckFragment extends BaseFragment {
         HistoryValidationCheckAdapter adapter = new HistoryValidationCheckAdapter();
         RecyclerView.LayoutManager rLayoutManager = new LinearLayoutManager(getContext());
         binding.listHistoryValidationCheck.setLayoutManager(rLayoutManager);
-        binding.listHistoryValidationCheck.setAdapter(adapter);
+        // binding.listHistoryValidationCheck.setAdapter(adapter);
 
         HistoryValidationCheckViewModel viewModel = new ViewModelProvider(this).get(HistoryValidationCheckViewModel.class);
         binding.setViewModel(viewModel);
-        viewModel.getHistory().observe(getViewLifecycleOwner(), adapter::submitList);
+        // viewModel.getHistory().observe(getViewLifecycleOwner(), adapter::submitList);
         viewModel.setTitle(SCREEN_NAME);
         viewModel.init();
 

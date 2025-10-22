@@ -67,7 +67,7 @@ import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptDat
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptDetail;
 //import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
 import jp.mcapps.android.multi_payment_terminal.ui.auto_daily_report.AutoDailyReportFuelFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.BaseEMoneyOkicaViewModel;
@@ -7805,7 +7805,7 @@ public class PrinterProc {
                         // 印刷終了
                         if (result == 0 && isCreditAnnounceSignature == true) {
                             // 加盟店控えが正常印刷完了かつサイン音声案内が必要な場合のみ
-                            CreditSettlement.getInstance().startAnnounceSignature();
+                            // CreditSettlement.getInstance().startAnnounceSignature();
                         }
                         PrinterManager.getInstance().PrintEnd(isMaskCardId, isTransResult, result, isTransType, isRePrinter);
                         Printing_end();
@@ -7887,7 +7887,7 @@ public class PrinterProc {
         if(result.equals("OK") ){
             if (isCreditAnnounceSignature) {
                 // サイン音声案内が必要な場合のみ
-                CreditSettlement.getInstance().startAnnounceSignature();
+                // CreditSettlement.getInstance().startAnnounceSignature();
             }
             Handler handler= new Handler(Looper.getMainLooper());
             handler.post(new Runnable() {
@@ -7953,7 +7953,7 @@ public class PrinterProc {
         if(result.equals("OK") ){        // 正常終了
             if (isCreditAnnounceSignature) {
                 // サイン音声案内が必要な場合のみ
-                CreditSettlement.getInstance().startAnnounceSignature();
+                // CreditSettlement.getInstance().startAnnounceSignature();
             }
             Handler handler= new Handler(Looper.getMainLooper());
             handler.post(new Runnable() {

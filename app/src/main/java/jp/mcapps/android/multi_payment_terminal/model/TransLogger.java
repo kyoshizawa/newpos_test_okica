@@ -27,7 +27,7 @@ import jp.mcapps.android.multi_payment_terminal.database.history.uri.UriData;
 import jp.mcapps.android.multi_payment_terminal.database.history.uriOkica.UriOkicaDao;
 import jp.mcapps.android.multi_payment_terminal.database.history.uriOkica.UriOkicaData;
 import jp.mcapps.android.multi_payment_terminal.database.DeviceClient;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.data.CreditResult;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.data.CreditResult;
 import jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.EMoneyOkicaViewModel;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.data.TerminalInfo;
 import jp.mcapps.android.multi_payment_terminal.webapi.mc_pos_center.data.WatariPoint;
@@ -58,23 +58,23 @@ public class TransLogger {
      * デモモードでは売上データなし
      * @param result 取引結果
      */
-    public void credit(CreditResult.Result result) {
-        int termSequence = getTermSequence(false);   //端末通番を取得
-        setAmountParam(String.valueOf(result.fare));   //金額情報を取得
-        setAmountPaymented();
-        if(_resultParam.transType == 0) {   //取消時はsetRefundParamにて設定済み
-            setCashAmount();    //現金分割分を設定
-            setTicketAmount();  //チケット金額を設定
-            setEigyoCount();    //営業回数を設定
-            setCompleteAmount();  //支払済み金額を設定
-        }
-        getLocation();  //位置情報を取得
-
-        _uriData = _isDemoMode ? null : new UriData(result, _encryptType, termSequence, _resultParam, _refundParam, _amountParam, _surveyParam);
-        _slipData = new SlipData(result, _encryptType, termSequence, _resultParam, _refundParam, _amountParam);
-        if (AppPreference.isTicketTransaction()) setCardInfo();
-        if (_slipData.transType == TransMap.TYPE_CANCEL) _slipData.purchasedTicketDealId = _purchasedTicketDealId;
-    }
+//    public void credit(CreditResult.Result result) {
+//        int termSequence = getTermSequence(false);   //端末通番を取得
+//        setAmountParam(String.valueOf(result.fare));   //金額情報を取得
+//        setAmountPaymented();
+//        if(_resultParam.transType == 0) {   //取消時はsetRefundParamにて設定済み
+//            setCashAmount();    //現金分割分を設定
+//            setTicketAmount();  //チケット金額を設定
+//            setEigyoCount();    //営業回数を設定
+//            setCompleteAmount();  //支払済み金額を設定
+//        }
+//        getLocation();  //位置情報を取得
+//
+//        _uriData = _isDemoMode ? null : new UriData(result, _encryptType, termSequence, _resultParam, _refundParam, _amountParam, _surveyParam);
+//        _slipData = new SlipData(result, _encryptType, termSequence, _resultParam, _refundParam, _amountParam);
+//        if (AppPreference.isTicketTransaction()) setCardInfo();
+//        if (_slipData.transType == TransMap.TYPE_CANCEL) _slipData.purchasedTicketDealId = _purchasedTicketDealId;
+//    }
 
     /**
      * 交通系の取引データを生成
@@ -313,20 +313,20 @@ public class TransLogger {
      * ポイントでの取引データを作成
      * レシートのみ
      */
-    public void point(WatariSettlement.WatariResult result){
-        final boolean doIncrement = !AppPreference.getPoweroffTrans();
-        int termSequence = getTermSequence(doIncrement);   //端末通番を取得
-        int watariSlipNo = AppPreference.getSlipNoWatari(); // 和多利用伝票番号を取得
-        setAmountParamForPoint(String.valueOf(result.amount));   //金額情報を取得
-        if(_resultParam.transType == TransMap.TYPE_POINT) {   //取消時はsetRefundParamにて設定済み
-            setCashAmount();    //現金分割分を設定
-            setTicketAmount();  //チケット金額を設定
-            setEigyoCount();    //営業回数を設定
-            setCompleteAmount();  //支払済み金額を設定
-        }
-
-        _slipData = new SlipData(result, termSequence, watariSlipNo, _resultParam, _refundParam, _amountParam);
-    }
+//    public void point(WatariSettlement.WatariResult result){
+//        final boolean doIncrement = !AppPreference.getPoweroffTrans();
+//        int termSequence = getTermSequence(doIncrement);   //端末通番を取得
+//        int watariSlipNo = AppPreference.getSlipNoWatari(); // 和多利用伝票番号を取得
+//        setAmountParamForPoint(String.valueOf(result.amount));   //金額情報を取得
+//        if(_resultParam.transType == TransMap.TYPE_POINT) {   //取消時はsetRefundParamにて設定済み
+//            setCashAmount();    //現金分割分を設定
+//            setTicketAmount();  //チケット金額を設定
+//            setEigyoCount();    //営業回数を設定
+//            setCompleteAmount();  //支払済み金額を設定
+//        }
+//
+//        _slipData = new SlipData(result, termSequence, watariSlipNo, _resultParam, _refundParam, _amountParam);
+//    }
 
     //ADD-S BMT S.Oyama 2024/09/19 フタバ双方向向け改修
     /******************************************************************************/

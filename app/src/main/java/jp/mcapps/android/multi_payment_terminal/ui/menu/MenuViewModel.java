@@ -46,17 +46,17 @@ import jp.mcapps.android.multi_payment_terminal.logger.EventLogger;
 //import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
 //import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
 import jp.mcapps.android.multi_payment_terminal.model.McAuthenticator;
-import jp.mcapps.android.multi_payment_terminal.model.McCredit;
+//import jp.mcapps.android.multi_payment_terminal.model.McCredit;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 import jp.mcapps.android.multi_payment_terminal.model.Validator;
 import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterProc;
 import jp.mcapps.android.multi_payment_terminal.ui.discount.DiscountJobFutabaDViewModel;
 import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Meter;
-import jp.mcapps.android.multi_payment_terminal.thread.emv.EmvCLProcess;
+//import jp.mcapps.android.multi_payment_terminal.thread.emv.EmvCLProcess;
 import timber.log.Timber;
 
 public class MenuViewModel extends ViewModel implements LifecycleObserver {
@@ -274,7 +274,7 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
         final McAuthenticator authenticator = new McAuthenticator();
         final QRSettlement qr = new QRSettlement();
         final McTerminal terminal = new McTerminal();
-        final McCredit credit = new McCredit();
+//        final McCredit credit = new McCredit();
 
         // デモモードの場合、手動開局処理は行わない
         if(AppPreference.isDemoMode()){
@@ -310,12 +310,12 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
         String authErr = errCode;
 
         if (errCode != null) {
-            if (CreditSettlement.getInstance()._mcCenterCommManager.getTerOpePort() <= 0) {
-                // MC認証チェック
-                errors.add(MainApplication.getInstance().getString(R.string.error_type_payment_system_2094));
-            } else {
-                errors.add(errCode);
-            }
+//            if (CreditSettlement.getInstance()._mcCenterCommManager.getTerOpePort() <= 0) {
+//                // MC認証チェック
+//                errors.add(MainApplication.getInstance().getString(R.string.error_type_payment_system_2094));
+//            } else {
+//                errors.add(errCode);
+//            }
         } else {
             //センター設定情報取得
             errCode = terminal.getTerminalInfo();
@@ -333,30 +333,30 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
                      * 非接触有効の場合は手動開局時に毎回CA公開鍵を取得する
                      * 無効の場合は既存のまま処理をする
                      */
-                    errCode = credit.getCAKey();
-
-                    if (errCode != null) {
-                        Timber.e("手動開局 CA公開鍵取得エラー");
-                        errors.add(errCode);
-                    } else {
-                        errCode = credit.getRiskParameterContactless();
-                        if (errCode != null) {
-                            Timber.e("手動開局 リスク管理パラメータ取得エラー");
-                            errors.add(errCode);
-                        } else {
-                            if (!EmvCLProcess.emvInit()) {
-                                Timber.e("手動開局 非接触EMVの初期化に失敗");
-                                errors.add(McPosCenterErrorMap.INTERNAL_ERROR_CODE);
-                            }
-                        }
-                    }
+//                    errCode = credit.getCAKey();
+//
+//                    if (errCode != null) {
+//                        Timber.e("手動開局 CA公開鍵取得エラー");
+//                        errors.add(errCode);
+//                    } else {
+//                        errCode = credit.getRiskParameterContactless();
+//                        if (errCode != null) {
+//                            Timber.e("手動開局 リスク管理パラメータ取得エラー");
+//                            errors.add(errCode);
+//                        } else {
+//                            if (!EmvCLProcess.emvInit()) {
+//                                Timber.e("手動開局 非接触EMVの初期化に失敗");
+//                                errors.add(McPosCenterErrorMap.INTERNAL_ERROR_CODE);
+//                            }
+//                        }
+//                    }
                 } else {
                     //クレジットCA公開鍵DL DLしていない場合のみ
-                    if (EMVHandler.getInstance().getCAPublicKeyNum() <= 0) {
-                        errCode = new McCredit().getCAKey();
-                        // クレジット決済前にもCA公開鍵DLを行うため、ここでのエラー保存は行わない
-                        errCode = credit.getCAKey();
-                    }
+//                    if (EMVHandler.getInstance().getCAPublicKeyNum() <= 0) {
+//                        errCode = new McCredit().getCAKey();
+//                        // クレジット決済前にもCA公開鍵DLを行うため、ここでのエラー保存は行わない
+//                        errCode = credit.getCAKey();
+//                    }
                 }
             }
 

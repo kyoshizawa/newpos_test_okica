@@ -39,14 +39,14 @@ import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.TransMap;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData;
-import jp.mcapps.android.multi_payment_terminal.model.CreditChecker;
+// import jp.mcapps.android.multi_payment_terminal.model.CreditChecker;
 import jp.mcapps.android.multi_payment_terminal.model.EmoneyChecker;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaChecker;
 import jp.mcapps.android.multi_payment_terminal.model.QRChecker;
 import jp.mcapps.android.multi_payment_terminal.model.SeparationTicketChecker;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
-import jp.mcapps.android.multi_payment_terminal.model.WatariChecker;
+// import jp.mcapps.android.multi_payment_terminal.model.WatariChecker;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterProc;
 import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
@@ -226,13 +226,13 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
                 if (_isTicketIssueCancel) {
 //                    NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_fragment_cash_confirm, params);
                 } else {
-                    if (AppPreference.getIsCashChanger()) {
-                        /* つり銭機連動 */
-                        params.putString("moneyBrand", moneyBrand);
-                        NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_fragment_cash_changer_payment, params);
-                    } else {
-                        NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_fragment_cash_confirm, params);
-                    }
+//                    if (AppPreference.getIsCashChanger()) {
+//                        /* つり銭機連動 */
+//                        params.putString("moneyBrand", moneyBrand);
+//                        NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_fragment_cash_changer_payment, params);
+//                    } else {
+//                        NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_fragment_cash_confirm, params);
+//                    }
                 }
             });
         }
@@ -246,7 +246,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
                 params.putString("purchasedTicketDealId", purchasedTicketDealId);
                 params.putBoolean("isFixedAmountPostalOrder", true);
 
-                NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_fragment_cash_confirm, params);
+                // NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_fragment_cash_confirm, params);
             });
         }
 
@@ -352,35 +352,35 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
 
             //クレジット決済前チェック
             //売上送信で時間がかかる場合があるため、メインスレッドをロックさせない
-            CreditChecker checker = new CreditChecker();
-            checker.setListener(errCode -> {
-                handler.post(() -> {
-                    sharedViewModel.setLoading(false);
-                    //決済前チェックの結果を確認
-                    if (errCode != null) {
-                        //エラーの場合はダイアログ表示して終了
-                        dialog.ShowErrorMessage(activity, errCode);
-                        return;
-                    }
-
-                    view.post(() -> {
-                        if (_isTicketIssueCancel) {
-                            // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_credit, params);
-                        } else {
-                            NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_credit, params);
-                        }
-                    });
-                });
-
-                //取消対象の印刷データから金額を取得して表示
-//                Integer refundAmount = DBManager.getSlipDao().getOneById(slipId).transAmount;
-//                Amount.reset();
-//                Amount.setFlatRateAmount(refundAmount);
-//                Amount.fix();
-            });
+//            CreditChecker checker = new CreditChecker();
+//            checker.setListener(errCode -> {
+//                handler.post(() -> {
+//                    sharedViewModel.setLoading(false);
+//                    //決済前チェックの結果を確認
+//                    if (errCode != null) {
+//                        //エラーの場合はダイアログ表示して終了
+//                        dialog.ShowErrorMessage(activity, errCode);
+//                        return;
+//                    }
+//
+//                    view.post(() -> {
+//                        if (_isTicketIssueCancel) {
+//                            // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_credit, params);
+//                        } else {
+//                            NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_credit, params);
+//                        }
+//                    });
+//                });
+//
+//                //取消対象の印刷データから金額を取得して表示
+////                Integer refundAmount = DBManager.getSlipDao().getOneById(slipId).transAmount;
+////                Amount.reset();
+////                Amount.setFlatRateAmount(refundAmount);
+////                Amount.fix();
+//            });
 
             sharedViewModel.setLoading(true);
-            checker.check(view, type, purchasedTicketDealId); //クレジット決済前チェック開始
+            //checker.check(view, type, purchasedTicketDealId); //クレジット決済前チェック開始
         }
     }
 
@@ -429,7 +429,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
                 if (_isTicketIssueCancel) {
                     // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_suica, params);
                 } else {
-                    NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_suica, params);
+                    //NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_suica, params);
                 }
             });
         }
@@ -438,7 +438,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
                 if (_isTicketIssueCancel) {
                     // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_waon, params);
                 } else {
-                    NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_waon, params);
+                    //NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_waon, params);
                 }
             });
         }
@@ -447,7 +447,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
                 if (_isTicketIssueCancel) {
                     // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_id, params);
                 } else {
-                    NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_id, params);
+                    //NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_id, params);
                 }
             });
         }
@@ -461,7 +461,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
                 if (_isTicketIssueCancel) {
                     // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_quicpay, params);
                 } else {
-                    NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_quicpay, params);
+                    //NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_quicpay, params);
                 }
             });
         }
@@ -508,30 +508,30 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
             return;
         }
 
-        if (moneyBrand.equals(_app.getString(R.string.money_brand_suica)))  {
-            view.post(() -> {
-                NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_suica, params);
-            });
-        }
-        else if (moneyBrand.equals(_app.getString(R.string.money_brand_waon)))  {
-            view.post(() -> {
-                NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_waon, params);
-            });
-        }
-        else if (moneyBrand.equals(_app.getString(R.string.money_brand_id)))  {
-            view.post(() -> {
-                NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_id, params);
-            });
-        }
-        else if (moneyBrand.equals(_app.getString(R.string.money_brand_nanaco)))  {
-        }
-        else if (moneyBrand.equals(_app.getString(R.string.money_brand_edy)))  {
-        }
-        else if (moneyBrand.equals(_app.getString(R.string.money_brand_qp)))  {
-        }
-        else {
-            return;
-        }
+//        if (moneyBrand.equals(_app.getString(R.string.money_brand_suica)))  {
+//            view.post(() -> {
+//                NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_suica, params);
+//            });
+//        }
+//        else if (moneyBrand.equals(_app.getString(R.string.money_brand_waon)))  {
+//            view.post(() -> {
+//                NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_waon, params);
+//            });
+//        }
+//        else if (moneyBrand.equals(_app.getString(R.string.money_brand_id)))  {
+//            view.post(() -> {
+//                NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_id, params);
+//            });
+//        }
+//        else if (moneyBrand.equals(_app.getString(R.string.money_brand_nanaco)))  {
+//        }
+//        else if (moneyBrand.equals(_app.getString(R.string.money_brand_edy)))  {
+//        }
+//        else if (moneyBrand.equals(_app.getString(R.string.money_brand_qp)))  {
+//        }
+//        else {
+//            return;
+//        }
     }
 
     // 和多利取消
@@ -548,24 +548,24 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
 
         Handler handler = new Handler(Looper.getMainLooper());
 
-        WatariChecker checker = new WatariChecker();
-        checker.setListener(errCode -> handler.post(() -> {
-            sharedViewModel.setLoading(false);
-            //決済前チェックの結果を確認
-            if (errCode != null) {
-                //エラーの場合はダイアログ表示して終了
-                dialog.ShowErrorMessage(activity, errCode);
-                return;
-            }
-
-            _app.setBusinessType(type);
-            view.post(() -> {
-                NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_watari, params);
-            });
-        }));
+//        WatariChecker checker = new WatariChecker();
+//        checker.setListener(errCode -> handler.post(() -> {
+//            sharedViewModel.setLoading(false);
+//            //決済前チェックの結果を確認
+//            if (errCode != null) {
+//                //エラーの場合はダイアログ表示して終了
+//                dialog.ShowErrorMessage(activity, errCode);
+//                return;
+//            }
+//
+//            _app.setBusinessType(type);
+//            view.post(() -> {
+//                NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_watari, params);
+//            });
+//        }));
 
         sharedViewModel.setLoading(true);
-        checker.check(view, type); //クレジット決済前チェック開始
+//        checker.check(view, type); //クレジット決済前チェック開始
     }
 
     //ADD-S BMT S.Oyama 2024/09/19 フタバ双方向向け改修

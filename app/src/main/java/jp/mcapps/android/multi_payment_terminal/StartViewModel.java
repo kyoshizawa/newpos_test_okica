@@ -30,13 +30,13 @@ import jp.mcapps.android.multi_payment_terminal.logger.EventLogger;
 //import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
 //import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
 import jp.mcapps.android.multi_payment_terminal.model.McAuthenticator;
-import jp.mcapps.android.multi_payment_terminal.model.McCredit;
+//import jp.mcapps.android.multi_payment_terminal.model.McCredit;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 import jp.mcapps.android.multi_payment_terminal.model.Updater;
 import jp.mcapps.android.multi_payment_terminal.model.Validator;
-import jp.mcapps.android.multi_payment_terminal.thread.emv.EmvCLProcess;
+//import jp.mcapps.android.multi_payment_terminal.thread.emv.EmvCLProcess;
 import jp.mcapps.android.multi_payment_terminal.model.pos.ProductRepository;
 // import jp.mcapps.android.multi_payment_terminal.model.ticket.TicketRepository;
 // import jp.mcapps.android.multi_payment_terminal.service.PosTransactionService;
@@ -227,7 +227,7 @@ public class StartViewModel extends ViewModel
                         getCreditCAKey();
                         if (AppPreference.isMoneyContactless()) {
                             getRiskParameter();
-                            EmvCLProcess.emvInit();
+//                            EmvCLProcess.emvInit();
                         }
                     }
 
@@ -519,19 +519,19 @@ public class StartViewModel extends ViewModel
 
     private String getCreditCAKey() {
         //クレジットCA公開鍵DL
-        String errCode = new McCredit().getCAKey();
-        if (errCode != null) {
-            return errCode;
-        }
+//        String errCode = new McCredit().getCAKey();
+//        if (errCode != null) {
+//            return errCode;
+//        }
         return null;
     }
 
     private String getRiskParameter() {
         //リスク管理パラメータ
-        String errCode = new McCredit().getRiskParameterContactless();
-        if (errCode != null) {
-            return errCode;
-        }
+//        String errCode = new McCredit().getRiskParameterContactless();
+//        if (errCode != null) {
+//            return errCode;
+//        }
         return null;
     }
 

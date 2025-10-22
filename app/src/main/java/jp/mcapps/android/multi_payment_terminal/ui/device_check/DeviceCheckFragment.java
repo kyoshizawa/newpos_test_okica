@@ -43,18 +43,18 @@ import jp.mcapps.android.multi_payment_terminal.data.QRLayouts;
 import jp.mcapps.android.multi_payment_terminal.data.sam.Constants;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentDeviceCheckBinding;
 import jp.mcapps.android.multi_payment_terminal.devices.SamRW;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.CardInfo;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.CardListener;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.CardManager;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.CardInfo;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.CardListener;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.CardManager;
 import jp.mcapps.android.multi_payment_terminal.thread.felica.FelicaManager;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.util.DeviceUtils;
 import jp.mcapps.android.multi_payment_terminal.util.SimUtils;
 import timber.log.Timber;
-
-import static jp.mcapps.android.multi_payment_terminal.thread.credit.CardType.INMODE_IC;
-import static jp.mcapps.android.multi_payment_terminal.thread.credit.CardType.INMODE_MAG;
-import static jp.mcapps.android.multi_payment_terminal.thread.credit.CardType.INMODE_NFC;
+//
+//import static jp.mcapps.android.multi_payment_terminal.thread.credit.CardType.INMODE_IC;
+//import static jp.mcapps.android.multi_payment_terminal.thread.credit.CardType.INMODE_MAG;
+//import static jp.mcapps.android.multi_payment_terminal.thread.credit.CardType.INMODE_NFC;
 
 public class DeviceCheckFragment extends BaseFragment implements DeviceCheckEventHandlers {
     public static DeviceCheckFragment newInstance() {
@@ -342,22 +342,22 @@ public class DeviceCheckFragment extends BaseFragment implements DeviceCheckEven
         showProgressDialog(view,Msg);
 
         // 接触ICカードの検出開始
-        CardManager cardManager = CardManager.getInstance(INMODE_IC.getVal());
-        cardManager.getCard(k_DEVICE_CHECK_TIMEOUT, new CardListener() {
-            @Override
-            public void callback(CardInfo cardInfo) {
-                String resultText = "◆接触ＩＣ　　：✕　検出失敗";
-                if (INMODE_IC == cardInfo.getCardType()) {
-                    if (true == cardInfo.isResultFalg()) {
-                        resultText = "◆接触ＩＣ　　：〇　検出成功";
-                    }
-                }
-                dismissProgressDialog();
-                _deviceCheckViewModel.appendResultText(resultText);
-                _resultTextView.scrollTo(0, getResultTextBottom()); //自動スクロール
-                _deviceCheckViewModel.isRunning(false);
-            }
-        });
+//        CardManager cardManager = CardManager.getInstance(INMODE_IC.getVal());
+//        cardManager.getCard(k_DEVICE_CHECK_TIMEOUT, new CardListener() {
+//            @Override
+//            public void callback(CardInfo cardInfo) {
+//                String resultText = "◆接触ＩＣ　　：✕　検出失敗";
+//                if (INMODE_IC == cardInfo.getCardType()) {
+//                    if (true == cardInfo.isResultFalg()) {
+//                        resultText = "◆接触ＩＣ　　：〇　検出成功";
+//                    }
+//                }
+//                dismissProgressDialog();
+//                _deviceCheckViewModel.appendResultText(resultText);
+//                _resultTextView.scrollTo(0, getResultTextBottom()); //自動スクロール
+//                _deviceCheckViewModel.isRunning(false);
+//            }
+//        });
     }
 
     @Override
@@ -369,23 +369,23 @@ public class DeviceCheckFragment extends BaseFragment implements DeviceCheckEven
         showProgressDialog(view,Msg);
 
         // 非接触ICカードの検出開始
-        CardManager cardManager = CardManager.getInstance(INMODE_NFC.getVal());
-        cardManager.getCard(k_DEVICE_CHECK_TIMEOUT, new CardListener() {
-            @Override
-            public void callback(CardInfo cardInfo) {
-                cardManager.stopPICC();
-                String resultText = "◆非接触ＩＣ　：✕　検出失敗";
-                if (INMODE_NFC == cardInfo.getCardType()) {
-                    if (true == cardInfo.isResultFalg()) {
-                        resultText = "◆非接触ＩＣ　：〇　検出成功";
-                    }
-                }
-                dismissProgressDialog();
-                _deviceCheckViewModel.appendResultText(resultText);
-                _resultTextView.scrollTo(0, getResultTextBottom()); //自動スクロール
-                _deviceCheckViewModel.isRunning(false);
-            }
-        });
+//        CardManager cardManager = CardManager.getInstance(INMODE_NFC.getVal());
+//        cardManager.getCard(k_DEVICE_CHECK_TIMEOUT, new CardListener() {
+//            @Override
+//            public void callback(CardInfo cardInfo) {
+//                cardManager.stopPICC();
+//                String resultText = "◆非接触ＩＣ　：✕　検出失敗";
+//                if (INMODE_NFC == cardInfo.getCardType()) {
+//                    if (true == cardInfo.isResultFalg()) {
+//                        resultText = "◆非接触ＩＣ　：〇　検出成功";
+//                    }
+//                }
+//                dismissProgressDialog();
+//                _deviceCheckViewModel.appendResultText(resultText);
+//                _resultTextView.scrollTo(0, getResultTextBottom()); //自動スクロール
+//                _deviceCheckViewModel.isRunning(false);
+//            }
+//        });
     }
 
     @Override
@@ -428,23 +428,23 @@ public class DeviceCheckFragment extends BaseFragment implements DeviceCheckEven
         showProgressDialog(view,Msg);
 
         // 磁気Rカードの検出開始
-        CardManager cardManager = CardManager.getInstance(INMODE_MAG.getVal());
-        cardManager.getCard(k_DEVICE_CHECK_TIMEOUT, new CardListener() {
-            @Override
-            public void callback(CardInfo cardInfo) {
-                String resultText = "◆磁気Ｒ　　　：✕　検出失敗";
-                if (INMODE_MAG == cardInfo.getCardType()) {
-                    if (true == cardInfo.isResultFalg()) {
-                        resultText = "◆磁気Ｒ　　　：〇　検出成功";
-                    }
-                }
-                dismissProgressDialog();
-                _deviceCheckViewModel.appendResultText(resultText);
-                //Activity遷移の都合でここではスクロールできない。onResumeでスクロールを行う
-                //_resultTextView.scrollTo(0, getResultTextBottom()); //自動スクロール
-                _deviceCheckViewModel.isRunning(false);
-            }
-        });
+//        CardManager cardManager = CardManager.getInstance(INMODE_MAG.getVal());
+//        cardManager.getCard(k_DEVICE_CHECK_TIMEOUT, new CardListener() {
+//            @Override
+//            public void callback(CardInfo cardInfo) {
+//                String resultText = "◆磁気Ｒ　　　：✕　検出失敗";
+//                if (INMODE_MAG == cardInfo.getCardType()) {
+//                    if (true == cardInfo.isResultFalg()) {
+//                        resultText = "◆磁気Ｒ　　　：〇　検出成功";
+//                    }
+//                }
+//                dismissProgressDialog();
+//                _deviceCheckViewModel.appendResultText(resultText);
+//                //Activity遷移の都合でここではスクロールできない。onResumeでスクロールを行う
+//                //_resultTextView.scrollTo(0, getResultTextBottom()); //自動スクロール
+//                _deviceCheckViewModel.isRunning(false);
+//            }
+//        });
     }
 
     private int getResultTextBottom() {

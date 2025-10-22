@@ -24,14 +24,15 @@ import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipDao;
 import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData;
 import jp.mcapps.android.multi_payment_terminal.database.history.uri.UriDao;
 import jp.mcapps.android.multi_payment_terminal.database.history.uri.UriData;
+import jp.mcapps.android.multi_payment_terminal.database.history.uriOkica.ISOUtil;
 import jp.mcapps.android.multi_payment_terminal.database.history.uriOkica.UriOkicaDao;
 import jp.mcapps.android.multi_payment_terminal.database.history.uriOkica.UriOkicaData;
 import jp.mcapps.android.multi_payment_terminal.database.pos.TerminalDao;
 import jp.mcapps.android.multi_payment_terminal.database.pos.TerminalData;
 import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorCodes;
 import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorMap;
-import jp.mcapps.android.multi_payment_terminal.thread.emv.ParamManage;
-import jp.mcapps.android.multi_payment_terminal.thread.emv.utils.ISOUtil;
+//import jp.mcapps.android.multi_payment_terminal.thread.emv.ParamManage;
+//import jp.mcapps.android.multi_payment_terminal.thread.emv.utils.ISOUtil;
 import jp.mcapps.android.multi_payment_terminal.webapi.HttpStatusException;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.McOkicaCenterApiImpl;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.data.SendDtl;
@@ -110,8 +111,8 @@ public class McTerminal {
                 Timber.d("terminalInfo: %s", new Gson().toJson(response));
                 AppPreference.save(response);
                 setOptionService(response);
-                ParamManage pm = new ParamManage();
-                pm.saveTerminalNo(AppPreference.getMcTermId());
+//                ParamManage pm = new ParamManage();
+//                pm.saveTerminalNo(AppPreference.getMcTermId());
             }
         } catch (UnknownHostException | SocketTimeoutException e) {
             Timber.e(e);

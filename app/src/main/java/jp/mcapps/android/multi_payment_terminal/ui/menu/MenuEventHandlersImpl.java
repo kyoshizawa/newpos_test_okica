@@ -74,8 +74,8 @@ import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipDao;
 import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData;
 import jp.mcapps.android.multi_payment_terminal.error.DomainErrors;
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketGateSettingsDao;
-import jp.mcapps.android.multi_payment_terminal.model.CashChecker;
-import jp.mcapps.android.multi_payment_terminal.model.CreditChecker;
+//import jp.mcapps.android.multi_payment_terminal.model.CashChecker;
+//import jp.mcapps.android.multi_payment_terminal.model.CreditChecker;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountInfo;
 import jp.mcapps.android.multi_payment_terminal.model.EmoneyChecker;
 import jp.mcapps.android.multi_payment_terminal.model.ErrorStackingRepository;
@@ -87,7 +87,7 @@ import jp.mcapps.android.multi_payment_terminal.model.QRChecker;
 import jp.mcapps.android.multi_payment_terminal.model.SoundManager;
 import jp.mcapps.android.multi_payment_terminal.model.ValidationCheckChecker;
 import jp.mcapps.android.multi_payment_terminal.model.Validator;
-import jp.mcapps.android.multi_payment_terminal.model.WatariChecker;
+//import jp.mcapps.android.multi_payment_terminal.model.WatariChecker;
 import jp.mcapps.android.multi_payment_terminal.model.pos.ProductRepository;
 // import jp.mcapps.android.multi_payment_terminal.model.ticket.TicketRepository;
 import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
@@ -281,25 +281,25 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         //クレジット決済前チェック
         //売上送信で時間がかかる場合があるため、メインスレッドをロックさせない
-        CreditChecker checker = new CreditChecker();
-        checker.setListener(errCode -> handler.post(() -> {
-            sharedViewModel.setLoading(false);
-            //決済前チェックの結果を確認
-            if (errCode != null) {
-                //エラーの場合はダイアログ表示して終了
-                dialog.ShowErrorMessage(activity, errCode);
-                return;
-            }
-
-            //ADD-S BMT S.Oyama 2024/11/05 フタバ双方向向け改修
-            //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-            lastCheck(activity, dialog, null, R.id.action_navigation_menu_to_navigation_credit_card_scan);
-            //ADD-E BMT S.Oyama 2024/11/05 フタバ双方向向け改修
-
-        }));
+//        CreditChecker checker = new CreditChecker();
+//        checker.setListener(errCode -> handler.post(() -> {
+//            sharedViewModel.setLoading(false);
+//            //決済前チェックの結果を確認
+//            if (errCode != null) {
+//                //エラーの場合はダイアログ表示して終了
+//                dialog.ShowErrorMessage(activity, errCode);
+//                return;
+//            }
+//
+//            //ADD-S BMT S.Oyama 2024/11/05 フタバ双方向向け改修
+//            //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
+//            lastCheck(activity, dialog, null, R.id.action_navigation_menu_to_navigation_credit_card_scan);
+//            //ADD-E BMT S.Oyama 2024/11/05 フタバ双方向向け改修
+//
+//        }));
 
         sharedViewModel.setLoading(true);
-        checker.check(view, type); //クレジット決済前チェック開始
+        //checker.check(view, type); //クレジット決済前チェック開始
     }
 
     //ADD-S BMT S.Oyama 2024/09/12 フタバ双方向向け改修
@@ -342,7 +342,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-        lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_suica, R.id.fragment_amount_input_separationpay_fd);
+        //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_suica, R.id.fragment_amount_input_separationpay_fd);
     }
     //ADD-E BMT S.Oyama 2024/09/12 フタバ双方向向け改修
 
@@ -366,7 +366,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-        lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_suica);
+        //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_suica);
     }
 
     //ADD-S BMT S.Oyama 2024/09/12 フタバ双方向向け改修
@@ -408,7 +408,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコードXX
-        lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_id, R.id.fragment_amount_input_separationpay_fd);
+        //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_id, R.id.fragment_amount_input_separationpay_fd);
     }
     //ADD-E BMT S.Oyama 2024/09/12 フタバ双方向向け改修
 
@@ -431,7 +431,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコードXX
-        lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_id);
+        //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_id);
     }
 
     //ADD-S BMT S.Oyama 2024/09/12 フタバ双方向向け改修
@@ -473,7 +473,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコードXX
-        lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_waon, R.id.fragment_amount_input_separationpay_fd);
+        //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_waon, R.id.fragment_amount_input_separationpay_fd);
     }
     //ADD-E BMT S.Oyama 2024/09/12 フタバ双方向向け改修
 
@@ -496,7 +496,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコードXX
-        lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_waon);
+        //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_waon);
     }
 
     //ADD-S BMT S.Oyama 2024/09/12 フタバ双方向向け改修
@@ -546,7 +546,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-        lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_edy, R.id.fragment_amount_input_separationpay_fd);
+        //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_edy, R.id.fragment_amount_input_separationpay_fd);
     }
     //ADD-E BMT S.Oyama 2024/09/12 フタバ双方向向け改修
 
@@ -577,7 +577,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-        lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_edy);
+        //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_edy);
     }
 
     //ADD-S BMT S.Oyama 2024/09/12 フタバ双方向向け改修
@@ -620,7 +620,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-        lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_quicpay, R.id.fragment_amount_input_separationpay_fd);
+        //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_quicpay, R.id.fragment_amount_input_separationpay_fd);
     }
     //ADD-E BMT S.Oyama 2024/09/12 フタバ双方向向け改修
 
@@ -644,7 +644,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-        lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_quicpay);
+        //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_quicpay);
     }
 
     //ADD-S BMT S.Oyama 2024/09/12 フタバ双方向向け改修
@@ -687,7 +687,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-        lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_nanaco, R.id.fragment_amount_input_separationpay_fd);
+        //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_nanaco, R.id.fragment_amount_input_separationpay_fd);
     }
     //ADD-E BMT S.Oyama 2024/09/12 フタバ双方向向け改修
 
@@ -711,7 +711,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-        lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_nanaco);
+        //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_nanaco);
     }
 
     //ADD-S BMT S.Oyama 2024/09/12 フタバ双方向向け改修
@@ -854,22 +854,22 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         Handler handler = new Handler(Looper.getMainLooper());
 
-        WatariChecker checker = new WatariChecker();
-        checker.setListener(errCode -> handler.post(() -> {
-            sharedViewModel.setLoading(false);
-            //決済前チェックの結果を確認
-            if (errCode != null) {
-                //エラーの場合はダイアログ表示して終了
-                dialog.ShowErrorMessage(activity, errCode);
-                return;
-            }
-
-            //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-            lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_watari);
-        }));
+//        WatariChecker checker = new WatariChecker();
+//        checker.setListener(errCode -> handler.post(() -> {
+//            sharedViewModel.setLoading(false);
+//            //決済前チェックの結果を確認
+//            if (errCode != null) {
+//                //エラーの場合はダイアログ表示して終了
+//                dialog.ShowErrorMessage(activity, errCode);
+//                return;
+//            }
+//
+//            //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
+//            lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_watari);
+//        }));
 
         sharedViewModel.setLoading(true);
-        checker.check(view, type); //クレジット決済前チェック開始
+        // checker.check(view, type); //クレジット決済前チェック開始
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -898,9 +898,9 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 //            return;
 //        }
 
-        // 商品選択ではなくてカート画面に遷移する
-        NavigationWrapper.navigate(
-                activity, R.id.fragment_main_nav_host, R.id.action_navigation_menu_to_fragment_cart_confirm);
+//        // 商品選択ではなくてカート画面に遷移する
+//        NavigationWrapper.navigate(
+//                activity, R.id.fragment_main_nav_host, R.id.action_navigation_menu_to_fragment_cart_confirm);
     }
 
     //ADD-S BMT S.Oyama 2024/10/09 フタバ双方向向け改修
@@ -993,7 +993,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                 })
                 .subscribe(() -> {
                     //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-                    lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_qr_payment);
+                    //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_qr_payment);
                 }, e -> {
                     String errorCode = e.getMessage();
                     dialog.ShowErrorMessage(activity, errorCode);
@@ -1030,23 +1030,23 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                 return;
             }
 
-            if (id == R.id.action_navigation_menu_to_fragment_cash_changer_payment) {
-                final Bundle params = new Bundle();
-                params.putBoolean("isRepay", false);
-                view.post(() -> {
-                    NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, id, params);
-                });
-            } else if (id == R.id.action_navigation_others_to_fragment_cash_input) {
-                final Bundle params = new Bundle();
-                params.putBoolean("isFixedAmountPostalOrder", true);
-                view.post(() -> {
-                    NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, id, params);
-                });
-            } else {
-                view.post(() -> {
-                    NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, id);
-                });
-            }
+//            if (id == R.id.action_navigation_menu_to_fragment_cash_changer_payment) {
+//                final Bundle params = new Bundle();
+//                params.putBoolean("isRepay", false);
+//                view.post(() -> {
+//                    NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, id, params);
+//                });
+//            } else if (id == R.id.action_navigation_others_to_fragment_cash_input) {
+//                final Bundle params = new Bundle();
+//                params.putBoolean("isFixedAmountPostalOrder", true);
+//                view.post(() -> {
+//                    NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, id, params);
+//                });
+//            } else {
+//                view.post(() -> {
+//                    NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, id);
+//                });
+//            }
         }).start();
     }
 

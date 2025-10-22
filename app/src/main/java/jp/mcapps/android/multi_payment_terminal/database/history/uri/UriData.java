@@ -15,7 +15,7 @@ import jp.mcapps.android.multi_payment_terminal.data.trans_param.SurveyParam;
 import jp.mcapps.android.multi_payment_terminal.database.Converters;
 import jp.mcapps.android.multi_payment_terminal.database.DeviceClient;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.data.CreditResult;
+// import jp.mcapps.android.multi_payment_terminal.thread.credit.data.CreditResult;
 
 @Entity(tableName = "history_uri")
 public class UriData {
@@ -332,60 +332,60 @@ public class UriData {
     /**
      * クレジット売上データ
      */
-    public UriData(CreditResult.Result result, int encryptType, int termSequence, ResultParam resultParam, RefundParam refundParam, AmountParam amountParam, SurveyParam surveyParam) {
-        //共通項目
-        posSend = 0;    //POS送信状態
-        carId = AppPreference.getMcCarId(); //号機番号（車番）
-        driverId = AppPreference.getMcDriverId();    //乗務員コード
-        termId = AppPreference.getMcTermId();   //端末番号
-        transBrand = MainApplication.getInstance().getString(R.string.money_brand_credit);   //ブランド名
-        transDate = Converters.dateFormat(result.authDateTime);  //取引日時
-        oldTransDate = refundParam.oldTransDate;  //元取引日時
-        transType = resultParam.transType;    //取引種別
-        transResult = resultParam.transResult;    //取引結果
-        transResultDetail = resultParam.transResultDetail;    //取引結果詳細
-        this.termSequence = termSequence;   //端末通番
-        oldTermSequence = refundParam.oldTermSequence;    //元端末通番
-        cardId = result.maskedMemberNo;   //カード番号
-        installment = "10"; //分割回数
-        transAmount = amountParam.transAmount;  //取引金額
-        transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
-        transMeterAmount = amountParam.transMeterAmount;    //メータ金額
-        transAdjAmount = amountParam.transAdjAmount;    //増減額
-        transCashTogetherAmount = amountParam.transCashTogetherAmount;   //現金併用金額 0固定
-        transOtherAmountOne = amountParam.transTicketAmount;    //チケット金額
-        if(transOtherAmountOne != null && 0 < transOtherAmountOne) {
-            transOtherAmountOneType = 1;   //その他金額1種別（チケット）
-        } else {
-            transOtherAmountOneType = 0;   //その他金額1種別（予備）
-        }
-        transOtherAmountTwoType = 0;   //その他金額2種別（予備）
-        transOtherAmountTwo = 0;   //その他金額2（予備）
-        transTime = surveyParam.transTime;  //取引処理時間 このタイミングではNULLの場合あり
-        transInputPinTime = surveyParam.transInputPinTime;  //暗証番号入力時間 このタイミングではNULLの場合あり
-        termLatitude = surveyParam.termLatitude; //位置情報（緯度）
-        termLongitude = surveyParam.termLongitude;    //位置情報（経度）
-        termNetworkType = surveyParam.termNetworkType;  //ネットワーク種別
-        termRadioLevel = surveyParam.termRadioLevel;    //電波状況（レベル）
-        this.encryptType = encryptType;   //暗号化パターン
-
-        //クレジット固有項目
-        creditAcqId = result.acquirerId;    //クレジットアクワイアラID
-        creditMsIc = result.msICKbn;    //磁気・IC区分
-        creditOnOff = result.onOffKbn;   //オンオフ区分
-        creditChipCc = result.chipCC;   //チップコンディションコード
-        creditForcedOnline = result.forcedOnline;    //強制オンライン
-        creditForcedApproval = result.forcedApproval;  //強制承認
-        creditCommodityCode = result.productCd; //商品コード
-        creditAid = result.aid; //AID
-        creditEntryMode = result.posEntryMode;  //POSエントリーモード
-        creditPanSequenceNumber = result.panSeqNo;    //PANシーケンスナンバー
-        creditIctermFlag = result.icTerminalFlg;    //IC対応端末フラグ
-        creditBrandId = result.brandSign;   //ブランド識別
-        creditKeyType = result.keyType; //鍵種別
-        creditKeyVer = result.keyVersion;   //鍵バージョン
-        creditEncryptionData = result.rsaData;  //暗号化データ
-    }
+//    public UriData(CreditResult.Result result, int encryptType, int termSequence, ResultParam resultParam, RefundParam refundParam, AmountParam amountParam, SurveyParam surveyParam) {
+//        //共通項目
+//        posSend = 0;    //POS送信状態
+//        carId = AppPreference.getMcCarId(); //号機番号（車番）
+//        driverId = AppPreference.getMcDriverId();    //乗務員コード
+//        termId = AppPreference.getMcTermId();   //端末番号
+//        transBrand = MainApplication.getInstance().getString(R.string.money_brand_credit);   //ブランド名
+//        transDate = Converters.dateFormat(result.authDateTime);  //取引日時
+//        oldTransDate = refundParam.oldTransDate;  //元取引日時
+//        transType = resultParam.transType;    //取引種別
+//        transResult = resultParam.transResult;    //取引結果
+//        transResultDetail = resultParam.transResultDetail;    //取引結果詳細
+//        this.termSequence = termSequence;   //端末通番
+//        oldTermSequence = refundParam.oldTermSequence;    //元端末通番
+//        cardId = result.maskedMemberNo;   //カード番号
+//        installment = "10"; //分割回数
+//        transAmount = amountParam.transAmount;  //取引金額
+//        transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
+//        transMeterAmount = amountParam.transMeterAmount;    //メータ金額
+//        transAdjAmount = amountParam.transAdjAmount;    //増減額
+//        transCashTogetherAmount = amountParam.transCashTogetherAmount;   //現金併用金額 0固定
+//        transOtherAmountOne = amountParam.transTicketAmount;    //チケット金額
+//        if(transOtherAmountOne != null && 0 < transOtherAmountOne) {
+//            transOtherAmountOneType = 1;   //その他金額1種別（チケット）
+//        } else {
+//            transOtherAmountOneType = 0;   //その他金額1種別（予備）
+//        }
+//        transOtherAmountTwoType = 0;   //その他金額2種別（予備）
+//        transOtherAmountTwo = 0;   //その他金額2（予備）
+//        transTime = surveyParam.transTime;  //取引処理時間 このタイミングではNULLの場合あり
+//        transInputPinTime = surveyParam.transInputPinTime;  //暗証番号入力時間 このタイミングではNULLの場合あり
+//        termLatitude = surveyParam.termLatitude; //位置情報（緯度）
+//        termLongitude = surveyParam.termLongitude;    //位置情報（経度）
+//        termNetworkType = surveyParam.termNetworkType;  //ネットワーク種別
+//        termRadioLevel = surveyParam.termRadioLevel;    //電波状況（レベル）
+//        this.encryptType = encryptType;   //暗号化パターン
+//
+//        //クレジット固有項目
+//        creditAcqId = result.acquirerId;    //クレジットアクワイアラID
+//        creditMsIc = result.msICKbn;    //磁気・IC区分
+//        creditOnOff = result.onOffKbn;   //オンオフ区分
+//        creditChipCc = result.chipCC;   //チップコンディションコード
+//        creditForcedOnline = result.forcedOnline;    //強制オンライン
+//        creditForcedApproval = result.forcedApproval;  //強制承認
+//        creditCommodityCode = result.productCd; //商品コード
+//        creditAid = result.aid; //AID
+//        creditEntryMode = result.posEntryMode;  //POSエントリーモード
+//        creditPanSequenceNumber = result.panSeqNo;    //PANシーケンスナンバー
+//        creditIctermFlag = result.icTerminalFlg;    //IC対応端末フラグ
+//        creditBrandId = result.brandSign;   //ブランド識別
+//        creditKeyType = result.keyType; //鍵種別
+//        creditKeyVer = result.keyVersion;   //鍵バージョン
+//        creditEncryptionData = result.rsaData;  //暗号化データ
+//    }
 
     /**
      * 交通系売上データ

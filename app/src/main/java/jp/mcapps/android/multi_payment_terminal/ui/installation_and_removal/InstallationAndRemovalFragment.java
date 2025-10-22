@@ -771,7 +771,7 @@ public class InstallationAndRemovalFragment extends BaseFragment implements Inst
             CommonClickEvent.RecordClickOperation("認証", "POS機能", false);
             ConfirmDialog.newInstance("【POS機能設定】", "認証しますか？", () -> {
                 CommonClickEvent.RecordClickOperation("はい", "POS機能認証", false);
-                NavigationWrapper.navigate(this, R.id.action_navigation_installation_and_removal_to_navigation_pos_activation);
+                //NavigationWrapper.navigate(this, R.id.action_navigation_installation_and_removal_to_navigation_pos_activation);
             }, () -> {
                 CommonClickEvent.RecordClickOperation("いいえ", "POS機能認証", false);
             }).show(getChildFragmentManager(), null);

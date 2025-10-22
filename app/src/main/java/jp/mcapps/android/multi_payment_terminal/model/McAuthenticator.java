@@ -13,7 +13,7 @@ import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorMap;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 import jp.mcapps.android.multi_payment_terminal.util.Crypto;
 import jp.mcapps.android.multi_payment_terminal.util.McUtils;
 import jp.mcapps.android.multi_payment_terminal.webapi.HttpStatusException;
@@ -94,16 +94,16 @@ public class McAuthenticator {
                 return McPosCenterErrorMap.get(response.errorCode);
             }
 
-            CreditSettlement.getInstance()._mcCenterCommManager.setKeyType(response.spec);
-            CreditSettlement.getInstance()._mcCenterCommManager.setKeyVer(response.ver);
-
-            final String pubKey = response.data;
-
-            // 16進数"文字列"なのでビットの倍でとる
-            _modulus = new BigInteger(pubKey.substring(0, MODULUS_BITS*2), 16);
-            CreditSettlement.getInstance()._mcCenterCommManager.setModulus(_modulus);
-            _exponent = new BigInteger(pubKey.substring(pubKey.length()-(EXPONENT_BITS*2)), 16);
-            CreditSettlement.getInstance()._mcCenterCommManager.setExponent(_exponent);
+//            CreditSettlement.getInstance()._mcCenterCommManager.setKeyType(response.spec);
+//            CreditSettlement.getInstance()._mcCenterCommManager.setKeyVer(response.ver);
+//
+//            final String pubKey = response.data;
+//
+//            // 16進数"文字列"なのでビットの倍でとる
+//            _modulus = new BigInteger(pubKey.substring(0, MODULUS_BITS*2), 16);
+//            CreditSettlement.getInstance()._mcCenterCommManager.setModulus(_modulus);
+//            _exponent = new BigInteger(pubKey.substring(pubKey.length()-(EXPONENT_BITS*2)), 16);
+//            CreditSettlement.getInstance()._mcCenterCommManager.setExponent(_exponent);
 
             return null;
         } catch (UnknownHostException | SocketTimeoutException e) {
@@ -160,7 +160,7 @@ public class McAuthenticator {
                 return McPosCenterErrorMap.INTERNAL_ERROR_CODE;
             }
 
-            CreditSettlement.getInstance()._mcCenterCommManager.setPlainSessionKey(_plainSessionKey1);
+//            CreditSettlement.getInstance()._mcCenterCommManager.setPlainSessionKey(_plainSessionKey1);
 
             _encodedSessionKey2 = response.sessionKey2;
             return null;
@@ -189,7 +189,7 @@ public class McAuthenticator {
             if (!response.result) {
                 return McPosCenterErrorMap.get(response.errorCode);
             } else {
-                CreditSettlement.getInstance()._mcCenterCommManager.setTerOpePort(response.forward);
+//                CreditSettlement.getInstance()._mcCenterCommManager.setTerOpePort(response.forward);
             }
 
             return null;

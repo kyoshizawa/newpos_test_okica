@@ -41,19 +41,19 @@ import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptDao
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptData;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentHistoryTransactionDetailBinding;
 import jp.mcapps.android.multi_payment_terminal.model.SoundManager;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterProc;
 import jp.mcapps.android.multi_payment_terminal.ui.Converters;
 import timber.log.Timber;
 
-public class HistoryTransactionDetailFragment extends BaseFragment implements CreditSettlement.CreditSettlementListener {
+public class HistoryTransactionDetailFragment extends BaseFragment {
     private static final String ARGS_NAME = "SLIP_ID";
     private final String SCREEN_NAME = "取引履歴詳細";
-    private final CreditSettlement _creditSettlement = CreditSettlement.getInstance();
+    //private final CreditSettlement _creditSettlement = CreditSettlement.getInstance();
     private HistoryTransactionDetailViewModel _viewModel;
     private SoundManager _soundManager = SoundManager.getInstance();
     private float _soundVolume = AppPreference.getSoundPaymentVolume() / 10f;
-    private CreditSettlement.CreditSettlementListener _listener;
+    //private CreditSettlement.CreditSettlementListener _listener;
 
     public static HistoryTransactionDetailFragment newInstance() {
         return new HistoryTransactionDetailFragment();
@@ -442,7 +442,7 @@ public class HistoryTransactionDetailFragment extends BaseFragment implements Cr
 
         ScreenData.getInstance().setScreenName(SCREEN_NAME);
 
-        _creditSettlement.setListener(this);
+        //_creditSettlement.setListener(this);
 
         return binding.getRoot();
     }
@@ -460,50 +460,9 @@ public class HistoryTransactionDetailFragment extends BaseFragment implements Cr
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (_creditSettlement.isSameListener(this)) {
-            _creditSettlement.setListener(null);
-        }
+//        if (_creditSettlement.isSameListener(this)) {
+//            _creditSettlement.setListener(null);
+//        }
     }
 
-    @Override
-    public void selectApplication(String[] applications) {
-    }
-
-    @Override
-    public void OnProcStart() {
-    }
-
-    @Override
-    public void OnProcEnd() {
-    }
-
-    @Override
-    public void OnError(String errorCode) {
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @Override
-    public void OnSound(int id) {
-        Timber.d("OnSound");
-        _soundManager.load(MainApplication.getInstance(), id, 1);
-
-        _soundManager.setOnLoadCompleteListener((soundPool, soundId, status) -> {
-            soundPool.play(soundId, _soundVolume, _soundVolume, 1, 0, 1);
-        });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        //画面オフを有効化 取消を中止した場合はここに戻るため
-        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    }
-
-    @Override
-    public void timeoutWaitCard(String errorCode) {
-    }
-
-    @Override
-    public void cancelPin() {
-    }
 }

@@ -25,9 +25,9 @@ import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 //import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
 import jp.mcapps.android.multi_payment_terminal.database.DeviceClient;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
-import jp.mcapps.android.multi_payment_terminal.model.WatariSettlement;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.data.CreditResult;
+//import jp.mcapps.android.multi_payment_terminal.model.WatariSettlement;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.data.CreditResult;
 import jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.EMoneyOkicaViewModel;
 
 @Entity(tableName = "history_slip")
@@ -384,146 +384,146 @@ public class SlipData implements Serializable {
     /**
      * クレジット印刷データ
      */
-    public SlipData(CreditResult.Result result, int encryptType, int termSequence, ResultParam resultParam, RefundParam refundParam, AmountParam amountParam) {
-        transBrand = MainApplication.getInstance().getString(R.string.money_brand_credit);   //ブランド名
-        transType = resultParam.transType;    //取引種別
-        transTypeCode = "0";
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) && resultParam.transResult == TransMap.RESULT_SUCCESS) {
-            // 手動決済モードで正常終了の場合
-            transTypeCode = transType == TransMap.TYPE_SALES ? MANUALMODE_TRANS_TYPE_CODE_SALES : MANUALMODE_TRANS_TYPE_CODE_CANCEL;
-        }
-        transResult = resultParam.transResult;    //取引結果
-        transResultDetail = resultParam.transResultDetail;  //取引結果詳細
-        printCnt = 0; //印刷回数
-        oldAggregateOrder = 0;    //集計印刷順
-        this.encryptType = encryptType;    //暗号化パターン
-        if (transType == TransMap.TYPE_SALES && transResult == TransMap.RESULT_SUCCESS) {
-            cancelFlg = 1;  //取消可否 売上かつ成功の場合のみ
-        }
-        if (AppPreference.isPosTransaction()) {
-            merchantName = AppPreference.getPosMerchantName();   //加盟店名
-            merchantOffice = AppPreference.getPosMerchantOffice();  //加盟店営業所名
-            merchantTelnumber = AppPreference.getPosMerchantTelnumber();    //加盟店電話番号
-        } else {
-            merchantName = AppPreference.getMerchantName();   //加盟店名
-            merchantOffice = AppPreference.getMerchantOffice();  //加盟店営業所名
-            merchantTelnumber = AppPreference.getMerchantTelnumber();    //加盟店電話番号
-        }
-        carId = AppPreference.getMcCarId(); //号機番号（車番）
-        driverId = AppPreference.getMcDriverId();    //乗務員コード
-        termId = AppPreference.getMcTermId();   //機器番号
-        this.termSequence = termSequence; //機器通番
-        transDate = Converters.dateFormat(result.authDateTime);  //取引日時
-        cardCompany = result.printText; //カード発行会社
-        cardIdMerchant = result.maskedMemberNo;   //カード番号（加盟店控）
-        cardIdCustomer = result.maskedMemberNo;   //カード番号（お客様控）
-        cardExpDate = result.cardExpDate;   //カード有効期限
-        slipNumber = termSequence;  //伝票番号
-        oldSlipNumber = refundParam.oldSlipNumber; //元伝票番号
-        printingAuthId = result.cafisApprovalNo.replaceFirst("^0+", "");    //承認番号 (先頭の0を消す)
-        commodityCode = result.productCd;   //商品コード
-        installment = "一括"; //分割回数
-        transAmount = amountParam.transAmount;   //取引金額
-        transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
-        transMeterAmount = amountParam.transMeterAmount;    //メーター金額
-        transAdjAmount = amountParam.transAdjAmount;    // 増減額
-        transCashTogetherAmount = amountParam.transCashTogetherAmount;  // 現金併用額
-        transOtherAmountOne = amountParam.transTicketAmount;    //チケット金額
-        if (transOtherAmountOne != null && 0 < transOtherAmountOne) {
-            transOtherAmountOneType = 1;   //その他金額1種別（チケット）
-        } else {
-            transOtherAmountOneType = 0;   //その他金額1種別（予備）
-        }
-        transOtherAmountTwoType = 0;   //その他金額2種別（予備）
-        transOtherAmountTwo = 0;    //その他金額2（予備）
-        freeCountOne = amountParam.transEigyoCount;   //フリーカウント1
-        freeCountTwo = 0;   //フリーカウント2
-        creditType = result.msICKbn == CreditSettlement.k_MSIC_KBN_MS ? "MS"
-                : result.msICKbn == CreditSettlement.k_MSIC_KBN_IC ? "IC"
-                : result.msICKbn == CreditSettlement.k_MSIC_KBN_CONTACTLESS_IC ? "CL"
-                : "";
-        //ARC ICの場合のみ設定
-        //AID ICの場合のみ設定
-        //APL ICの場合のみ設定
-        creditSignatureFlg = result.signatureFlag; //サイン
-
-        if (result.msICKbn != 0) {
-            //IC
-            if (transType == TransMap.TYPE_SALES) {
-                creditArc = result.resCd; //ARC
-            } else {
-                creditArc = "00"; //ARC（取消時はオーソリ応答のARCが設定されない　00固定とする）
-            }
-            creditAid = result.aid;     //AID
-            creditApl = result.applicationLabel;  //APL
-        }
-        else
-        {
-            creditArc = "00"; //ARC（取消時はオーソリ応答のARCが設定されない　00固定とする）
-            creditAid = Converters.repeatSpace(32);     //AID  32個の空白
-            creditApl = Converters.repeatSpace(16);     //APL  16個の空白
-        }
-
-        creditKid = result.kid;  //KID
-        //ADD-S BMT S.Oyama 2025/03/05 フタバ双方向向け改修
-        if (creditKid == null || creditKid.isEmpty() == true) {
-            creditKid = "000";  //KID
-        }
-        //ADD-E BMT S.Oyama 2025/03/05 フタバ双方向向け改修
-        transCompleteAmount = amountParam.transCompleteAmount;  //支払済み金額
-
-        if (AppPreference.isPosTransaction()) {
-            transactionTerminalType = AppPreference.TerminalType.Pos.ordinal();
-        } else if (AppPreference.isTicketTransaction()) {
-            transactionTerminalType = AppPreference.TerminalType.Ticket.ordinal();
-        } else {
-            transactionTerminalType = AppPreference.TerminalType.Taxi.ordinal();
-        }
-
-        //ADD-S BMT S.Oyama 2024/09/30 フタバ双方向向け改修
-        card_id_card_company    = cardIdMerchant;                                                   //カード番号（カード会社控）
-        card_exp_date_merchant  = cardExpDate;                                                      //カード有効期限（加盟店控）
-        card_exp_date_card_company = cardExpDate;                                                   //カード有効期限（カード会社控）
-
-        cat_dual_type           = 0;                                                                //0:CAT型、1:DUAL型   0:CAT固定
-        card_seq_no             = Converters.integerToString(result.panSeqNo);                      //カードシーケンス番号   PANシーケンスナンバー
-        atc                     = result.atc;                                                       //ATC
-        rw_id                   = "";                        //RWID
-        sprw_id                 = "";                        //SPRWID
-        off_on_type             = "";                        //0:オフライン、1:オンライン
-        card_type               = "";                        //カード区分
-        card_id                 = "";                        //カードID
-        point_yuko_msg          = "";                        //ポイント利用不可時のメッセージ
-        point_marchant          = 0;                         //加盟店ポイント
-        point_total             = "";                        //累計ポイント
-        point_exp_date          = "";                        //ポイント有効期限
-        point_exp               = 0;                         //期限ポイント
-        waon_trans_type_code    = 0;                         //WAON取引種別コード
-        card_slip_no            = 0;                         //カード通番
-        lid                     = 0;                         //端末シリアル番号
-        service_name            = "";                        //サービス名
-        card_trans_number_str   = "";                        //取引通番
-        pay_id                  = 0;                         //支払ID
-        ic_no                   = "";                        //IC通番
-        old_ic_no               = "";                        //元IC通番
-        terminal_no             = "";                        //端末番号
-        terminal_seq_no         = "";                        //端末通番
-        uniqueId                = "";                        //ユニークID
-        terminal_id             = "";                        //上位端末ID
-        edy_seq_no              = "";                        //Edy取引通番
-        input_kingaku           = 0;                         //入力金額  PrinterProcで設定
-        //ADD-E BMT S.Oyama 2024/09/30 フタバ双方向向け改修
-
-        //ADD-S BMT S.Oyama 2024/11/29 フタバ双方向向け改修
-        prepaidAddPoint               = 0;                   //プリペイドポイント付与
-        prepaidTotalPoint             = 0;                   //プリペイドポイント残高
-        prepaidNextExpired            = "";                  //次回ポイント失効日
-        prepaidNextExpiredPoint       = 0;                   //次回ポイント失効ポイント
-        //ADD-E BMT S.Oyama 2024/11/29 フタバ双方向向け改修
-
-        updateCancelFlg();
-        setSendCancelPurchasedTicket();
-    }
+//    public SlipData(CreditResult.Result result, int encryptType, int termSequence, ResultParam resultParam, RefundParam refundParam, AmountParam amountParam) {
+//        transBrand = MainApplication.getInstance().getString(R.string.money_brand_credit);   //ブランド名
+//        transType = resultParam.transType;    //取引種別
+//        transTypeCode = "0";
+//        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) && resultParam.transResult == TransMap.RESULT_SUCCESS) {
+//            // 手動決済モードで正常終了の場合
+//            transTypeCode = transType == TransMap.TYPE_SALES ? MANUALMODE_TRANS_TYPE_CODE_SALES : MANUALMODE_TRANS_TYPE_CODE_CANCEL;
+//        }
+//        transResult = resultParam.transResult;    //取引結果
+//        transResultDetail = resultParam.transResultDetail;  //取引結果詳細
+//        printCnt = 0; //印刷回数
+//        oldAggregateOrder = 0;    //集計印刷順
+//        this.encryptType = encryptType;    //暗号化パターン
+//        if (transType == TransMap.TYPE_SALES && transResult == TransMap.RESULT_SUCCESS) {
+//            cancelFlg = 1;  //取消可否 売上かつ成功の場合のみ
+//        }
+//        if (AppPreference.isPosTransaction()) {
+//            merchantName = AppPreference.getPosMerchantName();   //加盟店名
+//            merchantOffice = AppPreference.getPosMerchantOffice();  //加盟店営業所名
+//            merchantTelnumber = AppPreference.getPosMerchantTelnumber();    //加盟店電話番号
+//        } else {
+//            merchantName = AppPreference.getMerchantName();   //加盟店名
+//            merchantOffice = AppPreference.getMerchantOffice();  //加盟店営業所名
+//            merchantTelnumber = AppPreference.getMerchantTelnumber();    //加盟店電話番号
+//        }
+//        carId = AppPreference.getMcCarId(); //号機番号（車番）
+//        driverId = AppPreference.getMcDriverId();    //乗務員コード
+//        termId = AppPreference.getMcTermId();   //機器番号
+//        this.termSequence = termSequence; //機器通番
+//        transDate = Converters.dateFormat(result.authDateTime);  //取引日時
+//        cardCompany = result.printText; //カード発行会社
+//        cardIdMerchant = result.maskedMemberNo;   //カード番号（加盟店控）
+//        cardIdCustomer = result.maskedMemberNo;   //カード番号（お客様控）
+//        cardExpDate = result.cardExpDate;   //カード有効期限
+//        slipNumber = termSequence;  //伝票番号
+//        oldSlipNumber = refundParam.oldSlipNumber; //元伝票番号
+//        printingAuthId = result.cafisApprovalNo.replaceFirst("^0+", "");    //承認番号 (先頭の0を消す)
+//        commodityCode = result.productCd;   //商品コード
+//        installment = "一括"; //分割回数
+//        transAmount = amountParam.transAmount;   //取引金額
+//        transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
+//        transMeterAmount = amountParam.transMeterAmount;    //メーター金額
+//        transAdjAmount = amountParam.transAdjAmount;    // 増減額
+//        transCashTogetherAmount = amountParam.transCashTogetherAmount;  // 現金併用額
+//        transOtherAmountOne = amountParam.transTicketAmount;    //チケット金額
+//        if (transOtherAmountOne != null && 0 < transOtherAmountOne) {
+//            transOtherAmountOneType = 1;   //その他金額1種別（チケット）
+//        } else {
+//            transOtherAmountOneType = 0;   //その他金額1種別（予備）
+//        }
+//        transOtherAmountTwoType = 0;   //その他金額2種別（予備）
+//        transOtherAmountTwo = 0;    //その他金額2（予備）
+//        freeCountOne = amountParam.transEigyoCount;   //フリーカウント1
+//        freeCountTwo = 0;   //フリーカウント2
+////        creditType = result.msICKbn == CreditSettlement.k_MSIC_KBN_MS ? "MS"
+////                : result.msICKbn == CreditSettlement.k_MSIC_KBN_IC ? "IC"
+////                : result.msICKbn == CreditSettlement.k_MSIC_KBN_CONTACTLESS_IC ? "CL"
+////                : "";
+//        //ARC ICの場合のみ設定
+//        //AID ICの場合のみ設定
+//        //APL ICの場合のみ設定
+////        creditSignatureFlg = result.signatureFlag; //サイン
+//
+////        if (result.msICKbn != 0) {
+////            //IC
+////            if (transType == TransMap.TYPE_SALES) {
+////                creditArc = result.resCd; //ARC
+////            } else {
+////                creditArc = "00"; //ARC（取消時はオーソリ応答のARCが設定されない　00固定とする）
+////            }
+////            creditAid = result.aid;     //AID
+////            creditApl = result.applicationLabel;  //APL
+////        }
+////        else
+////        {
+////            creditArc = "00"; //ARC（取消時はオーソリ応答のARCが設定されない　00固定とする）
+////            creditAid = Converters.repeatSpace(32);     //AID  32個の空白
+////            creditApl = Converters.repeatSpace(16);     //APL  16個の空白
+////        }
+//
+////        creditKid = result.kid;  //KID
+////        //ADD-S BMT S.Oyama 2025/03/05 フタバ双方向向け改修
+////        if (creditKid == null || creditKid.isEmpty() == true) {
+////            creditKid = "000";  //KID
+////        }
+//        //ADD-E BMT S.Oyama 2025/03/05 フタバ双方向向け改修
+//        transCompleteAmount = amountParam.transCompleteAmount;  //支払済み金額
+//
+//        if (AppPreference.isPosTransaction()) {
+//            transactionTerminalType = AppPreference.TerminalType.Pos.ordinal();
+//        } else if (AppPreference.isTicketTransaction()) {
+//            transactionTerminalType = AppPreference.TerminalType.Ticket.ordinal();
+//        } else {
+//            transactionTerminalType = AppPreference.TerminalType.Taxi.ordinal();
+//        }
+//
+//        //ADD-S BMT S.Oyama 2024/09/30 フタバ双方向向け改修
+//        card_id_card_company    = cardIdMerchant;                                                   //カード番号（カード会社控）
+//        card_exp_date_merchant  = cardExpDate;                                                      //カード有効期限（加盟店控）
+//        card_exp_date_card_company = cardExpDate;                                                   //カード有効期限（カード会社控）
+//
+//        cat_dual_type           = 0;                                                                //0:CAT型、1:DUAL型   0:CAT固定
+//        card_seq_no             = Converters.integerToString(result.panSeqNo);                      //カードシーケンス番号   PANシーケンスナンバー
+//        atc                     = result.atc;                                                       //ATC
+//        rw_id                   = "";                        //RWID
+//        sprw_id                 = "";                        //SPRWID
+//        off_on_type             = "";                        //0:オフライン、1:オンライン
+//        card_type               = "";                        //カード区分
+//        card_id                 = "";                        //カードID
+//        point_yuko_msg          = "";                        //ポイント利用不可時のメッセージ
+//        point_marchant          = 0;                         //加盟店ポイント
+//        point_total             = "";                        //累計ポイント
+//        point_exp_date          = "";                        //ポイント有効期限
+//        point_exp               = 0;                         //期限ポイント
+//        waon_trans_type_code    = 0;                         //WAON取引種別コード
+//        card_slip_no            = 0;                         //カード通番
+//        lid                     = 0;                         //端末シリアル番号
+//        service_name            = "";                        //サービス名
+//        card_trans_number_str   = "";                        //取引通番
+//        pay_id                  = 0;                         //支払ID
+//        ic_no                   = "";                        //IC通番
+//        old_ic_no               = "";                        //元IC通番
+//        terminal_no             = "";                        //端末番号
+//        terminal_seq_no         = "";                        //端末通番
+//        uniqueId                = "";                        //ユニークID
+//        terminal_id             = "";                        //上位端末ID
+//        edy_seq_no              = "";                        //Edy取引通番
+//        input_kingaku           = 0;                         //入力金額  PrinterProcで設定
+//        //ADD-E BMT S.Oyama 2024/09/30 フタバ双方向向け改修
+//
+//        //ADD-S BMT S.Oyama 2024/11/29 フタバ双方向向け改修
+//        prepaidAddPoint               = 0;                   //プリペイドポイント付与
+//        prepaidTotalPoint             = 0;                   //プリペイドポイント残高
+//        prepaidNextExpired            = "";                  //次回ポイント失効日
+//        prepaidNextExpiredPoint       = 0;                   //次回ポイント失効ポイント
+//        //ADD-E BMT S.Oyama 2024/11/29 フタバ双方向向け改修
+//
+//        updateCancelFlg();
+//        setSendCancelPurchasedTicket();
+//    }
 
     /**
      * 交通系印刷データ
@@ -1796,112 +1796,6 @@ public class SlipData implements Serializable {
             // チケット購入の決済取消時に処理未了が発生した場合、チケット購入の取消を送信必要なため、値（1）をセット
             sendCancelPurchasedTicket = 1;
         }
-    }
-
-    /**
-     * 和多利印刷データ
-     */
-    public SlipData(WatariSettlement.WatariResult result, int termSequence, int slipNo, ResultParam resultParam, RefundParam refundParam, AmountParam amountParam) {
-        transBrand = MainApplication.getInstance().getString(R.string.point_brand_watari);   //ブランド名
-        transType = resultParam.transType;    //取引種別
-        transResult = resultParam.transResult;    //取引結果
-        transResultDetail = resultParam.transResultDetail;  //取引結果詳細
-        printCnt = 0; //印刷回数
-        oldAggregateOrder = 0;    //集計印刷順
-        this.encryptType = -1;    //暗号化パターン
-        if (transType == TransMap.TYPE_POINT && transResult == TransMap.RESULT_SUCCESS) {
-            cancelFlg = 1;  //取消可否 ポイント付与かつ成功の場合のみ
-        }
-        if(AppPreference.isServicePos()) {
-            merchantName = AppPreference.getPosMerchantName();   //加盟店名
-            merchantOffice = AppPreference.getPosMerchantOffice();  //加盟店営業所名
-            merchantTelnumber = AppPreference.getPosMerchantTelnumber();    //加盟店電話番号
-        }
-        else {
-            merchantName = AppPreference.getMerchantName();   //加盟店名
-            merchantOffice = AppPreference.getMerchantOffice();  //加盟店営業所名
-            merchantTelnumber = AppPreference.getMerchantTelnumber();    //加盟店電話番号
-        }
-        carId = AppPreference.getMcCarId(); //号機番号（車番）
-        driverId = AppPreference.getMcDriverId();    //乗務員コード
-        termId = AppPreference.getMcTermId();   //機器番号
-        this.termSequence = termSequence; //機器通番
-        transDate = Converters.dateFormat(result.payTime);  //取引日時
-        slipNumber = slipNo;  //伝票番号
-        oldSlipNumber = refundParam.oldSlipNumber; //元伝票番号
-        installment = "一括"; //分割回数
-        transAmount = amountParam.transAmount;   //取引金額
-        transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
-        transMeterAmount = amountParam.transMeterAmount;    //メーター金額
-        transAdjAmount = amountParam.transAdjAmount;    // 増減額
-        transCashTogetherAmount = amountParam.transCashTogetherAmount;  // 現金併用額
-        transOtherAmountOne = amountParam.transTicketAmount;    //チケット金額
-        if (transOtherAmountOne != null && 0 < transOtherAmountOne) {
-            transOtherAmountOneType = 1;   //その他金額1種別（チケット）
-        } else {
-            transOtherAmountOneType = 0;   //その他金額1種別（予備）
-        }
-        transOtherAmountTwoType = 0;   //その他金額2種別（予備）
-        transOtherAmountTwo = 0;    //その他金額2（予備）
-        freeCountOne = amountParam.transEigyoCount;   //フリーカウント1
-        freeCountTwo = 0;   //フリーカウント2
-        creditType = "MS"; // 磁気だけ
-
-        transCompleteAmount = amountParam.transCompleteAmount;  //支払済み金額
-        if (transType == TransMap.TYPE_POINT) {
-            watariPoint = result.addRes.addPoint; // 付与ポイント数
-            watariSumPoint = result.addRes.sumPoint; // 累計ポイント数
-            watariCalidityPeriod = result.addRes.calidityPeriod; // 有効期限
-        } else {
-            watariPoint = result.cancelRes.addPoint; // 付与ポイント数
-            watariSumPoint = result.cancelRes.sumPoint; // 累計ポイント数
-            watariCalidityPeriod = result.cancelRes.calidityPeriod; // 有効期限
-        }
-        if (AppPreference.isPosTransaction()) {
-            transactionTerminalType = AppPreference.TerminalType.Pos.ordinal();
-        } else if (AppPreference.isTicketTransaction()) {
-            transactionTerminalType = AppPreference.TerminalType.Ticket.ordinal();
-        } else {
-            transactionTerminalType = AppPreference.TerminalType.Taxi.ordinal();
-        }
-
-        //ADD-S BMT S.Oyama 2024/09/30 フタバ双方向向け改修
-        cat_dual_type           = 0;                         //0:CAT型、1:DUAL型
-        card_seq_no             = "";                        //カードシーケンス番号
-        atc                     = "";                        //ATC
-        rw_id                   = "";                        //RWID
-        sprw_id                 = "";                        //SPRWID
-        off_on_type             = "";                        //0:オフライン、1:オンライン
-        card_type               = "";                        //カード区分
-        card_id                 = "";                        //カードID
-        point_yuko_msg          = "";                        //ポイント利用不可時のメッセージ
-        point_marchant          = 0;                         //加盟店ポイント
-        point_total             = "";                        //累計ポイント
-        point_exp_date          = "";                        //ポイント有効期限
-        point_exp               = 0;                         //期限ポイント
-        waon_trans_type_code    = 0;                         //WAON取引種別コード
-        card_slip_no            = 0;                         //カード通番
-        lid                     = 0;                         //端末シリアル番号
-        service_name            = "";                        //サービス名
-        card_trans_number_str   = "";                        //取引通番
-        pay_id                  = 0;                         //支払ID
-        ic_no                   = "";                        //IC通番
-        old_ic_no               = "";                        //元IC通番
-        terminal_no             = "";                        //端末番号
-        terminal_seq_no         = "";                        //端末通番
-        uniqueId                = "";                        //ユニークID
-        terminal_id             = "";                        //上位端末ID
-        edy_seq_no              = "";                        //Edy取引通番
-        input_kingaku           = 0;                         //入力金額
-        //ADD-E BMT S.Oyama 2024/09/30 フタバ双方向向け改修
-
-        //ADD-S BMT S.Oyama 2024/11/29 フタバ双方向向け改修
-        prepaidAddPoint               = 0;                   //プリペイドポイント付与
-        prepaidTotalPoint             = 0;                   //プリペイドポイント残高
-        prepaidNextExpired            = "";                  //次回ポイント失効日
-        prepaidNextExpiredPoint       = 0;                   //次回ポイント失効ポイント
-        //ADD-E BMT S.Oyama 2024/11/29 フタバ双方向向け改修
-
     }
 
     //ADD-S BMT S.Oyama 2025/02/10 フタバ双方向向け改修

@@ -78,8 +78,8 @@ import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
 //import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
-import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlementAdapter;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
+//import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlementAdapter;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterProc;
 import jp.mcapps.android.multi_payment_terminal.ui.Converters;
@@ -114,7 +114,7 @@ public class MenuFragment extends Fragment /*implements IiCASClient*/ {
 
 
     // サインの案内用
-    private CreditSettlementAdapter creditListener =  new CreditSettlementAdapter() {};
+//    private CreditSettlementAdapter creditListener =  new CreditSettlementAdapter() {};
     //POSメニュー用
 //    private PosEventHandlers _posEventHandlers;
 //    private PosViewModel _posViewModel;
@@ -465,10 +465,10 @@ public class MenuFragment extends Fragment /*implements IiCASClient*/ {
         super.onDestroyView();
         Timber.v("onDestroyView: %s", this.hashCode());
 
-        final CreditSettlement creditSettlement = CreditSettlement.getInstance();
-        if (creditSettlement.isSameListener(creditListener)) {
-            creditSettlement.setListener(null);
-        }
+//        final CreditSettlement creditSettlement = CreditSettlement.getInstance();
+//        if (creditSettlement.isSameListener(creditListener)) {
+//            creditSettlement.setListener(null);
+//        }
         if (destListener != null) {
             NavHostFragment navHostBody = (NavHostFragment)getChildFragmentManager().findFragmentById(R.id.fragment_menu_body_nav_host);
             assert navHostBody != null;
@@ -673,7 +673,7 @@ public class MenuFragment extends Fragment /*implements IiCASClient*/ {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void printTrans(int id) {
         //伝票印刷
-        CreditSettlement.getInstance().setListener(creditListener);
+//        CreditSettlement.getInstance().setListener(creditListener);
         final PrinterManager printerManager = PrinterManager.getInstance();
         printerManager.print_trans(getView(), id);
 
