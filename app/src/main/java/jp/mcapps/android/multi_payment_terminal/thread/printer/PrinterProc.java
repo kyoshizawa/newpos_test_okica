@@ -3,6 +3,7 @@ package jp.mcapps.android.multi_payment_terminal.thread.printer;
 
 import static jp.mcapps.android.multi_payment_terminal.AppPreference.isDemoMode;
 import static jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterConst.DuplexPrintResponseTimerSec;
+import jp.mcapps.android.multi_payment_terminal.database.DeviceClient;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -64,7 +65,7 @@ import jp.mcapps.android.multi_payment_terminal.database.pos.ReceiptSubtotalDeta
 import jp.mcapps.android.multi_payment_terminal.database.pos.ServiceFunctionData;
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptData;
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptDetail;
-import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
+//import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;

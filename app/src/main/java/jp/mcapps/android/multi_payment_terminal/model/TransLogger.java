@@ -26,7 +26,7 @@ import jp.mcapps.android.multi_payment_terminal.database.history.uri.UriDao;
 import jp.mcapps.android.multi_payment_terminal.database.history.uri.UriData;
 import jp.mcapps.android.multi_payment_terminal.database.history.uriOkica.UriOkicaDao;
 import jp.mcapps.android.multi_payment_terminal.database.history.uriOkica.UriOkicaData;
-import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
+import jp.mcapps.android.multi_payment_terminal.database.DeviceClient;
 import jp.mcapps.android.multi_payment_terminal.thread.credit.data.CreditResult;
 import jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.EMoneyOkicaViewModel;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.data.TerminalInfo;

@@ -141,6 +141,7 @@
                 android:layout_height="@dimen/common_btn_height"
                 android:layout_gravity="bottom|right"
                 android:layout_margin="@dimen/common_margin_large"
+                android:visibility="gone"
                 android:backgroundTint="@color/btn_common_cancel"
                 android:onClick='@{view -> handlers.onCloseClick(view,viewModel)}'
                 android:text="閉じる" />

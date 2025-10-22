@@ -314,7 +314,7 @@ public class InstallationAndRemovalFragment extends BaseFragment implements Inst
             CommonClickEvent.RecordClickOperation("はい", "Edy業務初回通信確認", false);
             new Thread(() -> {
                 _sharedViewModel.setLoading(true);
-                _installationAndRemovalViewModel.edyInitCommunication();
+//                _installationAndRemovalViewModel.edyInitCommunication();
                 _handler.post(() -> {
                     if (_installationAndRemovalViewModel.isEdyInitCommunicated().getValue()) {
                         Timber.i("正常終了:Edy初回通信が完了しました");
@@ -339,7 +339,7 @@ public class InstallationAndRemovalFragment extends BaseFragment implements Inst
         CommonClickEvent.RecordButtonClickOperation(view, true);
         ConfirmDialog.newInstance("撤去しますか？", () -> {
             _sharedViewModel.setLoading(true);
-            _installationAndRemovalViewModel.edyRemove();
+//            _installationAndRemovalViewModel.edyRemove();
             if (!_installationAndRemovalViewModel.isEdyInitCommunicated().getValue()) {
                 SuccessDialog.show(requireContext(), "撤去しました");
             } else {

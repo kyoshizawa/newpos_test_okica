@@ -41,7 +41,7 @@ import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorStac
 import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorStackingData;
 import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData;
 import jp.mcapps.android.multi_payment_terminal.database.pos.ServiceFunctionData;
-import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
+import jp.mcapps.android.multi_payment_terminal.database.DeviceClient;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.BaseEMoneyOkicaViewModel;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;

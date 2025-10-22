@@ -44,7 +44,7 @@ import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorMap;
 import jp.mcapps.android.multi_payment_terminal.logger.EventLogger;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
-import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
+//import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
 import jp.mcapps.android.multi_payment_terminal.model.McAuthenticator;
 import jp.mcapps.android.multi_payment_terminal.model.McCredit;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
@@ -387,18 +387,18 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
             }
 
             if (errCode == null) {
-                final JremOpener opener = new JremOpener();
-                if (AppPreference.isMoneySuica()) {
-                    errCode = opener.openingSuica();
-
-                    if (errCode != null) {
-                        errors.add(errCode);
-                    }
-                }
-
-                if (useOtherMoney) {
-                    errors.addAll(opener.openingEmoney());
-                }
+//                final JremOpener opener = new JremOpener();
+//                if (AppPreference.isMoneySuica()) {
+//                    errCode = opener.openingSuica();
+//
+//                    if (errCode != null) {
+//                        errors.add(errCode);
+//                    }
+//                }
+//
+//                if (useOtherMoney) {
+//                    errors.addAll(opener.openingEmoney());
+//                }
             }
         }
 

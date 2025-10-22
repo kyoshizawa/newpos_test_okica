@@ -28,7 +28,7 @@ import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorMap;
 import jp.mcapps.android.multi_payment_terminal.logger.EventLogger;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
-import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
+//import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
 import jp.mcapps.android.multi_payment_terminal.model.McAuthenticator;
 import jp.mcapps.android.multi_payment_terminal.model.McCredit;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
@@ -438,25 +438,25 @@ public class StartViewModel extends ViewModel
                 }
             }
         }
-
-        final JremOpener opener = new JremOpener();
-
-        if (AppPreference.isMoneySuica()) {
-            Timber.i("交通系開局実行");
-            final String errCode = opener.openingSuica();
-
-            if (errCode != null) {
-                Timber.e("交通系開局失敗(エラーコード:%s)", errCode);
-                _errors.add(errCode);
-            } else {
-                Timber.i("交通系開局成功");
-            }
-        }
-
-        if (useOtherMoney) {
-            Timber.i("他マネー開局実行");
-            _errors.addAll(opener.openingEmoney());
-        }
+//
+//        final JremOpener opener = new JremOpener();
+//
+//        if (AppPreference.isMoneySuica()) {
+//            Timber.i("交通系開局実行");
+//            final String errCode = opener.openingSuica();
+//
+//            if (errCode != null) {
+//                Timber.e("交通系開局失敗(エラーコード:%s)", errCode);
+//                _errors.add(errCode);
+//            } else {
+//                Timber.i("交通系開局成功");
+//            }
+//        }
+//
+//        if (useOtherMoney) {
+//            Timber.i("他マネー開局実行");
+//            _errors.addAll(opener.openingEmoney());
+//        }
 
 //        //ログ送信
 //        _eventLogger.submit();

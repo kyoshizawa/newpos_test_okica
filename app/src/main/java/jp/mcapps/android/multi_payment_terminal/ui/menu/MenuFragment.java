@@ -70,10 +70,10 @@ import jp.mcapps.android.multi_payment_terminal.databinding.FragmentMenuBinding;
 import jp.mcapps.android.multi_payment_terminal.error.ErrorManage;
 import jp.mcapps.android.multi_payment_terminal.error.JremRasErrorCodes;
 import jp.mcapps.android.multi_payment_terminal.error.JremRasErrorMap;
-import jp.mcapps.android.multi_payment_terminal.iCAS.BusinessParameter;
-import jp.mcapps.android.multi_payment_terminal.iCAS.IiCASClient;
-import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
-import jp.mcapps.android.multi_payment_terminal.iCAS.iCASClient;
+//import jp.mcapps.android.multi_payment_terminal.iCAS.BusinessParameter;
+//import jp.mcapps.android.multi_payment_terminal.iCAS.IiCASClient;
+//import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
+//import jp.mcapps.android.multi_payment_terminal.iCAS.iCASClient;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
 import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
@@ -92,9 +92,9 @@ import jp.mcapps.android.multi_payment_terminal.ui.pos.PosViewModel;
 import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
 import timber.log.Timber;
 
-public class MenuFragment extends Fragment implements IiCASClient {
+public class MenuFragment extends Fragment /*implements IiCASClient*/ {
     private MainApplication _app = MainApplication.getInstance();
-    private iCASClient _icasClient = null;
+//    private iCASClient _icasClient = null;
     private int _recoveryRetryCount = 0;
     private SharedViewModel _sharedViewModel;
     private PosViewModel _appBar;
@@ -509,438 +509,8 @@ public class MenuFragment extends Fragment implements IiCASClient {
         Timber.v("onDestroy: %s", this.hashCode());
     }
 
-    @Override
-    public void OnUIUpdate(DeviceClient.RWParam rwParam) {
 
-    }
 
-    @Override
-    public void OnStatusChanged(DeviceClient.Status status) {
-
-    }
-
-    @Override
-    public void OnDisplay(DeviceClient.Display display) {
-
-    }
-
-    @Override
-    public void OnOperation(DeviceClient.Operation operation) {
-        Timber.d(" Operation");
-    }
-
-    @Override
-    public void OnCancelDisable(boolean bDisable) {
-
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void OnResultSuica(DeviceClient.Result resultSuica) {
-        Timber.d("OnResultSuica %s", _gson.toJson(resultSuica));
-        Timber.d(_gson.toJson(resultSuica));
-
-        Integer slipId = null;
-        _transLogger.setAntennaLevel();
-        _transLogger.setCashTogetherAmount(Integer.valueOf(resultSuica.value));
-        _transLogger.setProcTime(_icasClient.GetProcTimeMillseconds(), _icasClient.GetPinTimeMillseconds());
-
-        if(resultSuica.result.equals("true")) {
-            //正常終了
-            if (resultSuica.time != null) {
-                //残高照会以外の正常終了
-
-                // プリンターを動かすと画面が更新されないので少し遅らせる
-                _transLogger.setTransResult(TransMap.RESULT_SUCCESS, TransMap.DETAIL_NORMAL);   //取引結果
-                _transLogger.suica(resultSuica);
-
-                // 通常の取引レコード以外の取引情報を作成する（insertでカード暗号化される前にカード番号が欲しいので先に実行）
-                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.JR);
-                optionalTransFacade = _transLogger.setDataForFacade(optionalTransFacade);
-
-                slipId = _transLogger.insert();
-
-                optionalTransFacade.CreateByUriData(); // DBにセット
-            }
-        } else {
-            Timber.e("resultSuica code: %s", resultSuica.code);
-
-            if (Integer.parseInt(resultSuica.code) == JremRasErrorCodes.E353) {
-
-                if(resultSuica.IDi != null){
-                    //処理未了
-                    _transLogger.setTransResult(TransMap.RESULT_UNFINISHED, TransMap.DETAIL_UNFINISHED);   //取引結果
-                }else{
-                    //通信障害※カード番号Null
-                    _transLogger.setTransResult(TransMap.RESULT_UNFINISHED, TransMap.DETAIL_COMMUNICATION_FAILURE);   //取引結果
-                }
-
-                _transLogger.suica(resultSuica);
-                slipId = _transLogger.insert();
-            }
-
-            //エラー履歴に保存
-            insertErrorHistory(resultSuica.code);
-        }
-
-        if (slipId != null) {
-//            exitManualMode(true, slipId);
-            printTrans(slipId);
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void OnResultID(DeviceClient.ResultID resultID) {
-        Timber.d("OnResultID: %s", _gson.toJson(resultID));
-        Timber.d(_gson.toJson(resultID));
-
-        Integer slipId = null;
-        _transLogger.setAntennaLevel();
-        _transLogger.setProcTime(_icasClient.GetProcTimeMillseconds(), _icasClient.GetPinTimeMillseconds());
-
-        if(resultID.result.equals("true")) {
-            //正常終了
-            if (resultID.time != null) {
-                //残高照会以外の正常終了
-
-                // プリンターを動かすと画面が更新されないので少し遅らせる
-                _transLogger.setTransResult(TransMap.RESULT_SUCCESS, TransMap.DETAIL_NORMAL);
-                _transLogger.id(resultID);
-                slipId = _transLogger.insert();
-
-                // 通常の取引レコード以外の取引情報を作成する
-                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.ID);
-                optionalTransFacade = _transLogger.setDataForFacade(optionalTransFacade);
-                optionalTransFacade.CreateByUriData(); // DBにセット
-            }
-        } else {
-            Timber.e("resultID code: %s", resultID.code);
-
-            if (Integer.parseInt(resultID.code) == JremRasErrorCodes.E353) {
-
-                if(resultID.memberMaskMembershipNum == null){
-                    //通信障害※カード番号Null
-                    _transLogger.setTransResult(TransMap.RESULT_UNFINISHED, TransMap.DETAIL_COMMUNICATION_FAILURE);   //取引結果
-                    _transLogger.id(resultID);
-                    slipId = _transLogger.insert();
-                }
-            }
-
-            if(resultID.code.equals(String.valueOf(JremRasErrorCodes.E508))) {
-                //オーソリエラーは端末ログに残す
-                Timber.e("AUTH Error code : %s , msg : %s", resultID.authErrCode, resultID.authErrMsg);
-            }
-
-            //エラー履歴に保存
-            insertErrorHistory(resultID.code);
-        }
-
-        if (slipId != null) {
-//            exitManualMode(true, slipId);
-            printTrans(slipId);
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void OnResultWAON(DeviceClient.ResultWAON resultWAON) {
-        Timber.d("OnResultWAON: %s", _gson.toJson(resultWAON));
-        Timber.d(_gson.toJson(resultWAON));
-
-        Integer slipId = null;
-        _transLogger.setAntennaLevel();
-        _transLogger.setCashTogetherAmount(Integer.valueOf(resultWAON.value));
-        _transLogger.setProcTime(_icasClient.GetProcTimeMillseconds(), _icasClient.GetPinTimeMillseconds());
-
-        if(resultWAON.result.equals("true")) {
-            //正常終了
-            if (resultWAON.time != null) {
-                //残高照会以外の正常終了
-
-                _transLogger.setTransResult(TransMap.RESULT_SUCCESS, TransMap.DETAIL_NORMAL);
-                _transLogger.waon(resultWAON);
-                slipId = _transLogger.insert();
-
-                // 通常の取引レコード以外の取引情報を作成する
-                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.WAON);
-                optionalTransFacade = _transLogger.setDataForFacade(optionalTransFacade);
-                optionalTransFacade.CreateByUriData(); // DBにセット
-            }
-        } else {
-            if (Integer.parseInt(resultWAON.code) == JremRasErrorCodes.E353) {
-
-                if(resultWAON.waonNum != null){
-                    //処理未了
-                    _transLogger.setTransResult(TransMap.RESULT_UNFINISHED, TransMap.DETAIL_UNFINISHED);   //取引結果
-                }else{
-                    //通信障害※カード番号Null
-                    _transLogger.setTransResult(TransMap.RESULT_UNFINISHED, TransMap.DETAIL_COMMUNICATION_FAILURE);   //取引結果
-                }
-
-                _transLogger.waon(resultWAON);
-                slipId = _transLogger.insert();
-            }
-
-            if (resultWAON.authErrCode != null || resultWAON.authErrMsg != null) {
-                //オーソリエラーは端末ログに残す
-                Timber.e("AUTH Error code : %s , msg : %s", resultWAON.authErrCode, resultWAON.authErrMsg);
-            }
-
-            //エラー履歴に保存
-            insertErrorHistory(resultWAON.code);
-        }
-
-        if (slipId != null) {
-//            exitManualMode(true, slipId);
-            printTrans(slipId);
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void OnResultQUICPay(DeviceClient.ResultQUICPay resultQUICPay) {
-        Timber.d("OnResultQUICPay: %s", _gson.toJson(resultQUICPay));
-
-        _transLogger.setAntennaLevel();
-        _transLogger.setCashTogetherAmount(Integer.valueOf(resultQUICPay.value));
-        _transLogger.setProcTime(_icasClient.GetProcTimeMillseconds(), _icasClient.GetPinTimeMillseconds());
-        Integer slipId = null;
-
-        if(resultQUICPay.result.equals("true")) {
-            //正常終了
-            if (resultQUICPay.time != null) {
-                //残高照会以外の正常終了
-
-                _transLogger.setTransResult(TransMap.RESULT_SUCCESS, TransMap.DETAIL_NORMAL);
-                _transLogger.qp(resultQUICPay);
-                slipId = _transLogger.insert();
-
-                // 通常の取引レコード以外の取引情報を作成する
-                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.QUICKPAY);
-                optionalTransFacade = _transLogger.setDataForFacade(optionalTransFacade);
-                optionalTransFacade.CreateByUriData(); // DBにセット
-            }
-        } else {
-            if (Integer.parseInt(resultQUICPay.code) == JremRasErrorCodes.E353) {
-
-                if(resultQUICPay.cardCompMaskMembershipNum == null){
-                    //通信障害※カード番号Null
-                    _transLogger.setTransResult(TransMap.RESULT_UNFINISHED, TransMap.DETAIL_COMMUNICATION_FAILURE);   //取引結果
-                    _transLogger.qp(resultQUICPay);
-                    slipId = _transLogger.insert();
-                }
-
-            }
-
-            if(resultQUICPay.code.equals(String.valueOf(JremRasErrorCodes.E508))) {
-                //オーソリエラーは端末ログに残す
-                Timber.e("AUTH Error code : %s , msg : %s", resultQUICPay.authErrCode, resultQUICPay.authErrMsg);
-            }
-
-            //エラー履歴に保存
-            insertErrorHistory(resultQUICPay.code);
-        }
-
-        if (slipId != null) {
-//            exitManualMode(true, slipId);
-            printTrans(slipId);
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void OnResultEdy(DeviceClient.ResultEdy resultEdy) {
-        Timber.d("OnResultEdy: %s", _gson.toJson(resultEdy));
-
-        _transLogger.setAntennaLevel();
-        Integer slipId = null;
-
-        if(resultEdy.result.equals("true")) {
-            //正常終了
-            if (_app.getBusinessType() != BusinessType.BALANCE) {
-                //残高照会以外の正常終了
-
-                _transLogger.setTransResult(TransMap.RESULT_SUCCESS, TransMap.DETAIL_NORMAL);   //取引結果
-                _transLogger.setCashTogetherAmount(Integer.valueOf(resultEdy.value));
-                _transLogger.setProcTime(_icasClient.GetProcTimeMillseconds(), _icasClient.GetPinTimeMillseconds());
-                _transLogger.edy(resultEdy);
-                slipId = _transLogger.insert();
-
-                // 通常の取引レコード以外の取引情報を作成する
-                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.EDY);
-                optionalTransFacade = _transLogger.setDataForFacade(optionalTransFacade);
-                optionalTransFacade.CreateByUriData(); // DBにセット
-            }
-        } else {
-            if (Integer.parseInt(resultEdy.code) == JremRasErrorCodes.E353) {
-
-                if(resultEdy.saleHistories != null && resultEdy.saleHistories[0].memberMaskMembershipNum != null){
-                    //処理未了
-                    _transLogger.setTransResult(TransMap.RESULT_UNFINISHED, TransMap.DETAIL_UNFINISHED);   //取引結果
-                }else{
-                    //通信障害※カード番号Null
-                    _transLogger.setTransResult(TransMap.RESULT_UNFINISHED, TransMap.DETAIL_COMMUNICATION_FAILURE);   //取引結果
-                }
-
-                _transLogger.setCashTogetherAmount(Integer.valueOf(resultEdy.value));
-                _transLogger.setProcTime(_icasClient.GetProcTimeMillseconds(), _icasClient.GetPinTimeMillseconds());
-                _transLogger.edy(resultEdy);
-                slipId = _transLogger.insert();
-            }
-
-            //エラー履歴に保存
-            insertErrorHistory(resultEdy.code);
-        }
-
-        if (slipId != null) {
-//            exitManualMode(true, slipId);
-            printTrans(slipId);
-        }
-
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void OnResultnanaco(DeviceClient.Resultnanaco resultnanaco) {
-        Timber.d("OnResultnanaco: %s", _gson.toJson(resultnanaco));
-
-        _transLogger.setAntennaLevel();
-        Integer slipId = null;
-
-        if(resultnanaco.result.equals("true")) {
-            //正常終了
-            if (_app.getBusinessType() != BusinessType.BALANCE) {
-                //残高照会以外の正常終了
-
-                _transLogger.setTransResult(TransMap.RESULT_SUCCESS, TransMap.DETAIL_NORMAL);   //取引結果
-                _transLogger.setCashTogetherAmount(Integer.valueOf(resultnanaco.value));
-                _transLogger.setProcTime(_icasClient.GetProcTimeMillseconds(), _icasClient.GetPinTimeMillseconds());
-                _transLogger.nanaco(resultnanaco);
-                slipId = _transLogger.insert();
-
-                // 通常の取引レコード以外の取引情報を作成する
-                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.NANACO);
-                optionalTransFacade = _transLogger.setDataForFacade(optionalTransFacade);
-                optionalTransFacade.CreateByUriData(); // DBにセット
-            }
-        } else {
-            if (Integer.parseInt(resultnanaco.code) == JremRasErrorCodes.E353) {
-
-                if(resultnanaco.saleHistories != null && resultnanaco.saleHistories[0].memberMaskNanacoNum != null){
-                    //処理未了
-                    _transLogger.setTransResult(TransMap.RESULT_UNFINISHED, TransMap.DETAIL_UNFINISHED);   //取引結果
-                }else{
-                    //通信障害※カード番号Null
-                    _transLogger.setTransResult(TransMap.RESULT_UNFINISHED, TransMap.DETAIL_COMMUNICATION_FAILURE);   //取引結果
-                }
-
-                _transLogger.setCashTogetherAmount(Integer.valueOf(resultnanaco.value));
-                _transLogger.setProcTime(_icasClient.GetProcTimeMillseconds(), _icasClient.GetPinTimeMillseconds());
-                _transLogger.nanaco(resultnanaco);
-                slipId = _transLogger.insert();
-            }
-
-            //エラー履歴に保存
-            insertErrorHistory(resultnanaco.code);
-        }
-
-        if (slipId != null) {
-//            exitManualMode(true, slipId);
-            printTrans(slipId);
-        }
-
-
-    }
-
-    @Override
-    public void OnJournalEdy(String daTermTo) {
-
-    }
-
-    @Override
-    public void OnJournalnanaco(String daTermTo) {
-
-    }
-
-    @Override
-    public void OnJournalQUICPay(String daTermTo) {
-
-    }
-
-    @Override
-    public void OnFinished(int statusCode) {
-        Timber.d("OnFinished with statusCode: %s", statusCode);
-        if (statusCode == 0) {
-            powerOffTransResultFinish();
-        }
-
-        _sharedViewModel.setLoading(false);
-    }
-
-    @Override
-    public void OnErrorOccurred(long lErrorType, String errorMessage) {
-        Timber.d("lErrorType: %s, errorMessage: %s",lErrorType, errorMessage);
-
-        if (lErrorType == iCASClient.ERROR_STATUS_REPLY_NO_END || ++_recoveryRetryCount >= 3) {
-            AppPreference.setConfirmNormalEmoney(true);
-            AppPreference.setConfirmObstacleBusinessid(-1);
-            AppPreference.setConfirmObstacleSid(null);
-            AppPreference.removeConfirmAmount();
-            AppPreference.setPoweroffTrans(false);
-            powerOffTransResultFinish();
-            return;
-        } else {
-            _handler.postDelayed(() -> {
-                powerOffTransResult();
-            }, 5000);
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void OnRecovery(Object result) {
-        Timber.d("OnRecovery");
-        final int businessId = AppPreference.getConfirmObstacleBusinessid();
-        switch (businessId) {
-            case iCASClient.BUSINESS_ID_SUICA_PAY:
-            case iCASClient.BUSINESS_ID_SUICA_REFUND:
-                OnResultSuica((DeviceClient.Result) result);
-                break;
-
-            case iCASClient.BUSINESS_ID_ID_PAY:
-            case iCASClient.BUSINESS_ID_ID_REFUND:
-                OnResultID((DeviceClient.ResultID) result);
-                break;
-
-            case iCASClient.BUSINESS_ID_WAON_PAY:
-            case iCASClient.BUSINESS_ID_WAON_REFUND:
-                OnResultWAON((DeviceClient.ResultWAON) result);
-                break;
-
-            case iCASClient.BUSINESS_ID_EDY_PAY:
-                OnResultEdy((DeviceClient.ResultEdy) result);
-                break;
-
-            case iCASClient.BUSINESS_ID_QUICPAY_PAY:
-            case iCASClient.BUSINESS_ID_QUICPAY_REFUND:
-                OnResultQUICPay((DeviceClient.ResultQUICPay) result);
-                break;
-
-            case iCASClient.BUSINESS_ID_NANACO_PAY:
-                OnResultnanaco((DeviceClient.Resultnanaco) result);
-                break;
-
-            default:
-                powerOffTransResultFinish();
-                return;
-        }
-    }
-
-    @Override
-    public long OnTransmitRW(byte[] command, long timeout, byte[] response) {
-        return 0;
-    }
 
     private void powerOffTransResult() {
         Timber.d("businessId: %s", AppPreference.getConfirmObstacleBusinessid());
@@ -957,97 +527,97 @@ public class MenuFragment extends Fragment implements IiCASClient {
         final String sid = AppPreference.getConfirmObstacleSid();
         AppPreference.setConfirmAmount();
         Amount.fix();
-
-        final BusinessParameter businessParameter = new BusinessParameter();
-
-        switch (businessId) {
-            case iCASClient.BUSINESS_ID_SUICA_PAY:
-            case iCASClient.BUSINESS_ID_ID_PAY:
-            case iCASClient.BUSINESS_ID_WAON_PAY:
-            case iCASClient.BUSINESS_ID_NANACO_PAY:
-            case iCASClient.BUSINESS_ID_QUICPAY_PAY:
-            case iCASClient.BUSINESS_ID_EDY_PAY:
-                _app.setBusinessType(BusinessType.PAYMENT);
-                break;
-
-            case iCASClient.BUSINESS_ID_SUICA_REFUND:
-            case iCASClient.BUSINESS_ID_ID_REFUND:
-            case iCASClient.BUSINESS_ID_WAON_REFUND:
-            case iCASClient.BUSINESS_ID_QUICPAY_REFUND:
-                _app.setBusinessType(BusinessType.REFUND);
-                break;
-            default:
-                powerOffTransResultFinish();
-                return;
-        }
-
-        switch (businessId) {
-            case iCASClient.BUSINESS_ID_SUICA_PAY:
-            case iCASClient.BUSINESS_ID_SUICA_REFUND:
-                final BusinessParameter.Suica suica = new BusinessParameter.Suica();
-                businessParameter.money = suica;
-                businessParameter.businessId = String.valueOf(iCASClient.BUSINESS_ID_SUICA_STATUS_REPLY);
-                suica.oldSid = sid;
-                break;
-
-            case iCASClient.BUSINESS_ID_ID_PAY:
-            case iCASClient.BUSINESS_ID_ID_REFUND:
-                final BusinessParameter.iD iD = new BusinessParameter.iD();
-                businessParameter.money = iD;
-                businessParameter.businessId = String.valueOf(iCASClient.BUSINESS_ID_ID_STATUS_REPLY);
-                iD.oldSid = sid;
-                iD.training = "OFF";
-                break;
-
-            case iCASClient.BUSINESS_ID_WAON_PAY:
-            case iCASClient.BUSINESS_ID_WAON_REFUND:
-                final BusinessParameter.Waon waon = new BusinessParameter.Waon();
-                businessParameter.money = waon;
-                businessParameter.businessId = String.valueOf(iCASClient.BUSINESS_ID_WAON_STATUS_REPLY);
-                waon.oldSid = sid;
-                waon.training = "OFF";
-                break;
-
-            case iCASClient.BUSINESS_ID_EDY_PAY:
-                final BusinessParameter.Edy edy = new BusinessParameter.Edy();
-                businessParameter.money = edy;
-                businessParameter.businessId = String.valueOf(iCASClient.BUSINESS_ID_EDY_STATUS_REPLY);
-                edy.oldSid = sid;
-                edy.training = "OFF";
-                break;
-
-            case iCASClient.BUSINESS_ID_QUICPAY_PAY:
-            case iCASClient.BUSINESS_ID_QUICPAY_REFUND:
-                final BusinessParameter.QUICPay qp = new BusinessParameter.QUICPay();
-                businessParameter.money = qp;
-                businessParameter.businessId = String.valueOf(iCASClient.BUSINESS_ID_QUICPAY_STATUS_REPLY);
-                qp.oldSid = sid;
-                qp.training = "OFF";
-                break;
-
-            case iCASClient.BUSINESS_ID_NANACO_PAY:
-                final BusinessParameter.nanaco nanaco = new BusinessParameter.nanaco();
-                businessParameter.money = nanaco;
-                businessParameter.businessId = String.valueOf(iCASClient.BUSINESS_ID_NANACO_PREV_TRAN);
-                nanaco.oldSid = sid;
-                nanaco.training = "OFF";
-                break;
-
-            default:
-                powerOffTransResultFinish();
-                return;
-        }
-
-        try {
-            _transLogger = new TransLogger();
-            _sharedViewModel.setLoading(true);
-            _icasClient = iCASClient.getInstance();
-            _icasClient.SetRWUIEventListener(this);
-            _icasClient.OnStart(businessParameter);
-        } catch (JSONException | IOException | KeyStoreException | CertificateException | NoSuchAlgorithmException | InterruptedException e) {
-            powerOffTransResultFinish();
-            Timber.e(e);
-        }
+//
+//        final BusinessParameter businessParameter = new BusinessParameter();
+//
+//        switch (businessId) {
+//            case iCASClient.BUSINESS_ID_SUICA_PAY:
+//            case iCASClient.BUSINESS_ID_ID_PAY:
+//            case iCASClient.BUSINESS_ID_WAON_PAY:
+//            case iCASClient.BUSINESS_ID_NANACO_PAY:
+//            case iCASClient.BUSINESS_ID_QUICPAY_PAY:
+//            case iCASClient.BUSINESS_ID_EDY_PAY:
+//                _app.setBusinessType(BusinessType.PAYMENT);
+//                break;
+//
+//            case iCASClient.BUSINESS_ID_SUICA_REFUND:
+//            case iCASClient.BUSINESS_ID_ID_REFUND:
+//            case iCASClient.BUSINESS_ID_WAON_REFUND:
+//            case iCASClient.BUSINESS_ID_QUICPAY_REFUND:
+//                _app.setBusinessType(BusinessType.REFUND);
+//                break;
+//            default:
+//                powerOffTransResultFinish();
+//                return;
+//        }
+//
+//        switch (businessId) {
+//            case iCASClient.BUSINESS_ID_SUICA_PAY:
+//            case iCASClient.BUSINESS_ID_SUICA_REFUND:
+//                final BusinessParameter.Suica suica = new BusinessParameter.Suica();
+//                businessParameter.money = suica;
+//                businessParameter.businessId = String.valueOf(iCASClient.BUSINESS_ID_SUICA_STATUS_REPLY);
+//                suica.oldSid = sid;
+//                break;
+//
+//            case iCASClient.BUSINESS_ID_ID_PAY:
+//            case iCASClient.BUSINESS_ID_ID_REFUND:
+//                final BusinessParameter.iD iD = new BusinessParameter.iD();
+//                businessParameter.money = iD;
+//                businessParameter.businessId = String.valueOf(iCASClient.BUSINESS_ID_ID_STATUS_REPLY);
+//                iD.oldSid = sid;
+//                iD.training = "OFF";
+//                break;
+//
+//            case iCASClient.BUSINESS_ID_WAON_PAY:
+//            case iCASClient.BUSINESS_ID_WAON_REFUND:
+//                final BusinessParameter.Waon waon = new BusinessParameter.Waon();
+//                businessParameter.money = waon;
+//                businessParameter.businessId = String.valueOf(iCASClient.BUSINESS_ID_WAON_STATUS_REPLY);
+//                waon.oldSid = sid;
+//                waon.training = "OFF";
+//                break;
+//
+//            case iCASClient.BUSINESS_ID_EDY_PAY:
+//                final BusinessParameter.Edy edy = new BusinessParameter.Edy();
+//                businessParameter.money = edy;
+//                businessParameter.businessId = String.valueOf(iCASClient.BUSINESS_ID_EDY_STATUS_REPLY);
+//                edy.oldSid = sid;
+//                edy.training = "OFF";
+//                break;
+//
+//            case iCASClient.BUSINESS_ID_QUICPAY_PAY:
+//            case iCASClient.BUSINESS_ID_QUICPAY_REFUND:
+//                final BusinessParameter.QUICPay qp = new BusinessParameter.QUICPay();
+//                businessParameter.money = qp;
+//                businessParameter.businessId = String.valueOf(iCASClient.BUSINESS_ID_QUICPAY_STATUS_REPLY);
+//                qp.oldSid = sid;
+//                qp.training = "OFF";
+//                break;
+//
+//            case iCASClient.BUSINESS_ID_NANACO_PAY:
+//                final BusinessParameter.nanaco nanaco = new BusinessParameter.nanaco();
+//                businessParameter.money = nanaco;
+//                businessParameter.businessId = String.valueOf(iCASClient.BUSINESS_ID_NANACO_PREV_TRAN);
+//                nanaco.oldSid = sid;
+//                nanaco.training = "OFF";
+//                break;
+//
+//            default:
+//                powerOffTransResultFinish();
+//                return;
+//        }
+//
+//        try {
+//            _transLogger = new TransLogger();
+//            _sharedViewModel.setLoading(true);
+//            _icasClient = iCASClient.getInstance();
+//            _icasClient.SetRWUIEventListener(this);
+//            _icasClient.OnStart(businessParameter);
+//        } catch (JSONException | IOException | KeyStoreException | CertificateException | NoSuchAlgorithmException | InterruptedException e) {
+//            powerOffTransResultFinish();
+//            Timber.e(e);
+//        }
     }
 
     private void powerOffTransResultFinish() {
@@ -1056,34 +626,34 @@ public class MenuFragment extends Fragment implements IiCASClient {
         AppPreference.setConfirmObstacleSid(null);
         AppPreference.removeConfirmAmount();
         AppPreference.setPoweroffTrans(false);
-        _icasClient.SetRWUIEventListener(null);
+        //_icasClient.SetRWUIEventListener(null);
         _sharedViewModel.setLoading(false);
     }
 
     private String getEmoneyBrand() {
         final int businessId = AppPreference.getConfirmObstacleBusinessid();
         switch (businessId) {
-            case iCASClient.BUSINESS_ID_SUICA_PAY:
-            case iCASClient.BUSINESS_ID_SUICA_REFUND:
-                return _app.getString(R.string.money_brand_suica);
-
-            case iCASClient.BUSINESS_ID_ID_PAY:
-            case iCASClient.BUSINESS_ID_ID_REFUND:
-                return _app.getString(R.string.money_brand_id);
-
-            case iCASClient.BUSINESS_ID_WAON_PAY:
-            case iCASClient.BUSINESS_ID_WAON_REFUND:
-                return _app.getString(R.string.money_brand_waon);
-
-            case iCASClient.BUSINESS_ID_EDY_PAY:
-                return _app.getString(R.string.money_brand_edy);
-
-            case iCASClient.BUSINESS_ID_QUICPAY_PAY:
-            case iCASClient.BUSINESS_ID_QUICPAY_REFUND:
-                return _app.getString(R.string.money_brand_qp);
-
-            case iCASClient.BUSINESS_ID_NANACO_PAY:
-                return _app.getString(R.string.money_brand_nanaco);
+//            case iCASClient.BUSINESS_ID_SUICA_PAY:
+//            case iCASClient.BUSINESS_ID_SUICA_REFUND:
+//                return _app.getString(R.string.money_brand_suica);
+//
+//            case iCASClient.BUSINESS_ID_ID_PAY:
+//            case iCASClient.BUSINESS_ID_ID_REFUND:
+//                return _app.getString(R.string.money_brand_id);
+//
+//            case iCASClient.BUSINESS_ID_WAON_PAY:
+//            case iCASClient.BUSINESS_ID_WAON_REFUND:
+//                return _app.getString(R.string.money_brand_waon);
+//
+//            case iCASClient.BUSINESS_ID_EDY_PAY:
+//                return _app.getString(R.string.money_brand_edy);
+//
+//            case iCASClient.BUSINESS_ID_QUICPAY_PAY:
+//            case iCASClient.BUSINESS_ID_QUICPAY_REFUND:
+//                return _app.getString(R.string.money_brand_qp);
+//
+//            case iCASClient.BUSINESS_ID_NANACO_PAY:
+//                return _app.getString(R.string.money_brand_nanaco);
 
             default:
                 powerOffTransResultFinish();

@@ -15,7 +15,7 @@ import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
 import jp.mcapps.android.multi_payment_terminal.database.history.driver.DriverDao;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
-import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
+//import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 //import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
 import jp.mcapps.android.multi_payment_terminal.ui.pin.PinInputViewModel;
@@ -28,7 +28,7 @@ public class InstallationAndRemovalViewModel extends PinInputViewModel {
     private final String _activateId = AppPreference.getJremActivateId();
     private final String _activatePassword = AppPreference.getJremPassword();
     private final JremActivator _activator = new JremActivator();
-    private final JremOpener _opener = new JremOpener();
+//    private final JremOpener _opener = new JremOpener();
     private final QRSettlement _qr = new QRSettlement();
 
 //    private final DeviceNetworkManager _deviceNetworkManager;
@@ -173,13 +173,13 @@ public class InstallationAndRemovalViewModel extends PinInputViewModel {
     public void cancel() {
     }
 
-    public void edyInitCommunication() {
-        isEdyInitCommunicated(_opener.edyInitCommunication());
-    }
-
-    public void edyRemove() {
-        isEdyInitCommunicated(!_opener.edyRemove());
-    }
+//    public void edyInitCommunication() {
+//        isEdyInitCommunicated(_opener.edyInitCommunication());
+//    }
+//
+//    public void edyRemove() {
+//        isEdyInitCommunicated(!_opener.edyRemove());
+//    }
 
     public void disconnectIFBox() {
 //        _ifBoxManager.stop();

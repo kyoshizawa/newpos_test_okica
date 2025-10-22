@@ -3,7 +3,7 @@ package jp.mcapps.android.multi_payment_terminal.error;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import jp.mcapps.android.multi_payment_terminal.iCAS.iCASClient;
+//import jp.mcapps.android.multi_payment_terminal.iCAS.iCASClient;
 
 // iCASからのエラーコードをMCのエラーコードに変換する
 
@@ -48,13 +48,13 @@ public class iCASErrorMap {
     }
 
     static {
-        _errorMap.put(iCASClient.ERROR_CLIENT_HTTP, "4090");
-        _errorMap.put(iCASClient.ERROR_CLIENT_PROTOCOL, "4091");
-        _errorMap.put(iCASClient.ERROR_CLIENT_SEQUENCE, "4092");
-        _errorMap.put(iCASClient.ERROR_CLIENT_MSG_UNEXPECTED, "4093");
-        _errorMap.put(iCASClient.ERROR_CLIENT_MSG_FORMAT, "4094");
-        _errorMap.put(iCASClient.ERROR_CLIENT_MSG_ILLEGAL, "4095");
-        _errorMap.put(iCASClient.ERROR_CLIENT_MSG_SERVER, "4096");
-        _errorMap.put(iCASClient.ERROR_CLIENT_MSG_TCAP_VERSION, "4097");
+//        _errorMap.put(iCASClient.ERROR_CLIENT_HTTP, "4090");
+//        _errorMap.put(iCASClient.ERROR_CLIENT_PROTOCOL, "4091");
+//        _errorMap.put(iCASClient.ERROR_CLIENT_SEQUENCE, "4092");
+//        _errorMap.put(iCASClient.ERROR_CLIENT_MSG_UNEXPECTED, "4093");
+//        _errorMap.put(iCASClient.ERROR_CLIENT_MSG_FORMAT, "4094");
+//        _errorMap.put(iCASClient.ERROR_CLIENT_MSG_ILLEGAL, "4095");
+//        _errorMap.put(iCASClient.ERROR_CLIENT_MSG_SERVER, "4096");
+//        _errorMap.put(iCASClient.ERROR_CLIENT_MSG_TCAP_VERSION, "4097");
     }
 }

@@ -13,7 +13,7 @@ import jp.mcapps.android.multi_payment_terminal.data.trans_param.RefundParam;
 import jp.mcapps.android.multi_payment_terminal.data.trans_param.ResultParam;
 import jp.mcapps.android.multi_payment_terminal.data.trans_param.SurveyParam;
 import jp.mcapps.android.multi_payment_terminal.database.Converters;
-import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
+import jp.mcapps.android.multi_payment_terminal.database.DeviceClient;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 import jp.mcapps.android.multi_payment_terminal.thread.credit.data.CreditResult;
 

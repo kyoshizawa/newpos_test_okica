@@ -80,7 +80,7 @@ import jp.mcapps.android.multi_payment_terminal.model.DiscountInfo;
 import jp.mcapps.android.multi_payment_terminal.model.EmoneyChecker;
 import jp.mcapps.android.multi_payment_terminal.model.ErrorStackingRepository;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
-import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
+//import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaChecker;
 import jp.mcapps.android.multi_payment_terminal.model.QRChecker;
@@ -1158,22 +1158,22 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         Thread jremJournalThread = new Thread(() -> {
             try {
-                final JremOpener opener = new JremOpener();
-
-                if (AppPreference.isMoneyEdy() && EmoneyOpeningInfo.getEdy() != null) {
-                    opener.journalEdy();
-                    opener.journalEdyResult();
-                }
-
-                if (AppPreference.isMoneyNanaco() && EmoneyOpeningInfo.getNanaco() != null) {
-                    opener.journalNanaco();
-                    opener.journalNanacoResult();
-                }
-
-                if (AppPreference.isMoneyQuicpay() && EmoneyOpeningInfo.getQuicpay() != null) {
-                    opener.journalQUICPay();
-                    opener.journalQUICPayResult();
-                }
+//                final JremOpener opener = new JremOpener();
+//
+//                if (AppPreference.isMoneyEdy() && EmoneyOpeningInfo.getEdy() != null) {
+//                    opener.journalEdy();
+//                    opener.journalEdyResult();
+//                }
+//
+//                if (AppPreference.isMoneyNanaco() && EmoneyOpeningInfo.getNanaco() != null) {
+//                    opener.journalNanaco();
+//                    opener.journalNanacoResult();
+//                }
+//
+//                if (AppPreference.isMoneyQuicpay() && EmoneyOpeningInfo.getQuicpay() != null) {
+//                    opener.journalQUICPay();
+//                    opener.journalQUICPayResult();
+//                }
 
                 isJournalEnd.set(true);
             } catch (Exception e) {

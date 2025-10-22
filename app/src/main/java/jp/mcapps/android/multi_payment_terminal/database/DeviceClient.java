@@ -1,7 +1,10 @@
-package jp.mcapps.android.multi_payment_terminal.iCAS.data;
+package jp.mcapps.android.multi_payment_terminal.database;
+
 import com.google.gson.annotations.Expose;
 
-import jp.mcapps.android.multi_payment_terminal.iCAS.iCASClient;
+/**
+ * 暫定ビルド用
+ */
 
 public class DeviceClient {
 
@@ -379,7 +382,7 @@ public class DeviceClient {
         @Expose
         public String chargeType;
 
-//ADD-S BMT S.Oyama 2024/09/03 フタバ双方向向け改修
+        //ADD-S BMT S.Oyama 2024/09/03 フタバ双方向向け改修
         @Expose
         public String sprw_id;
 //ADD-E BMT S.Oyama 2024/09/03 フタバ双方向向け改修

@@ -22,13 +22,13 @@ import jp.mcapps.android.multi_payment_terminal.data.trans_param.RefundParam;
 import jp.mcapps.android.multi_payment_terminal.data.trans_param.ResultParam;
 import jp.mcapps.android.multi_payment_terminal.database.Converters;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
-import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
+//import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
+import jp.mcapps.android.multi_payment_terminal.database.DeviceClient;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 import jp.mcapps.android.multi_payment_terminal.model.WatariSettlement;
 import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 import jp.mcapps.android.multi_payment_terminal.thread.credit.data.CreditResult;
 import jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.EMoneyOkicaViewModel;
-import timber.log.Timber;
 
 @Entity(tableName = "history_slip")
 public class SlipData implements Serializable {
