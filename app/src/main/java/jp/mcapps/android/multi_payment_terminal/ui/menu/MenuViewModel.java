@@ -43,7 +43,7 @@ import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorCodes;
 import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorMap;
 import jp.mcapps.android.multi_payment_terminal.logger.EventLogger;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
-import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
+//import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
 //import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
 import jp.mcapps.android.multi_payment_terminal.model.McAuthenticator;
 import jp.mcapps.android.multi_payment_terminal.model.McCredit;
@@ -383,7 +383,7 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
                     MainApplication.getInstance().getFilesDir(), BuildConfig.JREM_CLIENT_CERTIFICATE);
 
             if (!certFile.exists()) {
-                errCode = new JremActivator().install();
+//                errCode = new JremActivator().install();
             }
 
             if (errCode == null) {

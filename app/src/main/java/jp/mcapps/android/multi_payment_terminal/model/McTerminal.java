@@ -102,10 +102,10 @@ public class McTerminal {
             } else {
                 // アクティベーションIDが変わっていたら証明書は削除する
                 if (!response.activateId.equals(AppPreference.getJremActivateId())) {
-                    Timber.i("JREMアクティベーションID変更 before: %s, after: %s",
-                            AppPreference.getJremActivateId(), response.activateId);
-
-                    new JremActivator().removeCertFile();
+//                    Timber.i("JREMアクティベーションID変更 before: %s, after: %s",
+//                            AppPreference.getJremActivateId(), response.activateId);
+//
+//                    new JremActivator().removeCertFile();
                 }
                 Timber.d("terminalInfo: %s", new Gson().toJson(response));
                 AppPreference.save(response);

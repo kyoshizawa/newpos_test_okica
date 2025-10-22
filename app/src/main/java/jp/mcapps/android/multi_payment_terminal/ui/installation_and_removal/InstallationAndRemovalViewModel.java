@@ -14,7 +14,7 @@ import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
 import jp.mcapps.android.multi_payment_terminal.database.history.driver.DriverDao;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
-import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
+//import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
 //import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 //import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
@@ -27,7 +27,7 @@ public class InstallationAndRemovalViewModel extends PinInputViewModel {
     private final Handler _handler = new Handler(Looper.getMainLooper());
     private final String _activateId = AppPreference.getJremActivateId();
     private final String _activatePassword = AppPreference.getJremPassword();
-    private final JremActivator _activator = new JremActivator();
+//    private final JremActivator _activator = new JremActivator();
 //    private final JremOpener _opener = new JremOpener();
     private final QRSettlement _qr = new QRSettlement();
 
@@ -118,7 +118,7 @@ public class InstallationAndRemovalViewModel extends PinInputViewModel {
     }
 
     public boolean install() {
-        final String errCode = _activator.install();
+        final String errCode = null;// _activator.install();
         if (errCode != null) {
             setErrorCode(errCode);
         }
@@ -126,7 +126,7 @@ public class InstallationAndRemovalViewModel extends PinInputViewModel {
     }
 
     public String uninstall() {
-        return _activator.uninstall();
+        return null;//_activator.uninstall();
     }
 
     public String uninstallQR() {
