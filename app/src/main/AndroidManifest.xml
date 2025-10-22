@@ -52,17 +52,10 @@
         <activity
             android:name=".CustomScannerActivity"
             android:configChanges="keyboard|keyboardHidden" />
-        <activity
-            android:name=".TicketScannerActivity"
-            android:configChanges="keyboard|keyboardHidden" />
 
         <service android:name=".service.GetRadioService" />
         <service android:name=".service.GetGpsService" />
-        <service android:name=".service.PeriodicErrorCheckService" />
-        <service android:name=".service.WifiP2pService" />
         <service android:name=".service.LogSendService" />
-        <service android:name=".service.PosTransactionService" />
-        <service android:name=".service.PeriodicGateCheckService" />
 
         <uses-library android:name="com.pos.device" />
 

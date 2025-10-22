@@ -19,7 +19,7 @@ import jp.mcapps.android.multi_payment_terminal.data.TransactionResults;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipDao;
 //import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
-import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
+//import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement.ResultSummary;
 import jp.mcapps.android.multi_payment_terminal.model.SoundManager;
@@ -126,13 +126,13 @@ public class QRViewModel extends ViewModel {
             transLogger.setProcTime(_summary.procTime, 0);
             _slipId = transLogger.insert();
 
-            if (AppPreference.isPosTransaction()) {
-                // 通常の取引レコード以外の取引情報を作成する
-                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.QR);
-                optionalTransFacade = transLogger.setDataForFacade(optionalTransFacade);
-                optionalTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
-                optionalTransFacade.CreateByUriData(); // DBにセット
-            }
+//            if (AppPreference.isPosTransaction()) {
+//                // 通常の取引レコード以外の取引情報を作成する
+//                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.QR);
+//                optionalTransFacade = transLogger.setDataForFacade(optionalTransFacade);
+//                optionalTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
+//                optionalTransFacade.CreateByUriData(); // DBにセット
+//            }
 
 //            if (AppPreference.isTicketTransaction()) {
 //                // チケット販売時の取引情報を作成する
@@ -203,13 +203,13 @@ public class QRViewModel extends ViewModel {
             transLogger.setProcTime(_summary.procTime, 0);
             _slipId = transLogger.insert();
 
-            if (AppPreference.isPosTransaction()) {
-                // 通常の取引レコード以外の取引情報を作成する
-                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.QR);
-                optionalTransFacade = transLogger.setDataForFacade(optionalTransFacade);
-                optionalTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
-                optionalTransFacade.CreateByUriData(); // DBにセット
-            }
+//            if (AppPreference.isPosTransaction()) {
+//                // 通常の取引レコード以外の取引情報を作成する
+//                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.QR);
+//                optionalTransFacade = transLogger.setDataForFacade(optionalTransFacade);
+//                optionalTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
+//                optionalTransFacade.CreateByUriData(); // DBにセット
+//            }
 
 //            if (AppPreference.isTicketTransaction()) {
 //                // チケット販売時の取引情報を作成する
@@ -276,13 +276,13 @@ public class QRViewModel extends ViewModel {
             transLogger.setProcTime(_summary.procTime, 0);
             _slipId = transLogger.insert();
 
-            if (AppPreference.isPosTransaction()) {
-                // 通常の取引レコード以外の取引情報を作成する
-                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.QR);
-                optionalTransFacade = transLogger.setDataForFacade(optionalTransFacade);
-                optionalTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
-                optionalTransFacade.CreateByUriData(); // DBにセット
-            }
+//            if (AppPreference.isPosTransaction()) {
+//                // 通常の取引レコード以外の取引情報を作成する
+//                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.QR);
+//                optionalTransFacade = transLogger.setDataForFacade(optionalTransFacade);
+//                optionalTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
+//                optionalTransFacade.CreateByUriData(); // DBにセット
+//            }
 
 //            if (AppPreference.isTicketTransaction()) {
 //                // チケット販売時の取引情報を作成する
@@ -347,13 +347,13 @@ public class QRViewModel extends ViewModel {
             transLogger.setProcTime(_summary.procTime, 0);
             _slipId = transLogger.insert();
 
-            if (AppPreference.isPosTransaction()) {
-                // 通常の取引レコード以外の取引情報を作成する
-                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.QR);
-                optionalTransFacade = transLogger.setDataForFacade(optionalTransFacade);
-                optionalTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
-                optionalTransFacade.CreateByUriData(); // DBにセット
-            }
+//            if (AppPreference.isPosTransaction()) {
+//                // 通常の取引レコード以外の取引情報を作成する
+//                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.QR);
+//                optionalTransFacade = transLogger.setDataForFacade(optionalTransFacade);
+//                optionalTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
+//                optionalTransFacade.CreateByUriData(); // DBにセット
+//            }
 
 //            if (AppPreference.isTicketTransaction()) {
 //                // チケット販売時の取引情報を作成する
@@ -410,14 +410,14 @@ public class QRViewModel extends ViewModel {
             if(AppPreference.isServicePos()) {
                 _transLogger_Err.updateCancelFlg();
             }
-
-            if (AppPreference.isPosTransaction()) {
-                // 通常の取引レコード以外の取引情報を作成する(未了)
-                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.QR);
-                optionalTransFacade = _transLogger_Err.setDataForFacade(optionalTransFacade);
-                optionalTransFacade.CreateReceiptData(_slipId); // 取引明細書、領収書のデータを作成
-                optionalTransFacade.CreateByUriData(); // DBにセット
-            }
+//
+//            if (AppPreference.isPosTransaction()) {
+//                // 通常の取引レコード以外の取引情報を作成する(未了)
+//                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.QR);
+//                optionalTransFacade = _transLogger_Err.setDataForFacade(optionalTransFacade);
+//                optionalTransFacade.CreateReceiptData(_slipId); // 取引明細書、領収書のデータを作成
+//                optionalTransFacade.CreateByUriData(); // DBにセット
+//            }
 
 //            if (AppPreference.isTicketTransaction()) {
 //                // チケット販売時の取引情報を作成する(未了)

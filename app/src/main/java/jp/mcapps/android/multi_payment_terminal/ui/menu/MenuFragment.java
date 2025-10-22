@@ -76,7 +76,7 @@ import jp.mcapps.android.multi_payment_terminal.error.JremRasErrorMap;
 //import jp.mcapps.android.multi_payment_terminal.iCAS.iCASClient;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
-import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
+//import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
 import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlementAdapter;

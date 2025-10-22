@@ -39,7 +39,7 @@ import jp.mcapps.android.multi_payment_terminal.model.Validator;
 import jp.mcapps.android.multi_payment_terminal.thread.emv.EmvCLProcess;
 import jp.mcapps.android.multi_payment_terminal.model.pos.ProductRepository;
 // import jp.mcapps.android.multi_payment_terminal.model.ticket.TicketRepository;
-import jp.mcapps.android.multi_payment_terminal.service.PosTransactionService;
+// import jp.mcapps.android.multi_payment_terminal.service.PosTransactionService;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.McOkicaCenterApi;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.McOkicaCenterApiImpl;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.data.GetAccessToken;
@@ -327,10 +327,10 @@ public class StartViewModel extends ViewModel
                 _errors.add(Integer.toString(DomainErrors.POS_SERVICE_NETWORK_ERROR.code));
             }
 
-            if (AppPreference.isServicePos()) {
-                // 取引データ送信サービスを起動する
-                PosTransactionService.startService();
-            }
+//            if (AppPreference.isServicePos()) {
+//                // 取引データ送信サービスを起動する
+//                PosTransactionService.startService();
+//            }
 
             try {
                 if (AppPreference.isServiceTicket()) {

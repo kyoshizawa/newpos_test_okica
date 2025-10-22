@@ -43,7 +43,7 @@ import jp.mcapps.android.multi_payment_terminal.model.Disposer;
 // import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 // import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
-import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
+// import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.SoundManager;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
 import jp.mcapps.android.multi_payment_terminal.thread.credit.CardManager;
@@ -300,13 +300,13 @@ public class CreditCardScanFragment extends BaseFragment
                 _transLogger.updateCancelFlg();
             }
 
-            if (AppPreference.isPosTransaction()) {
-                // 通常の取引レコード以外の取引情報を作成する
-                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.CREDIT);
-                optionalTransFacade = _transLogger.setDataForFacade(optionalTransFacade);
-                optionalTransFacade.CreateReceiptData(slipId); // 取引明細書、取消票、領収書のデータを作成
-                optionalTransFacade.CreateByUriData(); // DBにセット
-            }
+//            if (AppPreference.isPosTransaction()) {
+//                // 通常の取引レコード以外の取引情報を作成する
+//                OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.CREDIT);
+//                optionalTransFacade = _transLogger.setDataForFacade(optionalTransFacade);
+//                optionalTransFacade.CreateReceiptData(slipId); // 取引明細書、取消票、領収書のデータを作成
+//                optionalTransFacade.CreateByUriData(); // DBにセット
+//            }
 
 //            if (AppPreference.isTicketTransaction()) {
 //                // チケット販売時の取引情報を作成する

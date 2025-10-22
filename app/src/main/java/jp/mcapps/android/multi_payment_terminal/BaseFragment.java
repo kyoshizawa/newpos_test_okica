@@ -7,13 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.mcapps.android.multi_payment_terminal.ui.credit_card.CreditCardScanFragment;
-import jp.mcapps.android.multi_payment_terminal.ui.emoney.edy.EMoneyEdyFragment;
-import jp.mcapps.android.multi_payment_terminal.ui.emoney.id.EMoneyIdFragment;
-import jp.mcapps.android.multi_payment_terminal.ui.emoney.nanaco.EMoneyNanacoFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.EMoneyOkicaFragment;
-import jp.mcapps.android.multi_payment_terminal.ui.emoney.quicpay.EMoneyQuicPayFragment;
-import jp.mcapps.android.multi_payment_terminal.ui.emoney.suica.EMoneySuicaFragment;
-import jp.mcapps.android.multi_payment_terminal.ui.emoney.waon.EMoneyWaonFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.installation_and_removal.InstallationOkicaFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuHomeFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.others.ValidationCheckFragment;
@@ -33,12 +27,12 @@ public abstract class BaseFragment extends Fragment {
         add(CreditCardScanFragment.class.getSimpleName());
         add(MenuHomeFragment.class.getSimpleName());
 
-        add(EMoneySuicaFragment.class.getSimpleName());
-        add(EMoneyIdFragment.class.getSimpleName());
-        add(EMoneyWaonFragment.class.getSimpleName());
-        add(EMoneyNanacoFragment.class.getSimpleName());
-        add(EMoneyQuicPayFragment.class.getSimpleName());
-        add(EMoneyEdyFragment.class.getSimpleName());
+//        add(EMoneySuicaFragment.class.getSimpleName());
+//        add(EMoneyIdFragment.class.getSimpleName());
+//        add(EMoneyWaonFragment.class.getSimpleName());
+//        add(EMoneyNanacoFragment.class.getSimpleName());
+//        add(EMoneyQuicPayFragment.class.getSimpleName());
+//        add(EMoneyEdyFragment.class.getSimpleName());
         add(EMoneyOkicaFragment.class.getSimpleName());
 
         add(QRPaymentFragment.class.getSimpleName());

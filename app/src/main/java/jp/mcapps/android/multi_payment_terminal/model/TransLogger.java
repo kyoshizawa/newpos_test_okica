@@ -754,14 +754,14 @@ public class TransLogger {
      * 他サービス連携用に各種データをFacadeにセットする
      * @return facade
      */
-    public OptionalTransFacade setDataForFacade(OptionalTransFacade facade) {
-        facade.setUriData(_uriData);
-        facade.setUriOkicaData(_uriOkicaData);
-        facade.setResultParam(_resultParam);
-        facade.setAmountParam(_amountParam);
-        facade.setRefundParam(_refundParam);
-        return facade;
-    }
+//    public OptionalTransFacade setDataForFacade(OptionalTransFacade facade) {
+//        facade.setUriData(_uriData);
+//        facade.setUriOkicaData(_uriOkicaData);
+//        facade.setResultParam(_resultParam);
+//        facade.setAmountParam(_amountParam);
+//        facade.setRefundParam(_refundParam);
+//        return facade;
+//    }
 
     /**
      * 取消の金額取得（画面表示用）

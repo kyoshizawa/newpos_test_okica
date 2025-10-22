@@ -41,7 +41,7 @@ import jp.mcapps.android.multi_payment_terminal.devices.OkicaRW;
 import jp.mcapps.android.multi_payment_terminal.devices.SamRW;
 import jp.mcapps.android.multi_payment_terminal.error.SDKErrors;
 //import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
-import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
+//import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.SoundManager;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
 import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
@@ -550,10 +550,10 @@ abstract public class BaseEMoneyOkicaViewModel extends ViewModel {
         _slipId = transLogger.insertOkica();
         if (AppPreference.isPosTransaction()) {
             // 通常の取引レコード以外の取引情報を作成する
-            OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.OKICA);
-            optionalTransFacade = transLogger.setDataForFacade(optionalTransFacade);
-            optionalTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
-            optionalTransFacade.CreateByUriOkicaData(); // DBにセット
+//            OptionalTransFacade optionalTransFacade = new OptionalTransFacade(MoneyType.OKICA);
+//            optionalTransFacade = transLogger.setDataForFacade(optionalTransFacade);
+//            optionalTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
+//            optionalTransFacade.CreateByUriOkicaData(); // DBにセット
         }
 
 //        if (AppPreference.isTicketTransaction()) {
