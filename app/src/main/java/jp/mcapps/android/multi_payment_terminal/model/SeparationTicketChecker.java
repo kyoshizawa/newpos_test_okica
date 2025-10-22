@@ -12,9 +12,9 @@ import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
 import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
-import jp.mcapps.android.multi_payment_terminal.database.DBManager;
-import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptDao;
-import jp.mcapps.android.multi_payment_terminal.devices.GloryCashChanger;
+//import jp.mcapps.android.multi_payment_terminal.database.DBManager;
+//import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptDao;
+//import jp.mcapps.android.multi_payment_terminal.devices.GloryCashChanger;
 import timber.log.Timber;
 
 public class SeparationTicketChecker {
@@ -53,13 +53,13 @@ public class SeparationTicketChecker {
 
         if (AppPreference.getIsCashChanger()) {
             /* つり銭機連動 */
-            GloryCashChanger gloryCashChanger = GloryCashChanger.getInstance();
-            if (gloryCashChanger == null) {
-                return "6102";
-            }
-            if (gloryCashChanger.connect() == false) {
-                return "6102";
-            }
+//            GloryCashChanger gloryCashChanger = GloryCashChanger.getInstance();
+//            if (gloryCashChanger == null) {
+//                return "6102";
+//            }
+//            if (gloryCashChanger.connect() == false) {
+//                return "6102";
+//            }
             // CashChangerPaymentViewModel.start()におけるconnectを速くするため、
             // あえてdisconnectは行わない
         } else {

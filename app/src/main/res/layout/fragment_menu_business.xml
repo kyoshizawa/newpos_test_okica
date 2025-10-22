@@ -74,7 +74,7 @@
             android:text="@string/btn_business_driver_code_input"
             android:visibility="@{viewModel.driverInfoVisibility ? android.view.View.VISIBLE : android.view.View.GONE}"
             android:onClick="@{view -> handlers.navigateMain(view, @id/action_navigation_menu_to_navigation_driver_code)}"
-            
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/btn_menu_business_car_id_input"

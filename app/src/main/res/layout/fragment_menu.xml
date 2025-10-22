@@ -8,21 +8,21 @@
 
         <import type="android.view.View" />
 
-        <variable
-            name="posHandlers"
-            type="jp.mcapps.android.multi_payment_terminal.ui.pos.PosEventHandlers" />
+<!--        <variable-->
+<!--            name="posHandlers"-->
+<!--            type="jp.mcapps.android.multi_payment_terminal.ui.pos.PosEventHandlers" />-->
 
         <variable
             name="sharedViewModel"
             type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
 
-        <variable
-            name="posViewModel"
-            type="jp.mcapps.android.multi_payment_terminal.ui.pos.PosViewModel" />
+<!--        <variable-->
+<!--            name="posViewModel"-->
+<!--            type="jp.mcapps.android.multi_payment_terminal.ui.pos.PosViewModel" />-->
 
-        <variable
-            name="productSelectViewModel"
-            type="jp.mcapps.android.multi_payment_terminal.ui.pos.ProductSelectViewModel" />
+<!--        <variable-->
+<!--            name="productSelectViewModel"-->
+<!--            type="jp.mcapps.android.multi_payment_terminal.ui.pos.ProductSelectViewModel" />-->
     </data>
 
     <LinearLayout
@@ -33,16 +33,16 @@
         android:orientation="vertical"
         tools:context=".ui.menu.MenuFragment">
 
-        <include
-            android:id="@+id/app_pos_bar"
-            layout="@layout/app_bar_pos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility='@{sharedViewModel.actionBarMode == sharedViewModel.ActionBarMode.POS ? View.VISIBLE : View.GONE,default="gone"}'
-            bind:posHandlers='@{posHandlers}'
-            bind:posViewModel='@{posViewModel}'
-            bind:productSelectViewModel='@{productSelectViewModel}'
-            bind:sharedViewModel='@{sharedViewModel}' />
+<!--        <include-->
+<!--            android:id="@+id/app_pos_bar"-->
+<!--            layout="@layout/app_bar_pos"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility='@{sharedViewModel.actionBarMode == sharedViewModel.ActionBarMode.POS ? View.VISIBLE : View.GONE,default="gone"}'-->
+<!--            bind:posHandlers='@{posHandlers}'-->
+<!--            bind:posViewModel='@{posViewModel}'-->
+<!--            bind:productSelectViewModel='@{productSelectViewModel}'-->
+<!--            bind:sharedViewModel='@{sharedViewModel}' />-->
 
 
         <androidx.fragment.app.FragmentContainerView

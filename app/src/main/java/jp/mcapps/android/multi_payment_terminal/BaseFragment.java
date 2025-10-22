@@ -18,9 +18,9 @@ import jp.mcapps.android.multi_payment_terminal.ui.installation_and_removal.Inst
 import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuHomeFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.others.ValidationCheckFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.others.WatariFragment;
-import jp.mcapps.android.multi_payment_terminal.ui.pos.CashChangerPaymentFragment;
-import jp.mcapps.android.multi_payment_terminal.ui.pos.CashConfirmFragment;
-import jp.mcapps.android.multi_payment_terminal.ui.pos_activation.PosActivationFragment;
+//import jp.mcapps.android.multi_payment_terminal.ui.pos.CashChangerPaymentFragment;
+//import jp.mcapps.android.multi_payment_terminal.ui.pos.CashConfirmFragment;
+//import jp.mcapps.android.multi_payment_terminal.ui.pos_activation.PosActivationFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.qr.QRPaymentFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.qr.QRRefundFragment;
 //import jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketGateQrScanFragment;
@@ -45,12 +45,12 @@ public abstract class BaseFragment extends Fragment {
         add(QRRefundFragment.class.getSimpleName());
         add(ValidationCheckFragment.class.getSimpleName());
         add(InstallationOkicaFragment.class.getSimpleName());
-        add(PosActivationFragment.class.getSimpleName());
-        add(CashConfirmFragment.class.getSimpleName());
+//        add(PosActivationFragment.class.getSimpleName());
+//        add(CashConfirmFragment.class.getSimpleName());
 //        add(TicketGateQrScanFragment.class.getSimpleName());
 //        add(TicketIssueFragment.class.getSimpleName());
         add(WatariFragment.class.getSimpleName());
-        add(CashChangerPaymentFragment.class.getSimpleName());
+//        add(CashChangerPaymentFragment.class.getSimpleName());
     }};
 
     private SharedViewModel _sharedViewModel;

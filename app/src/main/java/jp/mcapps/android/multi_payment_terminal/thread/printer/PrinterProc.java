@@ -75,7 +75,7 @@ import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorEventHandlers;
 import jp.mcapps.android.multi_payment_terminal.util.BitmapSaver;
 import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.type.DynamicTicketItem;
-import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuCashChangerViewModel;
+// import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuCashChangerViewModel;
 import timber.log.Timber;
 
 public class PrinterProc {
@@ -7661,82 +7661,82 @@ public class PrinterProc {
     }
 
     // 自動釣銭機機内残高印刷
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void CashHistory(MenuCashChangerViewModel.AmountValue AmountValue){
-
-        print_init();
-
-        String value10000 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value10000);
-        String value5000 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value5000);
-        String value2000 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value2000);
-        String value1000 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value1000);
-        String value500 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value500);
-        String value100 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value100);
-        String value50 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value50);
-        String value10 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value10);
-        String value5 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value5);
-        String value1 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value1);
-
-        String value10000Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value10000Total);
-        String value5000Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value5000Total);
-        String value2000Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value2000Total);
-        String value1000Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value1000Total);
-        String value500Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value500Total);
-        String value100Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value100Total);
-        String value50Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value50Total);
-        String value10Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value10Total);
-        String value5Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value5Total);
-        String value1Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value1Total);
-
-        String valueTotal = String.format(Locale.JAPANESE, "%,7d", AmountValue.valueTotal);
-
-        // 残高取得日時
-        setAlign_Left(AmountValue.cashDate, PaintSize_Normal);
-        setLF(1,PaintSize_Normal);
-
-        // 票名
-        setLF(1,PaintSize_Normal);
-        setAlign_Mid("つり銭機残高", PaintSize_Medium);
-
-        // 加盟店名
-        String merchantName = AppPreference.getMerchantName();
-        setAlign_Left(merchantName, PaintSize_Normal);
-
-        // 営業所名/号機番号
-        String merchantOffice = AppPreference.getMerchantOffice();  //加盟店営業所名
-        int carId = AppPreference.getMcCarId(); //号機番号（車番）
-        setAlign_Left(merchantOffice + "/" + carId + MainApplication.getInstance().getResources().getString(R.string.print_car_id), PaintSize_Normal);
-
-        // 係員番号
-        if (AppPreference.isDriverCodeInput()) {
-            setAlign_LR(MainApplication.getInstance().getResources().getString(R.string.print_driver_id), AppPreference.getMcDriverId(), PaintSize_Normal);
-        }
-
-        // 機器番号
-        String termId = AppPreference.getMcTermId();   //機器番号
-        setAlign_LR(MainApplication.getInstance().getResources().getString(R.string.print_term_id), termId, PaintSize_Normal);
-        setLine();
-        setLF(1,PaintSize_Normal);
-
-        // 合計金額
-        //setAlign_Right("合計金額" + valueTotal + "円", PaintSize_Medium);
-        setAlign_LR("合計金額", valueTotal + "円", PaintSize_Medium);
-        setLF(1,PaintSize_Normal);
-
-        setAlign_Mid("　　万　" + value10000 + "枚　" + value10000Total + "円", PaintSize_Medium);
-        setAlign_Mid("　５千　" + value5000 + "枚　" + value5000Total + "円", PaintSize_Medium);
-        setAlign_Mid("　２千　" + value2000 + "枚　" + value2000Total + "円", PaintSize_Medium);
-        setAlign_Mid("　　千　" + value1000 + "枚　" + value1000Total + "円", PaintSize_Medium);
-        setAlign_Mid("５００　" + value500 + "枚　" + value500Total + "円", PaintSize_Medium);
-        setAlign_Mid("１００　" + value100 + "枚　" + value100Total + "円", PaintSize_Medium);
-        setAlign_Mid("　５０　" + value50 + "枚　" + value50Total + "円", PaintSize_Medium);
-        setAlign_Mid("　１０　" + value10 + "枚　" + value10Total + "円", PaintSize_Medium);
-        setAlign_Mid("　　５　" + value5 + "枚　" + value5Total + "円", PaintSize_Medium);
-        setAlign_Mid("　　１　" + value1 + "枚　" + value1Total + "円", PaintSize_Medium);
-
-        Timber.tag("Printer").i("%s：%s",_printDataRes.getString(R.string.printLog_printDataSet),"自動釣銭機機内残高印刷");
-        Printing(_printCanvas);
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    public void CashHistory(MenuCashChangerViewModel.AmountValue AmountValue){
+//
+//        print_init();
+//
+//        String value10000 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value10000);
+//        String value5000 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value5000);
+//        String value2000 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value2000);
+//        String value1000 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value1000);
+//        String value500 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value500);
+//        String value100 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value100);
+//        String value50 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value50);
+//        String value10 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value10);
+//        String value5 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value5);
+//        String value1 = String.format(Locale.JAPANESE, "%,3d", AmountValue.value1);
+//
+//        String value10000Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value10000Total);
+//        String value5000Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value5000Total);
+//        String value2000Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value2000Total);
+//        String value1000Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value1000Total);
+//        String value500Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value500Total);
+//        String value100Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value100Total);
+//        String value50Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value50Total);
+//        String value10Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value10Total);
+//        String value5Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value5Total);
+//        String value1Total = String.format(Locale.JAPANESE, "%,6d", AmountValue.value1Total);
+//
+//        String valueTotal = String.format(Locale.JAPANESE, "%,7d", AmountValue.valueTotal);
+//
+//        // 残高取得日時
+//        setAlign_Left(AmountValue.cashDate, PaintSize_Normal);
+//        setLF(1,PaintSize_Normal);
+//
+//        // 票名
+//        setLF(1,PaintSize_Normal);
+//        setAlign_Mid("つり銭機残高", PaintSize_Medium);
+//
+//        // 加盟店名
+//        String merchantName = AppPreference.getMerchantName();
+//        setAlign_Left(merchantName, PaintSize_Normal);
+//
+//        // 営業所名/号機番号
+//        String merchantOffice = AppPreference.getMerchantOffice();  //加盟店営業所名
+//        int carId = AppPreference.getMcCarId(); //号機番号（車番）
+//        setAlign_Left(merchantOffice + "/" + carId + MainApplication.getInstance().getResources().getString(R.string.print_car_id), PaintSize_Normal);
+//
+//        // 係員番号
+//        if (AppPreference.isDriverCodeInput()) {
+//            setAlign_LR(MainApplication.getInstance().getResources().getString(R.string.print_driver_id), AppPreference.getMcDriverId(), PaintSize_Normal);
+//        }
+//
+//        // 機器番号
+//        String termId = AppPreference.getMcTermId();   //機器番号
+//        setAlign_LR(MainApplication.getInstance().getResources().getString(R.string.print_term_id), termId, PaintSize_Normal);
+//        setLine();
+//        setLF(1,PaintSize_Normal);
+//
+//        // 合計金額
+//        //setAlign_Right("合計金額" + valueTotal + "円", PaintSize_Medium);
+//        setAlign_LR("合計金額", valueTotal + "円", PaintSize_Medium);
+//        setLF(1,PaintSize_Normal);
+//
+//        setAlign_Mid("　　万　" + value10000 + "枚　" + value10000Total + "円", PaintSize_Medium);
+//        setAlign_Mid("　５千　" + value5000 + "枚　" + value5000Total + "円", PaintSize_Medium);
+//        setAlign_Mid("　２千　" + value2000 + "枚　" + value2000Total + "円", PaintSize_Medium);
+//        setAlign_Mid("　　千　" + value1000 + "枚　" + value1000Total + "円", PaintSize_Medium);
+//        setAlign_Mid("５００　" + value500 + "枚　" + value500Total + "円", PaintSize_Medium);
+//        setAlign_Mid("１００　" + value100 + "枚　" + value100Total + "円", PaintSize_Medium);
+//        setAlign_Mid("　５０　" + value50 + "枚　" + value50Total + "円", PaintSize_Medium);
+//        setAlign_Mid("　１０　" + value10 + "枚　" + value10Total + "円", PaintSize_Medium);
+//        setAlign_Mid("　　５　" + value5 + "枚　" + value5Total + "円", PaintSize_Medium);
+//        setAlign_Mid("　　１　" + value1 + "枚　" + value1Total + "円", PaintSize_Medium);
+//
+//        Timber.tag("Printer").i("%s：%s",_printDataRes.getString(R.string.printLog_printDataSet),"自動釣銭機機内残高印刷");
+//        Printing(_printCanvas);
+//    }
 
     // デモモード確認
     private void PrintDemoCheck(){

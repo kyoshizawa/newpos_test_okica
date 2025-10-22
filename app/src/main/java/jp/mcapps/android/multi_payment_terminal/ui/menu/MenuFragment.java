@@ -86,9 +86,9 @@ import jp.mcapps.android.multi_payment_terminal.ui.Converters;
 import jp.mcapps.android.multi_payment_terminal.ui.dialog.SuccessDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorEventHandlers;
-import jp.mcapps.android.multi_payment_terminal.ui.pos.PosEventHandlers;
-import jp.mcapps.android.multi_payment_terminal.ui.pos.PosEventHandlersImpl;
-import jp.mcapps.android.multi_payment_terminal.ui.pos.PosViewModel;
+//import jp.mcapps.android.multi_payment_terminal.ui.pos.PosEventHandlers;
+//import jp.mcapps.android.multi_payment_terminal.ui.pos.PosEventHandlersImpl;
+//import jp.mcapps.android.multi_payment_terminal.ui.pos.PosViewModel;
 import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
 import timber.log.Timber;
 
@@ -97,7 +97,7 @@ public class MenuFragment extends Fragment /*implements IiCASClient*/ {
 //    private iCASClient _icasClient = null;
     private int _recoveryRetryCount = 0;
     private SharedViewModel _sharedViewModel;
-    private PosViewModel _appBar;
+//    private PosViewModel _appBar;
     private final Handler _handler = new Handler(Looper.getMainLooper());
     private Gson _gson = new Gson();
     private TransLogger _transLogger;
@@ -116,8 +116,8 @@ public class MenuFragment extends Fragment /*implements IiCASClient*/ {
     // サインの案内用
     private CreditSettlementAdapter creditListener =  new CreditSettlementAdapter() {};
     //POSメニュー用
-    private PosEventHandlers _posEventHandlers;
-    private PosViewModel _posViewModel;
+//    private PosEventHandlers _posEventHandlers;
+//    private PosViewModel _posViewModel;
 
     @Nullable
     @Override
@@ -165,61 +165,61 @@ public class MenuFragment extends Fragment /*implements IiCASClient*/ {
         assert navHostBody != null;
 
         _sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        _posEventHandlers = new PosEventHandlersImpl(this , navHostBody);
-        _posViewModel = new ViewModelProvider(requireActivity()).get(PosViewModel.class);
-        _posViewModel.setNavigateUpVisible(true);
+//        _posEventHandlers = new PosEventHandlersImpl(this , navHostBody);
+//        _posViewModel = new ViewModelProvider(requireActivity()).get(PosViewModel.class);
+//        _posViewModel.setNavigateUpVisible(true);
 
         // POS用アクションバーの色を変更する
         destListener = (controller, destination, arguments) -> {
             final String resourceEntryName = getResources().getResourceEntryName(destination.getId());
             Timber.d("body navigation onDestinationChanged: %s", resourceEntryName);
 
-            Toolbar toolbar = binding.appPosBar.toolbarPos;
-            if (destination.getId() == R.id.navigation_menu_balance) {
-                // 残高照会
-                toolbar.setBackground(ContextCompat.getDrawable(requireContext(), R.color.menu_balance));
-            } else if (destination.getId() == R.id.navigation_menu_charge) {
-                // チャージ
-                toolbar.setBackground(ContextCompat.getDrawable(requireContext(), R.color.menu_charge));
-            } else {
-                // その他
-                toolbar.setBackground(ContextCompat.getDrawable(requireContext(), R.color.primary));
-            }
+//            Toolbar toolbar = binding.appPosBar.toolbarPos;
+//            if (destination.getId() == R.id.navigation_menu_balance) {
+//                // 残高照会
+//                toolbar.setBackground(ContextCompat.getDrawable(requireContext(), R.color.menu_balance));
+//            } else if (destination.getId() == R.id.navigation_menu_charge) {
+//                // チャージ
+//                toolbar.setBackground(ContextCompat.getDrawable(requireContext(), R.color.menu_charge));
+//            } else {
+//                // その他
+//                toolbar.setBackground(ContextCompat.getDrawable(requireContext(), R.color.primary));
+//            }
         };
         navHostBody.getNavController().addOnDestinationChangedListener(destListener);
 
         applyCashMenu();
 
-        binding.setPosHandlers(_posEventHandlers);
-        binding.setPosViewModel(_posViewModel);
+//        binding.setPosHandlers(_posEventHandlers);
+//        binding.setPosViewModel(_posViewModel);
         binding.setSharedViewModel(_sharedViewModel);
 
         return binding.getRoot();
     }
 
     private void applyCashMenu() {
-        if (_posViewModel == null) return;
-        //表示の設定
-        final Bundle args = getArguments();
-        boolean cashMenu = false;
-
-        // QR券の発行画面から中止
-        if (_sharedViewModel.getShowBarTicketIssueCancel().get()) {
-            _sharedViewModel.setShowBarTicketIssueCancel(false);
-            _posViewModel.setNavigateUpVisible(false);
-            return;
-        }
-
-        //POSの方の決済画面かどうか
-        if(args != null){
-            Timber.v("getArguments() is not null: %s", args);
-            cashMenu = args.getBoolean("cashMenu");
-            _posViewModel.setNavigateUpVisible(true);
-        }else {
-            Timber.v("getArguments() is not null");
-            _posViewModel.setNavigateUpVisible(false);
-        }
-        _sharedViewModel.setCashMenu(cashMenu);
+//        if (_posViewModel == null) return;
+//        //表示の設定
+//        final Bundle args = getArguments();
+//        boolean cashMenu = false;
+//
+//        // QR券の発行画面から中止
+//        if (_sharedViewModel.getShowBarTicketIssueCancel().get()) {
+//            _sharedViewModel.setShowBarTicketIssueCancel(false);
+//            _posViewModel.setNavigateUpVisible(false);
+//            return;
+//        }
+//
+//        //POSの方の決済画面かどうか
+//        if(args != null){
+//            Timber.v("getArguments() is not null: %s", args);
+//            cashMenu = args.getBoolean("cashMenu");
+//            _posViewModel.setNavigateUpVisible(true);
+//        }else {
+//            Timber.v("getArguments() is not null");
+//            _posViewModel.setNavigateUpVisible(false);
+//        }
+//        _sharedViewModel.setCashMenu(cashMenu);
     }
 
     @Override

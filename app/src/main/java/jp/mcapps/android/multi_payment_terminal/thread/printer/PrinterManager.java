@@ -46,7 +46,7 @@ import jp.mcapps.android.multi_payment_terminal.database.DeviceClient;
 import jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.BaseEMoneyOkicaViewModel;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorEventHandlers;
-import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuCashChangerViewModel;
+//import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuCashChangerViewModel;
 import timber.log.Timber;
 
 public class PrinterManager implements CommonErrorEventHandlers {
@@ -85,7 +85,7 @@ public class PrinterManager implements CommonErrorEventHandlers {
     private static String isMaskCardId;
     private static String isDeviceCheckResult;
 
-    private  static MenuCashChangerViewModel.AmountValue isAmountValue;
+//    private  static MenuCashChangerViewModel.AmountValue isAmountValue;
 
     private static int isPrintStatus = PrinterConst.PrintStatus_IDLE;
 
@@ -764,27 +764,27 @@ public class PrinterManager implements CommonErrorEventHandlers {
     // 自動釣銭機機内残高印刷
     // view：ダイアログ表示用　
     // CheckResult：デバイスチェック結果
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void print_cash_history(View view, MenuCashChangerViewModel.AmountValue AmountValue){
-        // 印刷命令を１回のみ受令許可
-        if(isPrintStatus != PrinterConst.PrintStatus_IDLE)return;
-        changePrintStatus(PrinterConst.PrintStatus_PRINTING);
-        _view = view;
-        isSlipType = PrinterConst.SlipType_CashHistory;
-        isAmountValue = AmountValue;
-
-        isDemo();
-        showPrintingDialog();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                PrinterProc printerProc = PrinterProc.getInstance();
-                printerProc.CashHistory(isAmountValue);
-            }
-        }).start();
-
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    public void print_cash_history(View view, MenuCashChangerViewModel.AmountValue AmountValue){
+//        // 印刷命令を１回のみ受令許可
+//        if(isPrintStatus != PrinterConst.PrintStatus_IDLE)return;
+//        changePrintStatus(PrinterConst.PrintStatus_PRINTING);
+//        _view = view;
+//        isSlipType = PrinterConst.SlipType_CashHistory;
+//        isAmountValue = AmountValue;
+//
+//        isDemo();
+//        showPrintingDialog();
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                PrinterProc printerProc = PrinterProc.getInstance();
+//                printerProc.CashHistory(isAmountValue);
+//            }
+//        }).start();
+//
+//    }
 
     // デバイスチェック結果
     // view：ダイアログ表示用　
@@ -1831,9 +1831,9 @@ public class PrinterManager implements CommonErrorEventHandlers {
                             break;
                         case PrinterConst.SlipType_QRTicket:
                             printerProc.printQRTicketReceipt();
-                        case PrinterConst.SlipType_CashHistory:
-                            printerProc.CashHistory(isAmountValue);
-                            break;
+//                        case PrinterConst.SlipType_CashHistory:
+//                            printerProc.CashHistory(isAmountValue);
+//                            break;
                         //ADD-S BMT S.Oyama 2025/03/11 フタバ双方向向け改修
                         case PrinterConst.SlipType_AggregateFutabaD:
                             if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
