@@ -9,9 +9,9 @@
     <data>
         <import type="android.view.View" />
         <import type="jp.mcapps.android.multi_payment_terminal.ui.Converters" />
-        <variable
-            name="viewModel"
-            type="jp.mcapps.android.multi_payment_terminal.ui.emoney.suica.EMoneySuicaViewModel" />
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="jp.mcapps.android.multi_payment_terminal.ui.emoney.suica.EMoneySuicaViewModel" />-->
         <variable
             name="sharedViewModel"
             type="jp.mcapps.android.multi_payment_terminal.SharedViewModel" />
@@ -76,7 +76,7 @@
 
             <!-- カードタッチ待ち -->
             <ImageView
-                android:visibility='@{viewModel.isWaiting() || viewModel.isUnfinished() ? View.VISIBLE : View.GONE}'
+                android:visibility='@{View.VISIBLE}'
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="40dp"
@@ -87,14 +87,14 @@
 
             <ProgressBar
                 style="?android:attr/progressBarStyle"
-                android:visibility='@{viewModel.isConnecting() ? View.VISIBLE : View.GONE}'
+                android:visibility='@{View.VISIBLE}'
                 android:layout_gravity="center"
                 android:layout_width="180dp"
                 android:layout_height="180dp" />
 
             <!-- 決済成功時 -->
             <ImageView
-                android:visibility='@{viewModel.isCompleted() ? View.VISIBLE : View.GONE}'
+                android:visibility='@{View.VISIBLE}'
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -103,7 +103,7 @@
 
             <!-- 決済エラー時 -->
             <ImageView
-                android:visibility='@{viewModel.isNotEnough() || viewModel.isError() ? View.VISIBLE : View.GONE}'
+                android:visibility='@{View.VISIBLE}'
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -155,18 +155,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:text='@{viewModel.lcd1}'
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:text='@{viewModel.lcd2}'
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp" />
                 <TextView
-                    android:text='@{viewModel.lcd3}'
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp" />
@@ -227,7 +224,7 @@
                     android:layout_width="@dimen/common_btn_width"
                     android:layout_height="@dimen/common_btn_height"
                     android:onClick='@{handlers::onCancelClick}'
-                    android:visibility='@{viewModel.cancelable &amp;&amp; (viewModel.isWaiting() || (viewModel.isNotEnough() &amp;&amp; viewModel.showWithCashAndCancelBtn)) ? View.VISIBLE : View.GONE}'
+                    android:visibility='@{View.GONE}'
                     android:layout_gravity="center"
                     android:backgroundTint="@color/btn_common_cancel"
                     android:text="@string/cancel_button_label_string" />
@@ -254,7 +251,7 @@
                     android:layout_width="@dimen/common_btn_width"
                     android:layout_height="@dimen/common_btn_height"
                     android:onClick='@{handlers::onWithCashClick}'
-                    android:visibility='@{(viewModel.isNotEnough &amp;&amp; viewModel.showWithCashAndCancelBtn) ? View.VISIBLE : View.GONE}'
+                    android:visibility='@{View.GONE}'
                     android:layout_gravity="center"
                     android:text="現金併用" />
             </FrameLayout>
