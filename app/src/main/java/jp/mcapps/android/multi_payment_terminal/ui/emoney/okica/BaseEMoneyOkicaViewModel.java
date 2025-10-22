@@ -40,7 +40,7 @@ import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData;
 import jp.mcapps.android.multi_payment_terminal.devices.OkicaRW;
 import jp.mcapps.android.multi_payment_terminal.devices.SamRW;
 import jp.mcapps.android.multi_payment_terminal.error.SDKErrors;
-import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
+//import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.SoundManager;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
@@ -556,12 +556,12 @@ abstract public class BaseEMoneyOkicaViewModel extends ViewModel {
             optionalTransFacade.CreateByUriOkicaData(); // DBにセット
         }
 
-        if (AppPreference.isTicketTransaction()) {
-            // チケット販売時の取引情報を作成する
-            OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.OKICA);
-            optionalTicketTransFacade = transLogger.setTicketDataForFacade(optionalTicketTransFacade);
-            optionalTicketTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
-        }
+//        if (AppPreference.isTicketTransaction()) {
+//            // チケット販売時の取引情報を作成する
+//            OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.OKICA);
+//            optionalTicketTransFacade = transLogger.setTicketDataForFacade(optionalTicketTransFacade);
+//            optionalTicketTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
+//        }
     }
 
     /**

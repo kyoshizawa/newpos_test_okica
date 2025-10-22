@@ -54,7 +54,7 @@ import jp.mcapps.android.multi_payment_terminal.model.DiscountInfo;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountMenuInfo;
 import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
 import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
-import jp.mcapps.android.multi_payment_terminal.service.PeriodicErrorCheckService;
+//import jp.mcapps.android.multi_payment_terminal.service.PeriodicErrorCheckService;
 //import jp.mcapps.android.multi_payment_terminal.service.WifiP2pService;
 import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuDiscountFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuHomeFragment;
@@ -248,8 +248,8 @@ public class MainActivity extends AppCompatActivity {
 
         applyActionBar();
 
-        Intent periodicService = new Intent(this, PeriodicErrorCheckService.class);
-        startService(periodicService);
+//        Intent periodicService = new Intent(this, PeriodicErrorCheckService.class);
+//        startService(periodicService);
 
         //電波情報取得処理
         Intent radioService = new Intent(getApplication(), GetRadioService.class);

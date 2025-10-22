@@ -7,12 +7,12 @@
 
     <data>
         <import type="android.view.View" />
-        <variable
-            name="viewModel"
-            type="jp.mcapps.android.multi_payment_terminal.TicketScannerViewModel" />
-        <variable
-            name="activity"
-            type="jp.mcapps.android.multi_payment_terminal.TicketScannerActivity" />
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="jp.mcapps.android.multi_payment_terminal.TicketScannerViewModel" />-->
+<!--        <variable-->
+<!--            name="activity"-->
+<!--            type="jp.mcapps.android.multi_payment_terminal.TicketScannerActivity" />-->
     </data>
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -44,8 +44,6 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:onClick='@{activity::popBackStackToTicketGateSettings}'
-                android:text='@{viewModel.getLocationName}'
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -60,8 +58,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
-                android:onClick='@{activity::onSwitchLight}'
-                android:visibility='@{viewModel.useLight ? View.VISIBLE : View.GONE}'
                 bind:layout_constraintEnd_toEndOf="parent"
                 bind:layout_constraintTop_toTopOf="parent"
                 bind:srcCompat="@drawable/ic_baseline_flashlight_on_36" />
@@ -72,8 +68,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
-                android:onClick='@{activity::onSwitchLight}'
-                android:visibility='@{!viewModel.useLight ? View.VISIBLE : View.GONE}'
                 bind:layout_constraintEnd_toEndOf="parent"
                 bind:layout_constraintTop_toTopOf="parent"
                 bind:srcCompat="@drawable/ic_baseline_flashlight_off_36" />
@@ -91,7 +85,6 @@
                 android:layout_marginStart="45dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
-                android:text='@{viewModel.getTicketEmbarkName}'
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -107,7 +100,6 @@
                 android:layout_marginStart="45dp"
                 android:layout_marginTop="75dp"
                 android:gravity="center_vertical"
-                android:text='@{viewModel.getTicketDisembarkName}'
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -122,7 +114,6 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:visibility="@{viewModel.isAutoUpdate() ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 bind:srcCompat="@drawable/ic_autoplay" />
@@ -133,7 +124,6 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:visibility="@{!viewModel.isAutoUpdate() ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 bind:srcCompat="@drawable/ic_autostop" />
@@ -145,11 +135,9 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="10dp"
                 android:gravity="center"
-                android:text='@{viewModel.getLastAutoTime}'
                 android:textColor="@color/white"
                 android:textSize="11sp"
                 android:textStyle="bold"
-                android:visibility="@{viewModel.isAutoUpdate() ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:strokeColor="@color/red"
@@ -162,7 +150,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="45dp"
                 android:gravity="center_vertical"
-                android:text='@{viewModel.getTicketEmbarkTime}'
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -179,7 +166,6 @@
                 android:layout_marginTop="75dp"
                 android:layout_marginEnd="45dp"
                 android:gravity="center_vertical"
-                android:text='@{viewModel.getTicketDisembarkTime}'
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -200,7 +186,6 @@
                 android:layout_width="360dp"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:text='@{viewModel.getMessage}'
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -214,7 +199,6 @@
                 android:layout_width="360dp"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:text='@{viewModel.getMessageEnglish}'
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold"

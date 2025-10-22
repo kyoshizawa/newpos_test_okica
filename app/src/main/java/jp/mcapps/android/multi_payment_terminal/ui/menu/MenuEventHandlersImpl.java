@@ -89,11 +89,11 @@ import jp.mcapps.android.multi_payment_terminal.model.ValidationCheckChecker;
 import jp.mcapps.android.multi_payment_terminal.model.Validator;
 import jp.mcapps.android.multi_payment_terminal.model.WatariChecker;
 import jp.mcapps.android.multi_payment_terminal.model.pos.ProductRepository;
-import jp.mcapps.android.multi_payment_terminal.model.ticket.TicketRepository;
+// import jp.mcapps.android.multi_payment_terminal.model.ticket.TicketRepository;
 import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
 import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
-import jp.mcapps.android.multi_payment_terminal.service.PeriodicErrorCheckService;
-import jp.mcapps.android.multi_payment_terminal.service.PeriodicGateCheckService;
+//import jp.mcapps.android.multi_payment_terminal.service.PeriodicErrorCheckService;
+//import jp.mcapps.android.multi_payment_terminal.service.PeriodicGateCheckService;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterConst;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.ui.Converters;
@@ -1268,12 +1268,6 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                     } else if (runningServiceInfo.service.getClassName().equals(GetGpsService.class.getName())) {
                         activeServiceCnt++;
                         foundGpsService = true;
-                    } else if (runningServiceInfo.service.getClassName().equals(PeriodicErrorCheckService.class.getName())) {
-                        activeServiceCnt++;
-                        foundErrorCheckService = true;
-                    } else if (runningServiceInfo.service.getClassName().equals(PeriodicGateCheckService.class.getName())) {
-                        activeServiceCnt++;
-                        foundGateCheckService = true;
                     }
 
                     if (foundRadioService && foundGpsService && foundErrorCheckService && foundGateCheckService)
@@ -1308,15 +1302,15 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                     mainActivity.stopService(gpsService);
                 }
 
-                if (foundErrorCheckService) {
-                    Intent errorService = new Intent(mainActivity.getApplication(), PeriodicErrorCheckService.class);
-                    mainActivity.stopService(errorService);
-                }
-
-                if (foundGateCheckService) {
-                    Intent gateService = new Intent(mainActivity.getApplication(), PeriodicGateCheckService.class);
-                    mainActivity.stopService(gateService);
-                }
+//                if (foundErrorCheckService) {
+//                    Intent errorService = new Intent(mainActivity.getApplication(), PeriodicErrorCheckService.class);
+//                    mainActivity.stopService(errorService);
+//                }
+//
+//                if (foundGateCheckService) {
+//                    Intent gateService = new Intent(mainActivity.getApplication(), PeriodicGateCheckService.class);
+//                    mainActivity.stopService(gateService);
+//                }
 
                 try {
                     serviceLatch.await(); //全てのサービスの終了を待機
@@ -1995,7 +1989,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         if (activity == null) return;
 
         // チケット検索条件画面に遷移する
-        NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, R.id.action_navigation_menu_to_fragment_ticket_search);
+//        NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, R.id.action_navigation_menu_to_fragment_ticket_search);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -2006,7 +2000,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         if (activity == null) return;
 
         // 改札設定画面に遷移する
-        NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, R.id.action_navigation_menu_to_fragment_ticket_gate_settings);
+//        NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, R.id.action_navigation_menu_to_fragment_ticket_gate_settings);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -2039,27 +2033,27 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                 return;
             }
 
-            try {
-                // 手動マスタ情報更新
-                TicketRepository repo = new TicketRepository();
-                if (repo.refreshTicketSales()) {
-                    handler.post(() -> {
-                        sharedViewModel.setLoading(false);
-                        SuccessDialog.show(view.getContext(), "チケットデータ更新成功しました");
-                    });
-                } else {
-                    handler.post(() -> {
-                        sharedViewModel.setLoading(false);
-                        ErrorDialog.show(view.getContext(), "チケットデータ更新失敗しました");
-                    });
-                }
-            } catch (Exception e) {
-                Timber.e(e, "チケットデータ更新失敗しました");
-                handler.post(() -> {
-                    sharedViewModel.setLoading(false);
-                    ErrorDialog.show(view.getContext(), "チケットデータ更新失敗しました");
-                });
-            }
+//            try {
+//                // 手動マスタ情報更新
+//                TicketRepository repo = new TicketRepository();
+//                if (repo.refreshTicketSales()) {
+//                    handler.post(() -> {
+//                        sharedViewModel.setLoading(false);
+//                        SuccessDialog.show(view.getContext(), "チケットデータ更新成功しました");
+//                    });
+//                } else {
+//                    handler.post(() -> {
+//                        sharedViewModel.setLoading(false);
+//                        ErrorDialog.show(view.getContext(), "チケットデータ更新失敗しました");
+//                    });
+//                }
+//            } catch (Exception e) {
+//                Timber.e(e, "チケットデータ更新失敗しました");
+//                handler.post(() -> {
+//                    sharedViewModel.setLoading(false);
+//                    ErrorDialog.show(view.getContext(), "チケットデータ更新失敗しました");
+//                });
+//            }
 
         }).start();
     }

@@ -46,7 +46,7 @@ import jp.mcapps.android.multi_payment_terminal.database.pos.TerminalData;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentCashConfirmBinding;
 import jp.mcapps.android.multi_payment_terminal.model.CashChecker;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
-import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
+//import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.SoundManager;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
@@ -291,12 +291,12 @@ public class CashConfirmFragment  extends BaseFragment implements CashConfirmHan
                 }
             }
 
-            if (AppPreference.isTicketTransaction()) {
-                // チケット販売時の取引情報を作成する
-                OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.CASH);
-                optionalTicketTransFacade = _transLogger.setTicketDataForFacade(optionalTicketTransFacade);
-                optionalTicketTransFacade.CreateReceiptData(slipId, payTime, termSequence, _amount, _over); // 取引明細書、取消票、領収書のデータを作成
-            }
+//            if (AppPreference.isTicketTransaction()) {
+//                // チケット販売時の取引情報を作成する
+//                OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.CASH);
+//                optionalTicketTransFacade = _transLogger.setTicketDataForFacade(optionalTicketTransFacade);
+//                optionalTicketTransFacade.CreateReceiptData(slipId, payTime, termSequence, _amount, _over); // 取引明細書、取消票、領収書のデータを作成
+//            }
         }).start();
         makeSound(R.raw.credit_auth_ok);
         String msg = "";
@@ -342,7 +342,7 @@ public class CashConfirmFragment  extends BaseFragment implements CashConfirmHan
         if (AppPreference.isTicketTransaction() && !isRepay) {
             // チケット販売時の初回現金決済の取引明細書を印刷完了後、QR発行画面に遷移する
             _handler.post(() -> {
-                NavigationWrapper.navigate(view, R.id.action_navigation_menu_to_fragment_ticket_issue);
+//                NavigationWrapper.navigate(view, R.id.action_navigation_menu_to_fragment_ticket_issue);
             });
         } else {
             _handler.post(() -> {

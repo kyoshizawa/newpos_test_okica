@@ -18,7 +18,7 @@ import jp.mcapps.android.multi_payment_terminal.data.TransMap;
 import jp.mcapps.android.multi_payment_terminal.data.TransactionResults;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipDao;
-import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
+//import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 import jp.mcapps.android.multi_payment_terminal.model.QRSettlement.ResultSummary;
@@ -134,12 +134,12 @@ public class QRViewModel extends ViewModel {
                 optionalTransFacade.CreateByUriData(); // DBにセット
             }
 
-            if (AppPreference.isTicketTransaction()) {
-                // チケット販売時の取引情報を作成する
-                OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.QR);
-                optionalTicketTransFacade = transLogger.setTicketDataForFacade(optionalTicketTransFacade);
-                optionalTicketTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
-            }
+//            if (AppPreference.isTicketTransaction()) {
+//                // チケット販売時の取引情報を作成する
+//                OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.QR);
+//                optionalTicketTransFacade = transLogger.setTicketDataForFacade(optionalTicketTransFacade);
+//                optionalTicketTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
+//            }
 
             // クリア前に現金分割分を現金併用金額に加算
             MainApplication.getInstance().setCashValue(MainApplication.getInstance().getCashValue() + Amount.getCashAmount());
@@ -211,12 +211,12 @@ public class QRViewModel extends ViewModel {
                 optionalTransFacade.CreateByUriData(); // DBにセット
             }
 
-            if (AppPreference.isTicketTransaction()) {
-                // チケット販売時の取引情報を作成する
-                OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.QR);
-                optionalTicketTransFacade = transLogger.setTicketDataForFacade(optionalTicketTransFacade);
-                optionalTicketTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
-            }
+//            if (AppPreference.isTicketTransaction()) {
+//                // チケット販売時の取引情報を作成する
+//                OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.QR);
+//                optionalTicketTransFacade = transLogger.setTicketDataForFacade(optionalTicketTransFacade);
+//                optionalTicketTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
+//            }
 
             // POSサービス有効の時は取消成功時・取消未了時に取消不可にする
             if(AppPreference.isServicePos()) {
@@ -284,12 +284,12 @@ public class QRViewModel extends ViewModel {
                 optionalTransFacade.CreateByUriData(); // DBにセット
             }
 
-            if (AppPreference.isTicketTransaction()) {
-                // チケット販売時の取引情報を作成する
-                OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.QR);
-                optionalTicketTransFacade = transLogger.setTicketDataForFacade(optionalTicketTransFacade);
-                optionalTicketTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
-            }
+//            if (AppPreference.isTicketTransaction()) {
+//                // チケット販売時の取引情報を作成する
+//                OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.QR);
+//                optionalTicketTransFacade = transLogger.setTicketDataForFacade(optionalTicketTransFacade);
+//                optionalTicketTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
+//            }
 
             Amount.reset();
         } else {
@@ -355,12 +355,12 @@ public class QRViewModel extends ViewModel {
                 optionalTransFacade.CreateByUriData(); // DBにセット
             }
 
-            if (AppPreference.isTicketTransaction()) {
-                // チケット販売時の取引情報を作成する
-                OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.QR);
-                optionalTicketTransFacade = transLogger.setTicketDataForFacade(optionalTicketTransFacade);
-                optionalTicketTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
-            }
+//            if (AppPreference.isTicketTransaction()) {
+//                // チケット販売時の取引情報を作成する
+//                OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.QR);
+//                optionalTicketTransFacade = transLogger.setTicketDataForFacade(optionalTicketTransFacade);
+//                optionalTicketTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
+//            }
 
             // POSサービス有効の時は取消成功時・取消未了時に取消不可にする
             if(AppPreference.isServicePos()) {
@@ -419,12 +419,12 @@ public class QRViewModel extends ViewModel {
                 optionalTransFacade.CreateByUriData(); // DBにセット
             }
 
-            if (AppPreference.isTicketTransaction()) {
-                // チケット販売時の取引情報を作成する(未了)
-                OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.QR);
-                optionalTicketTransFacade = _transLogger_Err.setTicketDataForFacade(optionalTicketTransFacade);
-                optionalTicketTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
-            }
+//            if (AppPreference.isTicketTransaction()) {
+//                // チケット販売時の取引情報を作成する(未了)
+//                OptionalTicketTransFacade optionalTicketTransFacade = new OptionalTicketTransFacade(MoneyType.QR);
+//                optionalTicketTransFacade = _transLogger_Err.setTicketDataForFacade(optionalTicketTransFacade);
+//                optionalTicketTransFacade.CreateReceiptData(_slipId); // 取引明細書、取消票、領収書のデータを作成
+//            }
         }
     }
 

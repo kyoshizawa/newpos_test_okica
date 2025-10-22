@@ -496,7 +496,7 @@ public class InstallationAndRemovalFragment extends BaseFragment implements Inst
                 AlertDialogFragment.newInstance(title, msg, () -> {
                 }).show(getChildFragmentManager(), null);
             } else {
-                NavigationWrapper.navigate(this, R.id.action_navigation_installation_and_removal_to_navigation_tablet_link_setup);
+//                NavigationWrapper.navigate(this, R.id.action_navigation_installation_and_removal_to_navigation_tablet_link_setup);
             }
         },() ->{
             CommonClickEvent.RecordClickOperation("いいえ", "タブレット連動登録確認", false);
@@ -811,7 +811,7 @@ public class InstallationAndRemovalFragment extends BaseFragment implements Inst
             CommonClickEvent.RecordClickOperation("認証", "チケット販売機能", false);
             ConfirmDialog.newInstance("【チケット販売機能設定】", "認証しますか？", () -> {
                 CommonClickEvent.RecordClickOperation("はい", "チケット販売機能認証", false);
-                NavigationWrapper.navigate(this, R.id.action_navigation_installation_and_removal_to_navigation_ticket_activation);
+//                NavigationWrapper.navigate(this, R.id.action_navigation_installation_and_removal_to_navigation_ticket_activation);
             }, () -> {
                 CommonClickEvent.RecordClickOperation("いいえ", "チケット販売機能認証", false);
             }).show(getChildFragmentManager(), null);

@@ -224,7 +224,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
                 params.putString("purchasedTicketDealId", purchasedTicketDealId);
 
                 if (_isTicketIssueCancel) {
-                    NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_fragment_cash_confirm, params);
+//                    NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_fragment_cash_confirm, params);
                 } else {
                     if (AppPreference.getIsCashChanger()) {
                         /* つり銭機連動 */
@@ -365,7 +365,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
 
                     view.post(() -> {
                         if (_isTicketIssueCancel) {
-                            NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_credit, params);
+                            // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_credit, params);
                         } else {
                             NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_credit, params);
                         }
@@ -402,7 +402,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
 
             view.post(() -> {
                 if (_isTicketIssueCancel) {
-                    NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_qr_refund, params);
+//                    NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_qr_refund, params);
                 } else {
                     NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_qr_refund, params);
                 }
@@ -427,7 +427,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
         if (moneyBrand.equals(_app.getString(R.string.money_brand_suica)))  {
             view.post(() -> {
                 if (_isTicketIssueCancel) {
-                    NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_suica, params);
+                    // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_suica, params);
                 } else {
                     NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_suica, params);
                 }
@@ -436,7 +436,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
         else if (moneyBrand.equals(_app.getString(R.string.money_brand_waon)))  {
             view.post(() -> {
                 if (_isTicketIssueCancel) {
-                    NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_waon, params);
+                    // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_waon, params);
                 } else {
                     NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_waon, params);
                 }
@@ -445,7 +445,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
         else if (moneyBrand.equals(_app.getString(R.string.money_brand_id)))  {
             view.post(() -> {
                 if (_isTicketIssueCancel) {
-                    NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_id, params);
+                    // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_id, params);
                 } else {
                     NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_id, params);
                 }
@@ -459,7 +459,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
         else if (moneyBrand.equals(_app.getString(R.string.money_brand_qp)))  {
             view.post(() -> {
                 if (_isTicketIssueCancel) {
-                    NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_quicpay, params);
+                    // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_quicpay, params);
                 } else {
                     NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_quicpay, params);
                 }
@@ -486,7 +486,7 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
 
         view.post(() -> {
             if (_isTicketIssueCancel) {
-                NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_okica, params);
+                // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_okica, params);
             } else {
                 NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_okica, params);
             }

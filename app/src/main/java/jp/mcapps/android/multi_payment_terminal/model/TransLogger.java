@@ -805,14 +805,14 @@ public class TransLogger {
      * チケットサービス連携用に各種データをFacadeにセットする
      * @return facade
      */
-    public OptionalTicketTransFacade setTicketDataForFacade(OptionalTicketTransFacade facade) {
-        facade.setUriData(_uriData);
-        facade.setUriOkicaData(_uriOkicaData);
-        facade.setResultParam(_resultParam);
-        facade.setAmountParam(_amountParam);
-        facade.setRefundParam(_refundParam);
-        return facade;
-    }
+//    public OptionalTicketTransFacade setTicketDataForFacade(OptionalTicketTransFacade facade) {
+//        facade.setUriData(_uriData);
+//        facade.setUriOkicaData(_uriOkicaData);
+//        facade.setResultParam(_resultParam);
+//        facade.setAmountParam(_amountParam);
+//        facade.setRefundParam(_refundParam);
+//        return facade;
+//    }
 
     /**
      * チケット販売時のカード情報をセットする

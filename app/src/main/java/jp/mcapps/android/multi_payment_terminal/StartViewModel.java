@@ -38,7 +38,7 @@ import jp.mcapps.android.multi_payment_terminal.model.Updater;
 import jp.mcapps.android.multi_payment_terminal.model.Validator;
 import jp.mcapps.android.multi_payment_terminal.thread.emv.EmvCLProcess;
 import jp.mcapps.android.multi_payment_terminal.model.pos.ProductRepository;
-import jp.mcapps.android.multi_payment_terminal.model.ticket.TicketRepository;
+// import jp.mcapps.android.multi_payment_terminal.model.ticket.TicketRepository;
 import jp.mcapps.android.multi_payment_terminal.service.PosTransactionService;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.McOkicaCenterApi;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.McOkicaCenterApiImpl;
@@ -335,20 +335,20 @@ public class StartViewModel extends ViewModel
             try {
                 if (AppPreference.isServiceTicket()) {
                     // 起動時のチケット販売マスタ更新
-                    TicketRepository repo = new TicketRepository();
-                    repo.refreshTicketSales();
+//                    TicketRepository repo = new TicketRepository();
+//                    repo.refreshTicketSales();
                 }
-            } catch (DomainErrors.Exception e) {
-                Timber.e(e, "Error on refreshing TicketSales on boot");
-                if (e.getError() == DomainErrors.TICKET_SERVICE_INSTANCE_IS_NOT_ASSIGNED) {
-                    _errors.add(Integer.toString(e.getError().code));
-                } else {
-                    // その他のエラー
-                    _errors.add(String.format("%s@@@%s@@@", DomainErrors.TICKET_SALES_SERVICE_UNKNOWN_ERROR.code, e.getError().code));
-                }
-            } catch (TicketSalesStatusException e) {
-                Timber.e(e, "Error on refreshing TicketSales on boot");
-                _errors.add(String.format("%s@@@%s@@@", DomainErrors.TICKET_SALES_SERVICE_RESPONSE_ERROR.code, e.getCode()));
+//            } catch (DomainErrors.Exception e) {
+//                Timber.e(e, "Error on refreshing TicketSales on boot");
+//                if (e.getError() == DomainErrors.TICKET_SERVICE_INSTANCE_IS_NOT_ASSIGNED) {
+//                    _errors.add(Integer.toString(e.getError().code));
+//                } else {
+//                    // その他のエラー
+//                    _errors.add(String.format("%s@@@%s@@@", DomainErrors.TICKET_SALES_SERVICE_UNKNOWN_ERROR.code, e.getError().code));
+//                }
+//            } catch (TicketSalesStatusException e) {
+//                Timber.e(e, "Error on refreshing TicketSales on boot");
+//                _errors.add(String.format("%s@@@%s@@@", DomainErrors.TICKET_SALES_SERVICE_RESPONSE_ERROR.code, e.getCode()));
             } catch (Exception e) {
                 Timber.e(e, "Error on refreshing TicketSales on boot");
                 _errors.add(Integer.toString(DomainErrors.TICKET_SALES_SERVICE_NETWORK_ERROR.code));

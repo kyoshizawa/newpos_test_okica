@@ -29,7 +29,7 @@ import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketClassData;
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketEmbarkData;
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketGateSettingsData;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
-import jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketSearchResults;
+// import jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketSearchResults;
 import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
 import jp.mcapps.android.multi_payment_terminal.webapi.mc_pos_center.data.TerminalInfo;
 import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.type.DynamicTicketItem;
@@ -2240,9 +2240,9 @@ public class AppPreference {
     }
 
     // チケット検索結果
-    public static TicketSearchResults _ticketSearchResults = null;
-    public static TicketSearchResults getTicketSearchResults() { return _ticketSearchResults; }
-    public static void setTicketSearchResults(TicketSearchResults results) { _ticketSearchResults = results; }
+//    public static TicketSearchResults _ticketSearchResults = null;
+//    public static TicketSearchResults getTicketSearchResults() { return _ticketSearchResults; }
+//    public static void setTicketSearchResults(TicketSearchResults results) { _ticketSearchResults = results; }
 
     // 動的チケットの応答結果
     public static DynamicTicketItem _dynamicTicketItem = null;

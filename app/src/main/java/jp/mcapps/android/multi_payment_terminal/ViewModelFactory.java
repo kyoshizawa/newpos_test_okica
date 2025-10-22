@@ -17,8 +17,8 @@ import jp.mcapps.android.multi_payment_terminal.model.WatariChecker;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.Updater;
 import jp.mcapps.android.multi_payment_terminal.service.LogSendServiceViewModel;
-import jp.mcapps.android.multi_payment_terminal.service.PeriodicErrorCheckServiceViewModel;
-import jp.mcapps.android.multi_payment_terminal.service.PeriodicGateCheckServiceViewModel;
+//import jp.mcapps.android.multi_payment_terminal.service.PeriodicErrorCheckServiceViewModel;
+//import jp.mcapps.android.multi_payment_terminal.service.PeriodicGateCheckServiceViewModel;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputAdvancePayFDViewModel;
 import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
@@ -95,9 +95,9 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
         else if (modelClass.isAssignableFrom((MenuViewModel.class))) {
             return (T) new MenuViewModel(_eventLogger);
         }
-        else if (modelClass.isAssignableFrom((PeriodicErrorCheckServiceViewModel.class))) {
-            return (T) new PeriodicErrorCheckServiceViewModel(_eventLogger);
-        }
+//        else if (modelClass.isAssignableFrom((PeriodicErrorCheckServiceViewModel.class))) {
+//            return (T) new PeriodicErrorCheckServiceViewModel(_eventLogger);
+//        }
         else if (modelClass.isAssignableFrom((InstallationAndRemovalViewModel.class))) {
             return (T) new InstallationAndRemovalViewModel();
         }
@@ -110,9 +110,9 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
         else if (modelClass.isAssignableFrom((LogSendServiceViewModel.class))) {
             return (T) new LogSendServiceViewModel(_eventLogger);
         }
-        else if (modelClass.isAssignableFrom((PeriodicGateCheckServiceViewModel.class))) {
-            return (T) new PeriodicGateCheckServiceViewModel();
-        }
+//        else if (modelClass.isAssignableFrom((PeriodicGateCheckServiceViewModel.class))) {
+//            return (T) new PeriodicGateCheckServiceViewModel();
+//        }
 //ADD-S BMT S.Oyama 2024/09/03 フタバ双方向向け改修
         else if (modelClass.isAssignableFrom((AmountInputAdvancePayFDViewModel.class))) {
             return (T) new AmountInputAdvancePayFDViewModel();

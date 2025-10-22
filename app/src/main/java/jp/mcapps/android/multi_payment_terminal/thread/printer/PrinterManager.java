@@ -1283,7 +1283,7 @@ public class PrinterManager implements CommonErrorEventHandlers {
                         if (AppPreference.isTicketTransaction() && !isRePrinter && !isTransResultUnFinish) {
                             // チケット販売時の初回取引明細書印刷完了
                             // QR発行画面に遷移する
-                            NavigationWrapper.navigate(_view, R.id.action_navigation_menu_to_fragment_ticket_issue);
+//                            NavigationWrapper.navigate(_view, R.id.action_navigation_menu_to_fragment_ticket_issue);
                         }
                     }
                     break;
@@ -1967,10 +1967,10 @@ public class PrinterManager implements CommonErrorEventHandlers {
                     !isRePrinter) {
 
                 // チケット販売時の初回売上票を印刷再開中止時、QR発行画面に遷移する
-                NavigationWrapper.navigate(_view, R.id.action_navigation_menu_to_fragment_ticket_issue);
+//                NavigationWrapper.navigate(_view, R.id.action_navigation_menu_to_fragment_ticket_issue);
             } else if (isSlipType == PrinterConst.SlipType_DetailStatement && !isRePrinter && !isTransResultUnFinish) {
                 // チケット販売時の初回取引明細書を印刷再開中止時、QR発行画面に遷移する※未了以外
-                NavigationWrapper.navigate(_view, R.id.action_navigation_menu_to_fragment_ticket_issue);
+//                NavigationWrapper.navigate(_view, R.id.action_navigation_menu_to_fragment_ticket_issue);
             } else {
                 // 何もしない
             }

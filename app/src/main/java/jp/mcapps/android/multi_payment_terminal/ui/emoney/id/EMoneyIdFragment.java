@@ -53,7 +53,7 @@ import jp.mcapps.android.multi_payment_terminal.error.iCASErrorMap;
 //import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
 //import jp.mcapps.android.multi_payment_terminal.iCAS.iCASClient;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
-import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
+//import jp.mcapps.android.multi_payment_terminal.model.OptionalTicketTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
 import jp.mcapps.android.multi_payment_terminal.thread.felica.FelicaManager;

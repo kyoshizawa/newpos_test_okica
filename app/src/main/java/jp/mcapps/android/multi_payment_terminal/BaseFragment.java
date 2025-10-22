@@ -23,8 +23,8 @@ import jp.mcapps.android.multi_payment_terminal.ui.pos.CashConfirmFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.pos_activation.PosActivationFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.qr.QRPaymentFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.qr.QRRefundFragment;
-import jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketGateQrScanFragment;
-import jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketIssueFragment;
+//import jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketGateQrScanFragment;
+//import jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketIssueFragment;
 import timber.log.Timber;
 
 public abstract class BaseFragment extends Fragment {
@@ -47,8 +47,8 @@ public abstract class BaseFragment extends Fragment {
         add(InstallationOkicaFragment.class.getSimpleName());
         add(PosActivationFragment.class.getSimpleName());
         add(CashConfirmFragment.class.getSimpleName());
-        add(TicketGateQrScanFragment.class.getSimpleName());
-        add(TicketIssueFragment.class.getSimpleName());
+//        add(TicketGateQrScanFragment.class.getSimpleName());
+//        add(TicketIssueFragment.class.getSimpleName());
         add(WatariFragment.class.getSimpleName());
         add(CashChangerPaymentFragment.class.getSimpleName());
     }};
