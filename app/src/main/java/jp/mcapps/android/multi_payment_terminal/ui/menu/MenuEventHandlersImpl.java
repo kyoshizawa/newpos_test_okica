@@ -1017,18 +1017,18 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                 sharedViewModel.setLoading(true);
             });
 
-            String errorCode = CashChecker.check(view);
-
-            handler.post(() -> {
-                sharedViewModel.setLoading(false);
-            });
-
-            if (errorCode != null) {
-                handler.post(() -> {
-                    dialog.ShowErrorMessage(activity, errorCode);
-                });
-                return;
-            }
+//            String errorCode = CashChecker.check(view);
+//
+//            handler.post(() -> {
+//                sharedViewModel.setLoading(false);
+//            });
+//
+//            if (errorCode != null) {
+//                handler.post(() -> {
+//                    dialog.ShowErrorMessage(activity, errorCode);
+//                });
+//                return;
+//            }
 
 //            if (id == R.id.action_navigation_menu_to_fragment_cash_changer_payment) {
 //                final Bundle params = new Bundle();

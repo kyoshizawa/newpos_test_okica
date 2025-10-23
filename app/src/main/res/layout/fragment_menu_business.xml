@@ -148,7 +148,6 @@
         <Button
             android:id="@+id/btn_menu_business_external_device"
             android:text="@string/btn_business_external_device"
-            android:onClick='@{view -> handlers.navigateMain(view, @id/action_navigation_menu_to_external_device)}'
             android:visibility="@{viewModel.isCashChangerActivated ? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toBottomOf="@id/btn_menu_business_balance"
             app:layout_constraintStart_toStartOf="parent"

@@ -487,7 +487,6 @@
                     style="@style/StyleHomeIconButton"
                     android:layout_height="150dp"
                     android:visibility="@{!AppPreference.getIsCashChanger() ? View.VISIBLE : View.GONE}"
-                    android:onClick='@{view -> handlers.navigateToCashInput(view, sharedViewModel, @id/action_navigation_menu_to_fragment_cash_input)}'
                     android:tag="@string/btn_home_cash"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -519,7 +518,6 @@
                     style="@style/StyleHomeIconButton"
                     android:layout_height="150dp"
                     android:visibility="@{AppPreference.getIsCashChanger() ? View.VISIBLE : View.GONE}"
-                    android:onClick='@{view -> handlers.navigateToCashInput(view, sharedViewModel, @id/action_navigation_menu_to_fragment_cash_changer_payment)}'
                     android:tag="@string/btn_home_cash"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
