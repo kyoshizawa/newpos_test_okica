@@ -32,7 +32,7 @@ import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
 // import jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketSearchResults;
 import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
 import jp.mcapps.android.multi_payment_terminal.webapi.mc_pos_center.data.TerminalInfo;
-import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.type.DynamicTicketItem;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.type.DynamicTicketItem;
 import kotlin.text.UStringsKt;
 import timber.log.Timber;
 
@@ -2245,9 +2245,9 @@ public class AppPreference {
 //    public static void setTicketSearchResults(TicketSearchResults results) { _ticketSearchResults = results; }
 
     // 動的チケットの応答結果
-    public static DynamicTicketItem _dynamicTicketItem = null;
-    public static DynamicTicketItem getDynamicTicketItem() { return _dynamicTicketItem; }
-    public static void setDynamicTicketItem(DynamicTicketItem ticketItem) { _dynamicTicketItem = ticketItem; }
+//    public static DynamicTicketItem _dynamicTicketItem = null;
+//    public static DynamicTicketItem getDynamicTicketItem() { return _dynamicTicketItem; }
+//    public static void setDynamicTicketItem(DynamicTicketItem ticketItem) { _dynamicTicketItem = ticketItem; }
 
     // gtfs feed version
     private static String _gtfsCurrentFeedId = "";

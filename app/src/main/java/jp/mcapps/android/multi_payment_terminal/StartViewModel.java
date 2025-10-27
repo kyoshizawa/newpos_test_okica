@@ -37,14 +37,14 @@ import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
 import jp.mcapps.android.multi_payment_terminal.model.Updater;
 import jp.mcapps.android.multi_payment_terminal.model.Validator;
 //import jp.mcapps.android.multi_payment_terminal.thread.emv.EmvCLProcess;
-import jp.mcapps.android.multi_payment_terminal.model.pos.ProductRepository;
+//import jp.mcapps.android.multi_payment_terminal.model.pos.ProductRepository;
 // import jp.mcapps.android.multi_payment_terminal.model.ticket.TicketRepository;
 // import jp.mcapps.android.multi_payment_terminal.service.PosTransactionService;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.McOkicaCenterApi;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.McOkicaCenterApiImpl;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.data.GetAccessToken;
-import jp.mcapps.android.multi_payment_terminal.webapi.paypf_pos.PaypfStatusException;
-import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesStatusException;
+//import jp.mcapps.android.multi_payment_terminal.webapi.paypf_pos.PaypfStatusException;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesStatusException;
 import timber.log.Timber;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -305,27 +305,27 @@ public class StartViewModel extends ViewModel
                 Timber.e(e);
             }
 
-            try {
-                if (AppPreference.isServicePos()) {
-                    // 起動時のマスタ情報更新
-                    ProductRepository repo = new ProductRepository();
-                    repo.refreshProducts();
-                }
-            } catch (DomainErrors.Exception e) {
-                Timber.e(e, "(paypf) Error on refreshing products on boot");
-                if (e.getError() == DomainErrors.POS_SERVICE_INSTANCE_IS_NOT_ASSIGNED) {
-                    _errors.add(Integer.toString(e.getError().code));
-                } else {
-                    // その他のエラー
-                    _errors.add(String.format("%s@@@%s@@@", DomainErrors.POS_SERVICE_UNKNOWN_ERROR.code, e.getError().code));
-                }
-            } catch (PaypfStatusException e) {
-                Timber.e(e, "(paypf) Error on refreshing products on boot");
-                _errors.add(String.format("%s@@@%s@@@", DomainErrors.POS_SERVICE_RESPONSE_ERROR.code, e.getCode()));
-            } catch (Exception e) {
-                Timber.e(e, "(paypf) Error on refreshing products on boot");
-                _errors.add(Integer.toString(DomainErrors.POS_SERVICE_NETWORK_ERROR.code));
-            }
+//            try {
+//                if (AppPreference.isServicePos()) {
+//                    // 起動時のマスタ情報更新
+//                    ProductRepository repo = new ProductRepository();
+//                    repo.refreshProducts();
+//                }
+//            } catch (DomainErrors.Exception e) {
+//                Timber.e(e, "(paypf) Error on refreshing products on boot");
+//                if (e.getError() == DomainErrors.POS_SERVICE_INSTANCE_IS_NOT_ASSIGNED) {
+//                    _errors.add(Integer.toString(e.getError().code));
+//                } else {
+//                    // その他のエラー
+//                    _errors.add(String.format("%s@@@%s@@@", DomainErrors.POS_SERVICE_UNKNOWN_ERROR.code, e.getError().code));
+//                }
+//            } catch (PaypfStatusException e) {
+//                Timber.e(e, "(paypf) Error on refreshing products on boot");
+//                _errors.add(String.format("%s@@@%s@@@", DomainErrors.POS_SERVICE_RESPONSE_ERROR.code, e.getCode()));
+//            } catch (Exception e) {
+//                Timber.e(e, "(paypf) Error on refreshing products on boot");
+//                _errors.add(Integer.toString(DomainErrors.POS_SERVICE_NETWORK_ERROR.code));
+//            }
 
 //            if (AppPreference.isServicePos()) {
 //                // 取引データ送信サービスを起動する

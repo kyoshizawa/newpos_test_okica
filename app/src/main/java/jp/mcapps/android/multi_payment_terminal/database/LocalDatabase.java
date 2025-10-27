@@ -69,7 +69,7 @@ import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketGtfsDao;
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketGtfsData;
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptDao;
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptData;
-import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.type.TicketGateEmbark;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.type.TicketGateEmbark;
 import timber.log.Timber;
 
 @Database(entities = {

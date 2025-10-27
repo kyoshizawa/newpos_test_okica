@@ -88,7 +88,7 @@ import jp.mcapps.android.multi_payment_terminal.model.SoundManager;
 import jp.mcapps.android.multi_payment_terminal.model.ValidationCheckChecker;
 import jp.mcapps.android.multi_payment_terminal.model.Validator;
 //import jp.mcapps.android.multi_payment_terminal.model.WatariChecker;
-import jp.mcapps.android.multi_payment_terminal.model.pos.ProductRepository;
+//import jp.mcapps.android.multi_payment_terminal.model.pos.ProductRepository;
 // import jp.mcapps.android.multi_payment_terminal.model.ticket.TicketRepository;
 import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
 import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
@@ -1950,33 +1950,33 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                 });
                 return;
             }
-
-            try {
-                // 手動マスタ情報更新
-                ProductRepository repo = new ProductRepository();
-                repo.refreshProducts();
-
-                final List<String> removeList = new ArrayList<>();
-                removeList.add(Integer.toString(DomainErrors.POS_DOMAIN_ERRORS.code));
-                removeList.add(Integer.toString(DomainErrors.POS_SERVICE_INSTANCE_IS_NOT_ASSIGNED.code));
-                removeList.add(Integer.toString(DomainErrors.POS_SERVICE_RESPONSE_ERROR.code));
-                removeList.add(Integer.toString(DomainErrors.POS_SERVICE_NETWORK_ERROR.code));
-                removeList.add(Integer.toString(DomainErrors.POS_SERVICE_UNKNOWN_ERROR.code));
-                // POSデータ更新が正常に完了した場合はPOS関連のスタックエラークリア
-                ErrorStackingRepository errorStackingRepository = new ErrorStackingRepository();
-                errorStackingRepository.removeErrorStacking(removeList);
-
-                handler.post(() -> {
-                    sharedViewModel.setLoading(false);
-                    SuccessDialog.show(view.getContext(), "POSデータを更新しました");
-                });
-            } catch (Exception e) {
-                Timber.e(e, "(paypf) Error on refreshing products manually");
-                handler.post(() -> {
-                    sharedViewModel.setLoading(false);
-                    ErrorDialog.show(view.getContext(), e.getMessage());
-                });
-            }
+//
+//            try {
+//                // 手動マスタ情報更新
+//                ProductRepository repo = new ProductRepository();
+//                repo.refreshProducts();
+//
+//                final List<String> removeList = new ArrayList<>();
+//                removeList.add(Integer.toString(DomainErrors.POS_DOMAIN_ERRORS.code));
+//                removeList.add(Integer.toString(DomainErrors.POS_SERVICE_INSTANCE_IS_NOT_ASSIGNED.code));
+//                removeList.add(Integer.toString(DomainErrors.POS_SERVICE_RESPONSE_ERROR.code));
+//                removeList.add(Integer.toString(DomainErrors.POS_SERVICE_NETWORK_ERROR.code));
+//                removeList.add(Integer.toString(DomainErrors.POS_SERVICE_UNKNOWN_ERROR.code));
+//                // POSデータ更新が正常に完了した場合はPOS関連のスタックエラークリア
+//                ErrorStackingRepository errorStackingRepository = new ErrorStackingRepository();
+//                errorStackingRepository.removeErrorStacking(removeList);
+//
+//                handler.post(() -> {
+//                    sharedViewModel.setLoading(false);
+//                    SuccessDialog.show(view.getContext(), "POSデータを更新しました");
+//                });
+//            } catch (Exception e) {
+//                Timber.e(e, "(paypf) Error on refreshing products manually");
+//                handler.post(() -> {
+//                    sharedViewModel.setLoading(false);
+//                    ErrorDialog.show(view.getContext(), e.getMessage());
+//                });
+//            }
 
         }).start();
     }

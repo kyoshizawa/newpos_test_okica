@@ -74,7 +74,7 @@ import jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.BaseEMoneyOkicaV
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorEventHandlers;
 import jp.mcapps.android.multi_payment_terminal.util.BitmapSaver;
-import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.type.DynamicTicketItem;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.type.DynamicTicketItem;
 // import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuCashChangerViewModel;
 import timber.log.Timber;
 
@@ -93,7 +93,7 @@ public class PrinterProc {
     private AggregateData _aggregateData;
     private ServiceFunctionData _serviceFunctionData;
     private TicketReceiptData _ticketReceiptData;
-    private DynamicTicketItem _dynamicTicketItem;
+//    private DynamicTicketItem _dynamicTicketItem;
 //ADD-S BMT S.Oyama 2024/09/18 フタバ双方向向け改修
     //private IFBoxManager.SendMeterData_FutabaD _sendMeterData_FutabaD;
 //ADD-E BMT S.Oyama 2024/09/18 フタバ双方向向け改修
@@ -7393,17 +7393,17 @@ public class PrinterProc {
     public void printQRTicketReceipt() {
         print_init();
         isQRTicketPrintSts = QRTicketPrintSts.INFO.ordinal();
-        _dynamicTicketItem = AppPreference.getDynamicTicketItem();
-
-        if (_dynamicTicketItem != null) {
-            setPrintData_QRTicketReceipt();
-            // 印刷
-            Printing(_printCanvas);
-        } else {
-            // 印刷データ異常（想定外）
-            Timber.tag("Printer").e("%s：printQRTicketReceipt->dynamicTicket = null",_printDataRes.getString(R.string.printLog_printDataError));
-            PrintDataError();
-        }
+//        _dynamicTicketItem = AppPreference.getDynamicTicketItem();
+//
+//        if (_dynamicTicketItem != null) {
+//            setPrintData_QRTicketReceipt();
+//            // 印刷
+//            Printing(_printCanvas);
+//        } else {
+//            // 印刷データ異常（想定外）
+//            Timber.tag("Printer").e("%s：printQRTicketReceipt->dynamicTicket = null",_printDataRes.getString(R.string.printLog_printDataError));
+//            PrintDataError();
+//        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -7430,156 +7430,156 @@ public class PrinterProc {
     // QR券印刷データセット
     private void setPrintData_QRTicketReceipt() {
 
-        if (isQRTicketPrintSts == QRTicketPrintSts.INFO.ordinal()) {
-
-            String merchantName = AppPreference.getMerchantName();
-            String ticketName = _dynamicTicketItem.ticket_name;
-            String embarkName = _dynamicTicketItem.stop_name;
-            String date = _dynamicTicketItem.reservation_date;
-            String time = _dynamicTicketItem.departure_time;
-
-            // 加盟店名
-            setLF(1,PaintSize_Normal);
-            setAlign_Mid(merchantName, PaintSize_Normal);
-            setLF(1,PaintSize_Normal);
-            if (merchantName == null || merchantName.equals("")) {
-                // 印刷データ異常（想定外）
-                Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->merchantName = %s",_printDataRes.getString(R.string.printLog_printDataError), merchantName);
-            }
-            Log_QRTicket = String.format("加盟店名=[%s] ", merchantName);
-
-            // チケット名
-            setAlign_Mid(ticketName, PaintSize_Normal);
-            if (ticketName == null || ticketName.equals("")) {
-                // 印刷データ異常（想定外）
-                Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->ticketName = %s",_printDataRes.getString(R.string.printLog_printDataError), ticketName);
-            }
-            Log_QRTicket += String.format("チケット名=[%s] ", ticketName);
-
-            // のりば名
-            setAlign_Mid(embarkName, PaintSize_Normal);
-            if (embarkName == null || embarkName.equals("")) {
-                // 印刷データ異常（想定外）
-                Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->embarkName = %s",_printDataRes.getString(R.string.printLog_printDataError), embarkName);
-            }
-            Log_QRTicket += String.format("のりば名=[%s] ", embarkName);
-
-            // 便情報（出発時刻）
-            if (date != null && date.length() == 8 && time != null && time.length() >= 5) {
-                String dateTime = String.format("%s/%s/%s %s:%s発", date.substring(2,4), date.substring(4,6), date.substring(6,8), time.substring(0,2), time.substring(3,5));
-                setAlign_Mid(dateTime, PaintSize_Normal);
-                Log_QRTicket += String.format("便情報（出発時刻）=[%s]", dateTime);
-            } else {
-                // 印刷データ異常（想定外）
-                Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->date = %s time = %s",_printDataRes.getString(R.string.printLog_printDataError), date, time);
-            }
-
-        } else if (isQRTicketPrintSts == QRTicketPrintSts.QRCODE.ordinal()) {
-
-            if (_dynamicTicketItem.qr_code_item != null) {
-                // QRコード
-                setBitmap_QRCode(_dynamicTicketItem.qr_code_item);
-                Log_QRTicket = "QRコード=[" + _dynamicTicketItem.qr_code_item + "]";
-            } else {
-                // 印刷データ異常（想定外）
-                Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->_dynamicTicket.qr_code_item = null",_printDataRes.getString(R.string.printLog_printDataError));
-            }
-
-        } else if (isQRTicketPrintSts == QRTicketPrintSts.CATEGORY.ordinal()) {
-
-            // 予約番号
-            String reservationNumber = _printDataRes.getString(R.string.print_reservation_number) + "：";
-            if (_dynamicTicketItem.reservation_no != null) {
-                reservationNumber += _dynamicTicketItem.reservation_no;
-            } else {
-                // 印刷データ異常（想定外）
-                Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->_dynamicTicket.reservation_no = null",_printDataRes.getString(R.string.printLog_printDataError));
-            }
-            setAlign_Mid(reservationNumber, PaintSize_Normal);
-            setLF(1,PaintSize_Normal);
-            Log_QRTicket = "[" + reservationNumber + "]";
-
-            // 乗客カテゴリ別の人数
-            if (_dynamicTicketItem.peoples != null) {
-                int peoples = _dynamicTicketItem.peoples.length;
-
-                for (int i = 0; i < peoples; i++) {
-                    String categoryType = _dynamicTicketItem.peoples[i].category_type;
-                    Integer number = _dynamicTicketItem.peoples[i].num;
-                    String categoryInfo = null;
-
-                    if (categoryType.equals("unknown")) {
-                        /* 大人 */
-                        if (number != null) {
-                            categoryInfo = String.format("%sｘ%s", _printDataRes.getString(R.string.print_adult), number);
-                        } else {
-                            // 印刷データ異常（想定外）
-                            Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] %sｘ%s",_printDataRes.getString(R.string.printLog_printDataError), i, _printDataRes.getString(R.string.print_adult), number);
-                        }
-                    } else if (categoryType.equals("child")) {
-                        /* 小人 */
-                        if (number != null) {
-                            categoryInfo = String.format("%sｘ%s", _printDataRes.getString(R.string.print_child), number);
-                        } else {
-                            // 印刷データ異常（想定外）
-                            Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] %sｘ%s",_printDataRes.getString(R.string.printLog_printDataError), i, _printDataRes.getString(R.string.print_child), number);
-                        }
-                    } else if (categoryType.equals("disabled")) {
-                        /* 障がい者 大人 */
-                        if (number != null) {
-                            categoryInfo = String.format("%sｘ%s", _printDataRes.getString(R.string.print_adult_disability), number);
-                        } else {
-                            // 印刷データ異常（想定外）
-                            Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] %sｘ%s",_printDataRes.getString(R.string.printLog_printDataError), i, _printDataRes.getString(R.string.print_adult_disability), number);
-                        }
-                    } else if (categoryType.equals("child_disabled")) {
-                        /* 障がい者 小人 */
-                        if (number != null) {
-                            categoryInfo = String.format("%sｘ%s", _printDataRes.getString(R.string.print_child_disability), number);
-                        } else {
-                            // 印刷データ異常（想定外）
-                            Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] %sｘ%s",_printDataRes.getString(R.string.printLog_printDataError), i, _printDataRes.getString(R.string.print_child_disability), number);
-                        }
-                    } else if (categoryType.equals("carer")) {
-                        /* 介助者 */
-                        if (number != null) {
-                            categoryInfo = String.format("%sｘ%s", _printDataRes.getString(R.string.print_caregiver), number);
-                        } else {
-                            // 印刷データ異常（想定外）
-                            Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] %sｘ%s", _printDataRes.getString(R.string.printLog_printDataError), i, _printDataRes.getString(R.string.print_caregiver), number);
-                        }
-                    } else if (categoryType.equals("baby")) {
-                        /* 乳幼児 */
-                        if (number != null) {
-                            categoryInfo = String.format("%sｘ%s", _printDataRes.getString(R.string.print_baby), number);
-                        } else {
-                            // 印刷データ異常（想定外）
-                            Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] %sｘ%s", _printDataRes.getString(R.string.printLog_printDataError), i, _printDataRes.getString(R.string.print_baby), number);
-                        }
-                    } else {
-                        /* その他 */
-                        // 印刷データ異常（想定外）
-                        Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] categoryType=%s number=%s",_printDataRes.getString(R.string.printLog_printDataError), i, categoryType, number);
-                    }
-
-                    if (categoryInfo != null) {
-                        setAlign_Left(categoryInfo, PaintSize_Normal);
-                        Log_QRTicket += "\n";
-                        Log_QRTicket += "[" + categoryInfo + "]";
-                    }
-                }
-            }
-
-            setLine();
-            // 注意文
-            setAlign_Left(_printDataRes.getStringArray(R.array.print_caution)[0],PaintSize_Normal);
-            setAlign_Left(_printDataRes.getStringArray(R.array.print_caution)[1],PaintSize_Normal);
-            setLF(1,PaintSize_Normal);
-
-        } else {
-            // 想定外（改行のみ）
-            setLF(1,PaintSize_Normal);
-        }
+//        if (isQRTicketPrintSts == QRTicketPrintSts.INFO.ordinal()) {
+//
+//            String merchantName = AppPreference.getMerchantName();
+////            String ticketName = _dynamicTicketItem.ticket_name;
+////            String embarkName = _dynamicTicketItem.stop_name;
+////            String date = _dynamicTicketItem.reservation_date;
+////            String time = _dynamicTicketItem.departure_time;
+//
+//            // 加盟店名
+//            setLF(1,PaintSize_Normal);
+//            setAlign_Mid(merchantName, PaintSize_Normal);
+//            setLF(1,PaintSize_Normal);
+//            if (merchantName == null || merchantName.equals("")) {
+//                // 印刷データ異常（想定外）
+//                Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->merchantName = %s",_printDataRes.getString(R.string.printLog_printDataError), merchantName);
+//            }
+//            Log_QRTicket = String.format("加盟店名=[%s] ", merchantName);
+//
+//            // チケット名
+//            setAlign_Mid(ticketName, PaintSize_Normal);
+//            if (ticketName == null || ticketName.equals("")) {
+//                // 印刷データ異常（想定外）
+//                Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->ticketName = %s",_printDataRes.getString(R.string.printLog_printDataError), ticketName);
+//            }
+//            Log_QRTicket += String.format("チケット名=[%s] ", ticketName);
+//
+//            // のりば名
+//            setAlign_Mid(embarkName, PaintSize_Normal);
+//            if (embarkName == null || embarkName.equals("")) {
+//                // 印刷データ異常（想定外）
+//                Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->embarkName = %s",_printDataRes.getString(R.string.printLog_printDataError), embarkName);
+//            }
+//            Log_QRTicket += String.format("のりば名=[%s] ", embarkName);
+//
+//            // 便情報（出発時刻）
+//            if (date != null && date.length() == 8 && time != null && time.length() >= 5) {
+//                String dateTime = String.format("%s/%s/%s %s:%s発", date.substring(2,4), date.substring(4,6), date.substring(6,8), time.substring(0,2), time.substring(3,5));
+//                setAlign_Mid(dateTime, PaintSize_Normal);
+//                Log_QRTicket += String.format("便情報（出発時刻）=[%s]", dateTime);
+//            } else {
+//                // 印刷データ異常（想定外）
+//                Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->date = %s time = %s",_printDataRes.getString(R.string.printLog_printDataError), date, time);
+//            }
+//
+//        } else if (isQRTicketPrintSts == QRTicketPrintSts.QRCODE.ordinal()) {
+//
+//            if (_dynamicTicketItem.qr_code_item != null) {
+//                // QRコード
+//                setBitmap_QRCode(_dynamicTicketItem.qr_code_item);
+//                Log_QRTicket = "QRコード=[" + _dynamicTicketItem.qr_code_item + "]";
+//            } else {
+//                // 印刷データ異常（想定外）
+//                Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->_dynamicTicket.qr_code_item = null",_printDataRes.getString(R.string.printLog_printDataError));
+//            }
+//
+//        } else if (isQRTicketPrintSts == QRTicketPrintSts.CATEGORY.ordinal()) {
+//
+//            // 予約番号
+//            String reservationNumber = _printDataRes.getString(R.string.print_reservation_number) + "：";
+//            if (_dynamicTicketItem.reservation_no != null) {
+//                reservationNumber += _dynamicTicketItem.reservation_no;
+//            } else {
+//                // 印刷データ異常（想定外）
+//                Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->_dynamicTicket.reservation_no = null",_printDataRes.getString(R.string.printLog_printDataError));
+//            }
+//            setAlign_Mid(reservationNumber, PaintSize_Normal);
+//            setLF(1,PaintSize_Normal);
+//            Log_QRTicket = "[" + reservationNumber + "]";
+//
+//            // 乗客カテゴリ別の人数
+//            if (_dynamicTicketItem.peoples != null) {
+//                int peoples = _dynamicTicketItem.peoples.length;
+//
+//                for (int i = 0; i < peoples; i++) {
+//                    String categoryType = _dynamicTicketItem.peoples[i].category_type;
+//                    Integer number = _dynamicTicketItem.peoples[i].num;
+//                    String categoryInfo = null;
+//
+//                    if (categoryType.equals("unknown")) {
+//                        /* 大人 */
+//                        if (number != null) {
+//                            categoryInfo = String.format("%sｘ%s", _printDataRes.getString(R.string.print_adult), number);
+//                        } else {
+//                            // 印刷データ異常（想定外）
+//                            Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] %sｘ%s",_printDataRes.getString(R.string.printLog_printDataError), i, _printDataRes.getString(R.string.print_adult), number);
+//                        }
+//                    } else if (categoryType.equals("child")) {
+//                        /* 小人 */
+//                        if (number != null) {
+//                            categoryInfo = String.format("%sｘ%s", _printDataRes.getString(R.string.print_child), number);
+//                        } else {
+//                            // 印刷データ異常（想定外）
+//                            Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] %sｘ%s",_printDataRes.getString(R.string.printLog_printDataError), i, _printDataRes.getString(R.string.print_child), number);
+//                        }
+//                    } else if (categoryType.equals("disabled")) {
+//                        /* 障がい者 大人 */
+//                        if (number != null) {
+//                            categoryInfo = String.format("%sｘ%s", _printDataRes.getString(R.string.print_adult_disability), number);
+//                        } else {
+//                            // 印刷データ異常（想定外）
+//                            Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] %sｘ%s",_printDataRes.getString(R.string.printLog_printDataError), i, _printDataRes.getString(R.string.print_adult_disability), number);
+//                        }
+//                    } else if (categoryType.equals("child_disabled")) {
+//                        /* 障がい者 小人 */
+//                        if (number != null) {
+//                            categoryInfo = String.format("%sｘ%s", _printDataRes.getString(R.string.print_child_disability), number);
+//                        } else {
+//                            // 印刷データ異常（想定外）
+//                            Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] %sｘ%s",_printDataRes.getString(R.string.printLog_printDataError), i, _printDataRes.getString(R.string.print_child_disability), number);
+//                        }
+//                    } else if (categoryType.equals("carer")) {
+//                        /* 介助者 */
+//                        if (number != null) {
+//                            categoryInfo = String.format("%sｘ%s", _printDataRes.getString(R.string.print_caregiver), number);
+//                        } else {
+//                            // 印刷データ異常（想定外）
+//                            Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] %sｘ%s", _printDataRes.getString(R.string.printLog_printDataError), i, _printDataRes.getString(R.string.print_caregiver), number);
+//                        }
+//                    } else if (categoryType.equals("baby")) {
+//                        /* 乳幼児 */
+//                        if (number != null) {
+//                            categoryInfo = String.format("%sｘ%s", _printDataRes.getString(R.string.print_baby), number);
+//                        } else {
+//                            // 印刷データ異常（想定外）
+//                            Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] %sｘ%s", _printDataRes.getString(R.string.printLog_printDataError), i, _printDataRes.getString(R.string.print_baby), number);
+//                        }
+//                    } else {
+//                        /* その他 */
+//                        // 印刷データ異常（想定外）
+//                        Timber.tag("Printer").e("%s：setPrintData_QRTicketReceipt->peoples[%s] categoryType=%s number=%s",_printDataRes.getString(R.string.printLog_printDataError), i, categoryType, number);
+//                    }
+//
+//                    if (categoryInfo != null) {
+//                        setAlign_Left(categoryInfo, PaintSize_Normal);
+//                        Log_QRTicket += "\n";
+//                        Log_QRTicket += "[" + categoryInfo + "]";
+//                    }
+//                }
+//            }
+//
+//            setLine();
+//            // 注意文
+//            setAlign_Left(_printDataRes.getStringArray(R.array.print_caution)[0],PaintSize_Normal);
+//            setAlign_Left(_printDataRes.getStringArray(R.array.print_caution)[1],PaintSize_Normal);
+//            setLF(1,PaintSize_Normal);
+//
+//        } else {
+//            // 想定外（改行のみ）
+//            setLF(1,PaintSize_Normal);
+//        }
 
         Timber.tag("Printer").i("%s：%s",_printDataRes.getString(R.string.printLog_printQRTicketDataSet), Log_QRTicket);
     }

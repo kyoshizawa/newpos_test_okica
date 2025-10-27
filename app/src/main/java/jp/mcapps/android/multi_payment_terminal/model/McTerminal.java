@@ -53,10 +53,10 @@ import jp.mcapps.android.multi_payment_terminal.webapi.mc_pos_center.data.paymen
 import jp.mcapps.android.multi_payment_terminal.webapi.mc_pos_center.data.payment.RequestQr;
 import jp.mcapps.android.multi_payment_terminal.webapi.mc_pos_center.data.payment.RequestWn;
 import jp.mcapps.android.multi_payment_terminal.webapi.mc_pos_center.data.payment.ResultInfo;
-import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesApi;
-import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesApiImpl;
-import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesStatusException;
-import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.data.TicketPurchasedCancel;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesApi;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesApiImpl;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesStatusException;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.data.TicketPurchasedCancel;
 import timber.log.Timber;
 
 public class McTerminal {
@@ -718,7 +718,7 @@ public class McTerminal {
 
         Timber.i("チケット購入取消実行：%s件",slipDataList.size());
 
-        final TicketSalesApi ticketSalesApiClient = TicketSalesApiImpl.getInstance();
+//        final TicketSalesApi ticketSalesApiClient = TicketSalesApiImpl.getInstance();
         final TerminalDao terminalDao = LocalDatabase.getInstance().terminalDao();
         final TerminalData terminalData = terminalDao.getTerminal();
 
@@ -735,25 +735,25 @@ public class McTerminal {
                     Timber.i("チケット購入取消：id=%s", data.purchasedTicketDealId);
                 }
 
-                try {
-                    // ABTに取消実施
-                    TicketPurchasedCancel.Response cancelResponse = ticketSalesApiClient.TicketPurchasedCancel(terminalData.service_instance_abt, data.purchasedTicketDealId);
-                    if (cancelResponse != null && cancelResponse.error != null) {
-                        Timber.e("チケット購入の取消応答エラー（ErrorCode:%s ErrorMessage:%s）", cancelResponse.error.code, cancelResponse.error.message);
-                    }
-                    // チケット購入の取消を送信済み更新
-                    dao.updateSentCancelPurchasedTicketData(data.id);
-                } catch(TicketSalesStatusException e){
-                    Timber.e("post ticket cancel failed : %s", e.getCode() + " " + e.getMessage());
-                    // エラー応答のものも送信済みとして扱う
-                    dao.updateSentCancelPurchasedTicketData(data.id);
-                    // 次のものを送信するためエラー終了はしない
-//                    return MainApplication.getInstance().getString(R.string.error_type_ticket_8097) + "@@@" + e.getCode().toString() + "@@@";
-                } catch(IOException | HttpStatusException | IllegalStateException e){
-                    Timber.e(e);
-                    // その他エラーが発生した場合は送信自体を中止。フラグも更新しない。
-                    return MainApplication.getInstance().getString(R.string.error_type_ticket_8098);
-                }
+//                try {
+//                    // ABTに取消実施
+//                    TicketPurchasedCancel.Response cancelResponse = ticketSalesApiClient.TicketPurchasedCancel(terminalData.service_instance_abt, data.purchasedTicketDealId);
+//                    if (cancelResponse != null && cancelResponse.error != null) {
+//                        Timber.e("チケット購入の取消応答エラー（ErrorCode:%s ErrorMessage:%s）", cancelResponse.error.code, cancelResponse.error.message);
+//                    }
+//                    // チケット購入の取消を送信済み更新
+//                    dao.updateSentCancelPurchasedTicketData(data.id);
+//                } catch(TicketSalesStatusException e){
+//                    Timber.e("post ticket cancel failed : %s", e.getCode() + " " + e.getMessage());
+//                    // エラー応答のものも送信済みとして扱う
+//                    dao.updateSentCancelPurchasedTicketData(data.id);
+//                    // 次のものを送信するためエラー終了はしない
+////                    return MainApplication.getInstance().getString(R.string.error_type_ticket_8097) + "@@@" + e.getCode().toString() + "@@@";
+//                } catch(IOException | HttpStatusException | IllegalStateException e){
+//                    Timber.e(e);
+//                    // その他エラーが発生した場合は送信自体を中止。フラグも更新しない。
+//                    return MainApplication.getInstance().getString(R.string.error_type_ticket_8098);
+//                }
                 Thread.sleep(1000); //送信間隔は1秒空ける
             }
         } catch(Exception e){

@@ -40,10 +40,10 @@ import jp.mcapps.android.multi_payment_terminal.devices.SamRW;
 import jp.mcapps.android.multi_payment_terminal.error.JremRasErrorCodes;
 import jp.mcapps.android.multi_payment_terminal.error.JremRasErrorMap;
 import jp.mcapps.android.multi_payment_terminal.webapi.HttpStatusException;
-import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesApi;
-import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesApiImpl;
-import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesStatusException;
-import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.data.TicketPurchasedConfirm;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesApi;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesApiImpl;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesStatusException;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.data.TicketPurchasedConfirm;
 // import jp.mcapps.android.multi_payment_terminal.thread.printer.EpsonPrinterProc;
 import timber.log.Timber;
 
@@ -336,70 +336,70 @@ public class OkicaChecker {
         }
 
         // チケットの取消時はABTセンターで取消ができるか確認が必要
-        if (AppPreference.isTicketTransaction() && businessType == BusinessType.REFUND) {
-            _isABTCancelSuccess = false;
-            _errorCode = 0;
-
-            if (purchasedTicketDealId == null || purchasedTicketDealId.equals("")) {
-                // チケット購入IDが存在しない場合、取消確認不要
-                Timber.i("チケット取消確認不要(%s)", purchasedTicketDealId);
-                return null;
-            } else {
-                // チケットの取消時はABTセンターで取消ができるか確認が必要
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final TicketSalesApi ticketSalesApiClient = TicketSalesApiImpl.getInstance();
-                        final TerminalDao terminalDao = LocalDatabase.getInstance().terminalDao();
-                        final TerminalData terminalData = terminalDao.getTerminal();
-
-                        try {
-                            // ABTに取消確認実施
-                            TicketPurchasedConfirm.Response confirmResponse = ticketSalesApiClient.TicketPurchasedConfirm(terminalData.service_instance_abt, purchasedTicketDealId);
-                            _isABTCancelSuccess = true;
-
-                        } catch (TicketSalesStatusException e) {
-                            Timber.e(e);
-                            _errorCode = e.getCode();
-                            if (404 == _errorCode || 4007 == _errorCode) {
-                                _isABTCancelSuccess = true;
-                            }
-                        } catch (HttpStatusException e) {
-                            Timber.e(e);
-                            _errorCode = e.getStatusCode();
-                            if (404 == _errorCode || 4007 == _errorCode) {
-                                _isABTCancelSuccess = true;
-                            }
-                        } catch (Exception e) {
-                            Timber.e(e);
-                            _errorCode = 99999;
-                        }
-                    }
-                });
-                thread.start();
-
-                try {
-                    thread.join();
-
-                    if (!_isABTCancelSuccess) {
-                        if (4008 == _errorCode) {
-                            return app.getString(R.string.error_type_ticket_8161);
-                        } else if (4009 == _errorCode) {
-                            return app.getString(R.string.error_type_ticket_8162);
-                        } else if (4010 == _errorCode) {
-                            return app.getString(R.string.error_type_ticket_8163);
-                        } else if (99999 == _errorCode) {
-                            return app.getString(R.string.error_type_ticket_8097);
-                        } else {
-                            return app.getString(R.string.error_type_ticket_8160) + "@@@" + _errorCode + "@@@";
-                        }
-                    }
-                } catch (Exception e) {
-                    Timber.e(e);
-                    return app.getString(R.string.error_type_ticket_8097);
-                }
-            }
-        }
+//        if (AppPreference.isTicketTransaction() && businessType == BusinessType.REFUND) {
+//            _isABTCancelSuccess = false;
+//            _errorCode = 0;
+//
+//            if (purchasedTicketDealId == null || purchasedTicketDealId.equals("")) {
+//                // チケット購入IDが存在しない場合、取消確認不要
+//                Timber.i("チケット取消確認不要(%s)", purchasedTicketDealId);
+//                return null;
+//            } else {
+//                // チケットの取消時はABTセンターで取消ができるか確認が必要
+//                Thread thread = new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        final TicketSalesApi ticketSalesApiClient = TicketSalesApiImpl.getInstance();
+//                        final TerminalDao terminalDao = LocalDatabase.getInstance().terminalDao();
+//                        final TerminalData terminalData = terminalDao.getTerminal();
+//
+//                        try {
+//                            // ABTに取消確認実施
+//                            TicketPurchasedConfirm.Response confirmResponse = ticketSalesApiClient.TicketPurchasedConfirm(terminalData.service_instance_abt, purchasedTicketDealId);
+//                            _isABTCancelSuccess = true;
+//
+//                        } catch (TicketSalesStatusException e) {
+//                            Timber.e(e);
+//                            _errorCode = e.getCode();
+//                            if (404 == _errorCode || 4007 == _errorCode) {
+//                                _isABTCancelSuccess = true;
+//                            }
+//                        } catch (HttpStatusException e) {
+//                            Timber.e(e);
+//                            _errorCode = e.getStatusCode();
+//                            if (404 == _errorCode || 4007 == _errorCode) {
+//                                _isABTCancelSuccess = true;
+//                            }
+//                        } catch (Exception e) {
+//                            Timber.e(e);
+//                            _errorCode = 99999;
+//                        }
+//                    }
+//                });
+//                thread.start();
+//
+//                try {
+//                    thread.join();
+//
+//                    if (!_isABTCancelSuccess) {
+//                        if (4008 == _errorCode) {
+//                            return app.getString(R.string.error_type_ticket_8161);
+//                        } else if (4009 == _errorCode) {
+//                            return app.getString(R.string.error_type_ticket_8162);
+//                        } else if (4010 == _errorCode) {
+//                            return app.getString(R.string.error_type_ticket_8163);
+//                        } else if (99999 == _errorCode) {
+//                            return app.getString(R.string.error_type_ticket_8097);
+//                        } else {
+//                            return app.getString(R.string.error_type_ticket_8160) + "@@@" + _errorCode + "@@@";
+//                        }
+//                    }
+//                } catch (Exception e) {
+//                    Timber.e(e);
+//                    return app.getString(R.string.error_type_ticket_8097);
+//                }
+//            }
+//        }
 
         return null;
     }
