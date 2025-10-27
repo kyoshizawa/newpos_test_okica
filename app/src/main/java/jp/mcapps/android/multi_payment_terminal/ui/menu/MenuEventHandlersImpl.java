@@ -77,13 +77,13 @@ import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketGateSettin
 //import jp.mcapps.android.multi_payment_terminal.model.CashChecker;
 //import jp.mcapps.android.multi_payment_terminal.model.CreditChecker;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountInfo;
-import jp.mcapps.android.multi_payment_terminal.model.EmoneyChecker;
+//import jp.mcapps.android.multi_payment_terminal.model.EmoneyChecker;
 import jp.mcapps.android.multi_payment_terminal.model.ErrorStackingRepository;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 //import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaChecker;
-import jp.mcapps.android.multi_payment_terminal.model.QRChecker;
+//import jp.mcapps.android.multi_payment_terminal.model.QRChecker;
 import jp.mcapps.android.multi_payment_terminal.model.SoundManager;
 import jp.mcapps.android.multi_payment_terminal.model.ValidationCheckChecker;
 import jp.mcapps.android.multi_payment_terminal.model.Validator;
@@ -334,12 +334,12 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
-        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_suica), type);
-
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(activity, errorCode);
-            return;
-        }
+//        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_suica), type);
+//
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(activity, errorCode);
+//            return;
+//        }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
         //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_suica, R.id.fragment_amount_input_separationpay_fd);
@@ -358,12 +358,12 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
-        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_suica), type);
-
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(activity, errorCode);
-            return;
-        }
+//        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_suica), type);
+//
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(activity, errorCode);
+//            return;
+//        }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
         //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_suica);
@@ -401,11 +401,11 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
-        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_id), type);
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(activity, errorCode);
-            return;
-        }
+//        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_id), type);
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(activity, errorCode);
+//            return;
+//        }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコードXX
         //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_id, R.id.fragment_amount_input_separationpay_fd);
@@ -424,11 +424,11 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
-        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_id), type);
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(activity, errorCode);
-            return;
-        }
+//        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_id), type);
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(activity, errorCode);
+//            return;
+//        }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコードXX
         //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_id);
@@ -466,11 +466,11 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
-        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_waon), type);
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(activity, errorCode);
-            return;
-        }
+//        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_waon), type);
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(activity, errorCode);
+//            return;
+//        }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコードXX
         //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_waon, R.id.fragment_amount_input_separationpay_fd);
@@ -489,11 +489,11 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
-        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_waon), type);
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(activity, errorCode);
-            return;
-        }
+//        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_waon), type);
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(activity, errorCode);
+//            return;
+//        }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコードXX
         //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_waon);
@@ -531,12 +531,12 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
-        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_edy), type);
-
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(activity, errorCode);
-            return;
-        }
+//        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_edy), type);
+//
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(activity, errorCode);
+//            return;
+//        }
 
         // Edyは初回通信業務を行ってない場合は取引させない
         if (!AppPreference.isDemoMode() && EmoneyOpeningInfo.getEdy().initCommunicationFlg) {
@@ -562,12 +562,12 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
-        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_edy), type);
-
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(activity, errorCode);
-            return;
-        }
+//        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_edy), type);
+//
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(activity, errorCode);
+//            return;
+//        }
 
         // Edyは初回通信業務を行ってない場合は取引させない
         if (!AppPreference.isDemoMode() && EmoneyOpeningInfo.getEdy().initCommunicationFlg) {
@@ -612,12 +612,12 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
-        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_qp), type);
-
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(activity, errorCode);
-            return;
-        }
+//        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_qp), type);
+//
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(activity, errorCode);
+//            return;
+//        }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
         //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_quicpay, R.id.fragment_amount_input_separationpay_fd);
@@ -635,13 +635,13 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         AppPreference.setTransactionTerminalType();
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
-
-        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_qp), type);
-
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(activity, errorCode);
-            return;
-        }
+//
+//        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_qp), type);
+//
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(activity, errorCode);
+//            return;
+//        }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
         //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_quicpay);
@@ -679,12 +679,12 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
-        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_nanaco), type);
-
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(activity, errorCode);
-            return;
-        }
+//        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_nanaco), type);
+//
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(activity, errorCode);
+//            return;
+//        }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
         //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_nanaco, R.id.fragment_amount_input_separationpay_fd);
@@ -703,12 +703,12 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
-        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_nanaco), type);
-
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(activity, errorCode);
-            return;
-        }
+//        String errorCode = EmoneyChecker.check(view, _app.getString(R.string.money_brand_nanaco), type);
+//
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(activity, errorCode);
+//            return;
+//        }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
         //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_nanaco);
@@ -794,12 +794,12 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         AppPreference.setTransactionTerminalType();
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
-        String errorCode;
+        String errorCode = null;
 
         if (brand.equals(_app.getString(R.string.money_brand_okica))) {
             errorCode = OkicaChecker.check(view, BusinessType.CHARGE);
         } else {
-            errorCode = EmoneyChecker.check(view, brand, BusinessType.CHARGE);
+            //errorCode = EmoneyChecker.check(view, brand, BusinessType.CHARGE);
         }
 
         if (errorCode != null) {
@@ -933,15 +933,15 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
         Completable.create(emitter -> {
-                    final String errorCode = QRChecker.check(view, type);
-
-                    if (!emitter.isDisposed()) {
-                        if (errorCode != null) {
-                            emitter.onError(new Throwable(errorCode));
-                        } else {
-                            emitter.onComplete();
-                        }
-                    }
+//                    final String errorCode = QRChecker.check(view, type);
+//
+//                    if (!emitter.isDisposed()) {
+//                        if (errorCode != null) {
+//                            emitter.onError(new Throwable(errorCode));
+//                        } else {
+//                            emitter.onComplete();
+//                        }
+//                    }
                 }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(d -> {
                     sharedViewModel.setLoading(true);
@@ -974,30 +974,30 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         final CommonErrorDialog dialog = new CommonErrorDialog();
 
-        Completable.create(emitter -> {
-                    final String errorCode = QRChecker.check(view, type);
-
-                    if (!emitter.isDisposed()) {
-                        if (errorCode != null) {
-                            emitter.onError(new Throwable(errorCode));
-                        } else {
-                            emitter.onComplete();
-                        }
-                    }
-                }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(d -> {
-                    sharedViewModel.setLoading(true);
-                })
-                .doFinally(() -> {
-                    sharedViewModel.setLoading(false);
-                })
-                .subscribe(() -> {
-                    //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-                    //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_qr_payment);
-                }, e -> {
-                    String errorCode = e.getMessage();
-                    dialog.ShowErrorMessage(activity, errorCode);
-                });
+//        Completable.create(emitter -> {
+//                    final String errorCode = QRChecker.check(view, type);
+//
+//                    if (!emitter.isDisposed()) {
+//                        if (errorCode != null) {
+//                            emitter.onError(new Throwable(errorCode));
+//                        } else {
+//                            emitter.onComplete();
+//                        }
+//                    }
+//                }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+//                .doOnSubscribe(d -> {
+//                    sharedViewModel.setLoading(true);
+//                })
+//                .doFinally(() -> {
+//                    sharedViewModel.setLoading(false);
+//                })
+//                .subscribe(() -> {
+//                    //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
+//                    //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_qr_payment);
+//                }, e -> {
+//                    String errorCode = e.getMessage();
+//                    dialog.ShowErrorMessage(activity, errorCode);
+//                });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

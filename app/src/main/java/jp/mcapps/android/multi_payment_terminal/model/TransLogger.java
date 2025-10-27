@@ -267,24 +267,24 @@ public class TransLogger {
      * デモモードでは売上データなし
      * @param result GMOからのレスポンス
      */
-    public void qr(QRSettlement.ResultSummary result) {
-        final boolean doIncrement = !AppPreference.getPoweroffTrans();
-        int termSequence = getTermSequence(doIncrement);   //端末通番を取得
-        setAmountParam(result.totalFee);   //金額情報を取得
-        setAmountPaymented();
-        if(_resultParam.transType == 0) {   //取消時はsetRefundParamにて設定済み
-            setCashAmount();    //現金分割分を設定
-            setTicketAmount();  //チケット金額を設定
-            setEigyoCount();    //営業回数を設定
-            setCompleteAmount();  //支払済み金額を設定
-        }
-        getLocation();  //位置情報を取得
-
-        _uriData = _isDemoMode ? null : new UriData(result, _encryptType, termSequence,_resultParam, _refundParam, _amountParam, _surveyParam);
-        _slipData = new SlipData(result, _encryptType, termSequence, _resultParam, _amountParam);
-        if (AppPreference.isTicketTransaction()) setCardInfo();
-        if (_slipData.transType == TransMap.TYPE_CANCEL) _slipData.purchasedTicketDealId = _purchasedTicketDealId;
-    }
+//    public void qr(QRSettlement.ResultSummary result) {
+//        final boolean doIncrement = !AppPreference.getPoweroffTrans();
+//        int termSequence = getTermSequence(doIncrement);   //端末通番を取得
+//        setAmountParam(result.totalFee);   //金額情報を取得
+//        setAmountPaymented();
+//        if(_resultParam.transType == 0) {   //取消時はsetRefundParamにて設定済み
+//            setCashAmount();    //現金分割分を設定
+//            setTicketAmount();  //チケット金額を設定
+//            setEigyoCount();    //営業回数を設定
+//            setCompleteAmount();  //支払済み金額を設定
+//        }
+//        getLocation();  //位置情報を取得
+//
+//        _uriData = _isDemoMode ? null : new UriData(result, _encryptType, termSequence,_resultParam, _refundParam, _amountParam, _surveyParam);
+//        _slipData = new SlipData(result, _encryptType, termSequence, _resultParam, _amountParam);
+//        if (AppPreference.isTicketTransaction()) setCardInfo();
+//        if (_slipData.transType == TransMap.TYPE_CANCEL) _slipData.purchasedTicketDealId = _purchasedTicketDealId;
+//    }
 
     /**
      * 現金での取引データを生成

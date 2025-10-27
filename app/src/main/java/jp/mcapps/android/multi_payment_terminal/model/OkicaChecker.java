@@ -44,7 +44,7 @@ import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesA
 import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesApiImpl;
 import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.TicketSalesStatusException;
 import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.data.TicketPurchasedConfirm;
-import jp.mcapps.android.multi_payment_terminal.thread.printer.EpsonPrinterProc;
+// import jp.mcapps.android.multi_payment_terminal.thread.printer.EpsonPrinterProc;
 import timber.log.Timber;
 
 public class OkicaChecker {
@@ -90,10 +90,10 @@ public class OkicaChecker {
 
                 if (AppPreference.getIsExternalPrinter()) {
                     /* つり銭機連動 */
-                    EpsonPrinterProc epsonPrinterProc = EpsonPrinterProc.getInstance();
-                    if (!epsonPrinterProc.checkConnect()) {
-                        return app.getString(R.string.error_type_cashchanger_printer_connection_error);
-                    }
+//                    EpsonPrinterProc epsonPrinterProc = EpsonPrinterProc.getInstance();
+//                    if (!epsonPrinterProc.checkConnect()) {
+//                        return app.getString(R.string.error_type_cashchanger_printer_connection_error);
+//                    }
                 } else {
 //CHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
                     //if (!IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) && (!IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D))) {
@@ -235,10 +235,10 @@ public class OkicaChecker {
 
             if (AppPreference.getIsExternalPrinter()) {
                 /* つり銭機連動 */
-                EpsonPrinterProc epsonPrinterProc = EpsonPrinterProc.getInstance();
-                if (!epsonPrinterProc.checkConnect()) {
-                    return app.getString(R.string.error_type_cashchanger_printer_connection_error);
-                }
+//                EpsonPrinterProc epsonPrinterProc = EpsonPrinterProc.getInstance();
+//                if (!epsonPrinterProc.checkConnect()) {
+//                    return app.getString(R.string.error_type_cashchanger_printer_connection_error);
+//                }
             } else {
 //CHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
                 //if (!IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) && (!IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D))) {

@@ -16,7 +16,7 @@ import jp.mcapps.android.multi_payment_terminal.database.history.driver.DriverDa
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 //import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
 //import jp.mcapps.android.multi_payment_terminal.model.JremOpener;
-import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
+//import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 //import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
 import jp.mcapps.android.multi_payment_terminal.ui.pin.PinInputViewModel;
 import jp.mcapps.android.multi_payment_terminal.webapi.jrem_activation.JremActivationApi;
@@ -29,7 +29,7 @@ public class InstallationAndRemovalViewModel extends PinInputViewModel {
     private final String _activatePassword = AppPreference.getJremPassword();
 //    private final JremActivator _activator = new JremActivator();
 //    private final JremOpener _opener = new JremOpener();
-    private final QRSettlement _qr = new QRSettlement();
+//    private final QRSettlement _qr = new QRSettlement();
 
 //    private final DeviceNetworkManager _deviceNetworkManager;
 //    private final IFBoxManager _ifBoxManager;
@@ -131,7 +131,8 @@ public class InstallationAndRemovalViewModel extends PinInputViewModel {
 
     public String uninstallQR() {
 
-        return _qr.uninstall();
+        return "";
+//        return _qr.uninstall();
     }
 
     private final MutableLiveData<String> _display = new MutableLiveData<>("暗証番号を入力してください。");

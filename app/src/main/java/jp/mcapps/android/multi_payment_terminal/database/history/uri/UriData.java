@@ -14,7 +14,7 @@ import jp.mcapps.android.multi_payment_terminal.data.trans_param.ResultParam;
 import jp.mcapps.android.multi_payment_terminal.data.trans_param.SurveyParam;
 import jp.mcapps.android.multi_payment_terminal.database.Converters;
 import jp.mcapps.android.multi_payment_terminal.database.DeviceClient;
-import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
+// import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 // import jp.mcapps.android.multi_payment_terminal.thread.credit.data.CreditResult;
 
 @Entity(tableName = "history_uri")
@@ -745,55 +745,55 @@ public class UriData {
 
     /**
      * QR売上データ
-     */
-    public UriData(QRSettlement.ResultSummary result, int encryptType, int termSequence, ResultParam resultParam, RefundParam refundParam, AmountParam amountParam, SurveyParam surveyParam) {
-        //共通項目
-        posSend = 0;    //POS送信状態
-        carId = AppPreference.getMcCarId(); //号機番号（車番）
-        driverId = AppPreference.getMcDriverId();    //乗務員コード
-        termId = AppPreference.getMcTermId();   //端末番号
-        transBrand = MainApplication.getInstance().getString(R.string.money_brand_codetrans);   //ブランド名
-        transDate = result.payTime != null ? result.payTime : "";  //取引日時
-        oldTransDate = refundParam.oldTransDate;  //元取引日時
-        transType = resultParam.transType;    //取引種別
-        transResult = resultParam.transResult;    //取引結果
-        transResultDetail = resultParam.transResultDetail;    //取引結果詳細
-        this.termSequence = termSequence;   //端末通番
-        oldTermSequence = refundParam.oldTermSequence;    //元端末通番
-        //カード番号 saleHistoriesを確認
-        installment = "10"; //分割回数
-        transAmount = amountParam.transAmount;  //取引金額
-        transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
-        transMeterAmount = amountParam.transMeterAmount;    //メータ金額
-        transAdjAmount = amountParam.transAdjAmount;    //増減額
-        transCashTogetherAmount = amountParam.transCashTogetherAmount;   //現金併用金額
-        transOtherAmountOne = amountParam.transTicketAmount;    //チケット金額
-        if(transOtherAmountOne != null && 0 < transOtherAmountOne) {
-            transOtherAmountOneType = 1;   //その他金額1種別（チケット）
-        } else {
-            transOtherAmountOneType = 0;   //その他金額1種別（予備）
-        }
-        transOtherAmountTwoType = 0;   //その他金額2種別（予備）
-        transOtherAmountTwo = 0;   //その他金額2（予備）
-        transBeforeBalance = null; // 取引前残高
-        transAfterBalance = Converters.stringToLong(result.balanceAmount);  // 取引後残高
-        transTime = surveyParam.transTime;  //取引処理時間 このタイミングではNULLの場合あり
-        transInputPinTime = 0;  //暗証番号入力時間
-        termLatitude = surveyParam.termLatitude; //位置情報（緯度）
-        termLongitude = surveyParam.termLongitude;    //位置情報（経度）
-        termNetworkType = surveyParam.termNetworkType;  //ネットワーク種別
-        termRadioLevel = surveyParam.termRadioLevel;    //電波状況（レベル）
-        this.encryptType = encryptType;   //暗号化パターン
-
-        // QR固有項目
-        if (result.refundId != null) {
-            codetransOrderId = result.refundId;   // 伝票番号
-            codetransOldOrderId = result.orderId; // 元伝票番号
-        } else {
-            codetransOrderId = result.orderId;    // 伝票番号
-            codetransOldOrderId = null;
-        }
-        codetransPayTypeCode = result.payType;    // 決済種別コード
-        wallet = result.wallet; // ウォレットコード Alipay+のみ
-    }
+//     */
+//    public UriData(QRSettlement.ResultSummary result, int encryptType, int termSequence, ResultParam resultParam, RefundParam refundParam, AmountParam amountParam, SurveyParam surveyParam) {
+//        //共通項目
+//        posSend = 0;    //POS送信状態
+//        carId = AppPreference.getMcCarId(); //号機番号（車番）
+//        driverId = AppPreference.getMcDriverId();    //乗務員コード
+//        termId = AppPreference.getMcTermId();   //端末番号
+//        transBrand = MainApplication.getInstance().getString(R.string.money_brand_codetrans);   //ブランド名
+//        transDate = result.payTime != null ? result.payTime : "";  //取引日時
+//        oldTransDate = refundParam.oldTransDate;  //元取引日時
+//        transType = resultParam.transType;    //取引種別
+//        transResult = resultParam.transResult;    //取引結果
+//        transResultDetail = resultParam.transResultDetail;    //取引結果詳細
+//        this.termSequence = termSequence;   //端末通番
+//        oldTermSequence = refundParam.oldTermSequence;    //元端末通番
+//        //カード番号 saleHistoriesを確認
+//        installment = "10"; //分割回数
+//        transAmount = amountParam.transAmount;  //取引金額
+//        transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
+//        transMeterAmount = amountParam.transMeterAmount;    //メータ金額
+//        transAdjAmount = amountParam.transAdjAmount;    //増減額
+//        transCashTogetherAmount = amountParam.transCashTogetherAmount;   //現金併用金額
+//        transOtherAmountOne = amountParam.transTicketAmount;    //チケット金額
+//        if(transOtherAmountOne != null && 0 < transOtherAmountOne) {
+//            transOtherAmountOneType = 1;   //その他金額1種別（チケット）
+//        } else {
+//            transOtherAmountOneType = 0;   //その他金額1種別（予備）
+//        }
+//        transOtherAmountTwoType = 0;   //その他金額2種別（予備）
+//        transOtherAmountTwo = 0;   //その他金額2（予備）
+//        transBeforeBalance = null; // 取引前残高
+//        transAfterBalance = Converters.stringToLong(result.balanceAmount);  // 取引後残高
+//        transTime = surveyParam.transTime;  //取引処理時間 このタイミングではNULLの場合あり
+//        transInputPinTime = 0;  //暗証番号入力時間
+//        termLatitude = surveyParam.termLatitude; //位置情報（緯度）
+//        termLongitude = surveyParam.termLongitude;    //位置情報（経度）
+//        termNetworkType = surveyParam.termNetworkType;  //ネットワーク種別
+//        termRadioLevel = surveyParam.termRadioLevel;    //電波状況（レベル）
+//        this.encryptType = encryptType;   //暗号化パターン
+//
+//        // QR固有項目
+//        if (result.refundId != null) {
+//            codetransOrderId = result.refundId;   // 伝票番号
+//            codetransOldOrderId = result.orderId; // 元伝票番号
+//        } else {
+//            codetransOrderId = result.orderId;    // 伝票番号
+//            codetransOldOrderId = null;
+//        }
+//        codetransPayTypeCode = result.payType;    // 決済種別コード
+//        wallet = result.wallet; // ウォレットコード Alipay+のみ
+//    }
 }

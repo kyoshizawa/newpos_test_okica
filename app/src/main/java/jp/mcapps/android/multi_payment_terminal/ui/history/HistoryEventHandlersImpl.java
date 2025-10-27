@@ -40,10 +40,10 @@ import jp.mcapps.android.multi_payment_terminal.data.TransMap;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData;
 // import jp.mcapps.android.multi_payment_terminal.model.CreditChecker;
-import jp.mcapps.android.multi_payment_terminal.model.EmoneyChecker;
+//import jp.mcapps.android.multi_payment_terminal.model.EmoneyChecker;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaChecker;
-import jp.mcapps.android.multi_payment_terminal.model.QRChecker;
+//import jp.mcapps.android.multi_payment_terminal.model.QRChecker;
 import jp.mcapps.android.multi_payment_terminal.model.SeparationTicketChecker;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
 // import jp.mcapps.android.multi_payment_terminal.model.WatariChecker;
@@ -388,26 +388,26 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void refundQR(View view, int slipId, String purchasedTicketDealId) {
         final CommonErrorDialog dialog = new CommonErrorDialog();
-
-        final String errorCode = QRChecker.check(view, BusinessType.REFUND, purchasedTicketDealId);
-
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(view.getContext(), errorCode);
-            return;
-        }
-
-        CancelConfirmDialog.newInstance("QR取消確認", "取消を行いますか？", () -> {
-            final Bundle params = new Bundle();
-            params.putInt("slipId", slipId);
-
-            view.post(() -> {
-                if (_isTicketIssueCancel) {
-//                    NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_qr_refund, params);
-                } else {
-                    NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_qr_refund, params);
-                }
-            });
-        }).show(_fragment.getChildFragmentManager(), null);
+//
+//        final String errorCode = QRChecker.check(view, BusinessType.REFUND, purchasedTicketDealId);
+//
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(view.getContext(), errorCode);
+//            return;
+//        }
+//
+//        CancelConfirmDialog.newInstance("QR取消確認", "取消を行いますか？", () -> {
+//            final Bundle params = new Bundle();
+//            params.putInt("slipId", slipId);
+//
+//            view.post(() -> {
+//                if (_isTicketIssueCancel) {
+////                    NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_qr_refund, params);
+//                } else {
+//                    NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_qr_refund, params);
+//                }
+//            });
+//        }).show(_fragment.getChildFragmentManager(), null);
     }
 
     // 電マネ取消
@@ -415,59 +415,59 @@ public class HistoryEventHandlersImpl implements HistoryEventHandlers {
     public void refundEmoney(View view, String moneyBrand, int slipId, String purchasedTicketDealId) {
         final Bundle params = new Bundle();
         params.putInt("slipId", slipId);
-
-        final CommonErrorDialog dialog = new CommonErrorDialog();
-        final String errorCode = EmoneyChecker.check(view, moneyBrand, BusinessType.REFUND, purchasedTicketDealId);
-
-        if (errorCode != null) {
-            dialog.ShowErrorMessage(view.getContext(), errorCode);
-            return;
-        }
-
-        if (moneyBrand.equals(_app.getString(R.string.money_brand_suica)))  {
-            view.post(() -> {
-                if (_isTicketIssueCancel) {
-                    // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_suica, params);
-                } else {
-                    //NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_suica, params);
-                }
-            });
-        }
-        else if (moneyBrand.equals(_app.getString(R.string.money_brand_waon)))  {
-            view.post(() -> {
-                if (_isTicketIssueCancel) {
-                    // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_waon, params);
-                } else {
-                    //NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_waon, params);
-                }
-            });
-        }
-        else if (moneyBrand.equals(_app.getString(R.string.money_brand_id)))  {
-            view.post(() -> {
-                if (_isTicketIssueCancel) {
-                    // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_id, params);
-                } else {
-                    //NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_id, params);
-                }
-            });
-        }
-        else if (moneyBrand.equals(_app.getString(R.string.money_brand_nanaco)))  {
-        }
-        else if (moneyBrand.equals(_app.getString(R.string.money_brand_edy)))  {
-            // Edyは取消なし
-        }
-        else if (moneyBrand.equals(_app.getString(R.string.money_brand_qp)))  {
-            view.post(() -> {
-                if (_isTicketIssueCancel) {
-                    // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_quicpay, params);
-                } else {
-                    //NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_quicpay, params);
-                }
-            });
-        }
-        else {
-            return;
-        }
+//
+//        final CommonErrorDialog dialog = new CommonErrorDialog();
+//        final String errorCode = EmoneyChecker.check(view, moneyBrand, BusinessType.REFUND, purchasedTicketDealId);
+//
+//        if (errorCode != null) {
+//            dialog.ShowErrorMessage(view.getContext(), errorCode);
+//            return;
+//        }
+//
+//        if (moneyBrand.equals(_app.getString(R.string.money_brand_suica)))  {
+//            view.post(() -> {
+//                if (_isTicketIssueCancel) {
+//                    // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_suica, params);
+//                } else {
+//                    //NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_suica, params);
+//                }
+//            });
+//        }
+//        else if (moneyBrand.equals(_app.getString(R.string.money_brand_waon)))  {
+//            view.post(() -> {
+//                if (_isTicketIssueCancel) {
+//                    // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_waon, params);
+//                } else {
+//                    //NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_waon, params);
+//                }
+//            });
+//        }
+//        else if (moneyBrand.equals(_app.getString(R.string.money_brand_id)))  {
+//            view.post(() -> {
+//                if (_isTicketIssueCancel) {
+//                    // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_id, params);
+//                } else {
+//                    //NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_id, params);
+//                }
+//            });
+//        }
+//        else if (moneyBrand.equals(_app.getString(R.string.money_brand_nanaco)))  {
+//        }
+//        else if (moneyBrand.equals(_app.getString(R.string.money_brand_edy)))  {
+//            // Edyは取消なし
+//        }
+//        else if (moneyBrand.equals(_app.getString(R.string.money_brand_qp)))  {
+//            view.post(() -> {
+//                if (_isTicketIssueCancel) {
+//                    // NavigationWrapper.navigate(view, R.id.action_ticketIssueFragment_to_navigation_emoney_quicpay, params);
+//                } else {
+//                    //NavigationWrapper.navigate(view, R.id.action_navigation_history_transaction_detail_to_navigation_emoney_quicpay, params);
+//                }
+//            });
+//        }
+//        else {
+//            return;
+//        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

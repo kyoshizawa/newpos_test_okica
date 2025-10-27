@@ -49,7 +49,7 @@ import jp.mcapps.android.multi_payment_terminal.model.McAuthenticator;
 //import jp.mcapps.android.multi_payment_terminal.model.McCredit;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
-import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
+//import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 import jp.mcapps.android.multi_payment_terminal.model.Validator;
 import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
 //import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
@@ -272,7 +272,7 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
     public String[] manualOpening() {
         final ArrayList<String> errors = new ArrayList<>();
         final McAuthenticator authenticator = new McAuthenticator();
-        final QRSettlement qr = new QRSettlement();
+//        final QRSettlement qr = new QRSettlement();
         final McTerminal terminal = new McTerminal();
 //        final McCredit credit = new McCredit();
 
@@ -438,11 +438,11 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
         }
 
         if (AppPreference.isMoneyQr()) {
-            errCode = qr.login();
-
-            if (errCode != null) {
-                errors.add(errCode);
-            }
+//            errCode = qr.login();
+//
+//            if (errCode != null) {
+//                errors.add(errCode);
+//            }
         }
 
         final HashSet set = new HashSet(errors);
@@ -513,7 +513,7 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
     public String[] refreshPosProducts() {
         final ArrayList<String> errors = new ArrayList<>();
         final McAuthenticator authenticator = new McAuthenticator();
-        final QRSettlement qr = new QRSettlement();
+        //final QRSettlement qr = new QRSettlement();
         final McTerminal terminal = new McTerminal();
 
         //　通信状態確認
@@ -554,7 +554,7 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
     public String[] refreshTicketSales() {
         final ArrayList<String> errors = new ArrayList<>();
         final McAuthenticator authenticator = new McAuthenticator();
-        final QRSettlement qr = new QRSettlement();
+        //final QRSettlement qr = new QRSettlement();
         final McTerminal terminal = new McTerminal();
 
         //　通信状態確認

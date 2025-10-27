@@ -8253,28 +8253,28 @@ public class PrinterProc {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void Printing_CashChanger(PrintCanvas printCanvas) {
-        EpsonPrinterProc epsonPrinterProc = EpsonPrinterProc.getInstance();
-        Timber.tag("Printer").i("Epson印刷開始");
-
-        int result = epsonPrinterProc.print(printCanvas);
-        if (result == Epos2CallbackCode.CODE_SUCCESS) {
-            Timber.tag("Printer").i("Epson印刷正常終了");
-            isPrinterSts = Printer.PRINTER_OK;
-        } else {
-            // エラー
-            Timber.tag("Printer").e("Epson印刷エラー result:%d", result);
-            isPrinterSts = result;
-        }
-
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                // 印刷終了
-                PrinterManager.getInstance().PrintEnd(isMaskCardId, isTransResult, isPrinterSts, isTransType, false);
-                Printing_end();
-            }
-        });
+//        EpsonPrinterProc epsonPrinterProc = EpsonPrinterProc.getInstance();
+//        Timber.tag("Printer").i("Epson印刷開始");
+//
+//        int result = epsonPrinterProc.print(printCanvas);
+//        if (result == Epos2CallbackCode.CODE_SUCCESS) {
+//            Timber.tag("Printer").i("Epson印刷正常終了");
+//            isPrinterSts = Printer.PRINTER_OK;
+//        } else {
+//            // エラー
+//            Timber.tag("Printer").e("Epson印刷エラー result:%d", result);
+//            isPrinterSts = result;
+//        }
+//
+//        Handler handler = new Handler(Looper.getMainLooper());
+//        handler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                // 印刷終了
+//                PrinterManager.getInstance().PrintEnd(isMaskCardId, isTransResult, isPrinterSts, isTransType, false);
+//                Printing_end();
+//            }
+//        });
     }
 
     // 印刷終了

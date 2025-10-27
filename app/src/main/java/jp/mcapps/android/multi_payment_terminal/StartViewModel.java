@@ -33,7 +33,7 @@ import jp.mcapps.android.multi_payment_terminal.model.McAuthenticator;
 //import jp.mcapps.android.multi_payment_terminal.model.McCredit;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
-import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
+// import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 import jp.mcapps.android.multi_payment_terminal.model.Updater;
 import jp.mcapps.android.multi_payment_terminal.model.Validator;
 //import jp.mcapps.android.multi_payment_terminal.thread.emv.EmvCLProcess;
@@ -538,9 +538,9 @@ public class StartViewModel extends ViewModel
     private void loginGmo() {
         if (!AppPreference.isMoneyQr()) return;
 
-        QRSettlement qrSettlement  = new QRSettlement();
-
-        addErrorOrNothing(qrSettlement.login());
+//        QRSettlement qrSettlement  = new QRSettlement();
+//
+//        addErrorOrNothing(qrSettlement.login());
     }
 
     public void update() {
