@@ -316,15 +316,15 @@ public class InstallationAndRemovalFragment extends BaseFragment implements Inst
                 _sharedViewModel.setLoading(true);
 //                _installationAndRemovalViewModel.edyInitCommunication();
                 _handler.post(() -> {
-                    if (_installationAndRemovalViewModel.isEdyInitCommunicated().getValue()) {
-                        Timber.i("正常終了:Edy初回通信が完了しました");
-                        SuccessDialog.show(requireContext(), "Edy初回通信が完了しました");
-                    } else {
-                        CommonErrorDialog errorDialog = new CommonErrorDialog();
-                        Timber.e("異常終了:Edy初回通信が失敗しました");
-                        errorDialog.ShowErrorMessage(
-                                requireActivity(), _app.getString(R.string.error_type_edy_init_communication_error));
-                    }
+//                    if (_installationAndRemovalViewModel.isEdyInitCommunicated().getValue()) {
+//                        Timber.i("正常終了:Edy初回通信が完了しました");
+//                        SuccessDialog.show(requireContext(), "Edy初回通信が完了しました");
+//                    } else {
+//                        CommonErrorDialog errorDialog = new CommonErrorDialog();
+//                        Timber.e("異常終了:Edy初回通信が失敗しました");
+//                        errorDialog.ShowErrorMessage(
+//                                requireActivity(), _app.getString(R.string.error_type_edy_init_communication_error));
+//                    }
                 });
                 _sharedViewModel.setLoading(false);
             }).start();
@@ -340,10 +340,10 @@ public class InstallationAndRemovalFragment extends BaseFragment implements Inst
         ConfirmDialog.newInstance("撤去しますか？", () -> {
             _sharedViewModel.setLoading(true);
 //            _installationAndRemovalViewModel.edyRemove();
-            if (!_installationAndRemovalViewModel.isEdyInitCommunicated().getValue()) {
-                SuccessDialog.show(requireContext(), "撤去しました");
-            } else {
-            }
+//            if (!_installationAndRemovalViewModel.isEdyInitCommunicated().getValue()) {
+//                SuccessDialog.show(requireContext(), "撤去しました");
+//            } else {
+//            }
             _sharedViewModel.setLoading(false);
         }).show(getChildFragmentManager(), null);
     }

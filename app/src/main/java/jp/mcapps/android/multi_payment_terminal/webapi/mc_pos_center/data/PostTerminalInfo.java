@@ -11,13 +11,13 @@ import java.util.Locale;
 
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
-import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
-import jp.mcapps.android.multi_payment_terminal.webapi.jrem_ras.data.OpeningInfoEdy;
-import jp.mcapps.android.multi_payment_terminal.webapi.jrem_ras.data.OpeningInfoId;
-import jp.mcapps.android.multi_payment_terminal.webapi.jrem_ras.data.OpeningInfoNanaco;
-import jp.mcapps.android.multi_payment_terminal.webapi.jrem_ras.data.OpeningInfoQuicpay;
-import jp.mcapps.android.multi_payment_terminal.webapi.jrem_ras.data.OpeningInfoSuica;
-import jp.mcapps.android.multi_payment_terminal.webapi.jrem_ras.data.OpeningInfoWaon;
+//import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
+//import jp.mcapps.android.multi_payment_terminal.webapi.jrem_ras.data.OpeningInfoEdy;
+//import jp.mcapps.android.multi_payment_terminal.webapi.jrem_ras.data.OpeningInfoId;
+//import jp.mcapps.android.multi_payment_terminal.webapi.jrem_ras.data.OpeningInfoNanaco;
+//import jp.mcapps.android.multi_payment_terminal.webapi.jrem_ras.data.OpeningInfoQuicpay;
+//import jp.mcapps.android.multi_payment_terminal.webapi.jrem_ras.data.OpeningInfoSuica;
+//import jp.mcapps.android.multi_payment_terminal.webapi.jrem_ras.data.OpeningInfoWaon;
 import timber.log.Timber;
 
 import jp.mcapps.android.multi_payment_terminal.util.SimUtils;
@@ -142,60 +142,60 @@ public class PostTerminalInfo {
             } else {
                 runEnd = runDate;
             }
-
-            OpeningInfoSuica infoSuica = EmoneyOpeningInfo.getSuica();
-            if (infoSuica != null) {
-                jrSprwid = infoSuica.sprwid;
-                jrOpenResult = infoSuica.result;
-                jrOpenTime = AppPreference.getDatetimeOpeningSuica().replaceAll(regex, replacement);
-            } else {
-                jrOpenResult = false;
-            }
-
-            OpeningInfoQuicpay infoQuicpay = EmoneyOpeningInfo.getQuicpay();
-            if (infoQuicpay != null) {
-                qpTid = infoQuicpay.termIdentId;
-                qpOpenResult = infoQuicpay.mresult;
-                qpOpenTime = AppPreference.getDatetimeOpeningQuicpay().replaceAll(regex, replacement);
-            } else {
-                qpOpenResult = false;
-            }
-
-            OpeningInfoId infoId = EmoneyOpeningInfo.getId();
-            if (infoId != null) {
-                idTid = infoId.termIdentId;
-                idOpenResult = infoId.mresult;
-                idOpenTime = AppPreference.getDatetimeOpeningId().replaceAll(regex, replacement);
-            } else {
-                idOpenResult = false;
-            }
-
-            OpeningInfoEdy infoEdy = EmoneyOpeningInfo.getEdy();
-            if (infoEdy != null) {
-                edHtid = infoEdy.termIdentId;
-                edOpenResult = infoEdy.mresult;
-                edOpenTime = AppPreference.getDatetimeOpeningEdy().replaceAll(regex, replacement);
-            } else {
-                edOpenResult = false;
-            }
-
-            OpeningInfoWaon infoWaon = EmoneyOpeningInfo.getWaon();
-            if (infoWaon != null) {
-                wnSprwid = infoWaon.termIdentId;
-                wnOpenResult = infoWaon.mresult;
-                wnOpenTime = AppPreference.getDatetimeOpeningWaon().replaceAll(regex, replacement);
-            } else {
-                wnOpenResult = false;
-            }
-
-            OpeningInfoNanaco infoNanaco = EmoneyOpeningInfo.getNanaco();
-            if (infoNanaco != null) {
-                nnHtid = infoNanaco.termIdentId;
-                nnOpenResult = infoNanaco.mresult;
-                nnOpenTime = AppPreference.getDatetimeOpeningNanaco().replaceAll(regex, replacement);
-            } else {
-                nnOpenResult = false;
-            }
+//
+//            OpeningInfoSuica infoSuica = EmoneyOpeningInfo.getSuica();
+//            if (infoSuica != null) {
+//                jrSprwid = infoSuica.sprwid;
+//                jrOpenResult = infoSuica.result;
+//                jrOpenTime = AppPreference.getDatetimeOpeningSuica().replaceAll(regex, replacement);
+//            } else {
+//                jrOpenResult = false;
+//            }
+//
+//            OpeningInfoQuicpay infoQuicpay = EmoneyOpeningInfo.getQuicpay();
+//            if (infoQuicpay != null) {
+//                qpTid = infoQuicpay.termIdentId;
+//                qpOpenResult = infoQuicpay.mresult;
+//                qpOpenTime = AppPreference.getDatetimeOpeningQuicpay().replaceAll(regex, replacement);
+//            } else {
+//                qpOpenResult = false;
+//            }
+//
+//            OpeningInfoId infoId = EmoneyOpeningInfo.getId();
+//            if (infoId != null) {
+//                idTid = infoId.termIdentId;
+//                idOpenResult = infoId.mresult;
+//                idOpenTime = AppPreference.getDatetimeOpeningId().replaceAll(regex, replacement);
+//            } else {
+//                idOpenResult = false;
+//            }
+//
+//            OpeningInfoEdy infoEdy = EmoneyOpeningInfo.getEdy();
+//            if (infoEdy != null) {
+//                edHtid = infoEdy.termIdentId;
+//                edOpenResult = infoEdy.mresult;
+//                edOpenTime = AppPreference.getDatetimeOpeningEdy().replaceAll(regex, replacement);
+//            } else {
+//                edOpenResult = false;
+//            }
+//
+//            OpeningInfoWaon infoWaon = EmoneyOpeningInfo.getWaon();
+//            if (infoWaon != null) {
+//                wnSprwid = infoWaon.termIdentId;
+//                wnOpenResult = infoWaon.mresult;
+//                wnOpenTime = AppPreference.getDatetimeOpeningWaon().replaceAll(regex, replacement);
+//            } else {
+//                wnOpenResult = false;
+//            }
+//
+//            OpeningInfoNanaco infoNanaco = EmoneyOpeningInfo.getNanaco();
+//            if (infoNanaco != null) {
+//                nnHtid = infoNanaco.termIdentId;
+//                nnOpenResult = infoNanaco.mresult;
+//                nnOpenTime = AppPreference.getDatetimeOpeningNanaco().replaceAll(regex, replacement);
+//            } else {
+//                nnOpenResult = false;
+//            }
 
             try {
 //                iccId = null;

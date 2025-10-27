@@ -59,7 +59,7 @@ import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
 import jp.mcapps.android.multi_payment_terminal.data.BusinessType;
-import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
+//import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
 import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.MoneyType;
 import jp.mcapps.android.multi_payment_terminal.data.TransMap;
@@ -250,42 +250,42 @@ public class MenuFragment extends Fragment /*implements IiCASClient*/ {
                 final CommonErrorDialog dialog = new CommonErrorDialog();
 
                 final String brand = getEmoneyBrand();
-                String errorCode;
+                String errorCode=  "";
 
-                /**/ if (brand.equals(_app.getString(R.string.money_brand_suica))) {
-                    errorCode = EmoneyOpeningInfo.getSuica() != null
-                            ? _app.getString(R.string.error_type_suica_power_off_error)
-                            : _app.getString(R.string.error_type_abnormal_shutdown);
-                }
-                else if (brand.equals(_app.getString(R.string.money_brand_id))) {
-                    errorCode = EmoneyOpeningInfo.getId() != null
-                            ? _app.getString(R.string.error_type_id_power_off_error)
-                            : _app.getString(R.string.error_type_abnormal_shutdown);
-                }
-                else if (brand.equals(_app.getString(R.string.money_brand_waon))) {
-                    errorCode = EmoneyOpeningInfo.getWaon() != null
-                            ? _app.getString(R.string.error_type_waon_power_off_error)
-                            : _app.getString(R.string.error_type_abnormal_shutdown);
-                }
-                else if (brand.equals(_app.getString(R.string.money_brand_nanaco))) {
-                    errorCode = EmoneyOpeningInfo.getNanaco() != null
-                            ? _app.getString(R.string.error_type_nanaco_power_off_error)
-                            : _app.getString(R.string.error_type_abnormal_shutdown);
-                }
-                else if (brand.equals(_app.getString(R.string.money_brand_edy))) {
-                    errorCode = EmoneyOpeningInfo.getEdy() != null
-                            ? _app.getString(R.string.error_type_edy_power_off_error)
-                            : _app.getString(R.string.error_type_abnormal_shutdown);
-                }
-                else if (brand.equals(_app.getString(R.string.money_brand_qp))) {
-                    errorCode = EmoneyOpeningInfo.getQuicpay() != null
-                            ? _app.getString(R.string.error_type_quicpay_power_off_error)
-                            : _app.getString(R.string.error_type_abnormal_shutdown);
-                }
-                else {
-                    errorCode = _app.getString(R.string.error_type_abnormal_shutdown);
-                    powerOffTransResultFinish();
-                }
+//                /**/ if (brand.equals(_app.getString(R.string.money_brand_suica))) {
+//                    errorCode = EmoneyOpeningInfo.getSuica() != null
+//                            ? _app.getString(R.string.error_type_suica_power_off_error)
+//                            : _app.getString(R.string.error_type_abnormal_shutdown);
+//                }
+//                else if (brand.equals(_app.getString(R.string.money_brand_id))) {
+//                    errorCode = EmoneyOpeningInfo.getId() != null
+//                            ? _app.getString(R.string.error_type_id_power_off_error)
+//                            : _app.getString(R.string.error_type_abnormal_shutdown);
+//                }
+//                else if (brand.equals(_app.getString(R.string.money_brand_waon))) {
+//                    errorCode = EmoneyOpeningInfo.getWaon() != null
+//                            ? _app.getString(R.string.error_type_waon_power_off_error)
+//                            : _app.getString(R.string.error_type_abnormal_shutdown);
+//                }
+//                else if (brand.equals(_app.getString(R.string.money_brand_nanaco))) {
+//                    errorCode = EmoneyOpeningInfo.getNanaco() != null
+//                            ? _app.getString(R.string.error_type_nanaco_power_off_error)
+//                            : _app.getString(R.string.error_type_abnormal_shutdown);
+//                }
+//                else if (brand.equals(_app.getString(R.string.money_brand_edy))) {
+//                    errorCode = EmoneyOpeningInfo.getEdy() != null
+//                            ? _app.getString(R.string.error_type_edy_power_off_error)
+//                            : _app.getString(R.string.error_type_abnormal_shutdown);
+//                }
+//                else if (brand.equals(_app.getString(R.string.money_brand_qp))) {
+//                    errorCode = EmoneyOpeningInfo.getQuicpay() != null
+//                            ? _app.getString(R.string.error_type_quicpay_power_off_error)
+//                            : _app.getString(R.string.error_type_abnormal_shutdown);
+//                }
+//                else {
+//                    errorCode = _app.getString(R.string.error_type_abnormal_shutdown);
+//                    powerOffTransResultFinish();
+//                }
 
                 if (!errorCode.equals(_app.getString(R.string.error_type_abnormal_shutdown))) {
 

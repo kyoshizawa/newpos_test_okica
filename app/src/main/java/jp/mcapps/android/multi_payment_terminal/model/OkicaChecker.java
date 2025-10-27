@@ -28,7 +28,7 @@ import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
 import jp.mcapps.android.multi_payment_terminal.data.BusinessType;
 import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
-import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
+//import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
 import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.okica.ICMaster;
 import jp.mcapps.android.multi_payment_terminal.data.okica.OkicaNegaFile;

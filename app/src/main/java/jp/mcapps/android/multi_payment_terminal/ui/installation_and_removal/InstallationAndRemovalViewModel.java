@@ -11,7 +11,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
-import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
+//import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
 import jp.mcapps.android.multi_payment_terminal.database.history.driver.DriverDao;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 //import jp.mcapps.android.multi_payment_terminal.model.JremActivator;
@@ -19,11 +19,11 @@ import jp.mcapps.android.multi_payment_terminal.database.history.driver.DriverDa
 //import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 //import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
 import jp.mcapps.android.multi_payment_terminal.ui.pin.PinInputViewModel;
-import jp.mcapps.android.multi_payment_terminal.webapi.jrem_activation.JremActivationApi;
-import jp.mcapps.android.multi_payment_terminal.webapi.jrem_activation.JremActivationApiImpl;
+//import jp.mcapps.android.multi_payment_terminal.webapi.jrem_activation.JremActivationApi;
+//import jp.mcapps.android.multi_payment_terminal.webapi.jrem_activation.JremActivationApiImpl;
 
 public class InstallationAndRemovalViewModel extends PinInputViewModel {
-    private final JremActivationApi _apiClient = new JremActivationApiImpl();
+    //private final JremActivationApi _apiClient = new JremActivationApiImpl();
     private final Handler _handler = new Handler(Looper.getMainLooper());
     private final String _activateId = AppPreference.getJremActivateId();
     private final String _activatePassword = AppPreference.getJremPassword();
@@ -81,21 +81,21 @@ public class InstallationAndRemovalViewModel extends PinInputViewModel {
         _isPinSuccess.setValue(b);
     }
 
-    private MutableLiveData<Boolean> _isEdyOpeningFinished = new MutableLiveData<>(EmoneyOpeningInfo.getEdy() != null);
-    public MutableLiveData<Boolean> isEdyOpeningFinished() {
-        return _isEdyOpeningFinished;
-    }
+//    private MutableLiveData<Boolean> _isEdyOpeningFinished = new MutableLiveData<>(EmoneyOpeningInfo.getEdy() != null);
+//    public MutableLiveData<Boolean> isEdyOpeningFinished() {
+//        return _isEdyOpeningFinished;
+//    }
 
-    private MutableLiveData<Boolean> _isEdyInitCommunicated = new MutableLiveData<>(
-            EmoneyOpeningInfo.getEdy() != null && !EmoneyOpeningInfo.getEdy().initCommunicationFlg);
-    public MutableLiveData<Boolean> isEdyInitCommunicated() {
-        return _isEdyInitCommunicated;
-    }
-    public void isEdyInitCommunicated(boolean b) {
-        _handler.post(() -> {
-            _isEdyInitCommunicated.setValue(b);
-        });
-    }
+//    private MutableLiveData<Boolean> _isEdyInitCommunicated = new MutableLiveData<>(
+//            EmoneyOpeningInfo.getEdy() != null && !EmoneyOpeningInfo.getEdy().initCommunicationFlg);
+//    public MutableLiveData<Boolean> isEdyInitCommunicated() {
+//        return _isEdyInitCommunicated;
+//    }
+//    public void isEdyInitCommunicated(boolean b) {
+//        _handler.post(() -> {
+//            _isEdyInitCommunicated.setValue(b);
+//        });
+//    }
 
     private MutableLiveData<DeviceInterLocking> _deviceInterlocking = new MutableLiveData<>(DeviceInterLocking.None);
     public MutableLiveData<DeviceInterLocking> getDeviceInterlocking() {

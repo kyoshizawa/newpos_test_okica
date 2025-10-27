@@ -12,7 +12,7 @@ import java.io.Serializable;
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
-import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
+//import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
 import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.QRPayTypeCodes;
 import jp.mcapps.android.multi_payment_terminal.data.QRPayTypeNameMap;
@@ -574,7 +574,7 @@ public class SlipData implements Serializable {
         cardTransNumber = Converters.stringToInteger(result.ICsequence);  //取引通番
         termIdentId = result.sprwid != null
                     ? result.sprwid
-                    : EmoneyOpeningInfo.getSuica().sprwid;//端末番号
+                    : "";//端末番号
         transAmount = amountParam.transAmount;   //取引金額
         transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
         transMeterAmount = amountParam.transMeterAmount;    //メーター金額
@@ -617,7 +617,7 @@ public class SlipData implements Serializable {
         rw_id                   = "                    ";                                           //RWID 該当フィールドなしなので20個の空白
         sprw_id                 = result.sprwid != null                                             //SPRWID
                                 ? result.sprwid
-                                : EmoneyOpeningInfo.getSuica().sprwid;
+                                : "";
         off_on_type             = "";                        //0:オフライン、1:オンライン
         card_type               = "";                        //カード区分
         card_id                 = "";                        //カードID
@@ -691,7 +691,7 @@ public class SlipData implements Serializable {
         //Edy取引通番 saleHistoriesを確認
         termIdentId = result.termIdentId != null
                 ? result.termIdentId
-                : EmoneyOpeningInfo.getEdy().termIdentId;//端末番号
+                : "";//端末番号
         transAmount = amountParam.transAmount;   //取引金額
         transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
         transMeterAmount = amountParam.transMeterAmount;    //メーター金額
@@ -822,7 +822,7 @@ public class SlipData implements Serializable {
         authSequenceNumber = Converters.stringToInteger(result.sequenceNo); //処理通番
         termIdentId = result.termIdentId != null
                 ? result.termIdentId
-                : EmoneyOpeningInfo.getId().termIdentId;//端末番号
+                : "";//端末番号
         transAmount = amountParam.transAmount;   //取引金額
         transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
         transMeterAmount = amountParam.transMeterAmount;    //メーター金額
@@ -971,7 +971,7 @@ public class SlipData implements Serializable {
         pointGrantMsgTwo = result.pointGrantMessage2;
         termIdentId = result.termIdentId != null
                 ? result.termIdentId
-                : EmoneyOpeningInfo.getWaon().termIdentId;//端末番号
+                : "";//端末番号
         transAmount = amountParam.transAmount;   //取引金額
         transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
         transMeterAmount = amountParam.transMeterAmount;    //メーター金額
@@ -1163,7 +1163,7 @@ public class SlipData implements Serializable {
         slipNumber = Converters.stringToInteger(result.slipNo);
         termIdentId = result.termIdentId != null
                 ? result.termIdentId
-                : EmoneyOpeningInfo.getQuicpay().termIdentId;//端末番号
+                : "";//端末番号
         transAmount = amountParam.transAmount;   //取引金額
         transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
         transMeterAmount = amountParam.transMeterAmount;    //メーター金額
@@ -1287,7 +1287,7 @@ public class SlipData implements Serializable {
         //cardTransNumber = Converters.stringToInteger(result.saleHistories[0].cardTransactionNo);
         termIdentId = result.termIdentId != null
                 ? result.termIdentId
-                : EmoneyOpeningInfo.getNanaco().termIdentId;//端末番号
+                : "";//端末番号
         transAmount = amountParam.transAmount;   //取引金額
         transSpecifiedAmount = amountParam.transSpecifiedAmount;    //定額
         transMeterAmount = amountParam.transMeterAmount;    //メーター金額

@@ -59,7 +59,7 @@ import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
 import jp.mcapps.android.multi_payment_terminal.data.BusinessType;
-import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
+//import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
 import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.OptionService;
 import jp.mcapps.android.multi_payment_terminal.data.TransMap;
@@ -539,11 +539,11 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 //        }
 
         // Edyは初回通信業務を行ってない場合は取引させない
-        if (!AppPreference.isDemoMode() && EmoneyOpeningInfo.getEdy().initCommunicationFlg) {
-            dialog.ShowErrorMessage(activity, _app.getString(
-                    R.string.error_type_edy_before_init_communication_error));
-            return;
-        }
+//        if (!AppPreference.isDemoMode() && EmoneyOpeningInfo.getEdy().initCommunicationFlg) {
+//            dialog.ShowErrorMessage(activity, _app.getString(
+//                    R.string.error_type_edy_before_init_communication_error));
+//            return;
+//        }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
         //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_edy, R.id.fragment_amount_input_separationpay_fd);
@@ -569,12 +569,12 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 //            return;
 //        }
 
-        // Edyは初回通信業務を行ってない場合は取引させない
-        if (!AppPreference.isDemoMode() && EmoneyOpeningInfo.getEdy().initCommunicationFlg) {
-            dialog.ShowErrorMessage(activity, _app.getString(
-                    R.string.error_type_edy_before_init_communication_error));
-            return;
-        }
+//        // Edyは初回通信業務を行ってない場合は取引させない
+//        if (!AppPreference.isDemoMode() && EmoneyOpeningInfo.getEdy().initCommunicationFlg) {
+//            dialog.ShowErrorMessage(activity, _app.getString(
+//                    R.string.error_type_edy_before_init_communication_error));
+//            return;
+//        }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
         //lastCheck(activity, dialog, type, R.id.action_navigation_menu_to_navigation_emoney_edy);
@@ -1865,50 +1865,50 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
     private void removeEmoneyClosedErrorStacking() {
         List<String> errorCodeList = new ArrayList<>();
-
-        //各マネーの開局状態をチェック
-        if (EmoneyOpeningInfo.getSuica() != null) {
-            errorCodeList.addAll(Arrays.asList(
-                    _app.getString(R.string.error_type_opening_suica_warning),
-                    _app.getString(R.string.error_type_opening_suica_error),
-                    _app.getString(R.string.error_type_suica_closed_error)
-            ));
-        }
-        if (EmoneyOpeningInfo.getId() != null) {
-            errorCodeList.addAll(Arrays.asList(
-                    _app.getString(R.string.error_type_opening_id_warning),
-                    _app.getString(R.string.error_type_opening_id_error),
-                    _app.getString(R.string.error_type_id_closed_error)
-            ));
-        }
-        if (EmoneyOpeningInfo.getWaon() != null) {
-            errorCodeList.addAll(Arrays.asList(
-                    _app.getString(R.string.error_type_opening_waon_warning),
-                    _app.getString(R.string.error_type_opening_waon_error),
-                    _app.getString(R.string.error_type_waon_closed_error)
-            ));
-        }
-        if (EmoneyOpeningInfo.getNanaco() != null) {
-            errorCodeList.addAll(Arrays.asList(
-                    _app.getString(R.string.error_type_opening_nanaco_warning),
-                    _app.getString(R.string.error_type_opening_nanaco_error),
-                    _app.getString(R.string.error_type_nanaco_closed_error)
-            ));
-        }
-        if (EmoneyOpeningInfo.getQuicpay() != null) {
-            errorCodeList.addAll(Arrays.asList(
-                    _app.getString(R.string.error_type_opening_quicpay_warning),
-                    _app.getString(R.string.error_type_opening_quicpay_error),
-                    _app.getString(R.string.error_type_quicpay_closed_error)
-            ));
-        }
-        if (EmoneyOpeningInfo.getEdy() != null) {
-            errorCodeList.addAll(Arrays.asList(
-                    _app.getString(R.string.error_type_opening_edy_warning),
-                    _app.getString(R.string.error_type_opening_edy_error),
-                    _app.getString(R.string.error_type_edy_closed_error)
-            ));
-        }
+//
+//        //各マネーの開局状態をチェック
+//        if (EmoneyOpeningInfo.getSuica() != null) {
+//            errorCodeList.addAll(Arrays.asList(
+//                    _app.getString(R.string.error_type_opening_suica_warning),
+//                    _app.getString(R.string.error_type_opening_suica_error),
+//                    _app.getString(R.string.error_type_suica_closed_error)
+//            ));
+//        }
+//        if (EmoneyOpeningInfo.getId() != null) {
+//            errorCodeList.addAll(Arrays.asList(
+//                    _app.getString(R.string.error_type_opening_id_warning),
+//                    _app.getString(R.string.error_type_opening_id_error),
+//                    _app.getString(R.string.error_type_id_closed_error)
+//            ));
+//        }
+//        if (EmoneyOpeningInfo.getWaon() != null) {
+//            errorCodeList.addAll(Arrays.asList(
+//                    _app.getString(R.string.error_type_opening_waon_warning),
+//                    _app.getString(R.string.error_type_opening_waon_error),
+//                    _app.getString(R.string.error_type_waon_closed_error)
+//            ));
+//        }
+//        if (EmoneyOpeningInfo.getNanaco() != null) {
+//            errorCodeList.addAll(Arrays.asList(
+//                    _app.getString(R.string.error_type_opening_nanaco_warning),
+//                    _app.getString(R.string.error_type_opening_nanaco_error),
+//                    _app.getString(R.string.error_type_nanaco_closed_error)
+//            ));
+//        }
+//        if (EmoneyOpeningInfo.getQuicpay() != null) {
+//            errorCodeList.addAll(Arrays.asList(
+//                    _app.getString(R.string.error_type_opening_quicpay_warning),
+//                    _app.getString(R.string.error_type_opening_quicpay_error),
+//                    _app.getString(R.string.error_type_quicpay_closed_error)
+//            ));
+//        }
+//        if (EmoneyOpeningInfo.getEdy() != null) {
+//            errorCodeList.addAll(Arrays.asList(
+//                    _app.getString(R.string.error_type_opening_edy_warning),
+//                    _app.getString(R.string.error_type_opening_edy_error),
+//                    _app.getString(R.string.error_type_edy_closed_error)
+//            ));
+//        }
 
         ErrorStackingDao errorStackingDao = DBManager.getErrorStackingDao();
 

@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
-import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
+//import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
 import jp.mcapps.android.multi_payment_terminal.data.trans_param.AmountParam;
 import jp.mcapps.android.multi_payment_terminal.data.trans_param.RefundParam;
 import jp.mcapps.android.multi_payment_terminal.data.trans_param.ResultParam;
@@ -433,16 +433,16 @@ public class UriData {
         this.encryptType = encryptType;   //暗号化パターン
 
         //交通系固有項目
-        icErrCode = Converters.stringToInteger(result.code);   //エラーコード
-        icIdm = result.IDm;  //IDm
-        icSprwid = result.sprwid != null
-                 ? result.sprwid
-                 : EmoneyOpeningInfo.getSuica().sprwid;  //SPRWID
-        icStatementId = Converters.stringToInteger(result.statementID);   //一件明細ID
-        icSequence = Converters.stringToInteger(result.ICsequence);   //IC取扱通番
-        icSflogId = Converters.stringToInteger(result.SFLogID);   //SFログID
-        icOldStatementId = Converters.stringToInteger(result.oldstatementID); //旧一件明細ID
-        icOldSflogId = Converters.stringToInteger(result.oldSFLogID); //旧SFログID
+//        icErrCode = Converters.stringToInteger(result.code);   //エラーコード
+//        icIdm = result.IDm;  //IDm
+//        icSprwid = result.sprwid != null
+//                 ? result.sprwid
+//                 : EmoneyOpeningInfo.getSuica().sprwid;  //SPRWID
+//        icStatementId = Converters.stringToInteger(result.statementID);   //一件明細ID
+//        icSequence = Converters.stringToInteger(result.ICsequence);   //IC取扱通番
+//        icSflogId = Converters.stringToInteger(result.SFLogID);   //SFログID
+//        icOldStatementId = Converters.stringToInteger(result.oldstatementID); //旧一件明細ID
+//        icOldSflogId = Converters.stringToInteger(result.oldSFLogID); //旧SFログID
     }
 
     /**
@@ -487,21 +487,21 @@ public class UriData {
         termRadioLevel = surveyParam.termRadioLevel;    //電波状況（レベル）
         this.encryptType = encryptType;   //暗号化パターン
 
-        //Edy固有項目
-        rakutenEdyErrCode = Converters.stringToInteger(result.code);    //エラーコード
-        //Edy取引通番 saleHistoriesを確認
-        //カード取引通番 saleHistoriesを確認
-        rakutenEdyTermIdentId = result.termIdentId != null
-                ? result.termIdentId
-                : EmoneyOpeningInfo.getEdy().termIdentId;  // 上位端末ID
-
-        if(result.saleHistories != null) {
-            cardId = result.saleHistories[0].userMaskMembershipNum;  //カード番号（お客様控え用のマスクカード番号をセット）
-            transBeforeBalance = Converters.stringToLong(result.saleHistories[0].beforeBalance); //取引前残高
-            transAfterBalance = Converters.stringToLong(result.saleHistories[0].afterBalance);    //取引後残高
-            rakutenEdyTransNumber = Converters.stringToLong(result.saleHistories[0].edyTransactionNo);  // Edy取引通番
-            rakutenEdyCardTransNumber = Converters.stringToInteger(result.saleHistories[0].cardTransactionNo);  // カード取引通番
-        }
+//        //Edy固有項目
+//        rakutenEdyErrCode = Converters.stringToInteger(result.code);    //エラーコード
+//        //Edy取引通番 saleHistoriesを確認
+//        //カード取引通番 saleHistoriesを確認
+//        rakutenEdyTermIdentId = result.termIdentId != null
+//                ? result.termIdentId
+//                : EmoneyOpeningInfo.getEdy().termIdentId;  // 上位端末ID
+//
+//        if(result.saleHistories != null) {
+//            cardId = result.saleHistories[0].userMaskMembershipNum;  //カード番号（お客様控え用のマスクカード番号をセット）
+//            transBeforeBalance = Converters.stringToLong(result.saleHistories[0].beforeBalance); //取引前残高
+//            transAfterBalance = Converters.stringToLong(result.saleHistories[0].afterBalance);    //取引後残高
+//            rakutenEdyTransNumber = Converters.stringToLong(result.saleHistories[0].edyTransactionNo);  // Edy取引通番
+//            rakutenEdyCardTransNumber = Converters.stringToInteger(result.saleHistories[0].cardTransactionNo);  // カード取引通番
+//        }
     }
 
     /**
@@ -549,17 +549,17 @@ public class UriData {
         termRadioLevel = surveyParam.termRadioLevel;    //電波状況（レベル）
         this.encryptType = encryptType;   //暗号化パターン
 
-        //iD固有項目
-        idSlipNumber = Converters.stringToInteger(result.slipNo);  //伝票番号
-        idOldSlipNumber = result.oldSlipNo != null
-                ? Converters.stringToInteger(result.oldSlipNo)
-                : refundParam.oldSlipNumber;  //元伝票番号 RASの応答に設定されていない場合は印刷履歴から取得
-        idErrorCode = Converters.stringToInteger(result.code);  //エラーコード
-        idTermIdentId = result.termIdentId != null
-                ? result.termIdentId
-                : EmoneyOpeningInfo.getId().termIdentId;    //上位端末ID
-        idSequenceNumber = Converters.stringToInteger(result.sequenceNo);
-        idRecognitionNumber = result.recognitionNum;
+//        //iD固有項目
+//        idSlipNumber = Converters.stringToInteger(result.slipNo);  //伝票番号
+//        idOldSlipNumber = result.oldSlipNo != null
+//                ? Converters.stringToInteger(result.oldSlipNo)
+//                : refundParam.oldSlipNumber;  //元伝票番号 RASの応答に設定されていない場合は印刷履歴から取得
+//        idErrorCode = Converters.stringToInteger(result.code);  //エラーコード
+//        idTermIdentId = result.termIdentId != null
+//                ? result.termIdentId
+//                : EmoneyOpeningInfo.getId().termIdentId;    //上位端末ID
+//        idSequenceNumber = Converters.stringToInteger(result.sequenceNo);
+//        idRecognitionNumber = result.recognitionNum;
     }
 
     /**
@@ -607,21 +607,21 @@ public class UriData {
         termRadioLevel = surveyParam.termRadioLevel;    //電波状況（レベル）
         this.encryptType = encryptType;   //暗号化パターン
 
-        //waon固有項目
-        waonSlipNumber = Converters.stringToInteger(result.slipNo);  //伝票番号
-        waonOldSlipNumber = result.oldSlipNo != null
-                ? Converters.stringToInteger(result.oldSlipNo)
-                : refundParam.oldSlipNumber;  //元伝票番号 RASの応答に設定されていない場合は印刷履歴から取得
-        waonErrCode = Converters.stringToInteger(result.code);  //エラーコード
-        waonIdm = result.idm;  //製造番号
-        waonTermIdentId = result.termIdentId != null
-                ? result.termIdentId
-                : EmoneyOpeningInfo.getWaon().termIdentId;  // 物販端末R/Wコード
-        waonCardThroughNum = Converters.stringToInteger(result.cardThroughNum);  //カード通番
-        waonPointTradeValue = Converters.stringToLong(result.pointTradeValue);  //ポイント対象金額
-        waonPointGrantType = Converters.stringToInteger(result.pointGrantType);  //ポイント付与区分
-        waonAddPointTotal = Converters.stringToLong(result.addPointTotal);  //付与ポイント合計
-        waonTotalPoint = Converters.stringToLong(result.totalPoint);  //累計ポイント(現在～2年前)
+//        //waon固有項目
+//        waonSlipNumber = Converters.stringToInteger(result.slipNo);  //伝票番号
+//        waonOldSlipNumber = result.oldSlipNo != null
+//                ? Converters.stringToInteger(result.oldSlipNo)
+//                : refundParam.oldSlipNumber;  //元伝票番号 RASの応答に設定されていない場合は印刷履歴から取得
+//        waonErrCode = Converters.stringToInteger(result.code);  //エラーコード
+//        waonIdm = result.idm;  //製造番号
+//        waonTermIdentId = result.termIdentId != null
+//                ? result.termIdentId
+//                : EmoneyOpeningInfo.getWaon().termIdentId;  // 物販端末R/Wコード
+//        waonCardThroughNum = Converters.stringToInteger(result.cardThroughNum);  //カード通番
+//        waonPointTradeValue = Converters.stringToLong(result.pointTradeValue);  //ポイント対象金額
+//        waonPointGrantType = Converters.stringToInteger(result.pointGrantType);  //ポイント付与区分
+//        waonAddPointTotal = Converters.stringToLong(result.addPointTotal);  //付与ポイント合計
+//        waonTotalPoint = Converters.stringToLong(result.totalPoint);  //累計ポイント(現在～2年前)
     }
 
     /**
@@ -669,16 +669,16 @@ public class UriData {
         termRadioLevel = surveyParam.termRadioLevel;    //電波状況（レベル）
         this.encryptType = encryptType;   //暗号化パターン
 
-        //QUICPay固有項目
-        quicpaySlipNumber = Converters.stringToInteger(result.slipNo);
-        quicpayOldSlipNumber = result.oldSlipNo != null
-                ? Converters.stringToInteger(result.oldSlipNo)
-                : refundParam.oldSlipNumber;  //元伝票番号 RASの応答に設定されていない場合は印刷履歴から取得
-        quicpayErrCode = Converters.stringToInteger(result.code);
-        quicpayTermIdentId = result.termIdentId != null
-                ? result.termIdentId
-                : EmoneyOpeningInfo.getQuicpay().termIdentId;   // 物販端末R/Wコード
-        quicpayDealingsThroughNumber = Converters.stringToInteger(result.dealingsThroughNum);
+//        //QUICPay固有項目
+//        quicpaySlipNumber = Converters.stringToInteger(result.slipNo);
+//        quicpayOldSlipNumber = result.oldSlipNo != null
+//                ? Converters.stringToInteger(result.oldSlipNo)
+//                : refundParam.oldSlipNumber;  //元伝票番号 RASの応答に設定されていない場合は印刷履歴から取得
+//        quicpayErrCode = Converters.stringToInteger(result.code);
+//        quicpayTermIdentId = result.termIdentId != null
+//                ? result.termIdentId
+//                : EmoneyOpeningInfo.getQuicpay().termIdentId;   // 物販端末R/Wコード
+//        quicpayDealingsThroughNumber = Converters.stringToInteger(result.dealingsThroughNum);
     }
 
     /**
@@ -726,21 +726,21 @@ public class UriData {
         termRadioLevel = surveyParam.termRadioLevel;    //電波状況（レベル）
         this.encryptType = encryptType;   //暗号化パターン
 
-        //nanaco固有項目
-        //伝票番号 saseHistoriesを確認
-        nanacoErrCode = Converters.stringToInteger(result.code);  //エラーコード
-        //カード取引通番 saseHistoriesを確認
-        nanacoTermIdentId = result.termIdentId != null
-                ? result.termIdentId
-                : EmoneyOpeningInfo.getNanaco().termIdentId;  //上位端末ID
-
-        if(result.saleHistories != null) {
-            cardId = result.saleHistories[0].tenantMaskNanacoNum;  //カード番号
-            transBeforeBalance = Converters.stringToLong(result.saleHistories[0].beforeBalance); //取引前残高
-            transAfterBalance = Converters.stringToLong(result.saleHistories[0].afterBalance);    //取引後残高
-            nanacoSlipNumber = Converters.stringToLong(result.saleHistories[0].slipNo);
-            nanacoCardTransNumber = Converters.stringToInteger(result.saleHistories[0].cardTransactionNo);  // 取引通番
-        }
+//        //nanaco固有項目
+//        //伝票番号 saseHistoriesを確認
+//        nanacoErrCode = Converters.stringToInteger(result.code);  //エラーコード
+//        //カード取引通番 saseHistoriesを確認
+//        nanacoTermIdentId = result.termIdentId != null
+//                ? result.termIdentId
+//                : EmoneyOpeningInfo.getNanaco().termIdentId;  //上位端末ID
+//
+//        if(result.saleHistories != null) {
+//            cardId = result.saleHistories[0].tenantMaskNanacoNum;  //カード番号
+//            transBeforeBalance = Converters.stringToLong(result.saleHistories[0].beforeBalance); //取引前残高
+//            transAfterBalance = Converters.stringToLong(result.saleHistories[0].afterBalance);    //取引後残高
+//            nanacoSlipNumber = Converters.stringToLong(result.saleHistories[0].slipNo);
+//            nanacoCardTransNumber = Converters.stringToInteger(result.saleHistories[0].cardTransactionNo);  // 取引通番
+//        }
     }
 
     /**

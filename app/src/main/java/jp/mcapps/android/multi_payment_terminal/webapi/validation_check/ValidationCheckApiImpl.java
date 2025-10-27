@@ -16,7 +16,7 @@ import jp.mcapps.android.multi_payment_terminal.util.DeviceUtils;
 import jp.mcapps.android.multi_payment_terminal.util.McUtils;
 import jp.mcapps.android.multi_payment_terminal.webapi.HttpStatusException;
 import jp.mcapps.android.multi_payment_terminal.webapi.McHttpClient;
-import jp.mcapps.android.multi_payment_terminal.webapi.jrem_activation.data.Download;
+//import jp.mcapps.android.multi_payment_terminal.webapi.jrem_activation.data.Download;
 import jp.mcapps.android.multi_payment_terminal.webapi.validation_check.data.*;
 import timber.log.Timber;
 
