@@ -90,8 +90,8 @@ import jp.mcapps.android.multi_payment_terminal.model.Validator;
 //import jp.mcapps.android.multi_payment_terminal.model.WatariChecker;
 //import jp.mcapps.android.multi_payment_terminal.model.pos.ProductRepository;
 // import jp.mcapps.android.multi_payment_terminal.model.ticket.TicketRepository;
-import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
-import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
+//import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
+//import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
 //import jp.mcapps.android.multi_payment_terminal.service.PeriodicErrorCheckService;
 //import jp.mcapps.android.multi_payment_terminal.service.PeriodicGateCheckService;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterConst;
@@ -1261,14 +1261,14 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                 boolean foundGateCheckService = false;
 
                 for (ActivityManager.RunningServiceInfo runningServiceInfo : serviceInfoList) {
-                    //サービスが起動しているかを確認
-                    if (runningServiceInfo.service.getClassName().equals(GetRadioService.class.getName())) {
-                        activeServiceCnt++;
-                        foundRadioService = true;
-                    } else if (runningServiceInfo.service.getClassName().equals(GetGpsService.class.getName())) {
-                        activeServiceCnt++;
-                        foundGpsService = true;
-                    }
+//                    //サービスが起動しているかを確認
+//                    if (runningServiceInfo.service.getClassName().equals(GetRadioService.class.getName())) {
+//                        activeServiceCnt++;
+//                        foundRadioService = true;
+//                    } else if (runningServiceInfo.service.getClassName().equals(GetGpsService.class.getName())) {
+//                        activeServiceCnt++;
+//                        foundGpsService = true;
+//                    }
 
                     if (foundRadioService && foundGpsService && foundErrorCheckService && foundGateCheckService)
                         break;
@@ -1292,15 +1292,15 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                         .registerReceiver(receiver, intentFilter);
 
                 //起動中のバックグラウンドサービスを停止
-                if (foundRadioService) {
-                    Intent radioService = new Intent(mainActivity.getApplication(), GetRadioService.class);
-                    mainActivity.stopService(radioService);
-                }
-
-                if (foundGpsService) {
-                    Intent gpsService = new Intent(mainActivity.getApplication(), GetGpsService.class);
-                    mainActivity.stopService(gpsService);
-                }
+//                if (foundRadioService) {
+//                    Intent radioService = new Intent(mainActivity.getApplication(), GetRadioService.class);
+//                    mainActivity.stopService(radioService);
+//                }
+//
+//                if (foundGpsService) {
+//                    Intent gpsService = new Intent(mainActivity.getApplication(), GetGpsService.class);
+//                    mainActivity.stopService(gpsService);
+//                }
 
 //                if (foundErrorCheckService) {
 //                    Intent errorService = new Intent(mainActivity.getApplication(), PeriodicErrorCheckService.class);

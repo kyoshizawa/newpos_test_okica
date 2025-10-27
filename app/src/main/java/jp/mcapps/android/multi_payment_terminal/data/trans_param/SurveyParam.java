@@ -10,7 +10,7 @@ import android.os.Build;
 import androidx.core.content.ContextCompat;
 
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
-import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
+//import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
 import jp.mcapps.android.multi_payment_terminal.database.history.radio.RadioData;
 
 public class SurveyParam {
@@ -22,15 +22,15 @@ public class SurveyParam {
     public Integer termRadioLevel;  //電波状況（レベル）
 
     public void setAntennaLevel() {
-        RadioData data = CurrentRadio.getData();
-        if (data != null) {
-            this.termNetworkType = data.networkType; //ネットワーク種別
-            this.termRadioLevel = data.level;   //電波レベル
-        } else {
-            //nullの場合は取得できていないとみなす
-            this.termNetworkType = "NONE"; //ネットワーク種別
-            this.termRadioLevel = 0;   //電波レベル
-        }
+//        RadioData data = CurrentRadio.getData();
+//        if (data != null) {
+//            this.termNetworkType = data.networkType; //ネットワーク種別
+//            this.termRadioLevel = data.level;   //電波レベル
+//        } else {
+//            //nullの場合は取得できていないとみなす
+//            this.termNetworkType = "NONE"; //ネットワーク種別
+//            this.termRadioLevel = 0;   //電波レベル
+//        }
     }
 
     public void setLocation() {

@@ -28,7 +28,7 @@ import jp.mcapps.android.multi_payment_terminal.NavigationWrapper;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.ScreenData;
 import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
-import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
+//import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.driver.DriverDao;
 import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorStackingDao;
@@ -36,7 +36,7 @@ import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorStac
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentDriverCodeBinding;
 import jp.mcapps.android.multi_payment_terminal.error.McPosCenterErrorMap;
 //import jp.mcapps.android.multi_payment_terminal.httpserver.events.EventBroker;
-import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
+//import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
 //import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorEventHandlers;

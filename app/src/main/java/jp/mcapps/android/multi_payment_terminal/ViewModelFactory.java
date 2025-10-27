@@ -16,7 +16,7 @@ import jp.mcapps.android.multi_payment_terminal.logger.EventLogger;
 //import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 import jp.mcapps.android.multi_payment_terminal.model.Updater;
-import jp.mcapps.android.multi_payment_terminal.service.LogSendServiceViewModel;
+//import jp.mcapps.android.multi_payment_terminal.service.LogSendServiceViewModel;
 //import jp.mcapps.android.multi_payment_terminal.service.PeriodicErrorCheckServiceViewModel;
 //import jp.mcapps.android.multi_payment_terminal.service.PeriodicGateCheckServiceViewModel;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
@@ -107,9 +107,9 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
         else if (modelClass.isAssignableFrom((DriverCodeViewModel.class))) {
             return (T) new DriverCodeViewModel();
         }
-        else if (modelClass.isAssignableFrom((LogSendServiceViewModel.class))) {
-            return (T) new LogSendServiceViewModel(_eventLogger);
-        }
+//        else if (modelClass.isAssignableFrom((LogSendServiceViewModel.class))) {
+//            return (T) new LogSendServiceViewModel(_eventLogger);
+//        }
 //        else if (modelClass.isAssignableFrom((PeriodicGateCheckServiceViewModel.class))) {
 //            return (T) new PeriodicGateCheckServiceViewModel();
 //        }

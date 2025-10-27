@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import jp.mcapps.android.multi_payment_terminal.logger.extra.AppInfo;
 import jp.mcapps.android.multi_payment_terminal.logger.extra.DeviceInfo;
-import jp.mcapps.android.multi_payment_terminal.logger.extra.NetworkInfo;
+//import jp.mcapps.android.multi_payment_terminal.logger.extra.NetworkInfo;
 import jp.mcapps.android.multi_payment_terminal.logger.extra.SimInfo;
 import jp.mcapps.android.multi_payment_terminal.logger.extra.SourceInfo;
 
@@ -29,8 +29,8 @@ public class EventLog {
     public SimInfo sim;
     @Expose
     public SourceInfo source;
-    @Expose
-    public NetworkInfo network;
+//    @Expose
+//    public NetworkInfo network;
 
     public EventLog(String timestamp, Level level, String tag, String message, String location, DeviceInfo device, SimInfo sim, SourceInfo source) {
         this.timestamp = timestamp;
@@ -42,7 +42,7 @@ public class EventLog {
         this.device = device;
         this.sim = sim;
         this.source = source;
-        network = new NetworkInfo();
+//        network = new NetworkInfo();
     }
 
     public EventLog(String timestamp, Level level, String tag, String message, String location, SourceInfo source) {
@@ -53,7 +53,7 @@ public class EventLog {
         this.location = location;
         app = new AppInfo();
         this.source = source;
-        network = new NetworkInfo();
+//        network = new NetworkInfo();
     }
 
     enum Level {

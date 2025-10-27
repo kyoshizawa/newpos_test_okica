@@ -19,7 +19,7 @@ import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
-import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
+//import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
 import timber.log.Timber;
 
 public class CommonHeadViewModel extends ViewModel implements LifecycleObserver {
@@ -28,7 +28,7 @@ public class CommonHeadViewModel extends ViewModel implements LifecycleObserver 
     private final BroadcastReceiver _receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            setRadioImageResource(radioImageResources[CurrentRadio.getImageLevel()]);
+            //setRadioImageResource(radioImageResources[CurrentRadio.getImageLevel()]);
         }
     };
 
@@ -63,13 +63,13 @@ public class CommonHeadViewModel extends ViewModel implements LifecycleObserver 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void onResume() {
         Timber.d("on resume");
-        if (!AppPreference.isDemoMode()) {
-            IntentFilter intentFilter = new IntentFilter("CHANGE_RADIO_LEVEL_IMAGE");
-            LocalBroadcastManager.getInstance(_app).registerReceiver(_receiver, intentFilter); //通常モードのみ電波レベルの変更通知を受け取る
-            setRadioImageResource(radioImageResources[CurrentRadio.getImageLevel()]); //電波レベルの初期画像
-        } else {
-            setRadioImageResource(radioImageResources[2]); //デモモードは強固定
-        }
+//        if (!AppPreference.isDemoMode()) {
+//            IntentFilter intentFilter = new IntentFilter("CHANGE_RADIO_LEVEL_IMAGE");
+//            LocalBroadcastManager.getInstance(_app).registerReceiver(_receiver, intentFilter); //通常モードのみ電波レベルの変更通知を受け取る
+//            setRadioImageResource(radioImageResources[CurrentRadio.getImageLevel()]); //電波レベルの初期画像
+//        } else {
+//            setRadioImageResource(radioImageResources[2]); //デモモードは強固定
+//        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
@@ -80,10 +80,10 @@ public class CommonHeadViewModel extends ViewModel implements LifecycleObserver 
     }
 
     {
-        if (AppPreference.isDemoMode()) {
-            setRadioImageResource(radioImageResources[2]); //デモモードは強固定
-        } else {
-            setRadioImageResource(radioImageResources[CurrentRadio.getImageLevel()]); //電波レベルの初期画像
-        }
+//        if (AppPreference.isDemoMode()) {
+//            setRadioImageResource(radioImageResources[2]); //デモモードは強固定
+//        } else {
+//            setRadioImageResource(radioImageResources[CurrentRadio.getImageLevel()]); //電波レベルの初期画像
+//        }
     }
 }

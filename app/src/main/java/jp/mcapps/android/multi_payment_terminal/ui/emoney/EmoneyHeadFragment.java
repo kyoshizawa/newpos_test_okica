@@ -22,7 +22,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
-import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
+//import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentEmoneyHeadBinding;
 
 public class EmoneyHeadFragment extends Fragment {
@@ -56,15 +56,15 @@ public class EmoneyHeadFragment extends Fragment {
         }
 
         int[] radioImageResources = {R.drawable.ic_radio_level_low, R.drawable.ic_radio_level_middle, R.drawable.ic_radio_level_high, R.drawable.ic_airplane_mode};
-        _emoneyHeadViewModel.setRadioImageResource(AppPreference.isDemoMode()
-                ? radioImageResources[2]                                //デモモードは強固定
-                : radioImageResources[CurrentRadio.getImageLevel()]);   //電波レベルの初期画像
-        _receiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                _emoneyHeadViewModel.setRadioImageResource(radioImageResources[CurrentRadio.getImageLevel()]);
-            }
-        };
+//        _emoneyHeadViewModel.setRadioImageResource(AppPreference.isDemoMode()
+//                ? radioImageResources[2]                                //デモモードは強固定
+//                : radioImageResources[CurrentRadio.getImageLevel()]);   //電波レベルの初期画像
+//        _receiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                _emoneyHeadViewModel.setRadioImageResource(radioImageResources[CurrentRadio.getImageLevel()]);
+//            }
+//        };
 
         return binding.getRoot();
     }

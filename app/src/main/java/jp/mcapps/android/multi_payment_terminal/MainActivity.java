@@ -43,7 +43,7 @@ import java.util.Locale;
 
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
+//import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
 import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.databinding.ActivityMainBinding;
@@ -52,8 +52,8 @@ import jp.mcapps.android.multi_payment_terminal.error.ErrorManage;
 //import jp.mcapps.android.multi_payment_terminal.httpserver.events.EventBroker;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountInfo;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountMenuInfo;
-import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
-import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
+//import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
+//import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
 //import jp.mcapps.android.multi_payment_terminal.service.PeriodicErrorCheckService;
 //import jp.mcapps.android.multi_payment_terminal.service.WifiP2pService;
 import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuDiscountFragment;
@@ -251,31 +251,31 @@ public class MainActivity extends AppCompatActivity {
 //        Intent periodicService = new Intent(this, PeriodicErrorCheckService.class);
 //        startService(periodicService);
 
-        //電波情報取得処理
-        Intent radioService = new Intent(getApplication(), GetRadioService.class);
-        radioService.putExtra("INTERVAL", AppPreference.getAntlogTime());
-        startService(radioService);
+//        //電波情報取得処理
+//        Intent radioService = new Intent(getApplication(), GetRadioService.class);
+//        radioService.putExtra("INTERVAL", AppPreference.getAntlogTime());
+//        startService(radioService);
+//
+//        List<String> permissions = new ArrayList<>();
+//        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(this,
+//                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+//        } else {
+//            //権限があればgps取得サービス起動
+//            Intent gpsService = new Intent(getApplication(), GetGpsService.class);
+//            gpsService.putExtra("TIME_INTERVAL", AppPreference.getGpslogTime());
+//            gpsService.putExtra("DISTANCE_INTERVAL", AppPreference.getGpslogDistance());
+//            startService(gpsService);
+//        }
 
-        List<String> permissions = new ArrayList<>();
-        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
-        } else {
-            //権限があればgps取得サービス起動
-            Intent gpsService = new Intent(getApplication(), GetGpsService.class);
-            gpsService.putExtra("TIME_INTERVAL", AppPreference.getGpslogTime());
-            gpsService.putExtra("DISTANCE_INTERVAL", AppPreference.getGpslogDistance());
-            startService(gpsService);
-        }
-
-        if (Build.VERSION.SDK_INT >= 23 && ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            permissions.add(Manifest.permission.READ_PHONE_STATE);
-        }
-
-        if (permissions.size() > 0) {
-            ActivityCompat.requestPermissions(this, permissions.toArray(new String[permissions.size()]), 1000);
-        }
+//        if (Build.VERSION.SDK_INT >= 23 && ActivityCompat.checkSelfPermission(this,
+//                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+//            permissions.add(Manifest.permission.READ_PHONE_STATE);
+//        }
+//
+//        if (permissions.size() > 0) {
+//            ActivityCompat.requestPermissions(this, permissions.toArray(new String[permissions.size()]), 1000);
+//        }
 
         final Intent intent = getIntent();
         final String[] errors = intent.getStringArrayExtra("errors");
@@ -379,8 +379,8 @@ public class MainActivity extends AppCompatActivity {
             if (permissions[i].equals(Manifest.permission.ACCESS_FINE_LOCATION)) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     //位置情報使用を許可された場合はgps取得サービス起動
-                    Intent gpsService = new Intent(getApplication(), GetGpsService.class);
-                    startService(gpsService);
+//                    Intent gpsService = new Intent(getApplication(), GetGpsService.class);
+//                    startService(gpsService);
 
 //                    Intent wifiP2pService = new Intent(this, WifiP2pService.class);
 //                    startService(wifiP2pService);

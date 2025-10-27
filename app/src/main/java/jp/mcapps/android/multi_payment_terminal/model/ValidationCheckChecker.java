@@ -12,9 +12,9 @@ import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
 import jp.mcapps.android.multi_payment_terminal.data.BusinessType;
-import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
+//import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
 import jp.mcapps.android.multi_payment_terminal.error.GmoErrorMap;
-import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
+//import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
 import timber.log.Timber;
 
 public class ValidationCheckChecker {
@@ -27,12 +27,12 @@ public class ValidationCheckChecker {
         //通常モードの場合のみチェックする項目
         if (!AppPreference.isDemoMode()) {
             //電波強度が強or中じゃない場合は使わせない、エラーコード1001
-            if (CurrentRadio.getImageLevel() == 0) {
-                return MainApplication.getInstance().getString(R.string.error_type_comm_reception);
-            } else if (CurrentRadio.getImageLevel() == GetRadioService.AIRPLANE_MODE) {
-                //機内モード状態の場合は使わせない、エラーコード1003
-                return MainApplication.getInstance().getString(R.string.error_type_airplane_mode);
-            }
+//            if (CurrentRadio.getImageLevel() == 0) {
+//                return MainApplication.getInstance().getString(R.string.error_type_comm_reception);
+//            } else if (CurrentRadio.getImageLevel() == GetRadioService.AIRPLANE_MODE) {
+//                //機内モード状態の場合は使わせない、エラーコード1003
+//                return MainApplication.getInstance().getString(R.string.error_type_airplane_mode);
+//            }
 
             //係員設定チェック
             if (AppPreference.isDriverCodeInput() && AppPreference.getDriverCode().equals("")) {

@@ -28,7 +28,7 @@ import jp.mcapps.android.multi_payment_terminal.CommonClickEvent;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
-import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
+//import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
 import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorStackingData;
@@ -113,15 +113,15 @@ public class MenuHeadFragment extends Fragment implements ErrorStackingEventHand
         });
 
         int[] radioImageResources = {R.drawable.ic_radio_level_low, R.drawable.ic_radio_level_middle, R.drawable.ic_radio_level_high, R.drawable.ic_airplane_mode};
-        _menuViewModel.setRadioImageResource(AppPreference.isDemoMode()
-                ? radioImageResources[2]                                //デモモードは強固定
-                : radioImageResources[CurrentRadio.getImageLevel()]);   //電波レベルの初期画像
-        _receiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                _menuViewModel.setRadioImageResource(radioImageResources[CurrentRadio.getImageLevel()]);
-            }
-        };
+//        _menuViewModel.setRadioImageResource(AppPreference.isDemoMode()
+//                ? radioImageResources[2]                                //デモモードは強固定
+//                : radioImageResources[CurrentRadio.getImageLevel()]);   //電波レベルの初期画像
+//        _receiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                _menuViewModel.setRadioImageResource(radioImageResources[CurrentRadio.getImageLevel()]);
+//            }
+//        };
 
         getLifecycle().addObserver(_menuViewModel);
 

@@ -31,7 +31,7 @@ import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
-import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
+//import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
 import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.OptionService;
 import jp.mcapps.android.multi_payment_terminal.data.sam.Constants;
@@ -51,7 +51,7 @@ import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
 //import jp.mcapps.android.multi_payment_terminal.model.QRSettlement;
 import jp.mcapps.android.multi_payment_terminal.model.Validator;
-import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
+//import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
 //import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterProc;
 import jp.mcapps.android.multi_payment_terminal.ui.discount.DiscountJobFutabaDViewModel;
@@ -286,25 +286,25 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
         }
 
         //　通信状態確認
-        if (CurrentRadio.getImageLevel() == 0) {
-            // 電波強度が弱の場合は、以降の処理は行わずに即時終了、通信エラー表示（1001）
-            errors.add(MainApplication.getInstance().getString(R.string.error_type_comm_reception));
-
-            final HashSet set = new HashSet(errors);
-            final String[] arr = new String[set.size()];
-            set.toArray(arr);
-
-            return arr;
-        } else if (CurrentRadio.getImageLevel() == GetRadioService.AIRPLANE_MODE) {
-            // 機内モード状態の場合は、以降の処理は行わずに即時終了、通信エラー表示（1003）
-            errors.add(MainApplication.getInstance().getString(R.string.error_type_airplane_mode));
-
-            final HashSet set = new HashSet(errors);
-            final String[] arr = new String[set.size()];
-            set.toArray(arr);
-
-            return arr;
-        }
+//        if (CurrentRadio.getImageLevel() == 0) {
+//            // 電波強度が弱の場合は、以降の処理は行わずに即時終了、通信エラー表示（1001）
+//            errors.add(MainApplication.getInstance().getString(R.string.error_type_comm_reception));
+//
+//            final HashSet set = new HashSet(errors);
+//            final String[] arr = new String[set.size()];
+//            set.toArray(arr);
+//
+//            return arr;
+//        } else if (CurrentRadio.getImageLevel() == GetRadioService.AIRPLANE_MODE) {
+//            // 機内モード状態の場合は、以降の処理は行わずに即時終了、通信エラー表示（1003）
+//            errors.add(MainApplication.getInstance().getString(R.string.error_type_airplane_mode));
+//
+//            final HashSet set = new HashSet(errors);
+//            final String[] arr = new String[set.size()];
+//            set.toArray(arr);
+//
+//            return arr;
+//        }
 
         String errCode = authenticator.authenticate();
         String authErr = errCode;
@@ -517,25 +517,25 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
         final McTerminal terminal = new McTerminal();
 
         //　通信状態確認
-        if (CurrentRadio.getImageLevel() == 0) {
-            // 電波強度が弱の場合は、以降の処理は行わずに即時終了、通信エラー表示（1001）
-            errors.add(MainApplication.getInstance().getString(R.string.error_type_comm_reception));
-
-            final HashSet<String> set = new HashSet<>(errors);
-            final String[] arr = new String[set.size()];
-            set.toArray(arr);
-
-            return arr;
-        } else if (CurrentRadio.getImageLevel() == GetRadioService.AIRPLANE_MODE) {
-            // 機内モード状態の場合は、以降の処理は行わずに即時終了、通信エラー表示（1003）
-            errors.add(MainApplication.getInstance().getString(R.string.error_type_airplane_mode));
-
-            final HashSet<String> set = new HashSet<>(errors);
-            final String[] arr = new String[set.size()];
-            set.toArray(arr);
-
-            return arr;
-        }
+//        if (CurrentRadio.getImageLevel() == 0) {
+//            // 電波強度が弱の場合は、以降の処理は行わずに即時終了、通信エラー表示（1001）
+//            errors.add(MainApplication.getInstance().getString(R.string.error_type_comm_reception));
+//
+//            final HashSet<String> set = new HashSet<>(errors);
+//            final String[] arr = new String[set.size()];
+//            set.toArray(arr);
+//
+//            return arr;
+//        } else if (CurrentRadio.getImageLevel() == GetRadioService.AIRPLANE_MODE) {
+//            // 機内モード状態の場合は、以降の処理は行わずに即時終了、通信エラー表示（1003）
+//            errors.add(MainApplication.getInstance().getString(R.string.error_type_airplane_mode));
+//
+//            final HashSet<String> set = new HashSet<>(errors);
+//            final String[] arr = new String[set.size()];
+//            set.toArray(arr);
+//
+//            return arr;
+//        }
 
         final HashSet<String> set = new HashSet<>(errors);
         final String[] arr = new String[set.size()];
@@ -557,26 +557,26 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
         //final QRSettlement qr = new QRSettlement();
         final McTerminal terminal = new McTerminal();
 
-        //　通信状態確認
-        if (CurrentRadio.getImageLevel() == 0) {
-            // 電波強度が弱の場合は、以降の処理は行わずに即時終了、通信エラー表示（1001）
-            errors.add(MainApplication.getInstance().getString(R.string.error_type_comm_reception));
-
-            final HashSet<String> set = new HashSet<>(errors);
-            final String[] arr = new String[set.size()];
-            set.toArray(arr);
-
-            return arr;
-        } else if (CurrentRadio.getImageLevel() == GetRadioService.AIRPLANE_MODE) {
-            // 機内モード状態の場合は、以降の処理は行わずに即時終了、通信エラー表示（1003）
-            errors.add(MainApplication.getInstance().getString(R.string.error_type_airplane_mode));
-
-            final HashSet<String> set = new HashSet<>(errors);
-            final String[] arr = new String[set.size()];
-            set.toArray(arr);
-
-            return arr;
-        }
+//        //　通信状態確認
+//        if (CurrentRadio.getImageLevel() == 0) {
+//            // 電波強度が弱の場合は、以降の処理は行わずに即時終了、通信エラー表示（1001）
+//            errors.add(MainApplication.getInstance().getString(R.string.error_type_comm_reception));
+//
+//            final HashSet<String> set = new HashSet<>(errors);
+//            final String[] arr = new String[set.size()];
+//            set.toArray(arr);
+//
+//            return arr;
+//        } else if (CurrentRadio.getImageLevel() == GetRadioService.AIRPLANE_MODE) {
+//            // 機内モード状態の場合は、以降の処理は行わずに即時終了、通信エラー表示（1003）
+//            errors.add(MainApplication.getInstance().getString(R.string.error_type_airplane_mode));
+//
+//            final HashSet<String> set = new HashSet<>(errors);
+//            final String[] arr = new String[set.size()];
+//            set.toArray(arr);
+//
+//            return arr;
+//        }
 
         final HashSet<String> set = new HashSet<>(errors);
         final String[] arr = new String[set.size()];

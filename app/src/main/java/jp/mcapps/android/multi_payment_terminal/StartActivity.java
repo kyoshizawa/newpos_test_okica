@@ -36,8 +36,8 @@ import jp.mcapps.android.multi_payment_terminal.databinding.ActivityStartBinding
 //import jp.mcapps.android.multi_payment_terminal.devices.GloryCashChanger;
 //import jp.mcapps.android.multi_payment_terminal.model.DeviceConnectivityManager;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
-import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
-import jp.mcapps.android.multi_payment_terminal.service.LogSendService;
+//import jp.mcapps.android.multi_payment_terminal.service.GetGpsService;
+//import jp.mcapps.android.multi_payment_terminal.service.LogSendService;
 //import jp.mcapps.android.multi_payment_terminal.service.WifiP2pService;
 import jp.mcapps.android.multi_payment_terminal.logger.EventLogger;
 import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuHomeFragment;
@@ -217,12 +217,12 @@ public class StartActivity extends AppCompatActivity {
 //            }
         }
 
-        Intent logSendService = new Intent(this, LogSendService.class);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            ContextCompat.startForegroundService(this, logSendService);
-        } else {
-            startService(logSendService);
-        };
+//        Intent logSendService = new Intent(this, LogSendService.class);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            ContextCompat.startForegroundService(this, logSendService);
+//        } else {
+//            startService(logSendService);
+//        };
     }
 
     @Override
