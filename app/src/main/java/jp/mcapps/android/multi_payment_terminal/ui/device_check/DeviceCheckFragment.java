@@ -35,7 +35,7 @@ import com.pos.device.printer.Printer;
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.BaseFragment;
 import jp.mcapps.android.multi_payment_terminal.CommonClickEvent;
-import jp.mcapps.android.multi_payment_terminal.CustomScannerActivity;
+//import jp.mcapps.android.multi_payment_terminal.CustomScannerActivity;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.ScreenData;
@@ -390,17 +390,17 @@ public class DeviceCheckFragment extends BaseFragment implements DeviceCheckEven
 
     @Override
     public void checkCamera(View view) {
-        _deviceCheckViewModel.isRunning(true);
-        CommonClickEvent.RecordButtonClickOperation(view, true);
-        _resultTextView.scrollTo(0, getResultTextBottom()); //自動スクロール
-        IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
-        integrator.setOrientationLocked(true);
-        integrator.setPrompt("");
-        integrator.setTimeout(k_DEVICE_CHECK_TIMEOUT);  // 単位はミリ秒
-        integrator.setCaptureActivity(CustomScannerActivity.class)
-                .addExtra(QRLayouts.KEY, QRLayouts.DEVICE_CHECK)
-                .setBeepEnabled(true)
-                .initiateScan();
+//        _deviceCheckViewModel.isRunning(true);
+//        CommonClickEvent.RecordButtonClickOperation(view, true);
+//        _resultTextView.scrollTo(0, getResultTextBottom()); //自動スクロール
+//        IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
+//        integrator.setOrientationLocked(true);
+//        integrator.setPrompt("");
+//        integrator.setTimeout(k_DEVICE_CHECK_TIMEOUT);  // 単位はミリ秒
+//        integrator.setCaptureActivity(CustomScannerActivity.class)
+//                .addExtra(QRLayouts.KEY, QRLayouts.DEVICE_CHECK)
+//                .setBeepEnabled(true)
+//                .initiateScan();
     }
 
     @Override
@@ -521,24 +521,24 @@ public class DeviceCheckFragment extends BaseFragment implements DeviceCheckEven
 
     @Override
     public void checkMeter(View view) {
-        _deviceCheckViewModel.isRunning(true);
-        CommonClickEvent.RecordButtonClickOperation(view, true);
-        _resultTextView.scrollTo(0, getResultTextBottom()); //自動スクロール
-        _deviceCheckViewModel.checkMeter().subscribe((response, error) -> {
-            if (error != null) {
-                _deviceCheckViewModel.appendResultText(String.format("◆メーター　　：✕　情報取得失敗"));
-            } else {
-                if (AppPreference.getIFBoxVersionInfo() != null) {
-                    _deviceCheckViewModel.appendResultText(String.format("◆メーター　　：〇　情報取得成功\n[詳細]\n<SerialNo> %s\n<種別> %s\n<Version> %s\n<状態> %s\n<料金> %s",
-                            AppPreference.getIFBoxVersionInfo().mcSerial, AppPreference.getIFBoxVersionInfo().appModel, AppPreference.getIFBoxVersionInfo().appVersion, response.status, response.fare));
-                } else {
-                    _deviceCheckViewModel.appendResultText(String.format("◆メーター　　：〇　情報取得成功\n[詳細]\n<SerialNo> %s\n<種別> %s\n<Version> %s\n<状態> %s\n<料金> %s",
-                            "", "", "", response.status, response.fare));
-                }
-            }
-            _resultTextView.scrollTo(0, getResultTextBottom()); //自動スクロール
-            _deviceCheckViewModel.isRunning(false);
-        });
+//        _deviceCheckViewModel.isRunning(true);
+//        CommonClickEvent.RecordButtonClickOperation(view, true);
+//        _resultTextView.scrollTo(0, getResultTextBottom()); //自動スクロール
+//        _deviceCheckViewModel.checkMeter().subscribe((response, error) -> {
+//            if (error != null) {
+//                _deviceCheckViewModel.appendResultText(String.format("◆メーター　　：✕　情報取得失敗"));
+//            } else {
+//                if (AppPreference.getIFBoxVersionInfo() != null) {
+//                    _deviceCheckViewModel.appendResultText(String.format("◆メーター　　：〇　情報取得成功\n[詳細]\n<SerialNo> %s\n<種別> %s\n<Version> %s\n<状態> %s\n<料金> %s",
+//                            AppPreference.getIFBoxVersionInfo().mcSerial, AppPreference.getIFBoxVersionInfo().appModel, AppPreference.getIFBoxVersionInfo().appVersion, response.status, response.fare));
+//                } else {
+//                    _deviceCheckViewModel.appendResultText(String.format("◆メーター　　：〇　情報取得成功\n[詳細]\n<SerialNo> %s\n<種別> %s\n<Version> %s\n<状態> %s\n<料金> %s",
+//                            "", "", "", response.status, response.fare));
+//                }
+//            }
+//            _resultTextView.scrollTo(0, getResultTextBottom()); //自動スクロール
+//            _deviceCheckViewModel.isRunning(false);
+//        });
     }
 
     @Override

@@ -60,7 +60,7 @@ import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
 import jp.mcapps.android.multi_payment_terminal.data.BusinessType;
 //import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.OptionService;
 import jp.mcapps.android.multi_payment_terminal.data.TransMap;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
@@ -97,15 +97,15 @@ import jp.mcapps.android.multi_payment_terminal.model.Validator;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterConst;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.ui.Converters;
-import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
+//import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
 import jp.mcapps.android.multi_payment_terminal.ui.dialog.ConfirmDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.dialog.ErrorDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.dialog.SuccessDialog;
-import jp.mcapps.android.multi_payment_terminal.ui.discount.DiscountJobFutabaDViewModel;
+//import jp.mcapps.android.multi_payment_terminal.ui.discount.DiscountJobFutabaDViewModel;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorEventHandlers;
 import jp.mcapps.android.multi_payment_terminal.util.BitmapSaver;
-import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
 import timber.log.Timber;
 
 //ADD-S BMT S.Oyama 2024/09/12 フタバ双方向向け改修
@@ -754,7 +754,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         }
 
         //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-        lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_okica, R.id.fragment_amount_input_separationpay_fd);
+        //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_emoney_okica, R.id.fragment_amount_input_separationpay_fd);
     }
     //ADD-E BMT S.Oyama 2024/09/12 フタバ双方向向け改修
 
@@ -951,7 +951,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                 })
                 .subscribe(() -> {
                             //最後のチェックとして、直前取引が1分以内に同じ金額であったら2重決済じゃないかの確認ダイアログを出して「はい」で決済に進む、エラーコード2009
-                            lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_qr, R.id.fragment_amount_input_separationpay_fd);
+                            //lastCheckExt(activity, dialog, type, R.id.action_navigation_separationpay_to_navigation_qr, R.id.fragment_amount_input_separationpay_fd);
                         }, e -> {
                             String errorCode = e.getMessage();
                             dialog.ShowErrorMessage(activity, errorCode);
@@ -1185,16 +1185,8 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
 
         // 集計印刷
         PrinterManager printerManager = PrinterManager.getInstance();
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-            // オカベメーターの場合はメーター側で日計を出力する為、ここでは集計クリアのみ実施する
-            printerManager.OkabeTotallingClearJudge();  /*Add k.Fukumitsu  2024/1/30 オカベ双_ホーム画面で入庫または業務終了時、集計をクリア*/
-            //ADD-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-        } else if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D)) {
-            printerManager.print_AggregateForFutabaDBusinessEnd(view, 0, AppPreference.isAggregateDetail());
-            //ADD-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-        } else {
+
             printerManager.print_Aggregate(view, 0, AppPreference.isAggregateDetail());
-        }
 
         //MC認証成功している場合のみ
         if (_app.isMcAuthSuccess()) {
@@ -1327,9 +1319,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                     while (true) {
                         Thread.sleep(1000);
                         if (printerManager.getPrintStatus() == PrinterConst.PrintStatus_IDLE) {
-                            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D)) {
-                                PrinterManager.getInstance().FutabaDTotallingClearJudge();
-                            }
+
                             break;
                         }
                     }
@@ -1406,7 +1396,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                 launchIntent.putExtra("isDemoMode", AppPreference.isDemoMode());
                 launchIntent.putExtra("organizationName", AppPreference.getMerchantOffice());
                 launchIntent.putExtra("organizationParentName", AppPreference.getMerchantName());
-                launchIntent.putExtra("isInputAmount", IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true ? false : true);
+                launchIntent.putExtra("isInputAmount", true);
                 launchIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 Context context = view.getContext();
                 context.startActivity(launchIntent);
@@ -1560,62 +1550,6 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                 } else {
                     dialog.ShowErrorMessage(activity, "2009");
                 }
-            } else if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) &&
-                    type != BusinessType.BALANCE && sameEigyoCountCheck()) {
-                //同一営業回数の決済あり
-                CommonErrorEventHandlers handlers = new CommonErrorEventHandlers() {
-                    @Override
-                    public void onPositiveClick(String errorCode) {
-                        CommonClickEvent.RecordClickOperation("はい", "2重決済確認", true);
-                        activity.runOnUiThread(() -> {
-                            NavigationWrapper.navigate(activity, viewID, navigateId);
-                        });
-                    }
-
-                    @Override
-                    public void onNegativeClick(String errorCode) {
-                    }
-
-                    @Override
-                    public void onNeutralClick(String errorCode) {
-                    }
-
-                    @Override
-                    public void onDismissClick(String errorCode) {
-                    }
-                };
-
-                dialog.setCommonErrorEventHandlers(handlers);
-                dialog.ShowErrorMessage(activity, "2095");
-                //ADD-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-            } else if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) &&
-                    type != BusinessType.BALANCE && sameEigyoCountCheck()) {
-                //同一営業回数の決済あり
-                CommonErrorEventHandlers handlers = new CommonErrorEventHandlers() {
-                    @Override
-                    public void onPositiveClick(String errorCode) {
-                        CommonClickEvent.RecordClickOperation("はい", "2重決済確認", true);
-                        activity.runOnUiThread(() -> {
-                            NavigationWrapper.navigate(activity, viewID, navigateId);
-                        });
-                    }
-
-                    @Override
-                    public void onNegativeClick(String errorCode) {
-                    }
-
-                    @Override
-                    public void onNeutralClick(String errorCode) {
-                    }
-
-                    @Override
-                    public void onDismissClick(String errorCode) {
-                    }
-                };
-
-                dialog.setCommonErrorEventHandlers(handlers);
-                dialog.ShowErrorMessage(activity, "2095");
-                //ADD-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
             } else {
                 //同一金額の決済なし
                 activity.runOnUiThread(() -> {
@@ -1734,62 +1668,6 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
                 } else {
                     dialog.ShowErrorMessage(activity, "2009");
                 }
-            } else if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) &&
-                    type != BusinessType.BALANCE && sameEigyoCountCheck()) {
-                //同一営業回数の決済あり
-                CommonErrorEventHandlers handlers = new CommonErrorEventHandlers() {
-                    @Override
-                    public void onPositiveClick(String errorCode) {
-                        CommonClickEvent.RecordClickOperation("はい", "2重決済確認", true);
-                        activity.runOnUiThread(() -> {
-                            NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, navigateId);
-                        });
-                    }
-
-                    @Override
-                    public void onNegativeClick(String errorCode) {
-                    }
-
-                    @Override
-                    public void onNeutralClick(String errorCode) {
-                    }
-
-                    @Override
-                    public void onDismissClick(String errorCode) {
-                    }
-                };
-
-                dialog.setCommonErrorEventHandlers(handlers);
-                dialog.ShowErrorMessage(activity, "2095");
-                //ADD-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-            } else if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) &&
-                    type != BusinessType.BALANCE && sameEigyoCountCheck()) {
-                //同一営業回数の決済あり
-                CommonErrorEventHandlers handlers = new CommonErrorEventHandlers() {
-                    @Override
-                    public void onPositiveClick(String errorCode) {
-                        CommonClickEvent.RecordClickOperation("はい", "2重決済確認", true);
-                        activity.runOnUiThread(() -> {
-                            NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, navigateId);
-                        });
-                    }
-
-                    @Override
-                    public void onNegativeClick(String errorCode) {
-                    }
-
-                    @Override
-                    public void onNeutralClick(String errorCode) {
-                    }
-
-                    @Override
-                    public void onDismissClick(String errorCode) {
-                    }
-                };
-
-                dialog.setCommonErrorEventHandlers(handlers);
-                dialog.ShowErrorMessage(activity, "2095");
-                //ADD-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
             } else {
                 //同一金額の決済なし
                 activity.runOnUiThread(() -> {
@@ -2126,20 +2004,6 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         if (activity == null) return;
 
         switch (tmpSeparationJobMode) {
-            case AmountInputSeparationPayFDViewModel.AMOUNTINPUT_SEPARATIONMODE_CREDIT:            //クレジット
-                navigateToCreditCardScan(view, sharedViewModel);        //クレジットスキャン画面へ
-                break;
-            case AmountInputSeparationPayFDViewModel.AMOUNTINPUT_SEPARATIONMODE_EMONEY:            //電子マネー
-                view.post(() -> {
-                    NavigationWrapper.navigate(view, R.id.action_navigation_menu_separation_with_ticket_to_navigation_menu_emoney); //電子マネーメニュー画面へ
-                });
-                break;
-            case AmountInputSeparationPayFDViewModel.AMOUNTINPUT_SEPARATIONMODE_QR:            //QR
-                navigateToQRSeparation(view, sharedViewModel);
-                break;
-            case AmountInputSeparationPayFDViewModel.AMOUNTINPUT_SEPARATIONMODE_PREPAID:            //プリペイド
-            case AmountInputSeparationPayFDViewModel.AMOUNTINPUT_SEPARATIONMODE_NONE:            //なし(あるいはエラー終了)
-            case AmountInputSeparationPayFDViewModel.AMOUNTINPUT_SEPARATIONMODE_TICKET:            //チケット
             default:
                 return;
         }
@@ -2207,9 +2071,9 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
     public boolean navigateToSeparationPayCancelSendCancel(View view) {
         boolean result = false;
 
-        if ((IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) != true)) {
-            return result;
-        }
+//        if ((IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) != true)) {
+//            return result;
+//        }
 
         PrinterManager printerManager = PrinterManager.getInstance();
         printerManager.setView(view);
@@ -2331,7 +2195,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
             launchIntent.putExtra("isDemoMode", AppPreference.isDemoMode());
             launchIntent.putExtra("organizationName", AppPreference.getMerchantOffice());
             launchIntent.putExtra("organizationParentName", AppPreference.getMerchantName());
-            launchIntent.putExtra("isInputAmount", IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true ? false : true);
+            launchIntent.putExtra("isInputAmount",  true);
             launchIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             activity.startActivityForResult(launchIntent, MenuDiscountFragment.DISCOUNT_MENU_INFO_REQUEST_CODE);
         } catch (Exception e) {
@@ -2380,7 +2244,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
             launchIntent.putExtra("isDemoMode", AppPreference.isDemoMode());
             launchIntent.putExtra("organizationName", AppPreference.getMerchantOffice());
             launchIntent.putExtra("organizationParentName", AppPreference.getMerchantName());
-            launchIntent.putExtra("isInputAmount", IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true ? false : true);
+            launchIntent.putExtra("isInputAmount", true);
             launchIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             activity.startActivityForResult(launchIntent, MenuDiscountFragment.DISCOUNT_INFO_REQUEST_CODE);
         } catch (Exception e) {
@@ -2414,161 +2278,8 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         Activity activity = (Activity) view.getContext();
         if (activity == null) return;
 
-        sharedViewModel.setDiscountJobMode(tmpDiscountMode - 1);               // 割引処理モードを設定 モードから配列インデックスへ変更
+//        sharedViewModel.setDiscountJobMode(tmpDiscountMode - 1);               // 割引処理モードを設定 モードから配列インデックスへ変更
 
-        //ADD-S BMT S.Oyama 2024/10/11 フタバ双方向向け改修
-        if ((IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true)) {
-            PrinterManager printerManager = PrinterManager.getInstance();
-            printerManager.setView(view);
-//
-//            if (_menuViewModel.getIFBoxManager() == null) {
-//                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-//                return;
-//            }
-//
-//            if (_menuViewModel.getIFBoxManager().getIsConnected820() == false)             //820未接続の場合
-//            {
-//                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-//                return;
-//            }
-//
-//            IFBoxManager.SendMeterDataInfo_FutabaD tmpSend820InfoDiscount = new IFBoxManager.SendMeterDataInfo_FutabaD();
-//            tmpSend820InfoDiscount.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-//            tmpSend820InfoDiscount.IsLoopBreakOut = false;
-//            tmpSend820InfoDiscount.ErrorCode820 = IFBoxManager.SendMeterDataStatus_FutabaD.NONE;
-//
-//            _meterDataV4InfoDisposable = _menuViewModel.getIFBoxManager().getMeterDataV4().subscribeOn(
-//                    Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(meter -> {
-//                Timber.i("[FUTABA-D]navigateToDiscountJob():750<-820 meter_data event cmd:%d ", meter.meter_sub_cmd);
-//                if (meter.meter_sub_cmd == 12) {              //割引の通知
-//                    Timber.i("[FUTABA-D]navigateToDiscountJob():Discount event ");
-//                    tmpSend820InfoDiscount.StatusCode = IFBoxManager.SendMeterDataStatus_FutabaD.SENDOK;             //ACKが返ってきた場合
-//                }
-//            });
-//
-//            _meterDataV4ErrorDisposable = _menuViewModel.getIFBoxManager().getMeterDataV4Error().subscribeOn(
-//                    Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(error -> {         //送信中にエラー受信(タイムアウト，切断)
-//                Timber.e("[FUTABA-D]navigateToDiscountJob():Error event ErrCD:%d 820ErrCD:%d ", error.ErrorCode, error.ErrorCode820);
-//                tmpSend820InfoDiscount.StatusCode = error.ErrorCode;
-//                tmpSend820InfoDiscount.ErrorCode820 = error.ErrorCode820;
-//
-//            });
-
-            _progressDialog = new ProgressDialog(view.getContext());
-            _progressDialog.setMessage("割引可否確認中 ・・・ ");                   // 内容(メッセージ)設定
-            _progressDialog.setCancelable(false);                              // キャンセル無効
-            _progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);    // スタイル設定
-            _progressDialog.show();
-
-//            Thread thread = new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//
-//                    int tmpDiscountJobMode_FutabaD = 0;
-////                    switch (tmpDiscountMode) {
-////                        case 1:
-////                            tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_NOTIFY_JOB1;
-////                            break;
-////                        case 2:
-////                            tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_NOTIFY_JOB2;
-////                            break;
-////                        case 3:
-////                            tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_NOTIFY_JOB3;
-////                            break;
-////                        case 4:
-////                            tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_NOTIFY_JOB4;
-////                            break;
-////                        case 5:
-////                            tmpDiscountJobMode_FutabaD = IFBoxManager.SendMeterDataStatus_FutabaD.DISCOUNTTYPE_NOTIFY_JOB5;
-////                            break;
-////                    }
-//
-//                    if (tmpDiscountJobMode_FutabaD == 0) {
-//                        Timber.e("navigateToDiscountJob::割引処理モードが不正です。");
-//                        return;
-//                    }
-//
-//                    _menuViewModel.getIFBoxManager().send820_DiscountType(tmpDiscountJobMode_FutabaD);               //割引処理開始情報の通知
-//
-//                    for (int i = 0; i < 4 * 10; i++)        //最大4秒ほど待ってみる
-//                    {
-//                        try {
-//                            Thread.sleep(100);
-//                        } catch (InterruptedException e) {
-//                        }
-//
-//                        if (tmpSend820InfoDiscount.StatusCode != IFBoxManager.SendMeterDataStatus_FutabaD.NONE)         //状態に変化が出たら直ちに抜ける
-//                        {
-//                            tmpSend820InfoDiscount.IsLoopBreakOut = true;
-//                            break;
-//                        }
-//                    }
-//
-//                    ClearV4DataCallback_FutabaD();          //V4データコールバックのクリア
-//
-//                    view.post(() -> {
-//                        try {
-//
-//                            if (tmpSend820InfoDiscount.IsLoopBreakOut == false) {                             //820から何も返却されなかった場合のループアウト
-//                                _menuViewModel.getIFBoxManager().killRetryTimerFutabaD();            //タイマーの停止
-//                                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_DISCOUNT_REJECT);       //割引処理拒否とみなしてエラー表示
-//                                if (_progressDialog != null) {
-//                                    _progressDialog.dismiss();
-//                                }
-//                                _progressDialog = null;
-//                                return;
-//                            } else {
-//                                switch (tmpSend820InfoDiscount.StatusCode)                       //ステータスコードのチェック
-//                                {
-//                                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_NOTCONNECTED:       //切断
-//                                        printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-//                                        if (_progressDialog != null) {
-//                                            _progressDialog.dismiss();
-//                                        }
-//                                        _progressDialog = null;
-//                                        return;
-//                                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_TIMEOUT:           //タイムアウト
-//                                        printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR_TIMEOUT);       //IFBOXタイムアウトエラー
-//                                        if (_progressDialog != null) {
-//                                            _progressDialog.dismiss();
-//                                        }
-//                                        _progressDialog = null;
-//                                        return;
-//                                    case IFBoxManager.SendMeterDataStatus_FutabaD.ERROR_820NACK:              //820内でが返ってきた場合
-//                                        Timber.e("[FUTABA-D]820 Inner error! ErrCD:%d", tmpSend820InfoDiscount.ErrorCode820);
-//                                        printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-//                                        if (_progressDialog != null) {
-//                                            _progressDialog.dismiss();
-//                                        }
-//                                        _progressDialog = null;
-//                                        return;
-//                                    default:
-//                                        //ここに到達する場合は，エラー無しで決済選択モードが送信されたことを意味する
-//                                        if (_progressDialog != null) {
-//                                            _progressDialog.dismiss();
-//                                        }
-//                                        _progressDialog = null;
-//                                        break;
-//                                }
-//                            }
-//                            //ADD-E BMT S.Oyama 2024/10/11 フタバ双方向向け改修
-//                        } catch (Exception e) {
-//                            Timber.e(e);
-//                            if (_progressDialog != null) {
-//                                _progressDialog.dismiss();
-//                            }
-//                            _progressDialog = null;
-//                            return;
-//                        }
-//
-//                        // 割引処理１～５画面に遷移する
-//                        NavigationWrapper.navigate(activity, R.id.fragment_main_nav_host, R.id.action_navigation_menu_to_navigation_discountjob_fd);
-//                    });
-//                }
-//            });
-//            thread.start();
-
-        }
     }
 
     /******************************************************************************/
@@ -2814,40 +2525,7 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
     /******************************************************************************/
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void navigateToAggregate(View view) {
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D)) {
-            CommonClickEvent.RecordButtonClickOperation(view, true);
-            Activity activity = (Activity) view.getContext();
-            if (activity == null) return;
 
-//            if (_menuViewModel.getIFBoxManager().getIsConnected820() == false) {                    //IFBOX未接続
-//                PrinterManager printerManager = PrinterManager.getInstance();
-//                printerManager.PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);       //IFBOX接続エラー
-//                return;
-//            }
-
-            NavigationWrapper.popBackStack(view);                    //home画面へ(戻る)
-            AppPreference.setAmountInputCancel(false);              //金額入力を行えるようにする
-
-            //_menuViewModel.getIFBoxManager().setExtPrintJobMode(IFBoxManager.SendMeterDataStatus_FutabaD.RECEIPT_PRINT);           //領収書印刷モード設定
-            TimerTask timerTask = new TimerTask() {
-                @Override
-                public void run() {
-
-                    view.post(() -> {
-                        PrinterManager printerManager = PrinterManager.getInstance();
-                        printerManager.changeIsSlipTypeEx(PrinterConst.SlipType_AggregateFutabaD);      // 集計印刷モード設定
-                        // 通／他キーを送信
-                        //_menuViewModel.getIFBoxManager().send820_ReceiptTicketPrint(IFBoxManager.SendMeterDataStatus_FutabaD.AGGREGATE_PRINT);           //集計印刷開始情報の通知
-                        // この後、メーターから「集計印字」や「セットキー」の文字を含んだ処理コード表示要求を受信する
-                    });
-                }
-            };
-
-            Timer timer = new Timer();
-            timer.schedule(timerTask, 500);
-        } else {
-            // navigateMain(view, R.id.action_navigation_menu_to_navigation_history_aggregate);
-        }
     }
     /******************************************************************************/
     /*!
@@ -2871,9 +2549,9 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         ConfirmDialog.newInstance("【手動決済モード設定確認】", "設定しますか？", () -> {
             CommonClickEvent.RecordClickOperation("はい", "手動決済モード設定確認", false);
             // モード移行の処理追加
-            Version.Response ifboxVersionInfo = AppPreference.getIFBoxVersionInfo();
-            ifboxVersionInfo.appModel = IFBoxAppModels.FUTABA_D_MANUAL;
-            AppPreference.setIFBoxVersionInfo(ifboxVersionInfo);
+//            Version.Response ifboxVersionInfo = AppPreference.getIFBoxVersionInfo();
+//            ifboxVersionInfo.appModel = IFBoxAppModels.FUTABA_D_MANUAL;
+//            AppPreference.setIFBoxVersionInfo(ifboxVersionInfo);
 
             sharedViewModel.setUpdatedFlag(true);
             SuccessDialog.show(view.getContext(), "手動決済モードに切り替わりました。");
@@ -2906,9 +2584,9 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         ConfirmDialog.newInstance("【双方向決済モード設定確認】", "設定しますか？", () -> {
             CommonClickEvent.RecordClickOperation("はい", "双方向決済モード設定確認", false);
             // モード移行の処理追加
-            Version.Response ifboxVersionInfo = AppPreference.getIFBoxVersionInfo();
-            ifboxVersionInfo.appModel = IFBoxAppModels.FUTABA_D;
-            AppPreference.setIFBoxVersionInfo(ifboxVersionInfo);
+//            Version.Response ifboxVersionInfo = AppPreference.getIFBoxVersionInfo();
+//            ifboxVersionInfo.appModel = IFBoxAppModels.FUTABA_D;
+//            AppPreference.setIFBoxVersionInfo(ifboxVersionInfo);
             AppPreference.setIsTemporaryManualMode(false);
 
             sharedViewModel.setUpdatedFlag(true);
@@ -2998,9 +2676,6 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         Activity activity = (Activity) view.getContext();
         if (activity == null) return;
 
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false) {             //フタバD以外は何もせず戻る
-            return;
-        }
 
 //        if (_menuViewModel.getIFBoxManager().getIsConnected820() == false) {                    //IFBOX未接続
 //            PrinterManager printerManager = PrinterManager.getInstance();
@@ -3065,9 +2740,6 @@ public class MenuEventHandlersImpl implements MenuEventHandlers {
         Activity activity = (Activity) view.getContext();
         if (activity == null) return;
 
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false) {
-            return;
-        }
 //
 //        if (_menuViewModel.getIFBoxManager().getIsConnected820() == false) {                    //IFBOX未接続
 //            PrinterManager printerManager = PrinterManager.getInstance();

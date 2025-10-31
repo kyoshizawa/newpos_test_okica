@@ -32,7 +32,7 @@ import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
 //import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.OptionService;
 import jp.mcapps.android.multi_payment_terminal.data.sam.Constants;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
@@ -54,8 +54,8 @@ import jp.mcapps.android.multi_payment_terminal.model.Validator;
 //import jp.mcapps.android.multi_payment_terminal.service.GetRadioService;
 //import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterProc;
-import jp.mcapps.android.multi_payment_terminal.ui.discount.DiscountJobFutabaDViewModel;
-import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Meter;
+//import jp.mcapps.android.multi_payment_terminal.ui.discount.DiscountJobFutabaDViewModel;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Meter;
 //import jp.mcapps.android.multi_payment_terminal.thread.emv.EmvCLProcess;
 import timber.log.Timber;
 
@@ -189,13 +189,9 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
 //    }
 
     public String getAggregateTitle() {
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D)) {
-            return MainApplication.getInstance().getString(R.string.btn_history_daily_total_print);
-        } else {
+
             return MainApplication.getInstance().getString(R.string.btn_history_daily_total);
-        }
     }
-    //ADD-E BMT S.Oyama 2024/09/18 フタバ双方向向け改修
 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
@@ -467,11 +463,8 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
     public boolean isMeterDuplex() {
 //CHG-S BMT S.Oyama 2024/09/10 フタバ双方向向け改修
         //return IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) || IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) ;
-        boolean fl = IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) ||
-                IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D ) ||
-                IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D);
 
-        return fl;
+        return false;
 //CHG-E BMT S.Oyama 2024/09/10 フタバ双方向向け改修
     }
 
@@ -487,9 +480,7 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
      */
     /******************************************************************************/
     public boolean isAmountAdvancePayMode() {
-        boolean fl = IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D);
-
-        return fl;
+        return false;
     }
 //ADD-E BMT S.Oyama 2024/09/10 フタバ双方向向け改修
 
@@ -670,19 +661,19 @@ public class MenuViewModel extends ViewModel implements LifecycleObserver {
      * @private
      */
     /******************************************************************************/
-    public boolean getisFutabaDMode() {
-        return IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D);
-    }
-//ADD-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-
-
-    public boolean getisDuplexMode() {
-        return IFBoxAppModels.isDuplex();
-    }
-
-    public boolean getisManualMode() {
-        return IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL);
-    }
+//    public boolean getisFutabaDMode() {
+//        return IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D);
+//    }
+////ADD-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
+//
+//
+//    public boolean getisDuplexMode() {
+//        return IFBoxAppModels.isDuplex();
+//    }
+//
+//    public boolean getisManualMode() {
+//        return IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL);
+//    }
 
     //ADD-S BMT S.Oyama 2024/11/27 フタバ双方向向け改修
     public static Disposable meterDataV4ErrorDisposable_ADR = null;

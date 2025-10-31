@@ -43,13 +43,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.BuildConfig;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
-import jp.mcapps.android.multi_payment_terminal.data.DeviceServiceInfo;
+//import jp.mcapps.android.multi_payment_terminal.data.DeviceServiceInfo;
 import jp.mcapps.android.multi_payment_terminal.data.FirmWareInfo;
 //import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
 import jp.mcapps.android.multi_payment_terminal.util.DeviceUtils;
-import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.IFBoxApi;
-import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.IFBoxApiImpl;
-import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
 import timber.log.Timber;
 
 @SuppressWarnings("ALL")
@@ -306,10 +303,10 @@ public class Updater {
         final StringBuilder sb = new StringBuilder();
         sb.append("(");
         sb.append(String.format("model_name.eq.%s", _app.getPackageName()));
-        if (AppPreference.isIFBoxHost()) {
-            final FirmWareInfo i = AppPreference.getIFBoxOTAInfo();
-            sb.append(String.format(",model_name.eq.%s", i.modelName));
-        }
+//        if (AppPreference.isIFBoxHost()) {
+//            final FirmWareInfo i = AppPreference.getIFBoxOTAInfo();
+//            sb.append(String.format(",model_name.eq.%s", i.modelName));
+//        }
 
         if (isAllApp) {
             // プリペイドアプリを使えるか判定
@@ -376,9 +373,9 @@ public class Updater {
                             boolean isApkUpdateExists = firmware.modelName.equals(_app.getPackageName())
                                     && firmware.versionCode > BuildConfig.VERSION_CODE;
 
-                            boolean isIFBoxUpdateExists = AppPreference.isIFBoxHost()
-                                    && firmware.modelName.equals(AppPreference.getIFBoxOTAInfo().modelName)
-                                    && firmware.versionCode > AppPreference.getIFBoxOTAInfo().versionCode;
+//                            boolean isIFBoxUpdateExists = AppPreference.isIFBoxHost()
+//                                    && firmware.modelName.equals(AppPreference.getIFBoxOTAInfo().modelName)
+//                                    && firmware.versionCode > AppPreference.getIFBoxOTAInfo().versionCode;
 
                             // 自分よりバージョンが大きいか確認（未インストールの場合はバージョンが0なのでそれは無視）
                             boolean isPrepaidUpdateExists = firmware.modelName.equals(BuildConfig.PREPAID_APP_MODEL)
@@ -387,7 +384,7 @@ public class Updater {
 
                             needsApkReboot = isApkUpdateExists;
 
-                            if (isApkUpdateExists || isIFBoxUpdateExists || isPrepaidUpdateExists) _updateList.add(firmware);
+                            if (isApkUpdateExists || isPrepaidUpdateExists) _updateList.add(firmware);
 //                            if (isApkUpdateExists || isIFBoxUpdateExists) _updateList.add(firmware);
 
                             // 強制アップデートのチェック
@@ -481,14 +478,14 @@ public class Updater {
                     final FirmWareInfo firmware = _updateList.get(i);
 
                     final boolean isApk = firmware.modelName.equals(_app.getPackageName());
-                    final boolean isIFBox = AppPreference.isIFBoxHost()
-                            && firmware.modelName.equals(AppPreference.getIFBoxOTAInfo().modelName);
+//                    final boolean isIFBox = AppPreference.isIFBoxHost()
+//                            && firmware.modelName.equals(AppPreference.getIFBoxOTAInfo().modelName);
                     // プリペイドアプリ用
                     final boolean isPrepaid = firmware.modelName.equals(BuildConfig.PREPAID_APP_MODEL);
 
                     final Products product = isApk
                             ? Products.ThisApp
-                            : isIFBox
+                            : false
                             ? Products.IFBox
                             : Products.None;
 
@@ -611,13 +608,13 @@ public class Updater {
             final FirmWareInfo apkInfo = _apkInfo;
 
             FirmWareInfo _ifBoxInfo = null;
-            if (AppPreference.isIFBoxHost()) {
-                try {
-                    _ifBoxInfo = Observable.fromIterable(_updateList)
-                            .filter(f -> f.modelName.equals(AppPreference.getIFBoxOTAInfo().modelName) && f.downloadSuccessful)
-                            .blockingFirst();
-                } catch (NoSuchElementException ignore) { }
-            }
+//            if (AppPreference.isIFBoxHost()) {
+//                try {
+//                    _ifBoxInfo = Observable.fromIterable(_updateList)
+//                            .filter(f -> f.modelName.equals(AppPreference.getIFBoxOTAInfo().modelName) && f.downloadSuccessful)
+//                            .blockingFirst();
+//                } catch (NoSuchElementException ignore) { }
+//            }
             final FirmWareInfo ifBoxInfo = _ifBoxInfo;
 
             // プリペイドアプリ用
@@ -716,7 +713,7 @@ public class Updater {
             final String targetFilename = _localDir.toString() + File.separator + firmware.modelName;
 
             Completable c = Completable.create(inner -> {
-                DeviceServiceInfo ds;
+//                DeviceServiceInfo ds;
 
                 while (true) {
 //                    ds = _deviceNetworkManager.getDeviceServiceInfo().getValue();

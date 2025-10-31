@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import jp.mcapps.android.multi_payment_terminal.data.ActionBarColors;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
-import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
-import jp.mcapps.android.multi_payment_terminal.ui.discount.DiscountJobFutabaDViewModel;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
+//import jp.mcapps.android.multi_payment_terminal.ui.discount.DiscountJobFutabaDViewModel;
 import timber.log.Timber;
 
 public class SharedViewModel extends ViewModel {
@@ -202,7 +202,7 @@ public class SharedViewModel extends ViewModel {
             switch (color) {
                 case Normal:
                     //_actionBarColor.setValue(AppPreference.isDemoMode() ? R.color.design_default_color_error : R.color.primary);
-                    _actionBarColor.setValue(AppPreference.isDemoMode() ? R.color.design_default_color_error : (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) ? R.color.orange_500 : R.color.primary));
+                    _actionBarColor.setValue(AppPreference.isDemoMode() ? R.color.design_default_color_error : R.color.primary);
                     break;
                 case Success:
                     _actionBarColor.setValue(R.color.bar_emoney_blue);
@@ -228,13 +228,6 @@ public class SharedViewModel extends ViewModel {
     //ADD-S BMT S.Oyama 2024/09/06 フタバ双方向向け改修
     public final int DISCOUNTJOB_MAXCOUNT = 5;                 //割引モードの最大数
     //割引モード １～５ 以下はサーバーより情報を受け取る
-    public MutableLiveData<Integer> _discountJobMode = new MutableLiveData<>(DiscountJobFutabaDViewModel.DISCOUNTMODE_NONE);
-    public MutableLiveData<Integer> getDiscountJobMode(){
-        return _discountJobMode;
-    }
-    public void setDiscountJobMode(Integer mode){       //modeは0～4(配列インデックス)
-        _discountJobMode.setValue(mode);
-    }
     //割引モード使用中情報配列
     public MutableLiveData<Boolean[]> _discountJobActiveFl = new MutableLiveData<>(new Boolean[DISCOUNTJOB_MAXCOUNT]);
     public MutableLiveData<Boolean[]> getDiscountJobActiveFl(){

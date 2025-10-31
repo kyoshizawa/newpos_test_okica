@@ -58,9 +58,9 @@ public class InfoViewModel extends ViewModel {
         }
     }
     public String getTabletVersion() {
-        return AppPreference.getTabletVersionInfo().versionName;
+        return "";
     }
-    public String getTabletVersionCode() { return AppPreference.getTabletVersionInfo().versionCode.toString(); }
+    public String getTabletVersionCode() { return ""; }
 
 
     //各種マネーの有効/無効表示を設定

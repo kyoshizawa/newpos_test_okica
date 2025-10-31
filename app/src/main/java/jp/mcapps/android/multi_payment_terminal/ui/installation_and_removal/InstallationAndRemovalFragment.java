@@ -439,15 +439,8 @@ public class InstallationAndRemovalFragment extends BaseFragment implements Inst
         CommonClickEvent.RecordClickOperation("登録", "IM-A820", false);
         ConfirmDialog.newInstance("【IM-A820登録確認】","登録しますか？", () -> {
             CommonClickEvent.RecordClickOperation("はい", "IM-A820登録確認", false);
-            if (AppPreference.getTabletLinkInfo() != null) {
-                Timber.e("タブレット連動中です　この機能を利用する場合はタブレット連動の解除を行ってください");
-                final String title = "タブレット連動中です";
-                final String msg = "この機能を利用する場合はタブレット連動の解除を行ってください";
-                AlertDialogFragment.newInstance(title, msg, () -> {
-                }).show(getChildFragmentManager(), null);
-            } else {
+
                 NavigationWrapper.navigate(this, R.id.action_navigation_installation_and_removal_to_navigation_ifbox_setup);
-            }
         },() ->{
             CommonClickEvent.RecordClickOperation("いいえ", "IM-A820登録確認", false);
         }).show(getChildFragmentManager(), null);
@@ -489,15 +482,7 @@ public class InstallationAndRemovalFragment extends BaseFragment implements Inst
         CommonClickEvent.RecordClickOperation("登録", "タブレット連動", false);
         ConfirmDialog.newInstance("【タブレット連動登録確認】","登録しますか？", () -> {
             CommonClickEvent.RecordClickOperation("はい", "タブレット連動登録確認", false);
-            if (AppPreference.getTabletLinkInfo() == null && AppPreference.getIFBoxOTAInfo() != null) {
-                Timber.e("IM-A820連動中です この機能を利用する場合はIM-A820の解除を行ってください");
-                final String title = "IM-A820連動中です";
-                final String msg = "この機能を利用する場合はIM-A820の解除を行ってください";
-                AlertDialogFragment.newInstance(title, msg, () -> {
-                }).show(getChildFragmentManager(), null);
-            } else {
-//                NavigationWrapper.navigate(this, R.id.action_navigation_installation_and_removal_to_navigation_tablet_link_setup);
-            }
+
         },() ->{
             CommonClickEvent.RecordClickOperation("いいえ", "タブレット連動登録確認", false);
         }).show(getChildFragmentManager(), null);

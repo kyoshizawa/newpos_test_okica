@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.database.LocalDatabase;
 import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorDao;
 import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorData;
@@ -232,23 +232,8 @@ public class CommonErrorDialog {
             builder.setIcon(R.drawable.ic_warning);
         }
 
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D)) {          //フタバ双方向時 コールドスタートを実施（起動時初回１回　or 接続が切れるたび）
-            if(_errorStackingData.errorCode.equals(MainApplication.getInstance().getString(R.string.error_type_FutabaD_FareUp_Warning)) &&
-               errorManage.getDisplayType(_errorStackingData) == display_type_positive) {
-                builder.setPositiveButton(btnNamePositive, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (_commonErrorEventHandlers != null) {
-                                    _commonErrorEventHandlers.onPositiveClick(_errorStackingData.errorCode);
-                                }
-                            }
-                        });
-            } else {
-                builder.setPositiveButton(btnNamePositive, null);
-            }
-        } else {
-            builder.setPositiveButton(btnNamePositive, null);
-        }
+
+        builder.setPositiveButton(btnNamePositive, null);
 
         showAlertDialog(builder);
 

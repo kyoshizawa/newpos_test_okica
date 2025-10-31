@@ -37,7 +37,7 @@ import jp.mcapps.android.multi_payment_terminal.databinding.FragmentEmoneyOkicaB
 import jp.mcapps.android.multi_payment_terminal.thread.printer.PrinterManager;
 import jp.mcapps.android.multi_payment_terminal.ui.Converters;
 import jp.mcapps.android.multi_payment_terminal.ui.PostPaymentProcess;
-import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
+//import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
 import jp.mcapps.android.multi_payment_terminal.ui.emoney.ActionBarController;
 import timber.log.Timber;
 

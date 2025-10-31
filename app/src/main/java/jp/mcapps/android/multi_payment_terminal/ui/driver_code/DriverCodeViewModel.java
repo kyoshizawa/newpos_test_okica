@@ -23,7 +23,7 @@ import jp.mcapps.android.multi_payment_terminal.database.history.driver.DriverDa
 import jp.mcapps.android.multi_payment_terminal.model.McAuthenticator;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 //import jp.mcapps.android.multi_payment_terminal.model.TabletLinker;
-import jp.mcapps.android.multi_payment_terminal.webapi.tablet.data.SignedIn;
+//import jp.mcapps.android.multi_payment_terminal.webapi.tablet.data.SignedIn;
 import timber.log.Timber;
 
 public class DriverCodeViewModel extends ViewModel {

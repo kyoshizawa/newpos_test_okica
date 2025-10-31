@@ -12,7 +12,7 @@ import androidx.annotation.RequiresApi;
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.model.McTerminal;
 //import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
 //import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlementAdapter;
@@ -55,12 +55,12 @@ public class PostPaymentProcess {
         if (_app.getCashValue() > 0) {
             //ADD-S BMT S.Oyama 2025/03/05 フタバ双方向向け改修
             String tmpCashMesStr = "";
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
-                tmpCashMesStr = "残金があります。\n領収書を印刷します。\n残金 %s円";
-            }
-            else {
+//            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
+//                tmpCashMesStr = "残金があります。\n領収書を印刷します。\n残金 %s円";
+//            }
+//            else {
                 tmpCashMesStr = "以下の金額を\n現金で頂いて下さい。\n%s円";
-            }
+//            }
             //ADD-E BMT S.Oyama 2025/03/05 フタバ双方向向け改修
             final AlertDialog.Builder builder = new AlertDialog.Builder(activity)
                     //ADDCHG-S BMT S.Oyama 2025/03/05 フタバ双方向向け改修

@@ -102,11 +102,11 @@ public class InstallationAndRemovalViewModel extends PinInputViewModel {
         return _deviceInterlocking;
     }
     public void setDeviceInterlocking() {
-        _deviceInterlocking.setValue(AppPreference.getTabletLinkInfo() != null
-                ? DeviceInterLocking.Tablet
-                : AppPreference.getIFBoxOTAInfo() != null
-                ? DeviceInterLocking.IFBox
-                : DeviceInterLocking.None);
+//        _deviceInterlocking.setValue(AppPreference.getTabletLinkInfo() != null
+//                ? DeviceInterLocking.Tablet
+//                : AppPreference.getIFBoxOTAInfo() != null
+//                ? DeviceInterLocking.IFBox
+//                : DeviceInterLocking.None);
     }
 
     private MutableLiveData<Boolean> _isOkicaInstalled = new MutableLiveData<>(!Strings.isNullOrEmpty(AppPreference.getOkicaAccessToken()));

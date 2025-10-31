@@ -29,7 +29,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.pos.device.config.DevConfig;
 
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.okica.ICMaster;
 import jp.mcapps.android.multi_payment_terminal.databinding.ActivityStartBinding;
 //import jp.mcapps.android.multi_payment_terminal.devices.DiscoverDevice;
@@ -41,7 +41,7 @@ import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
 //import jp.mcapps.android.multi_payment_terminal.service.WifiP2pService;
 import jp.mcapps.android.multi_payment_terminal.logger.EventLogger;
 import jp.mcapps.android.multi_payment_terminal.ui.menu.MenuHomeFragment;
-import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
 import timber.log.Timber;
 
 public class StartActivity extends AppCompatActivity {
@@ -102,11 +102,11 @@ public class StartActivity extends AppCompatActivity {
         }
 
         // 起動時にフタバ双方向手動モードの場合は戻す
-        Version.Response ifboxVersionInfo = AppPreference.getIFBoxVersionInfo();
-        if (ifboxVersionInfo != null && ifboxVersionInfo.appModel.equals(IFBoxAppModels.FUTABA_D_MANUAL)) {
-            ifboxVersionInfo.appModel = IFBoxAppModels.FUTABA_D;
-            AppPreference.setIFBoxVersionInfo(ifboxVersionInfo);
-        }
+//        Version.Response ifboxVersionInfo = AppPreference.getIFBoxVersionInfo();
+//        if (ifboxVersionInfo != null && ifboxVersionInfo.appModel.equals(IFBoxAppModels.FUTABA_D_MANUAL)) {
+//            ifboxVersionInfo.appModel = IFBoxAppModels.FUTABA_D;
+//            AppPreference.setIFBoxVersionInfo(ifboxVersionInfo);
+//        }
 
         Timber.i("FW: %s", DevConfig.getFirmwareVersion());
 

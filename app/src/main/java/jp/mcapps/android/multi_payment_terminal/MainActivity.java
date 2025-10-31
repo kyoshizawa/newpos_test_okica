@@ -44,7 +44,7 @@ import java.util.Locale;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 //import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.databinding.ActivityMainBinding;
 import jp.mcapps.android.multi_payment_terminal.devices.DiscoverDevice;
@@ -344,18 +344,11 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.toolbar_main_demo_mode).setVisibility(
                     AppPreference.isDemoMode() ? View.VISIBLE : View.GONE);
 
-            findViewById(R.id.toolbar_main_manual_mode).setVisibility(
-                    IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) ? View.VISIBLE : View.GONE);
-
             if (AppPreference.isDemoMode()) {
                 actionBar.setBackgroundDrawable(
                         getResources().getDrawable(R.color.design_default_color_error, null));
                 actionBar.setDisplayShowTitleEnabled(true);
-            } else if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL)) {
-                actionBar.setBackgroundDrawable(
-                        getResources().getDrawable(R.color.orange_500, null));
-                actionBar.setDisplayShowTitleEnabled(false);
-            } else {
+            }  else {
                 actionBar.setBackgroundDrawable(
                         getResources().getDrawable(R.color.primary, null));
                 actionBar.setDisplayShowTitleEnabled(false);

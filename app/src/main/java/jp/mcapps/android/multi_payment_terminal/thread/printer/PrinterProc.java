@@ -49,7 +49,7 @@ import jp.mcapps.android.multi_payment_terminal.CommonClickEvent;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.MoneyType;
 import jp.mcapps.android.multi_payment_terminal.data.QRPayTypeCodes;
 import jp.mcapps.android.multi_payment_terminal.data.QRPayTypeNameMap;
@@ -68,8 +68,8 @@ import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketReceiptDet
 //import jp.mcapps.android.multi_payment_terminal.iCAS.data.DeviceClient;
 //import jp.mcapps.android.multi_payment_terminal.model.IFBoxManager;
 //import jp.mcapps.android.multi_payment_terminal.thread.credit.CreditSettlement;
-import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
-import jp.mcapps.android.multi_payment_terminal.ui.auto_daily_report.AutoDailyReportFuelFragment;
+//import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
+//import jp.mcapps.android.multi_payment_terminal.ui.auto_daily_report.AutoDailyReportFuelFragment;
 import jp.mcapps.android.multi_payment_terminal.ui.emoney.okica.BaseEMoneyOkicaViewModel;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorDialog;
 import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorEventHandlers;
@@ -1910,30 +1910,7 @@ public class PrinterProc {
             params.put("trans_complete_amount", _slipData.transCompleteAmount);
             //ADD-S BMT S.Oyama 2024/10/08 フタバ双方向向け改修
             params.put("input_kingaku", tmpInputKingaku);                                      //入力金額
-            //ADD-E BMT S.Oyama 2024/10/08 フタバ双方向向け改修
-            //ADD-S BMT S.Oyama 2024/12/17 フタバ双方向向け改修
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
-                if (_slipData.transBrand.equals("プリペイド") == true) {                                 //プリペイド時特殊処理の場合
 
-                    String tmpPointExpDateY = "FFFF";
-                    String tmpPointExpDateM = "FF";
-                    if (_slipData.prepaidNextExpired.length() == 7)         //YYYY/MM 仕様
-                    {
-                        tmpPointExpDateY = _slipData.prepaidNextExpired.substring(0, 4);
-                        tmpPointExpDateM = _slipData.prepaidNextExpired.substring(5);
-                    }
-
-                    params.put("point", _slipData.prepaidAddPoint);
-                    params.put("point_total", _slipData.prepaidTotalPoint);
-                    params.put("point_exp_date", tmpPointExpDateY + tmpPointExpDateM);
-                    params.put("point_exp", _slipData.prepaidNextExpiredPoint);
-                    params.put("service_name", convertSjisString(_slipData.prepaidServiceName));
-
-                    params.put("term_ident_id", _slipData.termId);
-
-                }
-            }
-            //ADD-E BMT S.Oyama 2024/12/17 フタバ双方向向け改修
         } catch (Exception e) {
             Timber.tag("Printer").e("%s：setWsPrintdataV2->Exception e <%s>", _printDataRes.getString(R.string.printLog_printDataError), e);
             PrintDataError();
@@ -1982,68 +1959,9 @@ public class PrinterProc {
                 if (isTransResult != null) {
                     if (isTransResult == PrinterConst.TransResult_OK) {
                         // 取引結果：成功
-                        if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D)) {
-                            // ヤザキLT27双方向
-                            isPT750_Print = false;
+
                             setPrintData_trans_ok(SlipCopy);
-                            // 双方向用にデータをWS送信
-                            if (SlipCopy == PrinterConst.SlipCopy_Merchant) {
-                                /* CHG-S N.Sasaki 2024/04/18 ヤザキLT27双方向 LANSポイント対応 */
-//                                sendWsPrintdata();
-                                // ブランド名
-                                if (_slipData.transBrand != null) {
-                                    // 和多利だったら専用のレシート
-                                    if (_slipData.transBrand.equals(_printDataRes.getString(R.string.print_brand_watari))) {
-                                        sendWsPrintdata_watari();
-                                    } else {
-                                        sendWsPrintdata();
-                                    }
-                                } else {
-                                    sendWsPrintdata();
-                                }
-                                /* CHG-E N.Sasaki 2024/04/18 ヤザキLT27双方向 LANSポイント対応 */
-                            } else {
-                                sendWsPrintNext();
-                            }
-                        } else if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-                            // オカベMS70双方向
-                            isPT750_Print = false;
-                            setPrintData_trans_ok(SlipCopy);
-                            if (PrinterManager.getInstance().getPrintStatus() == PrinterConst.PrintStatus_PAPERLACKING) {
-                                // 紙切れ後の印刷再開をWS送信
-                                sendWsPrintRestart();
-                            } else {
-                                // 双方向用にデータをWS送信
-                                if (SlipCopy == PrinterConst.SlipCopy_Merchant) {
-                                    sendWsPrintdata_okabe();
-                                } else {
-                                    sendWsPrintNext();  /*Add k.Fukumitsu  2024/1/12  レシート印字2枚目以降の継続印刷要求*/
-                                }
-                            }
-                            //ADD-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-                        } else if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) && (_slipData.transTypeCode == null || !_slipData.transTypeCode.equals(MANUALMODE_TRANS_TYPE_CODE_SALES)) && (_slipData.transTypeCode == null || !_slipData.transTypeCode.equals(MANUALMODE_TRANS_TYPE_CODE_CANCEL))) {
-                            // フタバ双方向
-                            isPT750_Print = false;
-                            setPrintData_trans_ok(SlipCopy);
-                            if (PrinterManager.getInstance().getPrintStatus() == PrinterConst.PrintStatus_PAPERLACKING) {
-                                // 紙切れ後の印刷再開をWS送信
-                                sendWsPrintRestart();
-                            } else {
-                                // 双方向用にデータをWS送信
-                                if (SlipCopy == PrinterConst.SlipCopy_Merchant) {
-                                    if (!isRePrinter) {
-                                        sendWsPrintdata_FutabaD(false, "", false);
-                                    } else {
-                                        sendWsReprintdata_FutabaD();
-                                    }
-                                } else {
-                                    sendWsPrintNext();  /*Add k.Fukumitsu  2024/1/12  レシート印字2枚目以降の継続印刷要求*/
-                                }
-                            }
-                            //ADD-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-                        } else {
-                            setPrintData_trans_ok(SlipCopy);
-                        }
+
                     } else if (isTransResult == PrinterConst.TransResult_UnFinished) {
                         // 取引結果：未了
                         if (_slipData.transBrand.equals(_printDataRes.getString(R.string.print_brand_id)) || _slipData.transBrand.equals(_printDataRes.getString(R.string.print_brand_quicpay))) {
@@ -2053,30 +1971,9 @@ public class PrinterProc {
                         } else {
                             //CHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
                             //if(IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) || IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-                            if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) || IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) || IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D)) {
-                                //CHG-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-                                isPT750_Print = false;
+
                                 setPrintData_trans_unfinished(SlipCopy);
-                                // 双方向用にデータをWS送信
-                                if (!_slipData.transBrand.equals(_printDataRes.getString(R.string.print_brand_codetrans))) {
-                                    if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-                                        sendWsPrintdata_okabe();
-                                    }
-                                    //ADD-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-                                    else if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) && !_slipData.transTypeCode.equals(MANUALMODE_TRANS_TYPE_CODE_SALES) && !_slipData.transTypeCode.equals(MANUALMODE_TRANS_TYPE_CODE_CANCEL)) {
-                                        sendWsPrintdata_FutabaD(false, "", false);
-                                        //ADD-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-                                    } else {
-                                        sendWsPrintdata();
-                                    }
-                                } else {
-                                    // 印字無しで終わらせる
-                                    PrinterManager.getInstance().PrintEndDuplex(isMaskCardId, PrinterConst.TransResult_UnFinished, Printer.PRINTER_OK, isTransType);
-                                    Printing_end();
-                                }
-                            } else {
-                                setPrintData_trans_unfinished(SlipCopy);
-                            }
+
                         }
                     } else {
                         // 印刷データ異常（想定外）
@@ -2116,11 +2013,6 @@ public class PrinterProc {
     public void printTransFutabaD(int id) {
         Timber.i("[FUTABA-D]printTransFutabaD() slipid:%d", id);
 
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false)           // フタバD以外は処理しない
-        {
-            Timber.e("[FUTABA-D]printTransFutabaD():not FUTABA-D Mode");
-            return;
-        }
 
         isSlipDataId = id;
         print_init();
@@ -2167,12 +2059,6 @@ public class PrinterProc {
     public void printTransFutabaD_Separation2ndSend() {
         Timber.i("[FUTABA-D]printTransFutabaD_Separation2ndSend() slipid:%d", isSlipDataId);
 
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false)           // フタバD以外は処理しない
-        {
-            Timber.e("[FUTABA-D]printTransFutabaD():not FUTABA-D Mode");
-            return;
-        }
-
         print_init();
         // 別スレッド：伝票印刷関連データ取得
         Thread thread = new Thread(new Runnable() {
@@ -2217,12 +2103,6 @@ public class PrinterProc {
     public void printTransFutabaD_KessaiKakunin() {
 
         Timber.i("[FUTABA-D]printTransFutabaD_KessaiKakunin()");
-
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false)           // フタバD以外は処理しない
-        {
-            Timber.e("[FUTABA-D]printTransFutabaD_KessaiKakunin():not FUTABA-D Mode");
-            return;
-        }
 
         if ((_DuplexComm_SlipIDBackup == 0) || (_DuplexComm_BlandName.equals("") == true)) {                //通信が完了している場合
             // 別スレッド：伝票印刷関連データ取得
@@ -2327,11 +2207,6 @@ public class PrinterProc {
     public void printTransFutabaD_SettlementAbort(int tmpPhase, int tmpSettlementMode) {
         Timber.i("[FUTABA-D]printTransFutabaD_SettlementAbort()");
 
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false)           // フタバD以外は処理しない
-        {
-            Timber.e("[FUTABA-D]printTransFutabaD_SettlementAbort():not FUTABA-D Mode");
-            return;
-        }
 
         Date exDate = new Date();   // 取引時間
         SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE);
@@ -2462,16 +2337,7 @@ public class PrinterProc {
 
             // todo: メータ連携時の条件分岐
 
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {              //フタバD時はprintTrans()を呼び出し，820通信を実施
-                //ADD-S BMT S.Oyama 2025/02/18 フタバ双方向向け改修
-                PrinterManager.getInstance().setprepaid_print_trans_fix_IsSlipDataId(_slipData.id);
-                //ADD-E BMT S.Oyama 2025/02/18 フタバ双方向向け改修
-                printTrans(_slipData.id, SlipCopy);
-                if (_slipData.transType == TransMap.TYPE_PREPAID_CARDBUY) {
-                    // カード発売の時はtrueで返す
-                    return true;
-                }
-            } else if (_slipData.transType != TransMap.TYPE_PREPAID_CARDBUY) {
+            if (_slipData.transType != TransMap.TYPE_PREPAID_CARDBUY) {
                 setPrintData_trans_ok(SlipCopy);
             } else {
                 // メーター連動していない場合、カード発売では何もしないので終了処理だけやっとく
@@ -4770,18 +4636,6 @@ public class PrinterProc {
         JSONObject _sendData = new JSONObject();
         try {
             _sendData.put("type", "/printdata/v1");
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-                _sendData.put("cmd", "print_hist_general");
-            } else {
-                _sendData.put("cmd", "print_hist_waon");
-            }
-            _sendData.put("timer", PrinterConst.DuplexPrintWaitTimer);
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-                String datetime = convertDatetime(resultWAON.time);
-                _params.put("time", datetime);                              // 照会日時
-            } else {
-                _params.put("time", resultWAON.time);                       // 照会日時
-            }
             _params.put("user_mask_waon_num", resultWAON.userMaskWaonNum());    // カード番号
             _params.put("term_ident_id", resultWAON.termIdentId);           // 端末番号
             _params.put("mc_term_id", AppPreference.getMcTermId());         // 機器番号
@@ -4794,23 +4648,13 @@ public class PrinterProc {
                     String HistName = "hist" + (i + 1);
                     // 決済日時
                     if (resultWAON.addInfo.historyData[i].historyDate != null) {
-                        if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-                            String date = convertDate(resultWAON.addInfo.historyData[i].historyDate);
-                            _history.put("date", date);
-                        } else {
-                            _history.put("date", resultWAON.addInfo.historyData[i].historyDate);
-                        }
+                        _history.put("date", resultWAON.addInfo.historyData[i].historyDate);
                     } else {
                         _history.put("date", "");
                     }
                     // 決済時刻
                     if (resultWAON.addInfo.historyData[i].historyTime != null) {
-                        if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-                            String time = convertTime(resultWAON.addInfo.historyData[i].historyTime);
-                            _history.put("time", time);
-                        } else {
-                            _history.put("time", resultWAON.addInfo.historyData[i].historyTime);
-                        }
+                        _history.put("time", resultWAON.addInfo.historyData[i].historyTime);
                     } else {
                         _history.put("time", "");
                     }
@@ -4888,17 +4732,9 @@ public class PrinterProc {
         try {
             params.put("brand", convertSjisString(_printDataRes.getString(R.string.print_brand_waon)));  // ブランド名
             params.put("title", convertSjisString(_printDataRes.getString(R.string.print_history_slip)));  // タイトル
-//ADD-S BMT S.Oyama 2024/11/05 フタバ双方向向け改修
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {              // フタバ双方向向け
-                String tmpuser_mask_card_num = resultWAON.userMaskWaonNum();
-                tmpuser_mask_card_num = tmpuser_mask_card_num.replace("*", "X");
-                params.put("user_mask_card_num", tmpuser_mask_card_num);        // カード番号
-            }
-            else
-            {
+
                 params.put("user_mask_card_num", resultWAON.userMaskWaonNum()); // カード番号
-            }
-//ADD-E BMT S.Oyama 2024/11/05 フタバ双方向向け改修
+
             params.put("term_ident_id_title", convertSjisString(_printDataRes.getString(R.string.print_term_ident_id)));  // 端末番号タイトル
             params.put("mc_term_id_title", convertSjisString(_printDataRes.getString(R.string.print_term_id)));  // 機器番号タイトル
 
@@ -4909,15 +4745,6 @@ public class PrinterProc {
                     params.put("balance", "");
                 }
 
-//ADD-S BMT S.Oyama 2024/09/03 フタバ双方向向け改修
-                if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D)) {              // フタバ双方向向け
-                    if (resultWAON.addInfo.historyData[0].sprw_id != null) {
-                        params.put("sprw_id", resultWAON.addInfo.historyData[0].sprw_id);  // sprwid
-                    } else {
-                        params.put("sprw_id", "             ");
-                    }
-                }
-//ADD-E BMT S.Oyama 2024/09/03 フタバ双方向向け改修
             }
         } catch (Exception e) {
             Timber.tag("Printer").e("%s：setWsPrintHistryGeneral->Exception e <%s>", _printDataRes.getString(R.string.printLog_printDataError), e);
@@ -4999,17 +4826,8 @@ public class PrinterProc {
             tmpDateTimeStrConvert = convertDatetime(resultWAON.time);
             _params.put("time", tmpDateTimeStrConvert);                     // 処理日時 yyyy/mm/dd/ hh:mm:ss
 
-//ADD-S BMT S.Oyama 2024/11/05 フタバ双方向向け改修
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {              // フタバ双方向向け
-                String tmpuser_mask_waon_num = resultWAON.userMaskWaonNum();
-                tmpuser_mask_waon_num  = tmpuser_mask_waon_num.replace("*", "X");
-                _params.put("user_mask_waon_num", tmpuser_mask_waon_num);  // カード番号
-            }
-            else
-            {
+
                 _params.put("user_mask_waon_num", resultWAON.userMaskWaonNum());    // カード番号
-            }
-//ADD-E BMT S.Oyama 2024/11/05 フタバ双方向向け改修
 
             _params.put("term_ident_id", resultWAON.termIdentId);           // 端末番号
             _params.put("mc_term_id", AppPreference.getMcTermId());         // 機器番号
@@ -5251,14 +5069,6 @@ public class PrinterProc {
 
         print_init();
 
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) ||
-        //ADDCHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-            IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) ||
-            IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D))
-        //ADDCHG-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-        {
-            isPT750_Print = false;
-        }
 
         // ブランド名
         /* WAON */
@@ -5404,15 +5214,8 @@ public class PrinterProc {
         if (isPT750_Print == true) {
             Printing(_printCanvas);
         } else {
-            // 双方向用にデータをWS送信
-            //ADDCHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D)) {              // フタバ双方向向け
-                sendWsPrintHistryFutabaDCore(resultWAON);
-            }
-            else {
+
                 sendWsPrintHistryWaon(resultWAON);
-            }
-            //ADDCHG-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
         }
     }
 
@@ -5562,21 +5365,7 @@ public class PrinterProc {
         isAggregateType = AggregateType;
         print_init();
 
-        // 双方向用にデータをWS送信
-        if(IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D)) {
-            /* 集計票 */
-            Log_SlipName = _printDataRes.getString(R.string.print_aggregate_slip);
-            Timber.tag("Printer").i("%s：%s", _printDataRes.getString(R.string.printLog_printDataSet), Log_SlipName);
-            // 双方向用にデータをWS送信
-//            _meterStatus = _ifBoxManager.getMeterStatus();
-//            if (_meterStatus.equals("KUUSYA")) {
-//                sendWsPrintAggregate();
-//            } else {
-//                // 集計印字の際にメーター状態が不正
-//                Timber.tag("Printer").e("printer status err <%s>", _meterStatus);
-//                Printing_Duplex("NG", 0, PrinterConst.DuplexPrintStatus_METERSTSERROR);
-//            }
-        } else {
+
             // 別スレッド：伝票印刷関連データ取得
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -5609,7 +5398,7 @@ public class PrinterProc {
                 PrintDataError();
                 e.printStackTrace();
             }
-        }
+
     }
 
     // 集計伝票（印刷データセット）
@@ -7747,12 +7536,6 @@ public class PrinterProc {
             setAlign_Mid(_printDataRes.getStringArray(R.array.print_slip_demo)[2],PaintSize_Big);
         }
 
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) || IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL)) {
-            /* フタバ双方向の場合 */
-            setAlign_Mid(_printDataRes.getStringArray(R.array.print_slip_manual)[0],PaintSize_Big);
-            setAlign_Mid(_printDataRes.getStringArray(R.array.print_slip_manual)[1],PaintSize_Big);
-            setAlign_Mid(_printDataRes.getStringArray(R.array.print_slip_manual)[2],PaintSize_Big);
-        }
     }
 
     // 印刷データなし
@@ -7907,10 +7690,7 @@ public class PrinterProc {
                 public void run() {
                     // 印刷終了
                     int argErrcd = errcd;
-                    if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-                        // メーターから受信したエラーコードを、PT-750のエラーコードへ変換
-                        argErrcd = convertErrorCode_OKABE(errcd);
-                    }
+
                     //PrinterManager.getInstance().PrintEndDuplex(isMaskCardId, isTransResult,errcd,0);
                     PrinterManager.getInstance().PrintEndDuplex(isMaskCardId, isTransResult,argErrcd,0);
                     Printing_end();
@@ -7994,13 +7774,7 @@ public class PrinterProc {
                     int tmpContflg = contflg;
 
                     //PrinterManager.getInstance().PrintEndDuplex(isMaskCardId, isTransResult,errcd,0);
-                    if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true ) {
-                        tmpContflg = convertContinueCode_FutabaD(tmpContflg);
-                        PrinterManager.getInstance().PrintEndDuplex(isMaskCardId, isTransResult, argErrcd, tmpContflg);
-                    }
-                    else {
-                        PrinterManager.getInstance().PrintEndDuplex(isMaskCardId, isTransResult, argErrcd, 0);
-                    }
+                    PrinterManager.getInstance().PrintEndDuplex(isMaskCardId, isTransResult, argErrcd, 0);
                     Printing_end();
                     //PrinterManager.getInstance().PrinterDuplexError(errcd) ;
                 }
@@ -8470,9 +8244,9 @@ public class PrinterProc {
     private boolean send820PrepaidSettlementSelectMode(int tmpSettlementSelectMode)
     {
 
-        if ( (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false)) {              //フタバD以外は処理しない
-            return false;
-        }
+//        if ( (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false)) {              //フタバD以外は処理しない
+//            return false;
+//        }
 //
 //        if (_ifBoxManager.getIsConnected820() == false)             //820未接続の場合
 //        {

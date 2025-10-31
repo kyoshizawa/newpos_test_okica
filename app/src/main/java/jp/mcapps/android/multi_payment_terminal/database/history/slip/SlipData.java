@@ -13,7 +13,7 @@ import jp.mcapps.android.multi_payment_terminal.AppPreference;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
 //import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.QRPayTypeCodes;
 import jp.mcapps.android.multi_payment_terminal.data.QRPayTypeNameMap;
 import jp.mcapps.android.multi_payment_terminal.data.TransMap;
@@ -532,26 +532,13 @@ public class SlipData implements Serializable {
         transBrand = MainApplication.getInstance().getString(R.string.money_brand_suica);   //ブランド名
         transType = resultParam.transType;    //取引種別
         transTypeCode = "0";
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) && resultParam.transResult == TransMap.RESULT_SUCCESS) {
-            // 手動決済モードで正常終了の場合
-            transTypeCode = transType == TransMap.TYPE_SALES ? MANUALMODE_TRANS_TYPE_CODE_SALES : MANUALMODE_TRANS_TYPE_CODE_CANCEL;
-        }
+
         transResult = resultParam.transResult;    //取引結果
         transResultDetail = resultParam.transResultDetail;  //取引結果詳細
         printCnt = 0; //印刷回数
         oldAggregateOrder = 0;    //集計印刷順
         this.encryptType = encryptType;    //暗号化パターン
 
-        //ADD-S BMT S.Oyama 2024/12/16 フタバ双方向向け改修
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true || IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) == true) {
-            //フタバD時は取り消しはない
-        }
-        else {
-            if (transType == TransMap.TYPE_SALES && transResult == TransMap.RESULT_SUCCESS) {
-                cancelFlg = 1;  //取消可否 売上かつ成功の場合のみ
-            }
-        }
-        //ADD-E BMT S.Oyama 2024/12/16 フタバ双方向向け改修
 
         if (AppPreference.isPosTransaction()) {
             merchantName = AppPreference.getPosMerchantName();   //加盟店名
@@ -660,10 +647,7 @@ public class SlipData implements Serializable {
         transBrand = MainApplication.getInstance().getString(R.string.money_brand_edy);   //ブランド名
         transType = resultParam.transType;    //取引種別
         transTypeCode = "0";
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) && resultParam.transResult == TransMap.RESULT_SUCCESS) {
-            // 手動決済モードで正常終了の場合
-            transTypeCode = transType == TransMap.TYPE_SALES ? MANUALMODE_TRANS_TYPE_CODE_SALES : MANUALMODE_TRANS_TYPE_CODE_CANCEL;
-        }
+
         transResult = resultParam.transResult;    //取引結果
         transResultDetail = resultParam.transResultDetail;  //取引結果詳細
         printCnt = 0; //印刷回数
@@ -782,10 +766,7 @@ public class SlipData implements Serializable {
         transBrand = MainApplication.getInstance().getString(R.string.money_brand_id);   //ブランド名
         transType = resultParam.transType;    //取引種別
         transTypeCode = "0";
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) && resultParam.transResult == TransMap.RESULT_SUCCESS) {
-            // 手動決済モードで正常終了の場合
-            transTypeCode = transType == TransMap.TYPE_SALES ? MANUALMODE_TRANS_TYPE_CODE_SALES : MANUALMODE_TRANS_TYPE_CODE_CANCEL;
-        }
+
         transResult = resultParam.transResult;    //取引結果
         transResultDetail = resultParam.transResultDetail;  //取引結果詳細
         printCnt = 0; //印刷回数
@@ -918,28 +899,14 @@ public class SlipData implements Serializable {
     public SlipData(DeviceClient.ResultWAON result, int encryptType, int termSequence, ResultParam resultParam, RefundParam refundParam, AmountParam amountParam) {
         transBrand = MainApplication.getInstance().getString(R.string.money_brand_waon);   //ブランド名
         transType = resultParam.transType;    //取引種別
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) && resultParam.transResult == TransMap.RESULT_SUCCESS) {
-            // 手動決済モードで正常終了の場合
-            transTypeCode = transType == TransMap.TYPE_SALES ? MANUALMODE_TRANS_TYPE_CODE_SALES : MANUALMODE_TRANS_TYPE_CODE_CANCEL;
-        } else {
-            transTypeCode = result.tradeTypeCode;   //取引種別コード
-        }
+
         transResult = resultParam.transResult;    //取引結果
         transResultDetail = resultParam.transResultDetail;  //取引結果詳細
         printCnt = 0; //印刷回数
         oldAggregateOrder = 0;    //集計印刷順
         this.encryptType = encryptType;    //暗号化パターン
 
-        //ADD-S BMT S.Oyama 2024/12/16 フタバ双方向向け改修
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true || IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) == true) {
-            //フタバD時は取り消しはない
-        }
-        else {
-            if (transType == TransMap.TYPE_SALES && transResult == TransMap.RESULT_SUCCESS) {
-                cancelFlg = 1;  //取消可否 売上かつ成功の場合のみ
-            }
-        }
-        //ADD-E BMT S.Oyama 2024/12/16 フタバ双方向向け改修
+
 
         transId = result.sid;   //決済ID
         if (AppPreference.isPosTransaction()) {
@@ -1119,26 +1086,14 @@ public class SlipData implements Serializable {
         transBrand = MainApplication.getInstance().getString(R.string.money_brand_qp);   //ブランド名
         transType = resultParam.transType;    //取引種別
         transTypeCode = "0";
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) && resultParam.transResult == TransMap.RESULT_SUCCESS) {
-            // 手動決済モードで正常終了の場合
-            transTypeCode = transType == TransMap.TYPE_SALES ? MANUALMODE_TRANS_TYPE_CODE_SALES : MANUALMODE_TRANS_TYPE_CODE_CANCEL;
-        }
+
         transResult = resultParam.transResult;    //取引結果
         transResultDetail = resultParam.transResultDetail;  //取引結果詳細
         printCnt = 0; //印刷回数
         oldAggregateOrder = 0;    //集計印刷順
         this.encryptType = encryptType;    //暗号化パターン
 
-        //ADD-S BMT S.Oyama 2024/12/16 フタバ双方向向け改修
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true || IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) == true) {
-            //フタバD時は取り消しはない
-        }
-        else {
-            if (transType == TransMap.TYPE_SALES && transResult == TransMap.RESULT_SUCCESS) {
-                cancelFlg = 1;  //取消可否 売上かつ成功の場合のみ
-            }
-        }
-        //ADD-E BMT S.Oyama 2024/12/16 フタバ双方向向け改修
+
 
         transId = result.sid;   //決済ID
         if (AppPreference.isPosTransaction()) {
@@ -1241,12 +1196,6 @@ public class SlipData implements Serializable {
         input_kingaku           = 0;                         //入力金額
         //ADD-E BMT S.Oyama 2024/09/30 フタバ双方向向け改修
 
-        //ADD-S BMT S.Oyama 2024/11/29 フタバ双方向向け改修
-        prepaidAddPoint               = 0;                   //プリペイドポイント付与
-        prepaidTotalPoint             = 0;                   //プリペイドポイント残高
-        prepaidNextExpired            = "";                  //次回ポイント失効日
-        prepaidNextExpiredPoint       = 0;                   //次回ポイント失効ポイント
-        //ADD-E BMT S.Oyama 2024/11/29 フタバ双方向向け改修
 
         updateCancelFlg();
         setSendCancelPurchasedTicket();
@@ -1259,10 +1208,7 @@ public class SlipData implements Serializable {
         transBrand = MainApplication.getInstance().getString(R.string.money_brand_nanaco);   //ブランド名
         transType = resultParam.transType;    //取引種別
         transTypeCode = "0";
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) && resultParam.transResult == TransMap.RESULT_SUCCESS) {
-            // 手動決済モードで正常終了の場合
-            transTypeCode = transType == TransMap.TYPE_SALES ? MANUALMODE_TRANS_TYPE_CODE_SALES : MANUALMODE_TRANS_TYPE_CODE_CANCEL;
-        }
+
         transResult = resultParam.transResult;    //取引結果
         transResultDetail = resultParam.transResultDetail;  //取引結果詳細
         printCnt = 0; //印刷回数
@@ -1379,10 +1325,7 @@ public class SlipData implements Serializable {
         transBrand = MainApplication.getInstance().getString(R.string.money_brand_okica);   //ブランド名
         transType = resultParam.transType;    //取引種別
         transTypeCode = "0";
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL) && resultParam.transResult == TransMap.RESULT_SUCCESS) {
-            // 手動決済モードで正常終了の場合
-            transTypeCode = transType == TransMap.TYPE_SALES ? MANUALMODE_TRANS_TYPE_CODE_SALES : MANUALMODE_TRANS_TYPE_CODE_CANCEL;
-        }
+
         transResult = resultParam.transResult;    //取引結果
         transResultDetail = resultParam.transResultDetail;  //取引結果詳細
         printCnt = 0; //印刷回数

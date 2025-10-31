@@ -22,52 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- //ADD-S BMT S.Oyama 2025/01/09 フタバ双方向向け改修 -->
-<!--        <Button-->
-<!--            android:id="@+id/btn_menu_business_receipt"-->
-<!--            android:text="@string/btn_business_receipt"-->
-<!--            android:onClick='@{view -> handlers.navigateToReceipt(view)}'-->
-<!--            android:visibility="@{ viewModel.getisFutabaDMode() ? View.VISIBLE : View.GONE }"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_ticket"-->
-<!--            style="@style/StyleBusinessButton"/>-->
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_menu_business_ticket"-->
-<!--            android:text="@string/btn_business_ticket"-->
-<!--            android:onClick='@{view -> handlers.navigateToTicketPrint(view)}'-->
-<!--            android:visibility="@{ viewModel.getisFutabaDMode() ? View.VISIBLE : View.GONE }"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_receipt"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_auto_daily_report"-->
-<!--            style="@style/StyleBusinessButton"/>-->
-        <!-- //ADD-E BMT S.Oyama 2025/01/09 フタバ双方向向け改修 -->
-        <!-- //ADD-S BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
-<!--        <Button-->
-<!--            android:id="@+id/btn_menu_business_auto_daily_report"-->
-<!--            android:text="@string/btn_business_auto_daily_report"-->
-<!--            android:onClick='@{view -> handlers.navigateMain(view, @id/action_navigation_menu_business_to_auto_daily_report)}'-->
-<!--            android:visibility="@{ viewModel.getisFutabaDMode() ? View.VISIBLE : View.GONE }"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_ticket"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_emoney_opening"-->
-<!--            style="@style/StyleBusinessButton"/>-->
-        <!-- @{viewModel.isCashChangerActivated ? View.VISIBLE : View.GONE} -->
-        <!-- //ADD-E BMT S.Oyama 2024/11/19 フタバ双方向向け改修 -->
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_menu_business_emoney_opening"-->
-<!--            android:text="@string/btn_business_emoney_opening"-->
-<!--            android:onClick='@{v -> handlers.manualOpening(v, sharedViewModel)}'-->
-<!--            app:layout_constraintTop_toBottomOf="@id/btn_menu_business_auto_daily_report"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/btn_menu_business_driver_code_input"-->
-<!--            style="@style/StyleBusinessButton"/>-->
 
         <Button
             android:id="@+id/btn_menu_business_driver_code_input"
@@ -159,7 +113,7 @@
             android:id="@+id/btn_menu_business_manual"
             android:text="@string/btn_business_manual"
             android:onClick='@{view -> handlers.navigateToManualMenu(view, sharedViewModel)}'
-            android:visibility="@{ viewModel.getisFutabaDMode() ? View.VISIBLE : View.GONE }"
+            android:visibility="@{ View.GONE }"
             app:layout_constraintTop_toBottomOf="@id/btn_menu_business_external_device"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -170,7 +124,7 @@
             android:id="@+id/btn_menu_business_duplex"
             android:text="@string/btn_business_duplex"
             android:onClick='@{view -> handlers.navigateToDuplexMenu(view, sharedViewModel)}'
-            android:visibility="@{ viewModel.getisManualMode() ? View.VISIBLE : View.GONE }"
+            android:visibility="@{  View.GONE }"
             app:layout_constraintTop_toBottomOf="@id/btn_menu_business_manual"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

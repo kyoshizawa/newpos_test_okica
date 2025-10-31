@@ -206,14 +206,7 @@ public class PostTerminalInfo {
                 Timber.e(e);
             }
 
-            ifboxSerial = null;
-            ifboxFirmware = null;
-            ifboxVersion = null;
-            if (AppPreference.getIFBoxVersionInfo() != null) {
-                ifboxSerial = AppPreference.getIFBoxVersionInfo().mcSerial;
-                ifboxFirmware = AppPreference.getIFBoxVersionInfo().appModel;
-                ifboxVersion = AppPreference.getIFBoxVersionInfo().appVersion;
-            }
+
         }
     }
 

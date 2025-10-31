@@ -44,7 +44,7 @@ import jp.mcapps.android.multi_payment_terminal.error.SDKErrors;
 //import jp.mcapps.android.multi_payment_terminal.model.OptionalTransFacade;
 import jp.mcapps.android.multi_payment_terminal.model.SoundManager;
 import jp.mcapps.android.multi_payment_terminal.model.TransLogger;
-import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
+//import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
 import jp.mcapps.android.multi_payment_terminal.util.McUtils;
 import timber.log.Timber;
 
@@ -767,15 +767,5 @@ abstract public class BaseEMoneyOkicaViewModel extends ViewModel {
             // soundPool.play(soundId, _soundVolume, _soundVolume, 1, repeat ? -1 : 0, 1);
         });
     }
-
-    //ADD-S BMT S.Oyama 2024/09/19 フタバ双方向向け改修
-    private MutableLiveData<AmountInputSeparationPayFDViewModel> _amountInputSeparationPayFDViewModel = new MutableLiveData<>(null);
-    public MutableLiveData<AmountInputSeparationPayFDViewModel> getAmountInputSeparationPayFDViewModel() {
-        return _amountInputSeparationPayFDViewModel;
-    }
-    public void setAmountInputSeparationPayFDViewModel(AmountInputSeparationPayFDViewModel viewModel) {
-        _amountInputSeparationPayFDViewModel.setValue( viewModel);
-    }
-    //ADD-E BMT S.Oyama 2024/09/19 フタバ双方向向け改修
 
 }

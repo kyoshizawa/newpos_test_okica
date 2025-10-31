@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
 import jp.mcapps.android.multi_payment_terminal.data.BusinessType;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountInfo;
-import jp.mcapps.android.multi_payment_terminal.ui.discount.DiscountJobFutabaDViewModel;
+//import jp.mcapps.android.multi_payment_terminal.ui.discount.DiscountJobFutabaDViewModel;
 
 
 public interface MenuEventHandlers {

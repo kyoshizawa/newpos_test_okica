@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.TransHead;
 import jp.mcapps.android.multi_payment_terminal.database.DemoDatabase;
 import jp.mcapps.android.multi_payment_terminal.database.LocalDatabase;
@@ -92,14 +92,8 @@ public class SlipDaoSecure extends SlipDao {
                 data.printingAuthId = data.authId.toString();
             }
 
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) || IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL)) {
-                // フタバ双方向の場合は手動モードでの取引分のみを印字対象とする（通常の取引分はメーターから印字するので対象外）
-                if (data.transTypeCode != null && (data.transTypeCode.equals(MANUALMODE_TRANS_TYPE_CODE_SALES) || data.transTypeCode.equals(MANUALMODE_TRANS_TYPE_CODE_CANCEL))) {
-                    result.add(data);
-                }
-            } else {
-                result.add(data);
-            }
+            result.add(data);
+
         }
 
         return result;

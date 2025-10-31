@@ -19,7 +19,7 @@ import java.util.function.BiConsumer;
 import jp.mcapps.android.multi_payment_terminal.data.AdditionalSettingKeys;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
 import jp.mcapps.android.multi_payment_terminal.data.FirmWareInfo;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.TabletLinkInfo;
 import jp.mcapps.android.multi_payment_terminal.data.okica.AccessKeyInfo;
 import jp.mcapps.android.multi_payment_terminal.data.okica.ICMasterInfo;
@@ -30,7 +30,6 @@ import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketEmbarkData
 import jp.mcapps.android.multi_payment_terminal.database.ticket.TicketGateSettingsData;
 import jp.mcapps.android.multi_payment_terminal.model.OkicaMasterControl;
 // import jp.mcapps.android.multi_payment_terminal.ui.ticket.TicketSearchResults;
-import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
 import jp.mcapps.android.multi_payment_terminal.webapi.mc_pos_center.data.TerminalInfo;
 //import jp.mcapps.android.multi_payment_terminal.webapi.ticket_sales.type.DynamicTicketItem;
 import kotlin.text.UStringsKt;
@@ -182,13 +181,13 @@ public class AppPreference {
         /* ifbox_firmware_info */
         _ifBoxOTAInfo = parseJson("ifbox_firmware_info", FirmWareInfo.class);
         /* ifbox_version_info */
-        _ifBoxVersionInfo = parseJson("ifbox_version_info", Version.Response.class);
+//        _ifBoxVersionInfo = parseJson("ifbox_version_info", Version.Response.class);
         /* setting_screen_lock_sec */
         _screenLockSec = p.getInt(getKey(R.string.setting_key_screen_lock_sec), getDefaultInt(R.integer.setting_default_screen_lock_sec));
         /* term_sequence */
         _validationCheckTermSequence = p.getInt("validation_check_term_sequence", 0);
-        _tabletLinkInfo = parseJson("tablet_link_info", TabletLinkInfo.class);
-        _tabletVersionInfo = parseJson("tablet_version_info", jp.mcapps.android.multi_payment_terminal.webapi.tablet.data.Version.Response.class);
+//        _tabletLinkInfo = parseJson("tablet_link_info", TabletLinkInfo.class);
+//        _tabletVersionInfo = parseJson("tablet_version_info", jp.mcapps.android.multi_payment_terminal.webapi.tablet.data.Version.Response.class);
         /* datetime_lt27_printable */
         _datetimeLt27Printable = p.getString("datetime_lt27_printable", getKey(R.string.setting_default_opening_datetime));
         _ifBoxServiceInfo = p.getString("ifbox_service_info", null);
@@ -1732,28 +1731,28 @@ public class AppPreference {
         return _ifBoxOTAInfo != null;
     }
 
-    private static Version.Response _ifBoxVersionInfo = null;
-
-    public static Version.Response getIFBoxVersionInfo() {
-        return _ifBoxVersionInfo;
-    }
-
-    public static void setIFBoxVersionInfo(Version.Response info) {
-        _ifBoxVersionInfo = info;
-        p.edit().putString("ifbox_version_info", info != null ? _gson.toJson(info) : null).apply();
-//        if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D)) {
-//            /* ヤザキLT27双方向連動ではOKICA未対応のため、OKICA利用フラグを無効にする */
-//            p.edit().putBoolean((getKey(R.string.setting_key_money_okica)), false).apply();
-//            _isMoneyOkica = false;
-//        }
-    }
+//    private static Version.Response _ifBoxVersionInfo = null;
+//
+//    public static Version.Response getIFBoxVersionInfo() {
+//        return _ifBoxVersionInfo;
+//    }
+//
+//    public static void setIFBoxVersionInfo(Version.Response info) {
+//        _ifBoxVersionInfo = info;
+//        p.edit().putString("ifbox_version_info", info != null ? _gson.toJson(info) : null).apply();
+////        if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D)) {
+////            /* ヤザキLT27双方向連動ではOKICA未対応のため、OKICA利用フラグを無効にする */
+////            p.edit().putBoolean((getKey(R.string.setting_key_money_okica)), false).apply();
+////            _isMoneyOkica = false;
+////        }
+//    }
 
     public static void clearWifiP2pDeviceInfo() {
-        setIFBoxOTAInfo(null);
-        setIFBoxVersionInfo(null);
-        setTabletLinkInfo(null);
-        setIFBoxServiceInfo(null);
-        setTabletVersionInfo(null);
+        //setIFBoxOTAInfo(null);
+        //setIFBoxVersionInfo(null);
+        //setTabletLinkInfo(null);
+        //setIFBoxServiceInfo(null);
+        //setTabletVersionInfo(null);
     }
 
     //前回起動時のバージョン 異常終了検知でしか使わないのでRAMに保持しない
@@ -1784,32 +1783,6 @@ public class AppPreference {
     public static void setValidationCheckTermSequence(int value) {
         _validationCheckTermSequence = value;
         p.edit().putInt("validation_check_term_sequence", value).apply();
-    }
-
-    private static TabletLinkInfo _tabletLinkInfo = null;
-
-    public static TabletLinkInfo getTabletLinkInfo() {
-        return _tabletLinkInfo;
-    }
-
-    public static void setTabletLinkInfo(TabletLinkInfo info) {
-        _tabletLinkInfo = info;
-        p.edit().putString("tablet_link_info", info != null ? _gson.toJson(info) : null).apply();
-    }
-
-    private static jp.mcapps.android.multi_payment_terminal.webapi.tablet.data.Version.Response _tabletVersionInfo = null;
-
-    public static jp.mcapps.android.multi_payment_terminal.webapi.tablet.data.Version.Response getTabletVersionInfo() {
-        return _tabletVersionInfo;
-    }
-
-    public static void setTabletVersionInfo(jp.mcapps.android.multi_payment_terminal.webapi.tablet.data.Version.Response version) {
-        _tabletVersionInfo = version;
-        p.edit().putString("tablet_version_info", version != null ? _gson.toJson(version) : null).apply();
-    }
-
-    public static boolean isIFBoxHost() {
-        return _ifBoxOTAInfo != null && _tabletLinkInfo == null;
     }
 
     private static String _datetimeLt27Printable = null;

@@ -25,7 +25,7 @@ import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.ScreenData;
 import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.OptionService;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentMenuDiscountBinding;
 import jp.mcapps.android.multi_payment_terminal.model.DiscountInfo;
@@ -218,9 +218,9 @@ public class MenuDiscountFragment extends BaseFragment {
 
         boolean isAmountNon0 = (_menuViewModel.getTotalAmount().getValue() > 0) ? true : false;;
         boolean isAvailabled = (Amount.getDiscountAvailable() == 0) ? true : false;     // 割引実施フラグ取得
-        boolean isFutabaD = IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D);
+//        boolean isFutabaD = IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D);
 
-        return isAmountNon0 && isAvailabled && isFutabaD;
+        return isAmountNon0 && isAvailabled;
     }
 
     /******************************************************************************/
@@ -259,9 +259,8 @@ public class MenuDiscountFragment extends BaseFragment {
 
         boolean isAmountNon0 = (_menuViewModel.getTotalAmount().getValue() > 0) ? true : false;;
         boolean isAvailabled = (Amount.getDiscountAvailable() == 0) ? true : false;     // 割引実施フラグ取得
-        boolean isFutabaD = IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D);
 
-        return isJob && isAmountNon0 && isAvailabled && isFutabaD;
+        return isJob && isAmountNon0 && isAvailabled;
     }
 
     /******************************************************************************/
@@ -316,10 +315,10 @@ public class MenuDiscountFragment extends BaseFragment {
         // TODO: handle discount info
         Timber.tag("[FUTABA-D]").d(discountInfo.toString());
         Timber.i("[FUTABA-D]setDiscountInfo()");
-
-        if ( (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false)) {
-            return;
-        }
+//
+//        if ( (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == false)) {
+//            return;
+//        }
 
         PrinterManager printerManager = PrinterManager.getInstance();
         printerManager.setView(this.getView());

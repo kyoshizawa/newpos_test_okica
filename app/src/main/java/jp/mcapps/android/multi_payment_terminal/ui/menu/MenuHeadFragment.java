@@ -29,7 +29,7 @@ import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.R;
 import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
 //import jp.mcapps.android.multi_payment_terminal.data.CurrentRadio;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorStackingData;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentMenuHeadBinding;
@@ -74,30 +74,6 @@ public class MenuHeadFragment extends Fragment implements ErrorStackingEventHand
         _commonErrorDialog = new CommonErrorDialog();
         _commonErrorDialog.setErrorStackingEventHandler(this);
 
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D)) {          //フタバ双方向時 コールドスタートを実施（起動時初回１回　or 接続が切れるたび）
-            final Fragment fragment = getParentFragment().getParentFragment();
-            MenuViewModel menuViewModel = new ViewModelProvider(fragment, MainApplication.getViewModelFactory()).get(MenuViewModel.class);
-            _commonErrorDialog.setCommonErrorEventHandlers(new CommonErrorEventHandlers() {
-                @Override
-                public void onPositiveClick(String errorCode) {
-//                    if (errorCode.equals(getString(R.string.error_type_FutabaD_FareUp_Warning))) {
-//                        menuViewModel.getIFBoxManager().send820_KeyCode(IFBoxManager.SendMeterDataStatus_FutabaD.RECEIPT_PRINT, 34, false); // 現金キーを送信
-//                    }
-                }
-
-                @Override
-                public void onNegativeClick(String errorCode) {
-                }
-
-                @Override
-                public void onNeutralClick(String errorCode) {
-                }
-
-                @Override
-                public void onDismissClick(String errorCode) {
-                }
-            });
-        }
 
         // ワーニング画像をタッチしたときのイベント
         final ImageView imageView = binding.getRoot().findViewById(R.id.image_menu_head_warning);

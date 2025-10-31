@@ -13,9 +13,6 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 //import jp.mcapps.android.multi_payment_terminal.model.device_network_manager.DeviceNetworkManager;
 import jp.mcapps.android.multi_payment_terminal.ui.Converters;
-import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.IFBoxApi;
-import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.IFBoxApiImpl;
-import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Meter;
 
 public class DeviceCheckViewModel extends ViewModel {
     private final String DEFAULT_STRING =
@@ -55,17 +52,4 @@ public class DeviceCheckViewModel extends ViewModel {
         });
     }
 
-    public Single<Meter.Response> checkMeter() {
-        Single<Meter.Response> single = Single.create(emitter -> {
-            final IFBoxApi apiClient = new IFBoxApiImpl();
-            apiClient.setBaseUrl("http://dum");
-            try {
-                emitter.onSuccess(apiClient.getMeter());
-            } catch (Exception e) {
-                emitter.onError(new Throwable());
-            }
-        });
-
-        return single.subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
-    }
 }

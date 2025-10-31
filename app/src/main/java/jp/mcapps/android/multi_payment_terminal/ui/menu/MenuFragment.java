@@ -60,7 +60,7 @@ import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
 import jp.mcapps.android.multi_payment_terminal.data.Amount;
 import jp.mcapps.android.multi_payment_terminal.data.BusinessType;
 //import jp.mcapps.android.multi_payment_terminal.data.EmoneyOpeningInfo;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.MoneyType;
 import jp.mcapps.android.multi_payment_terminal.data.TransMap;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
@@ -89,7 +89,7 @@ import jp.mcapps.android.multi_payment_terminal.ui.error.CommonErrorEventHandler
 //import jp.mcapps.android.multi_payment_terminal.ui.pos.PosEventHandlers;
 //import jp.mcapps.android.multi_payment_terminal.ui.pos.PosEventHandlersImpl;
 //import jp.mcapps.android.multi_payment_terminal.ui.pos.PosViewModel;
-import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
+//import jp.mcapps.android.multi_payment_terminal.webapi.ifbox.data.Version;
 import timber.log.Timber;
 
 public class MenuFragment extends Fragment /*implements IiCASClient*/ {
@@ -336,12 +336,8 @@ public class MenuFragment extends Fragment /*implements IiCASClient*/ {
         if (_app.getCashValue() > 0) {
             //ADD-S BMT S.Oyama 2025/03/05 フタバ双方向向け改修
             String tmpCashMesStr = "";
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
-                tmpCashMesStr = "残金があります。\n領収書を印刷します。\n残金 %s円";
-            }
-            else {
+
                 tmpCashMesStr = "以下の金額を\n現金で頂いて下さい。\n%s円";
-            }
             //ADD-E BMT S.Oyama 2025/03/05 フタバ双方向向け改修
             final AlertDialog.Builder builder = new AlertDialog.Builder(requireContext())
                     .setMessage(String.format(tmpCashMesStr, Converters.integerToNumberFormat(_app.getCashValue())))
@@ -426,36 +422,6 @@ public class MenuFragment extends Fragment /*implements IiCASClient*/ {
             }
         }
 
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL)) {
-//            if (printEndManualDisposable == null) {
-//                printEndManualDisposable = _menuViewModel.getPrintEndManual().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(flg -> {
-//
-//                    AlertDialog dialog = new AlertDialog.Builder(getContext())
-//                            .setTitle("手動決済モード終了")
-//                            .setMessage("双方向決済モードに切り替わりました。")
-//                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialogInterface, int i) {
-//                                    Version.Response ifboxVersionInfo = AppPreference.getIFBoxVersionInfo();
-//                                    ifboxVersionInfo.appModel = IFBoxAppModels.FUTABA_D;
-//                                    AppPreference.setIFBoxVersionInfo(ifboxVersionInfo);
-//                                    _sharedViewModel.setUpdatedFlag(true);
-//                                    AppPreference.setIsTemporaryManualMode(false);
-//
-//                                    Disposable chkDisp = _menuViewModel.checkMeterCharge()
-//                                            .subscribeOn(Schedulers.io())
-//                                            .observeOn(AndroidSchedulers.mainThread())
-//                                            .subscribe();
-//                                    disposables.add(chkDisp);
-//                                }
-//                            })
-//                            .create();
-//
-//                    dialog.setCanceledOnTouchOutside(false);
-//                    dialog.show();
-//                });
-//            }
-        }
     }
 
     private final CompositeDisposable disposables = new CompositeDisposable();
@@ -743,30 +709,30 @@ public class MenuFragment extends Fragment /*implements IiCASClient*/ {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void exitManualMode(boolean flg, int id) {
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL)) {
-            // 手動決済モードを終了
-            Timber.i("手動決済モード終了");
-            Version.Response ifboxVersionInfo = AppPreference.getIFBoxVersionInfo();
-            ifboxVersionInfo.appModel = IFBoxAppModels.FUTABA_D;
-            AppPreference.setIFBoxVersionInfo(ifboxVersionInfo);
-            _sharedViewModel.setUpdatedFlag(true);
-            AppPreference.setIsTemporaryManualMode(false);
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    _slipData = DBManager.getSlipDao().getOneById(id);
-                }
-            });
-            thread.start();
-
-            try {
-                thread.join();
-                if (_slipData.transTypeCode.equals(PrinterProc.MANUALMODE_TRANS_TYPE_CODE_SALES)) {
-                    SuccessDialog.show(getView().getContext(), "双方向決済モードに切り替わりました。");
-                }
-            } catch (Exception e) {
-                //　念のため
-            }
-        }
+//        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D_MANUAL)) {
+//            // 手動決済モードを終了
+//            Timber.i("手動決済モード終了");
+////            Version.Response ifboxVersionInfo = AppPreference.getIFBoxVersionInfo();
+////            ifboxVersionInfo.appModel = IFBoxAppModels.FUTABA_D;
+////            AppPreference.setIFBoxVersionInfo(ifboxVersionInfo);
+//            _sharedViewModel.setUpdatedFlag(true);
+//            AppPreference.setIsTemporaryManualMode(false);
+//            Thread thread = new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    _slipData = DBManager.getSlipDao().getOneById(id);
+//                }
+//            });
+//            thread.start();
+//
+//            try {
+//                thread.join();
+//                if (_slipData.transTypeCode.equals(PrinterProc.MANUALMODE_TRANS_TYPE_CODE_SALES)) {
+//                    SuccessDialog.show(getView().getContext(), "双方向決済モードに切り替わりました。");
+//                }
+//            } catch (Exception e) {
+//                //　念のため
+//            }
+//        }
     }
 }

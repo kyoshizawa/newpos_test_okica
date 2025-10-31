@@ -34,7 +34,7 @@ import jp.mcapps.android.multi_payment_terminal.CommonClickEvent;
 import jp.mcapps.android.multi_payment_terminal.MainApplication;
 import jp.mcapps.android.multi_payment_terminal.NavigationWrapper;
 import jp.mcapps.android.multi_payment_terminal.R;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.TransMap;
 import jp.mcapps.android.multi_payment_terminal.database.DBManager;
 import jp.mcapps.android.multi_payment_terminal.database.history.error.ErrorStackingDao;
@@ -1021,10 +1021,10 @@ public class PrinterManager implements CommonErrorEventHandlers {
             public void onClick(DialogInterface dialog, int which) {
                 //CHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
                 //if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-                if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) ) {
-                    //CHG-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-                    _handler.removeCallbacks(_printNext);
-                }
+//                if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) ) {
+//                    //CHG-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
+//                    _handler.removeCallbacks(_printNext);
+//                }
                 // 印刷命令を１回のみ受令許可
                 CommonClickEvent.RecordClickOperation("はい", "伝票印刷", true);
 
@@ -1045,27 +1045,7 @@ public class PrinterManager implements CommonErrorEventHandlers {
 
         //CHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
         //if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) ) {
-            //CHG-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-            // 印刷確認画面で一定時間経過後、自動で次の伝票印刷へ進む
-            _printNext = new Runnable() {
-                @RequiresApi(api = Build.VERSION_CODES.N)
-                @Override
-                public void run() {
-                    _alertDialogCtrl.dismiss();
-                    showPrintingDialog();
-                    printNext();
 
-                    //ADD-S BMT S.Oyama 2024/11/11 フタバ双方向向け改修
-                    _alertDialog = null;
-                    _alertDialogCtrl = null;
-                    //ADD-E BMT S.Oyama 2024/11/11 フタバ双方向向け改修
-                }
-            };
-
-            // TODO M.Kodama 時間を調整
-            _handler.postDelayed(_printNext, 18000);
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -1076,19 +1056,10 @@ public class PrinterManager implements CommonErrorEventHandlers {
                 // 09.22 t.wada 印刷可能状態に戻す
                 changePrintStatus(PrinterConst.PrintStatus_PRINTING);
 
-                //ADD-S BMT S.Oyama 2025/01/10 フタバ双方向向け改修
-                if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true ) {
-                    PrinterProc printerProc = PrinterProc.getInstance();
-                    if (isSlipType == PrinterConst.SlipType_Prepaid) {          //SlipTypeがプリペイドのときは，別処理となる
-                        printerProc.printPrepaidTrans(isSlipDataIds, PrinterConst.SlipCopy_Customer);     //PrinterConst.SlipCopy_Merchant
-                    } else {
-                        printerProc.printTrans(isSlipDataId, PrinterConst.SlipCopy_Customer);
-                    }
-                } else {
-                    PrinterProc printerProc = PrinterProc.getInstance();
-                    printerProc.printTrans(isSlipDataId, PrinterConst.SlipCopy_Customer);
-                }
-                //ADD-E BMT S.Oyama 2025/01/10 フタバ双方向向け改修
+
+                PrinterProc printerProc = PrinterProc.getInstance();
+                printerProc.printTrans(isSlipDataId, PrinterConst.SlipCopy_Customer);
+
             }
         }).start();
     }
@@ -1424,11 +1395,7 @@ public class PrinterManager implements CommonErrorEventHandlers {
 
         // 伝票印刷用のダイアログ閉じる
         dismissPrintingDialog();
-        //ADD-S BMT S.Oyama 2024/11/11 フタバ双方向向け改修
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true ) {
-            dismissNextPrintDialog();
-        }
-        //ADD-E BMT S.Oyama 2024/11/11 フタバ双方向向け改修
+
         // 正常に印刷終了
         if (PrintResult == Printer.PRINTER_OK) {
             switch (isSlipType) {
@@ -1497,17 +1464,6 @@ public class PrinterManager implements CommonErrorEventHandlers {
                 changePrintStatus(PrinterConst.PrintStatus_ERROR);
             }
 
-            //ADD-S BMT S.Oyama 2025/02/17 フタバ双方向向け改修
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true ) {
-                if ((isSlipType == PrinterConst.SlipType_TransHistory_Waon) &&
-                        (PrintResult == PrinterConst.DuplexPrintStatus_PAPERLACKING)) {     //WAON歴　かつ用紙切れの場合は，エラーコードを差し替える
-                    //ADD-S BMT S.Oyama 2025/03/11 フタバ双方向向け改修
-                    //PrintResult = PrinterConst.DuplexPrintStatus_OUTOFPAPER_NORESTART;
-                    PrintResult = PrinterConst.DuplexPrintStatus_PAPERLACKING;
-                    //ADD-E BMT S.Oyama 2025/03/11 フタバ双方向向け改修
-                }
-            }
-            //ADD-E BMT S.Oyama 2025/02/17 フタバ双方向向け改修
 
             // プリンターエラー発生
             PrinterDuplexError(PrintResult);
@@ -1535,34 +1491,9 @@ public class PrinterManager implements CommonErrorEventHandlers {
 
         switch (error_code){
             case PrinterConst.DuplexPrintStatus_PAPERLACKING:       // 用紙切れ状態(1)
-                //ADD-S BMT S.Oyama 2025/02/21 フタバ双方向向け改修
-                if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true ) {
-                    _commonErrorDialog.ShowErrorMessage(_view.getContext(), MainApplication.getInstance().getString(R.string.error_type_FutabaD_Outofpaper_Norestart_withSetkey));          //フタバD時の紙切れは，セットキーで再開のため，別のダイアログを表示させる
-                }
-                else {
+
                     _commonErrorDialog.ShowErrorMessage(_view.getContext(), MainApplication.getInstance().getString(R.string.error_type_printer_duplex_sts_paper_lack));
-                }
-                //ADD-E BMT S.Oyama 2025/02/21 フタバ双方向向け改修
-                //ADD-S BMT S.Oyama 2025/01/28 フタバ双方向向け改修
-                if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true ) {
-                    //ADD-S BMT S.Oyama 2025/04/24 フタバ双方向向け改修
-                    PrinterProc printerProc = PrinterProc.getInstance();
-                    String tmpBlandName = printerProc.getDuplexPrint_BlandName();
-                    if (tmpBlandName.equals(MainApplication.getInstance().getString(R.string.money_brand_credit)) != true) {          // ブランド名がクレジットでない場合170秒でダイアログを閉じるを有効化
-                        // 用紙切れ状態(1)の場合、長時間表示時エラーダイアログを非表示化
-                        _printErrorDialog = new Runnable() {
-                            @RequiresApi(api = Build.VERSION_CODES.N)
-                            @Override
-                            public void run() {
-                                DissmissPrinterDuplexError();
-                                Timber.i("[FUTABA-D]PrintManager::PrinterDuplexError  PAPERLACKING Error Long view. So, dissmissed dialog.");
-                            }
-                        };
-                        _handlerErrorDialog.postDelayed(_printErrorDialog, 170 * 1000);     //170秒で非表示
-                    }
-                    //ADD-E BMT S.Oyama 2025/04/24 フタバ双方向向け改修
-                }
-                //ADD-E BMT S.Oyama 2025/01/28 フタバ双方向向け改修
+
                 break;
             case PrinterConst.DuplexPrintStatus_PRINTCHECK:           // プリンタ確認
                 _commonErrorDialog.ShowErrorMessage(_view.getContext(), MainApplication.getInstance().getString(R.string.error_type_printer_duplex_sts_check));
@@ -1630,16 +1561,11 @@ public class PrinterManager implements CommonErrorEventHandlers {
 
 
         boolean tmpTimeoutStartFL = false;
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) != true ) {
-            tmpTimeoutStartFL = true;
-        }
-        else
-        {
+
             if (error_code != PrinterConst.DuplexPrintStatus_PAPERLACKING)
             {
                 tmpTimeoutStartFL = true;
             }
-        }
 
         if (tmpTimeoutStartFL == true) {
             TimerTask task = new TimerTask() {
@@ -1699,18 +1625,7 @@ public class PrinterManager implements CommonErrorEventHandlers {
            MainApplication.getInstance().getString(R.string.error_type_FutabaD_Outofpaper_Norestart_withSetkey).equals(errorCode)
            //ADD-E BMT S.Oyama 2025/02/21 フタバ双方向向け改修
         ) {
-            if(!IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) &&
-            //ADDCHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-               !IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) &&
-               !IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D))
-            //ADDCHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-            {
-                if (isPrintStatus == PrinterConst.PrintStatus_PAPERLACKING) {
-                    changePrintStatus(PrinterConst.PrintStatus_PRINTING);
-                } else {
-                    return;
-                }
-            }
+
             Timber.tag("Printer").i("%s", MainApplication.getInstance().getResources().getString(R.string.printLog_RePrint));
             // 伝票印刷用のダイアログ表示
             showPrintingDialog();
@@ -1729,68 +1644,19 @@ public class PrinterManager implements CommonErrorEventHandlers {
                     PrinterProc printerProc = PrinterProc.getInstance();
                     switch (isSlipType) {
                         case PrinterConst.SlipType_Prepaid:
-                            if(IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) ||
-                                    //ADDCHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-                                    IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) ||
-                                    (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) && (slipData.transTypeCode == null || !slipData.transTypeCode.equals(MANUALMODE_TRANS_TYPE_CODE_SALES)) && (slipData.transTypeCode == null || !slipData.transTypeCode.equals(MANUALMODE_TRANS_TYPE_CODE_CANCEL))) )
-                            {
-                                //ADDCHG-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-                                //ADD-S BMT S.Oyama 2024/12/23 フタバ双方向向け改修
-                                if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true){
-                                    if (isPrintStatus == PrinterConst.PrintStatus_IDLE) {           //idle時は再印字を実施しない
-                                        dismissPrintingDialog();                    //ダイアログを閉じる
-                                    } else {
-                                        //ADD-S BMT S.Oyama 2025/02/18 フタバ双方向向け改修
-                                        //printerProc.printPrepaidTrans(isSlipDataIds, PrinterConst.SlipCopy_Merchant);
-                                        //_ifBoxManager.send820_Reprint_KeyCode();                //SLIP組み立て止めて，セットキーを送るようにする
-                                        //ADD-E BMT S.Oyama 2025/02/18 フタバ双方向向け改修
-                                    }
-                                }
-                                else {
-                                    printerProc.printPrepaidTrans(isSlipDataIds, PrinterConst.SlipCopy_Merchant);
-                                }
-                                //ADD-E BMT S.Oyama 2024/12/12 フタバ双方向向け改修
-                            }else {
+
                                 printerProc.printPrepaidTrans(isSlipDataIds, isSlipCopy);
-                            }
+
                             break;
                         case PrinterConst.SlipType_Trans:
-                            if(IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) ||
-                            //ADDCHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-                               IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) ||
-                              (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) && (slipData.transTypeCode == null || !slipData.transTypeCode.equals(MANUALMODE_TRANS_TYPE_CODE_SALES)) && (slipData.transTypeCode == null || !slipData.transTypeCode.equals(MANUALMODE_TRANS_TYPE_CODE_CANCEL))) )
-                            {
-                            //ADDCHG-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-                                //ADD-S BMT S.Oyama 2024/12/23 フタバ双方向向け改修
-                                if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true){
-                                    if (isPrintStatus == PrinterConst.PrintStatus_IDLE) {           //idle時は再印字を実施しない
-                                        dismissPrintingDialog();                    //ダイアログを閉じる
-                                    } else {
-                                        //ADD-S BMT S.Oyama 2025/02/18 フタバ双方向向け改修
-                                        //printerProc.printTrans(isSlipDataId, PrinterConst.SlipCopy_Merchant);
-                                        //_ifBoxManager.send820_Reprint_KeyCode();            //SLIP組み立て止めて，セットキーを送るようにする
-                                        //ADD-E BMT S.Oyama 2025/02/18 フタバ双方向向け改修
-                                    }
-                                }
-                                else {
-                                    printerProc.printTrans(isSlipDataId, PrinterConst.SlipCopy_Merchant);
-                                }
-                                //ADD-E BMT S.Oyama 2024/12/12 フタバ双方向向け改修
-                            }else {
+
                                 printerProc.printTrans(isSlipDataId, isSlipCopy);
-                            }
+
                             break;
                         case PrinterConst.SlipType_TransHistory_Waon:
-                            //ADD-S BMT S.Oyama 2025/02/18 フタバ双方向向け改修
-                            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true){
-                                //ADD-S BMT S.Oyama 2025/03/11 フタバ双方向向け改修
-                                //_ifBoxManager.send820_Reprint_KeyCode();                            //SLIP組み立て止めて，セットキーを送るようにする
-                                //printerProc.sendWsPrintHistryFutabaDCoreErrorAck();                   //フタバDの場合，JSONでエラー応答を送る
-                                //ADD-E BMT S.Oyama 2025/03/11 フタバ双方向向け改修
-                            } else {
+
                                 printerProc.printTransHistory_WAON(isResultWAON);
-                            }
-                            //ADD-E BMT S.Oyama 2025/02/18 フタバ双方向向け改修
+
                             break;
                         case PrinterConst.SlipType_TransHistory_Okica:
                             printerProc.printTransHistory_OKICA(isHistoryDataOKICA, isOkicaHistoryPrintDateTime);
@@ -1836,18 +1702,7 @@ public class PrinterManager implements CommonErrorEventHandlers {
 //                            break;
                         //ADD-S BMT S.Oyama 2025/03/11 フタバ双方向向け改修
                         case PrinterConst.SlipType_AggregateFutabaD:
-                            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true) {
-                                //_ifBoxManager.send820_Reprint_KeyCode();                            //SLIP組み立て止めて，セットキーを送るようにする
-                                TimerTask timerTask = new TimerTask() {
-                                    @Override
-                                    public void run() {
-                                        dismissPrintingDialog();                    //ダイアログを閉じる
-                                    }
-                                };
 
-                                Timer timer = new Timer();
-                                timer.schedule(timerTask, 5000);
-                            }
                             break;
                         //ADD-E BMT S.Oyama 2025/03/11 フタバ双方向向け改修
                         default:
@@ -1893,21 +1748,7 @@ public class PrinterManager implements CommonErrorEventHandlers {
     // 印刷再開中止
     private void ReprintStop(String errorCode){
 
-        //CHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-        //if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) || IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) || IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) || IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D)) {
-        //CHG-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-            /* LT27ヤザキ双方向の場合 */
-            if (MainApplication.getInstance().getString(R.string.error_type_ifbox_print_error).equals(errorCode)) {
-                if (PrinterConst.SlipType_Trans == isSlipType && PrinterConst.TransResult_OK == isTransResult) {
-                    // 印刷失敗のメッセージ表示、取引詳細履歴画面から再印刷を案内
-                    if (PrinterConst.DuplexPrintStatus_IFBOX_PRINTERROR == printerDuplexErrorCode) {
-                        printerDuplexErrorCode = PrinterConst.DuplexPrintStatus_IFBOXERROR;
-                    }
-                    PrinterDuplexError(printerDuplexErrorCode);
-                }
-            }
-        }
+
 
         // 印刷再開中止命令を１回のみ受令許可
         if(isPrintStatus == PrinterConst.PrintStatus_PAPERLACKING){
@@ -2114,24 +1955,6 @@ public class PrinterManager implements CommonErrorEventHandlers {
      */
     /******************************************************************************/
     public void send820_FunctionCodeErrorResult(View view, int tmpPhase, boolean isACKResult, int tmpSettlementMode ) {
-        if ((IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true)) {
-            //条件が成り立つときは通過させる
-        } else {
-            return;         //成り立たないときは処理中止
-        }
-
-//        if (_ifBoxManager == null) {
-//            return;
-//        }
-//
-//        if (_ifBoxManager.getIsConnected820() == false) {
-//            setView(view);
-//            PrinterDuplexError(PrinterConst.DuplexPrintStatus_IFBOXERROR);
-//            return;
-//        }
-
-        //ADD-S BMT S.Oyama 2025/02/10 フタバ双方向向け改修
-        //_ifBoxManager.send820_FunctionCodeErrorResult(tmpPhase, isACKResult);             //取り消しキー送付のやり方は辞める
 
         PrinterProc printerProc = PrinterProc.getInstance();                                //print_startのx59を送付させる　print_endは無し
         printerProc.printTransFutabaD_SettlementAbort(tmpPhase, tmpSettlementMode);

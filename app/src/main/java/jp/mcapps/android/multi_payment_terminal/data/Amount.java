@@ -3,7 +3,7 @@ package jp.mcapps.android.multi_payment_terminal.data;
 import androidx.lifecycle.MutableLiveData;
 
 import jp.mcapps.android.multi_payment_terminal.AppPreference;
-import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
+//import jp.mcapps.android.multi_payment_terminal.ui.amount_input.AmountInputSeparationPayFDViewModel;
 import timber.log.Timber;
 
 public class Amount {
@@ -82,30 +82,8 @@ public class Amount {
                 return getBaseAmount() + getTotalChangeAmount();
             }
         }
-        //CHG-S BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-        //if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) || IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D)) {
-        //return getMeterCharge() - getCashAmount() - getTicketAmount() - getPaidAmount(); // 支払済金額追加　20231127 t.wada getPaidAmount
-        if (IFBoxAppModels.isMatch(IFBoxAppModels.YAZAKI_LT27_D) || IFBoxAppModels.isMatch(IFBoxAppModels.OKABE_MS70_D) || IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D)) {
-            //ADD-S BMT S.Oyama 2024/12/26 フタバ双方向向け改修
-            if (IFBoxAppModels.isMatch(IFBoxAppModels.FUTABA_D) == true)
-            {
-                if (AppPreference.isMeterStatusSiharai() && Amount.getPaymented() != 0) {
-                    // メーターが支払で決済済の場合
-                    Timber.i("[FUTABA-D]*** TOTAL AMOUNT 0 ***");
-                    return 0;
-                } else {
-                    Timber.i("[FUTABA-D]*** TOTAL AMOUNT = %d ***", getMeterCharge() - getCashAmount() - getPaidAmount());
-                    return getMeterCharge() - getCashAmount();         // 立替金額追加 240930 S.Oyama getTatekae()削除
-                }
 
-            }
-            else
-            {
-                return getMeterCharge() - getCashAmount() - getTicketAmount() - getPaidAmount() ;         // 立替金額追加 240930 S.Oyama getTatekae()削除
-            }
-            //ADD-E BMT S.Oyama 2024/12/26 フタバ双方向向け改修
-        //CHG-E BMT S.Oyama 2024/09/24 フタバ双方向向け改修
-        } else {
+        else {
             return getBaseAmount() + getTotalChangeAmount();
         }
     }

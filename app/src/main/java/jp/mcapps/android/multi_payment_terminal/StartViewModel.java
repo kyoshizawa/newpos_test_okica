@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 import io.grpc.Status;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import jp.mcapps.android.multi_payment_terminal.data.FirmWareInfo;
-import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
+//import jp.mcapps.android.multi_payment_terminal.data.IFBoxAppModels;
 import jp.mcapps.android.multi_payment_terminal.data.OptionService;
 import jp.mcapps.android.multi_payment_terminal.data.sam.Constants;
 import jp.mcapps.android.multi_payment_terminal.devices.SamRW;

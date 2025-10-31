@@ -253,34 +253,17 @@ public class Converters {
     }
 
     public static Boolean isTabletSetupFinished() {
-        if (AppPreference.getTabletLinkInfo() != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     public static String getIfboxInfo() {
         String ret = "";
         String model, ver;
 
-        if (AppPreference.getIFBoxVersionInfo() != null) {
-            model = AppPreference.getIFBoxVersionInfo().appModel;
-            if (model != null) {
-                model = model.replace("YAZAKI", "矢崎");
-                model = model.replace("FUTABA", "二葉");
-                model = model.replace("NISHIBE", "ニシベ");
-                model = model.replace("OKABE", "岡部");
-                model = model.replace("/", "");
-                model = model.replace("-D", "双方向");
-            } else {
-                model = "";
-            }
-            ver = AppPreference.getIFBoxVersionInfo().appVersion;
-        } else {
+
             model = "";
             ver = "";
-        }
+
         ret = model + ":" + ver;
 
         return ret;
