@@ -9,12 +9,12 @@
         <variable
             name="slipData"
             type="jp.mcapps.android.multi_payment_terminal.database.history.slip.SlipData" />
-        <variable
-            name="viewModel"
-            type="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryReceiptIssueViewModel" />
-        <variable
-            name="handlers"
-            type="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryEventHandlers" />
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryReceiptIssueViewModel" />-->
+<!--        <variable-->
+<!--            name="handlers"-->
+<!--            type="jp.mcapps.android.multi_payment_terminal.ui.history.HistoryEventHandlers" />-->
     </data>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,9 +52,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/btn_manual_input"
                     android:button="@null"
-                    android:checked="@{!viewModel.isDetail}"
                     android:gravity="center"
-                    android:onClick='@{() -> handlers.onSelectReceiptTypeClick(false, viewModel)}'
                     android:text="金額のみ"
                     android:textSize="20sp"
                     android:textColor="@drawable/btn_manual_input" />
@@ -66,8 +64,6 @@
                     android:background="@drawable/btn_manual_input"
                     android:button="@null"
                     android:gravity="center"
-                    android:checked="@{viewModel.isDetail}"
-                    android:onClick='@{() -> handlers.onSelectReceiptTypeClick(true, viewModel)}'
                     android:text="明細付き"
                     android:textSize="20sp"
                     android:textColor="@drawable/btn_manual_input" />
@@ -79,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:backgroundTint="@color/green_500"
-                android:onClick="@{view -> handlers.onReceiptClick(view, slipData.id, viewModel.isDetail)}"
+                android:onClick="@{}"
                 android:text="発行"
                 android:textSize="28sp"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -22,7 +22,6 @@ import jp.mcapps.android.multi_payment_terminal.ScreenData;
 import jp.mcapps.android.multi_payment_terminal.SharedViewModel;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentMenuBusinessBinding;
 import jp.mcapps.android.multi_payment_terminal.databinding.FragmentMenuExternalDeviceBinding;
-import jp.mcapps.android.multi_payment_terminal.ui.history.HistoryEventHandlersImpl;
 
 public class MenuExternalDeviceFragment extends BaseFragment implements ExternalDeviceEventHandlers{
     private final String SCREEN_NAME = "外部機器メニュー";
