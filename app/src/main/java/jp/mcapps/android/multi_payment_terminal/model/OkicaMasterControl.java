@@ -26,6 +26,8 @@ import jp.mcapps.android.multi_payment_terminal.webapi.grpc.data.GetNegaList;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.data.GetNegaVersion;
 import jp.mcapps.android.multi_payment_terminal.webapi.grpc.data.TerminalInfo;
 import timber.log.Timber;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class OkicaMasterControl {
     private static final String IC_MASTER_FILE_ID = "11";
@@ -57,7 +59,7 @@ public class OkicaMasterControl {
         final McOkicaCenterApi api = new McOkicaCenterApiImpl();
 
         // マスタデータの保持期限チェック
-        okicaCheckMasterTimeLimit();
+        // okicaCheckMasterTimeLimit();
 
         // 端末情報取得
         TerminalInfo.Response termInfo = api.getTerminalInfo();
@@ -145,36 +147,44 @@ public class OkicaMasterControl {
         fileIds[1] = getAccessKeyFileID();
         GetMasterFileVerion.Response fileVersion = _api.getMasterFileVersion(fileIds);
         if (fileVersion.result) {
-            // IC運用マスタ取得（IC運用マスタ未取得、または、バージョン不一致の場合のみ）
-            ICMasterInfo icMasterInfo = AppPreference.getOkicaICMasterInfo();
-            if (icMasterInfo == null || icMasterInfo.version != fileVersion.fileVersions[0].getVersion()) {
-                if (icMasterInfo == null) {
-                    Timber.i("IC運用マスタ取得情報 (新)Ver:%d (現)Ver:Null", fileVersion.fileVersions[0].getVersion());
-                } else {
-                    Timber.i("IC運用マスタ取得情報 (新)Ver:%d (現)Ver:%d", fileVersion.fileVersions[0].getVersion(), icMasterInfo.version);
-                }
-                getICMaster();
-            } else {
-                // バージョン一致の場合は取得日のみ更新
-                ICMaster.updateCheckDate();
-            }
-
-            icMasterInfo = AppPreference.getOkicaICMasterInfo();
-            if (icMasterInfo != null) {
-                cl.setTimeInMillis(icMasterInfo.checkDate);
-                Timber.i("IC運用マスタ使用情報 Ver:%d Date:%04d/%02d/%02d %02d:%02d:%02d", icMasterInfo.version,
-                        cl.get(Calendar.YEAR), cl.get(Calendar.MONTH)+1, cl.get(Calendar.DATE),
-                        cl.get(Calendar.HOUR_OF_DAY), cl.get(Calendar.MINUTE), cl.get(Calendar.SECOND));
-
-                // IC運用マスタをファイルから読み込む
-                ICMaster master = ICMaster.load();
-                if (master != null) {
-                    _app.getInstance().setOkicaICMaster(master);
-                }
-            }
+//            // IC運用マスタ取得（IC運用マスタ未取得、または、バージョン不一致の場合のみ）
+//            ICMasterInfo icMasterInfo = AppPreference.getOkicaICMasterInfo();
+//            if (icMasterInfo == null || icMasterInfo.version != fileVersion.fileVersions[0].getVersion()) {
+//                if (icMasterInfo == null) {
+//                    Timber.i("IC運用マスタ取得情報 (新)Ver:%d (現)Ver:Null", fileVersion.fileVersions[0].getVersion());
+//                } else {
+//                    Timber.i("IC運用マスタ取得情報 (新)Ver:%d (現)Ver:%d", fileVersion.fileVersions[0].getVersion(), icMasterInfo.version);
+//                }
+//                getICMaster();
+//            } else {
+//                // バージョン一致の場合は取得日のみ更新
+//                ICMaster.updateCheckDate();
+//            }
+//
+//            icMasterInfo = AppPreference.getOkicaICMasterInfo();
+//            if (icMasterInfo != null) {
+//                cl.setTimeInMillis(icMasterInfo.checkDate);
+//                Timber.i("IC運用マスタ使用情報 Ver:%d Date:%04d/%02d/%02d %02d:%02d:%02d", icMasterInfo.version,
+//                        cl.get(Calendar.YEAR), cl.get(Calendar.MONTH)+1, cl.get(Calendar.DATE),
+//                        cl.get(Calendar.HOUR_OF_DAY), cl.get(Calendar.MINUTE), cl.get(Calendar.SECOND));
+//
+//                // IC運用マスタをファイルから読み込む
+//                ICMaster master = ICMaster.load();
+//                if (master != null) {
+//                    _app.getInstance().setOkicaICMaster(master);
+//                }
+//            }
 
             // アクセスキー取得（アクセスキー未取得、または、バージョン不一致の場合のみ）
             AccessKeyInfo accessKeyInfo = AppPreference.getOkicaAccessKeyInfo();
+
+            Gson gson = new GsonBuilder()
+                    .serializeNulls()   // null フィールドも出力
+                    .create();
+
+            String json = gson.toJson(accessKeyInfo);
+            Timber.i("accessKeyInfo JSON = %s", json);
+
             if (accessKeyInfo == null || accessKeyInfo.version != fileVersion.fileVersions[1].getVersion()) {
                 if (accessKeyInfo == null) {
                     Timber.i("アクセスキー取得情報 (新)Ver:%d (現)Ver:Null", fileVersion.fileVersions[1].getVersion());

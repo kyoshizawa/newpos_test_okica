@@ -21,10 +21,16 @@
             type="jp.mcapps.android.multi_payment_terminal.ui.menu.MenuEventHandlers" />
     </data>
 
+    <!-- 通常
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+    -->
+    <!-- 5010 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+    <!-- x -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_menu_upper"
             android:layout_width="0dp"

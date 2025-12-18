@@ -1810,8 +1810,8 @@ public class AppPreference {
     private static String _okicaAccessToken = null;
 
     public static String getOkicaAccessToken() {
-        return "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlBFTHdxVkpoVWJhVk1LUjAwSWdKVXhrWDJxb1p0MWhPc0NoNjMxUmlaa1kifQ.eyJhdXRoX3RpbWUiOiIxNzYxNTU4MDY0IiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic3ViIjoiMDAwMDAwMDAwMDAwMDAxODEiLCJtYWNoaW5lX2lkIjoiMTAwMDAwMDExNyIsIm1hY2hpbmVfbW9kZWxfY2QiOiIxMDcxIiwibWFjaGluZV9hc3NvX2NkIjoiMDEyMDAyIiwibmJmIjoxNzYxNTU4MDY0LCJleHAiOjQ5MTUxMjMyMDAsImlhdCI6MTc2MTU1ODA2NCwiaXNzIjoiaHR0cHM6Ly9zdGctb2tpY2FidXNpbmVzcy1hcGkubWNhcHBzLmpwL2FwaS92MS90ZXJtaW5hbCJ9.ftcs7nmGOa9dtsuNZPu5ycigdJf1tyGIx0CNQpkfrJ4T_oV24cBpUs_ig_N9-hLj2FnuZctOvcYcjJL0NTzCsgTH1g5Lh-rljYtcHPZUuhZuPI4a7-JLSivQu8RSXoMHo9A5yUs9eTMXeePKntree_lsmTF0r0_MQpcREEH0bXKw4ZATQ-OseScdiSFZUseWTWqTqFbjh-BZa9HG576gCnu9nVNYXuBHh_LtWfCcnKQI2gODju7lxRtlDY33IWBd1LcQ0TmMUNqtTAEUAF3Q3tpWXRygwNSyogo-SVl0CDGv2plbnROJ6M5X7APCfClhGx7Vo3M1BnCjGksOWGrwKQ";
-        //return _okicaAccessToken;
+        //return "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlBFTHdxVkpoVWJhVk1LUjAwSWdKVXhrWDJxb1p0MWhPc0NoNjMxUmlaa1kifQ.eyJhdXRoX3RpbWUiOiIxNzYxNTU4MDY0IiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic3ViIjoiMDAwMDAwMDAwMDAwMDAxODEiLCJtYWNoaW5lX2lkIjoiMTAwMDAwMDExNyIsIm1hY2hpbmVfbW9kZWxfY2QiOiIxMDcxIiwibWFjaGluZV9hc3NvX2NkIjoiMDEyMDAyIiwibmJmIjoxNzYxNTU4MDY0LCJleHAiOjQ5MTUxMjMyMDAsImlhdCI6MTc2MTU1ODA2NCwiaXNzIjoiaHR0cHM6Ly9zdGctb2tpY2FidXNpbmVzcy1hcGkubWNhcHBzLmpwL2FwaS92MS90ZXJtaW5hbCJ9.ftcs7nmGOa9dtsuNZPu5ycigdJf1tyGIx0CNQpkfrJ4T_oV24cBpUs_ig_N9-hLj2FnuZctOvcYcjJL0NTzCsgTH1g5Lh-rljYtcHPZUuhZuPI4a7-JLSivQu8RSXoMHo9A5yUs9eTMXeePKntree_lsmTF0r0_MQpcREEH0bXKw4ZATQ-OseScdiSFZUseWTWqTqFbjh-BZa9HG576gCnu9nVNYXuBHh_LtWfCcnKQI2gODju7lxRtlDY33IWBd1LcQ0TmMUNqtTAEUAF3Q3tpWXRygwNSyogo-SVl0CDGv2plbnROJ6M5X7APCfClhGx7Vo3M1BnCjGksOWGrwKQ";
+        return _okicaAccessToken;
     }
 
     public static void setOkicaAccessToken(String token) {
@@ -1822,8 +1822,8 @@ public class AppPreference {
     private static String _okicaAuthCode = null;
 
     public static String getOkicaAuthCode() {
-        return "253007";
-        // return _okicaAuthCode;
+        //return "253007";
+        return _okicaAuthCode;
     }
 
     public static void setOkicaAuthCode(String token) {
@@ -1859,13 +1859,9 @@ public class AppPreference {
 
     private static ICMasterInfo _okicaICMasterInfo = null;
 
-    // DUMMY
+    //
     public static ICMasterInfo getOkicaICMasterInfo() {
-        ICMasterInfo info = new ICMasterInfo();
-        info.checkDate = 1761558067448L;
-        info.fileName = "ICMaster.dat";
-        info.version = 7;
-        return info;
+        return _okicaICMasterInfo;
     }
     public static void setOkicaICMasterInfo(ICMasterInfo masterInfo) {
         _okicaICMasterInfo = masterInfo;
@@ -1874,25 +1870,8 @@ public class AppPreference {
 
     private static AccessKeyInfo _okicaAccessKeyInfo = null;
 
-    /**
-     * DUMMY
-     * @return
-     */
     public static AccessKeyInfo getOkicaAccessKeyInfo() {
-        AccessKeyInfo info = new AccessKeyInfo();
-
-        info.areaCodeList = "000000014001000200030005FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
-        info.areaKeyVersions = "0001000100010001000100010000000000000000000000000000000000000000";
-        info.areaNum = 6;
-        info.checkDate = 1761558070874L;
-        info.endDate = 9223372036854775807L;
-        info.generation = 0;
-        info.serviceCodeList = "4A018801100248028C020A030F05FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
-        info.serviceKeyVersions = "0001000100010001000100010001000000000000000000000000000000000000";
-        info.serviceNum = 7;
-        info.version = 2;
-
-        return info;
+        return _okicaAccessKeyInfo;
     }
 
     public static void setOkicaAccessKeyInfo(AccessKeyInfo info) {
